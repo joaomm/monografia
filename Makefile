@@ -11,7 +11,7 @@ PDFLATEX  = pdflatex
 BIBTEX    = bibtex
 MAKEINDEX = makeindex
 
-pdf: tcc.pdf
+open_pdf: tcc.pdf
 	open tcc.pdf
 
 tcc.pdf: tcc.tex 

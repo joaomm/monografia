@@ -1,6 +1,33 @@
 \chapter{Código Limpo}
 \label{chap:codigo_limpo}
 
+A definição de um bom código não é precisa ou exata. Do mesmo modo que enfretamos dificuldades para definir o que é arte, não podemos definir um conjunto de parâmetros lógicos e mensuráveis para delimitar a diferença de qualidade entre códigos-fonte. Podemos considerar aspectos como testabilidade, eficiência, facilidade de modificação, processo pelo o qual foi desenvolvido, entre outros. Portanto, no âmbito deste trabalho, nos deteremos a trabalhar com o chamado código limpo orientado a objetos.
+
+No livro Clean Code [REF], o autor entrevistou grandes especialistas em desenvolvimento de software como Ward Cunningham [REF] e Dave Thomas [REF] questionando-os quanto a uma definição para código limpo. Cada um dos entrevistados elaborou respostas diferentes, destacando características subjetivas, como elegância, facilidade de alteração e simplicidade, e outras puramente técnicas, incluindo a falta de duplicações, presença de testes unitários e de aceitação e a minimização do número de entidades.
+
+Em certo sentido, um código limpo está inserido em um estilo de programação que busca a proximidade para com três valores: expressividade, simplicidade e flexibilidade. Estes são termos utilizados por Kent Beck no livro Implementation Patterns [REF] que estão em conforme com a unidade de pensamento que permeia as respostas dos especialistas.
+
+\subsubsection{Expressividade}
+Dentre as definições encontradas pela pesquisa de Robert Martin acima citada, algumas afirmações se destacam quanto a expressividade. Na visão de Grady Booch [REF], um código limpo pode ser lido como um texto em prosa e deixa claro as intenções do autor através de operações e abstrações bem escolhidas. Já para Dave Thomas e Kent Beck, a medida para a expressividade está na facilidade para um desenvolvedor, que não o autor orginal do trecho de código, entender, modificar e utilizá-lo.
+
+Grande parte dessas ideias receberam influência do livro de Donald Knuth, Literate Programming [REF]. A intenção era programar em linguagens naturais, como o inglês e português, e intercalar as expressões com macros e pequenos trechos de código-fonte tradicional. O arquivo poderia ser lido como um texto comum, mas no plano de fundo seriam executados os trechos correspondentes à cada uma das expressões em linguagem natural.
+
+Nesse sentido, um código é expressivo quando pode ser facilmente lido nas diferentes camadas de abstração, deixando detalhes de implementação \"escondidos\" em níveis mais baixos. Nas palavras de Ward Cunningham, a solução criada faz com que a linguagem pareça ter sida criada para o problema sendo resolvido.
+
+\subsubsection{Simplicidade}
+A simplicidade é um dos aspectos mais valorizados por Kent Beck. Na sua visão, devemos programar buscando reduzir a quantidade de informação que o leitor deve compreender para fazer alterações. Desta maneira, o autor dá grande importância para a minimização do número de abstrações, comentários e estruturas complexas entre as classes desnecessários.
+
+\subsubsection{Flexibilidade}
+A flexibilidade reflete a facilidade de estender a aplicação sem fazer grandes alterações na estrutura já implementada. Não queremos ter que mudar diversos métodos e diversas classes para adicionar uma funcionalidade.
+
+O código que buscamos deve se adequar e aproveitar bem das vantagens inerentes ao paradigma da orientação a objetos. Tal adequação está bem representada tanto nos princípios SOLID [REF], quanto nos princípios apresentados em Implementation Patterns [REF] abaixo.
+
+\begin{itemize}
+	\item Conseqüencias Locais: devemos estruturar o código de forma que as alterações fiquem encapsuladas em partes do programa;
+	\item Minimizar Duplicações: devemos minimizar tanto trechos duplicados como nas hierarquias de classe particionando o programa em pequenas partes;
+	\item Proximidade da Lógica e Dados: devemos aproximar a lógica dos dados que trabalham uma vez que ambos provavelmente serão alterados simultaneamente;
+	\item Simetria: devemos criar abstrações de maneira simetrica para que o leitor, uma vez entendida uma das partes, entenda rapidamente as demais.
+\end{itemize}
 
 
 

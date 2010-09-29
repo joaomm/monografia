@@ -29,6 +29,17 @@ O código que buscamos deve se adequar e aproveitar bem das vantagens inerentes 
 	\item Simetria: devemos criar abstrações de maneira simetrica para que o leitor, uma vez entendida uma das partes, entenda rapidamente as demais.
 \end{itemize}
 
+\section{O Desenvolvimento de um Código Limpo} 
+Um importante aspecto quanto o desenvolvimento de um código limpo é o reconhecimento que não será obtido em uma primeira tentativa. Robert Martin ressalta que as versões iniciais de um método, classe e outras estruturas nunca são exatamente uma boa solução. É necessário tempo e preocupação com cada elemento desde o nome escolhido para uma variável até uma hierarquia de classes.
+
+Diante dessa realidade, queremos garantir que não teremos empecilhos para as refatorações.
+O mais crítico dos impedimentos é a insegurança. Se ao fazer uma alteração, ficamos receosos de que algo pode ter quebrado, provavelmente logo deixaremos de fazê-las. Desta forma, a presença dos testes são a fundação para o desenvolvimento de um código limpo. Os testes dão a segurança de que as partes estão funcionando corretamente, possibilitando as diversas refatoracões para deixar o código claro.
+
+Além de auxiliar nas alterações, os testes são grande parte da expressividade, simplicidade e flexibilidade de um código. Para que outros que não o autor de um trecho de código o compreenda, os testes podem reportar como o elemento deve ser usado. Para adicionar uma funcionalidade, temos que nos ater a passar em todos os testes de caso (o que é já configura uma grande tarefa). Não é necessário criar estruturas mais complexas para fazer o mesmo trabalho.
+
+Outro tipo de empecilho que podemos encontrar são os comentários e documentações para métodos e classes. Para qualquer alteração feita no código, em tese os comentários e formas de documentação também deveriam ser mudados para ficarem de acordo com o estado atual. Uma contraposição é muito frequente, como aponta Robert Martin: por um lado, se nos policiarmos para que a atualização seja verdadeiramente simultânea, muito provavelmente deixaremos de fazer alterações devido ao excesso de trabalho; pelo outro, se deixarmos de atualizar uma das formas de documentação, estaremos tornando-as dispensáveis.
+
+A solução dada é focar a atenção na criação de um código limpo. Se as variáveis estiverem devidamente nomeadas, não precisaremos criar um comentário para explicá-la. Se os métodos estiverem bem nomeados e tiverem uma única atividade, não será necessário documentar o que são os parâmetros e o valor de retorno. E por fim, se os testes estiverem bem executados, teremos uma documentação do código que garante a corretude.
 
 
 \section{Nomes}

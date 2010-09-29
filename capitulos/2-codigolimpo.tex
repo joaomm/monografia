@@ -1,6 +1,9 @@
 \chapter{Código Limpo}
 \label{chap:codigo_limpo}
 
+
+
+
 \section{Nomes}
 \label{sec:nomes}
 
@@ -126,7 +129,7 @@ Novamente utilizando o exemplo do Crivo de Eristótenes, é necessário marcar t
 Cada função encapsula um nível na cadeia de estruturas encadeadas. Ao invés de muitos fors e ifs encadeados, obtivemos funções pequenas e muito focadas em uma única atividade que podem ser mais facilmente testadas de forma independente.
 
 \subsubsection{Cláusulas Guarda (Guard Clauses)}
-Outra técnica para evitar o uso de estruturas complexas de condicionais são as cláusulas guarda. Quando criamos uma expressão condicional (if), o leitor naturalmente espera um bloco com a contrapartida (else). A ideia é criar um retorno breve para expressar que uma das partes dessa contraposição é mais relevante. Portanto, a segunda estrutura é mais recomendada do que a anterior nos exemplos abaixo, pois revela ao leitor que o fluxo mais relevante é o caso em que ocorre a inicialização.
+Outra técnica para evitar o uso de estruturas complexas de condicionais são as cláusulas guarda. Quando criamos uma expressão condicional (if), o leitor naturalmente espera um bloco com a contrapartida (else). A ideia é criar um retorno breve para expressar que uma das partes dessa contraposição é mais relevante. Portanto, a estrutura exemplificada em \ref{guarda2} é mais recomendada do que em \ref{guarda1} nos exemplos abaixo, pois revela ao leitor que o fluxo mais relevante é o caso em que ocorre a inicialização.
 
 \lstinputlisting[label=guarda1, caption={Método sem Cláusula Guarda}]{capitulos/codigos/guarda1}
 \lstinputlisting[label=guarda2, caption={Método com Cláusula Guarda}]{capitulos/codigos/guarda2}
@@ -144,7 +147,7 @@ O número de argumentos se torna bastante importante quando queremos métodos pe
 Com essa motivação queremos evitar parâmetros desnecessários e que confundem o leitor. Abaixo estão algumas clarificações citadas pelos autores.
 
 \subsubsection{Evitar Flags como Argumentos}
-Se passamos uma Flag (booleana ou proveniente de uma enumeração) como argumento para gerar dois tipos de comportamentos de um método, claramente esse último faz mais do que uma atividade. O natural seria criar um método para cada uma das atividades como mostrado no segundo exemplo abaixo de uma classe Figura abaixo.
+Se passamos uma Flag (booleana ou proveniente de uma enumeração) como argumento para gerar dois tipos de comportamentos de um método, claramente esse último faz mais do que uma atividade. O natural seria criar um método para cada uma das atividades como mostrado no exemplo \ref{rotaciona2} abaixo de uma classe Figura abaixo.
 
 \lstinputlisting[label=rotaciona1, caption={Método rotaciona() com dois comportamentos através do uso de uma flag como argumento}]{capitulos/codigos/rotaciona1}
 \lstinputlisting[label=rotaciona2, caption={Dois métodos com uma única atividade}]{capitulos/codigos/rotaciona2}

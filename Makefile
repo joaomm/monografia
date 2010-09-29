@@ -15,12 +15,8 @@ pdf: tcc.pdf
 	open tcc.pdf
 
 tcc.pdf: tcc.tex 
-	$(PDFLATEX) $<
-	$(BIBTEX) $(BASE_NAME) 
-	$(MAKEINDEX) $(BASE_NAME) 
-	$(PDFLATEX) $< 
-	$(PDFLATEX) $<
-	$(PDFLATEX) $<
+	$(PDFLATEX) tcc.tex
+	$(PDFLATEX) tcc.tex
 
 clean:
 	rm -f $(BASE_NAME)*.ps $(BASE_NAME)*.dvi *.log \

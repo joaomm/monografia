@@ -1,4 +1,4 @@
-\documentclass[11pt,twoside,a4paper]{book}
+\documentclass[11pt,a4paper]{book}
 
 % ---------------------------------------------------------------------------- %
 % Pacotes 
@@ -6,8 +6,6 @@
 \usepackage[brazil]{babel}
 \usepackage[utf8]{inputenc}
 \usepackage[pdftex]{graphicx}           % usamos arquivos pdf/png como figuras
-\DeclareGraphicsExtensions{.png}
-\usepackage{subfigure}
 \usepackage{setspace}                   % espaçamento flexível
 \usepackage{indentfirst}                % indentação do primeiro parágrafo
 \usepackage{makeidx}                    % índice remissivo
@@ -29,9 +27,7 @@
 \fontsize{60}{62}\usefont{OT1}{cmr}{m}{n}{\selectfont}
 \usepackage{enumerate}
 
-%para ajudar na formatação de códigos
-\usepackage{float}      
-\usepackage{fancyvrb}
+
 
 % ---------------------------------------------------------------------------- %
 % Cabeçalhos similares ao TAOCP de Donald E. Knuth
@@ -58,15 +54,11 @@
 \lstset{ %
 language=Java,                  % choose the language of the code
 basicstyle=\footnotesize,       % the size of the fonts that are used for the code
-numbers=left,                   % where to put the line-numbers
-numberstyle=\footnotesize,      % the size of the fonts that are used for the line-numbers
-stepnumber=1,                   % the step between two line-numbers. If it's 1 each line will be numbered
-numbersep=5pt,                  % how far the line-numbers are from the code
 showspaces=false,               % show spaces adding particular underscores
 showstringspaces=false,         % underline spaces within strings
 showtabs=false,                 % show tabs within strings adding particular underscores
 frame=single,	                % adds a frame around the code
-framerule=0.6pt,
+framerule=0.5pt,
 tabsize=2,	                    % sets default tabsize to 2 spaces
 captionpos=b,                   % sets the caption-position to bottom
 breaklines=true,                % sets automatic line breaking
@@ -77,8 +69,8 @@ rulecolor=\color[rgb]{0.8,0.8,0.8},
 extendedchars=true,
 xleftmargin=10pt,
 xrightmargin=10pt,
-framexleftmargin=10pt,
-framexrightmargin=10pt
+framexleftmargin=5pt,
+framexrightmargin=5pt
 }
 
 
@@ -152,13 +144,6 @@ A grande vantagem de usar métricas de código-fonte é que elas podem ser bons 
 
 \input capitulos/1-introducao
 \input capitulos/2-codigolimpo
-
-
-% cabeçalho para os apêndices
-\renewcommand{\chaptermark}[1]{\markboth{\MakeUppercase{\appendixname\ \thechapter}} {\MakeUppercase{#1}} }
-\fancyhead[RE,LO]{}
-\appendix
-
 
 % ---------------------------------------------------------------------------- %
 % Bibliografia

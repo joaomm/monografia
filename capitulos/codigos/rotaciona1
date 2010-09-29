@@ -1,0 +1,5 @@
+rotaciona(angulo, sentidoHorario):
+	if(sentidoHorario == true)
+		this.angulo += angulo
+	else
+		this.angulo -= angulo

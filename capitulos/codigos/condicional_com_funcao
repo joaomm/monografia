@@ -1,0 +1,2 @@
+aindaHaDobrasASeremFeitas():
+		return dobra[inicio] != dobra[inicio+1] && inicio < n

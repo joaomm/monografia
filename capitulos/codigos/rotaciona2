@@ -1,0 +1,5 @@
+rotacionaSentidoHorario(angulo):
+	this.angulo += angulo
+
+rotacionaSentidoAntiHorario(angulo):                    
+	this.angulo -= angulo

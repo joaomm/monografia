@@ -11,10 +11,10 @@ PDFLATEX  = pdflatex
 BIBTEX    = bibtex
 MAKEINDEX = makeindex
 
-open: tcc.pdf
-	open $(BASE_NAME).pdf
-	
-tcc.pdf: $(BASE_NAME).tex 
+pdf: tcc.pdf
+	open tcc.pdf
+
+tcc.pdf: tcc.tex 
 	$(PDFLATEX) $<
 	$(BIBTEX) $(BASE_NAME) 
 	$(MAKEINDEX) $(BASE_NAME) 
@@ -22,14 +22,6 @@ tcc.pdf: $(BASE_NAME).tex
 	$(PDFLATEX) $<
 	$(PDFLATEX) $<
 
-$(BASE_NAME).ps: $(BASE_NAME).tex 
-	$(LATEX) $<
-	$(BIBTEX) $(BASE_NAME) 
-	$(MAKEINDEX) $(BASE_NAME) 
-	$(LATEX) $< 
-	$(LATEX) $<
-	$(LATEX) $<
-	
 clean:
 	rm -f $(BASE_NAME)*.ps $(BASE_NAME)*.dvi *.log \
 	      *.aux *.blg *.toc *.brf *.ilg *.ind *.idx \

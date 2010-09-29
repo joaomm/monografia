@@ -1,0 +1,3 @@
+estacaoJabaquara = estacoes.encontra("Jabaquara")
+ultimaEstacaoLinhaAmarela = estacoes.linhaAmarela().ultima()
+encontraCaminhoEntre(estacaoJabaquara, ultimaEstacaoLinhaAmarela)

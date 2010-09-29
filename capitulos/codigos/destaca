@@ -1,0 +1,2 @@
+destaca(palavra):
+	palavra.corDoFundo(Cor.amarela)

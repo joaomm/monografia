@@ -1,0 +1,11 @@
+marcaMultiplos():
+	for(candidato = 0; candidato <= limite; candidato++)
+		marcaMultiplosSeNaoEstaMarcado(candidato)
+
+marcaMultiplosSeNaoEstaMarcado(candidato):
+	if(naoMarcado(candidato))
+		marcaMultiplosDe(candidato)
+
+marcaMultiplosDe(primo):
+	for(multiplo = 2*primo; multiplo < limite; multiplo += i)
+		numeros[multiplo].marca()

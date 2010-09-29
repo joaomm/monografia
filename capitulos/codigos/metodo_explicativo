@@ -1,0 +1,2 @@
+setaBitCarregamento():
+	flags |= BIT_CARREGAMENTO

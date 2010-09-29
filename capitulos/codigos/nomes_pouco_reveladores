@@ -1,0 +1,7 @@
+caminhoR(Vertice v):
+		Vertice w
+		est[v] = 0
+		for(w = 0; w < tamanho(); w++) 
+			if(adj(v,w))
+				if(est[w] == -1)
+					caminhoR(w)

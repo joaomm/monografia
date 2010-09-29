@@ -1,0 +1,1 @@
+if(dobra[inicio] != dobra[inicio+1] && inicio < n)

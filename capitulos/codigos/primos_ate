@@ -1,0 +1,5 @@
+primosAte(N):
+		cria_inteiros_desmarcados_ate(N)
+		marca_os_myltiplos()
+		coloca_os_nao_marcados_no_resultado()
+		retorna resultado

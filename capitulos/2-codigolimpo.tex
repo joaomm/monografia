@@ -12,7 +12,7 @@ Dentre as definições encontradas pela pesquisa de Robert Martin acima citada, 
 
 Grande parte dessas ideias receberam influência do livro de Donald Knuth, Literate Programming [REF]. A intenção era programar em linguagens naturais, como o inglês e português, e intercalar as expressões com macros e pequenos trechos de código-fonte tradicional. O arquivo poderia ser lido como um texto comum, mas no plano de fundo seriam executados os trechos correspondentes à cada uma das expressões em linguagem natural.
 
-Nesse sentido, um código é expressivo quando pode ser facilmente lido nas diferentes camadas de abstração, deixando detalhes de implementação "escondidos"  em níveis mais baixos. Nas palavras de Ward Cunningham, a solução implementada faz com que a linguagem pareça ter sido feita para o problema sendo resolvido.
+Nesse sentido, um código é expressivo quando pode ser facilmente lido nas diferentes camadas de abstração, deixando detalhes de implementação ``escondidos'' em níveis mais baixos. Nas palavras de Ward Cunningham, a solução implementada faz com que a linguagem pareça ter sido feita para o problema sendo resolvido.
 
 \subsubsection{Simplicidade}
 A simplicidade é um dos aspectos mais valorizados por Kent Beck. Na sua visão, devemos programar buscando reduzir a quantidade de informação que o leitor deve compreender para fazer alterações. Desta maneira, o autor dá grande importância para a minimização do número de abstrações, comentários e estruturas complexas entre as classes desnecessários.
@@ -50,7 +50,7 @@ As sessões subsequentes apresentam aspectos importantes quanto a um código lim
 
 Em uma primeira análise sobre um código-fonte, uma das afirmações que pode ser feita é que ele é constituído por um conjunto de palavras reservadas da linguagem e um número imenso de nomes escolhidos pelos desenvolvedores. Um código escrito em Smalltalk praticamente não contém palavras da sintaxe da linguagem, contendo uma grande quantidade de envio de mensagens aos objetos e usos de variáveis, ambos com nomes escolhidos pelos desenvolvedores.
 
-\subsection{Nomes que Revelam Intenção}
+\subsubsection{Nomes que Revelam Intenção}
 De acordo com Robert Martin, o nome de uma variável, função ou classe deveria responder todas as questões acerca do elemento sendo nomeado. Deveria contar porque o elemento existe, o que faz e como deve ser usado, de forma que comentários se tornem redundantes. O exemplo abaixo ilustra a dificuldade do leitor compreender um código com nomes pouco reveladores.
 
 \lstinputlisting[label=nomes_pouco_reveladores, caption={Exemplo de nomes pouco reveladores}]{capitulos/codigos/nomes_pouco_reveladores}
@@ -65,12 +65,12 @@ Muitas questões podem ser respondidas depois da leitura deste trecho. O nome da
 	
 O exemplo poderia ser melhorado para ficar mais alinhado com o paradigma da orientação a objetos e com os conceitos que serão apresentados mais adiante. Nesta sessão tratamos a importância da escolha de nomes e como pode auxiliar o entendimento. É possível revelar o significado de elementos dando nomes para as constantes, por exemplo. Nomes como origem e próximo podem nomear objetos da mesma classe para mostrar o contexto e semântica de como estão sendo usados. Métodos podem trazer mais expressividade e fluência à leitura se forem nomeados levando em conta o código cliente e nas circunstâncias em que será chamado.
 
-\subsection{Distinções Significativas}
+\subsubsection{Distinções Significativas}
 Durante a criação de um método ou uma classe, é muito comum que, no mesmo contexto, haja  objetos de tipos iguais. Nessa situação, não basta escolher nomes que representem bem o que é o objeto, mas também é preciso criar uma distinção significativa entre eles. O intuito é deixar claro ao leitor do código  (i.e. programador) o papel de cada uma das partes, tanto para facilitar o uso de métodos deixando claro a ordem dos parâmetros, quanto para que a semântica de uma operação fique mais clara.
 	
 Quando um leitor se depara com um método como copiaElementos(lista1, lista2), pode não ficar claro qual é a ordem dos argumentos: os elementos da lista1 são copiados para lista2 ou vice-versa? Com uma simples distinção criada através dos nomes, a leitura não levanta nenhum tipo de dúvidas em copiaElementos(origem, destino).
 
-\subsection{Nomes Temporários}
+\subsubsection{Nomes Temporários}
 Uma solução utilizada para melhorar a clareza das operações de um trecho de código é utilizar nomes temporários para revelar como um objeto será utilizado naquele contexto. O exemplo abaixo ilustra bem esse tipo de situação.
 
 \lstinputlisting[label=encontra_caminho_entre_v1, caption={Exemplo sem o uso de nomes temporários}]{capitulos/codigos/encontra_caminho_entre_v1}
@@ -80,12 +80,12 @@ Com algum esforço, o leitor identificará que o código está buscando o caminh
 \lstinputlisting[label=encontra_caminho_entre_v2, caption={Usando nomes temporários}]{capitulos/codigos/encontra_caminho_entre_v2}
 
 
-\subsection{Único Nome por Conceito}
+\subsubsection{Único Nome por Conceito}
 Outra recomendação dada por Robert Martin [REF + pag] se refere a unicidade de nomes por conceito. O objetivo do estilo de programação buscado é facilitar a compreensão do código e nomear um conceito de maneiras diferentes é bastante confuso, uma vez que o leitor não saberá se o contexto trata de ideias distintas. Qual seria a diferença entre get, fetch, retrieve? Ou encontrar, procurar e buscar?
 	
 Se apenas uma nomenclatura for utilizada, o leitor não terá questões, além de poder se aproveitar da simetria de operações valorizada por Kent Beck [REF]. Não é um acaso que os métodos sobre coleções sempre possuem um mesmo conjunto de nomes como o método add para adicionar elementos. Desta forma, as dúvidas de qual deles utilizar para cada uma das opções é minimizada, sendo mais fácil a assimilação do conceito.
 
-\subsection{Nomes dos Métodos}
+\subsubsection{Nomes dos Métodos}
 Na próxima sessão serão apresentados fundamentos teóricos quanto ao uso de funções para a documentação do código através de sua expressividade. Antes, para que as técnicas exemplificadas sejam eficazes como pretendido por Robert Martin e Kent Beck, os nomes dos métodos devem ser bem escolhidos de modo que descrevem muito bem a atividade que realizam.
 	
 O uso de nomes descritivos pode muitas vezes resultar em nomes longos e difíceis de serem digitados muitas vezes. Entretanto, a quantidade de ocasiões em que serão lidos é substancialmente maior do que a quantidade em que as escrevemos. Desta maneira, a economia de palavras deve ser descartada em favor de uma boa expressividade [REF].
@@ -223,7 +223,9 @@ A questão que surge após a afirmação que as classes deveriam ser pequenas é
 	
 A forma de medir o tamanho de uma classe proposto por Robert Martin está atrelado com a quantidade de responsabilidades que a mesma possui. Podemos pensar em uma responsabilidade como uma razão para mudar. No exemplo acima, para que o sistema seja adaptado para utilizar um novo padrão HTML, é necessário alterar a classe Controlador. O mesmo teria que ser feito caso um novo tipo de entrada do usuário fosse concebido. Dessa forma, dizemos que o Controlador tem pelo menos duas responsabilidades: lidar com a criação de HTML e processar a entrada do usuário.
 	
-Dentro do estilo de programação buscando, queremos que nossas classes sigam o Princípio da Única Responsabilidade que, de maneira geral, afirma: as classes deveriam ter uma única responsabilidade, ou seja, ter uma única razão para mudar. Seguindo o princípio SOLID acima exposto por Robert Martin em Agile Software Development, Principles, Patterns, and Practices, queremos evitar classes como o Controlador.
+Dentro do estilo de programação buscando, queremos que nossas classes sigam o Princípio da Única Responsabilidade que, de maneira geral, afirma: as classes deveriam ter uma única responsabilidade, ou seja, ter uma única razão para mudar. Seguindo o princípio SOLID [REF] acima exposto por Robert Martin em Agile Software Development, Principles, Patterns, and Practices [REF], queremos evitar classes como o Controlador.
+
+É importante destacar que esse princípio não é uma contraposição com as ideias empregadas na concepção da arquitetura através dos Cartões CRC [REF] ou do chamado Design Dirigido a Responsabilidades [REF]. Nessas duas abordagens criamos o design da aplicação considerando as classes envolvidas, suas colaborações e responsabilidades. O Princípio da Única Responsabilidade é mais atrelado à implementação, enquanto que nos cartões CRC consideramos as abstrações. Dessa forma, podemos conceber que um software precisa de uma abstração Gerente representada por uma classe, mesmo que na implementação suas responsabilidades sejam obtidas através de delegações para classes pequenas como Objetos Métodos [REF].
 
 \subsubsection{Coesão}
 De um ponto de vista técnico, qual crítica poderia ser feita sobre a classe Controlador? 
@@ -253,9 +255,9 @@ A Lei de Demeter diz que um método M de uma classe C só deveria chamar um dos 
 
 O cumprimento desta heurística visa evitar que uma classe conheça os detalhes de implementação dos objetos aos quais manipula. A invocação de métodos da própria classe não causa nenhum tipo de dependência pela óbvia ausência de algo sobre a qual depender. Os outros tipos de chamadas especificados na Lei causam uma dependência, mas que se limita as interfaces dos objetos trabalhados. A classe deve conhecer quais os métodos dos objetos, os argumentos que aceitam e o tipo do valor de retorno, caso houver.
 	
-Um exemplo claro de violação são os chamados \"train wrecks\". Suponha que temos uma classe JogoDeFutebol e uma classe cliente C executa a seguinte operação:
+Um exemplo claro de violação são os chamados ``train wreck''. Suponha que temos uma classe JogoDeFutebol e uma classe cliente C executa a seguinte operação:
 	
-\lstinputlisting[label=train_wreck, caption={Um chamado \"train wreck\" que exemplifica uma violação à Lei de Demeter}]{capitulos/codigos/train_wreck}
+\lstinputlisting[label=train_wreck, caption={Um chamado ``train wreck'' que exemplifica uma violação à Lei de Demeter}]{capitulos/codigos/train_wreck}
 
 A chamada para getTimes() está de acordo com a Lei de Demeter pois é uma invocação de um método de um objeto guardado em um variável de instância jogoDeFutebol da classe JogoDeFutebol. O valor de retorno dessa chamada é uma lista contendo os dois times que não é objeto criado e/ou guardado dentro da classe C, nem um argumento passado para M. Dessa forma, a chamada para primeiro() sobre essa lista é a primeira das violações à heurística.
 	
@@ -280,3 +282,18 @@ Durante o desenvolvimento, freqüentemente essa solução pode não ser clara ou
 	
 Outro fato importante a ser considerado quanto a Inversão de Dependência está no isolamento dos testes automatizados. Ao testar classes que dependem de outras classes, queremos isolar a testada de forma que os testes sejam de fato unitários. Se a classe em teste depender de abstrações, o trabalho será simplificado. No exemplo do Copiador acima, poderíamos criar um EscritorTeste e um LeitorTeste que tivesse operações convenientes para que os testes de Copiador fosse isolados.
 
+
+\section{Unindo Conceitos}
+\label{unindo_conceitos}
+
+Nas sessões anteriores foram enumeradas diversas características que devem ser consideradas para o desenvolvimento de um código limpo. Através de uma parcela do conjunto apresentado, podemos fazer boas escolhas que trarão melhorias imediatas para o código. Porém, o entendimento e aplicações de composições das recomendações podem causar alterações ainda mais poderosas.
+
+Na busca pelo desenvolvimento de um código expressivo, podemos decompor métodos de mais alto nível em outros métodos no nível de abstração abaixo. Associada a busca por métodos sempre pequenos e sem estruturas encadeadas, tal decomposição forçará o encapsulamento e a escolha de bons nomes para uma atividade dentro da cadeia de funções.
+
+Enquanto dividimos as atividades, é muito freqüente que a lista de argumentos dos métodos criados comece a aumentar. Isso acontece principalmente porque as atividades de mais baixo nível são responsáveis pela manipulação dos dados. Diante de tal situação, é comum transformarmos parâmetros muito utilizados em variáveis de instância da classe trabalhada.
+
+A medida que criamos mais métodos e mais variáveis através da decomposição e adição de novas funcionalidades, devemos questionar se a classe não está concentrando responsabilidades. Muito provavelmente teremos uma divisão entre os elementos dessa classe: teremos dois conjuntos de métodos e variáveis que não entram em contato. Desta maneira, e classe terá duas unidades lógicas distintas, revelando que não está maximizando a coesão. Um passo natural seria dividir essa classe em duas classes. 
+
+O resultado do esforço exemplificado é um sistema que provavelmente atingiu grande proximidade para com os três valores. O código será significamente expressivo, pois as classes serão formadas por muitos métodos com bons nomes de forma que o leitor possa ler cada nível de abstração em uma linguagem bastante próxima da natural.
+
+Além disso, como o sistema é formado por muitas classes pequenas e extremamente coesas, será simples encontrar e compreender cada uma das partes, uma vez que será necessário trabalhar com pouca informação. Essas características também auxiliaram na minimização de duplicações, na aproximação da lógica e dados e na manutenção de conseqüencias locais, provendo grande flexibilidade.

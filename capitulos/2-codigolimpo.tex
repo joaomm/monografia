@@ -5,14 +5,14 @@ A definição de um bom código não é precisa ou exata. Do mesmo modo que enfr
 
 No livro Clean Code [REF], o autor entrevistou grandes especialistas em desenvolvimento de software como Ward Cunningham [REF] e Dave Thomas [REF] questionando-os quanto a uma definição para código limpo. Cada um dos entrevistados elaborou respostas diferentes, destacando características subjetivas, como elegância, facilidade de alteração e simplicidade, e outras puramente técnicas, incluindo a falta de duplicações, presença de testes unitários e de aceitação e a minimização do número de entidades.
 
-Em certo sentido, um código limpo está inserido em um estilo de programação que busca a proximidade para com três valores: expressividade, simplicidade e flexibilidade. Estes são termos utilizados por Kent Beck no livro Implementation Patterns [REF] que estão em conforme com a unidade de pensamento que permeia as respostas dos especialistas.
+Em certo sentido, um código limpo está inserido em um estilo de programação que busca a proximidade para com três valores: expressividade, simplicidade e flexibilidade. Tais termos são utilizados por Kent Beck no livro Implementation Patterns [REF] que estão em conforme com a unidade de pensamento que permeia as respostas dos especialistas.
 
 \subsubsection{Expressividade}
-Dentre as definições encontradas pela pesquisa de Robert Martin acima citada, algumas afirmações se destacam quanto a expressividade. Na visão de Grady Booch [REF], um código limpo pode ser lido como um texto em prosa e deixa claro as intenções do autor através de operações e abstrações bem escolhidas. Já para Dave Thomas e Kent Beck, a medida para a expressividade está na facilidade para um desenvolvedor, que não o autor orginal do trecho de código, entender, modificar e utilizá-lo.
+Dentre as definições encontradas pela pesquisa de Robert Martin acima citada, algumas afirmações se destacam quanto a expressividade. Na visão de Grady Booch [REF], um código limpo pode ser lido como um texto em prosa e deixa claro as intenções do autor através de operações e abstrações bem escolhidas. Já para Dave Thomas e Kent Beck, a medida para a expressividade está na facilidade para um desenvolvedor, que não o autor original do trecho de código, entender, modificar e utilizá-lo.
 
 Grande parte dessas ideias receberam influência do livro de Donald Knuth, Literate Programming [REF]. A intenção era programar em linguagens naturais, como o inglês e português, e intercalar as expressões com macros e pequenos trechos de código-fonte tradicional. O arquivo poderia ser lido como um texto comum, mas no plano de fundo seriam executados os trechos correspondentes à cada uma das expressões em linguagem natural.
 
-Nesse sentido, um código é expressivo quando pode ser facilmente lido nas diferentes camadas de abstração, deixando detalhes de implementação \"escondidos\" em níveis mais baixos. Nas palavras de Ward Cunningham, a solução criada faz com que a linguagem pareça ter sida criada para o problema sendo resolvido.
+Nesse sentido, um código é expressivo quando pode ser facilmente lido nas diferentes camadas de abstração, deixando detalhes de implementação "escondidos"  em níveis mais baixos. Nas palavras de Ward Cunningham, a solução implementada faz com que a linguagem pareça ter sido feita para o problema sendo resolvido.
 
 \subsubsection{Simplicidade}
 A simplicidade é um dos aspectos mais valorizados por Kent Beck. Na sua visão, devemos programar buscando reduzir a quantidade de informação que o leitor deve compreender para fazer alterações. Desta maneira, o autor dá grande importância para a minimização do número de abstrações, comentários e estruturas complexas entre as classes desnecessários.
@@ -20,27 +20,30 @@ A simplicidade é um dos aspectos mais valorizados por Kent Beck. Na sua visão,
 \subsubsection{Flexibilidade}
 A flexibilidade reflete a facilidade de estender a aplicação sem fazer grandes alterações na estrutura já implementada. Não queremos ter que mudar diversos métodos e diversas classes para adicionar uma funcionalidade.
 
-O código que buscamos deve se adequar e aproveitar bem das vantagens inerentes ao paradigma da orientação a objetos. Tal adequação está bem representada tanto nos princípios SOLID [REF], quanto nos princípios apresentados em Implementation Patterns [REF] abaixo.
+O código pretendido deve se adequar e aproveitar bem das vantagens inerentes ao paradigma da orientação a objetos. Tal adequação está bem representada tanto nos princípios SOLID [REF], quanto nos princípios apresentados em Implementation Patterns [REF] abaixo.
 
 \begin{itemize}
 	\item Conseqüencias Locais: devemos estruturar o código de forma que as alterações fiquem encapsuladas em partes do programa;
-	\item Minimizar Duplicações: devemos minimizar tanto trechos duplicados como nas hierarquias de classe particionando o programa em pequenas partes;
-	\item Proximidade da Lógica e Dados: devemos aproximar a lógica dos dados que trabalham uma vez que ambos provavelmente serão alterados simultaneamente;
-	\item Simetria: devemos criar abstrações de maneira simetrica para que o leitor, uma vez entendida uma das partes, entenda rapidamente as demais.
+	\item Minimizar Duplicações: devemos particionar o programa em partes pequenas com o intuito de minimizar as repetições tanto na forma de trechos semelhantes como em hierarquias de classe parelelas e estruturas com informações duplicadas;
+	\item Proximidade da Lógica e Dados: devemos aproximar a lógica e os dados sobre quais trabalha uma vez que ambos serão alterados simultaneamente;
+	\item Simetria: devemos criar abstrações de maneira simétrica para que o leitor, uma vez entendida uma das partes, entenda rapidamente as demais.
 \end{itemize}
 
 \section{O Desenvolvimento de um Código Limpo} 
 Um importante aspecto quanto o desenvolvimento de um código limpo é o reconhecimento que não será obtido em uma primeira tentativa. Robert Martin ressalta que as versões iniciais de um método, classe e outras estruturas nunca são exatamente uma boa solução. É necessário tempo e preocupação com cada elemento desde o nome escolhido para uma variável até uma hierarquia de classes.
 
 Diante dessa realidade, queremos garantir que não teremos empecilhos para as refatorações.
-O mais crítico dos impedimentos é a insegurança. Se ao fazer uma alteração, ficamos receosos de que algo pode ter quebrado, provavelmente logo deixaremos de fazê-las. Desta forma, a presença dos testes são a fundação para o desenvolvimento de um código limpo. Os testes dão a segurança de que as partes estão funcionando corretamente, possibilitando as diversas refatoracões para deixar o código claro.
+O mais crítico dos impedimentos é a insegurança. Se ao fazer uma alteração, ficamos receosos de que algo pode ter quebrado, provavelmente logo deixaremos de fazê-las, progressivamente afastando o código da limpeza desejada. Desta forma, a presença de testes automatizados são a fundação para o desenvolvimento de um código limpo. Os testes dão a segurança de que as partes estão funcionando corretamente, possibilitando as diversas refatoracões para deixar o código claro.
 
-Além de auxiliar nas alterações, os testes são grande parte da expressividade, simplicidade e flexibilidade de um código. Para que outros que não o autor de um trecho de código o compreenda, os testes podem reportar como o elemento deve ser usado. Para adicionar uma funcionalidade, temos que nos ater a passar em todos os testes de caso (o que é já configura uma grande tarefa). Não é necessário criar estruturas mais complexas para fazer o mesmo trabalho.
+Além de auxiliar nas alterações, os testes compõe parte da expressividade, simplicidade e flexibilidade de um código. Para que desenvolvedores que não o autor de um trecho de código o compreendam, os testes podem reportar como o elemento deve ser usado. Por fim, a medida para a simplicidade pode ser feita através da suíte de teste: se os testes estão todos corretos, não é necessário adicionar complexidade, apenas melhorias sem adicionar funcionalidade. 
 
-Outro tipo de empecilho que podemos encontrar são os comentários e documentações para métodos e classes. Para qualquer alteração feita no código, em tese os comentários e formas de documentação também deveriam ser mudados para ficarem de acordo com o estado atual. Uma contraposição é muito frequente, como aponta Robert Martin: por um lado, se nos policiarmos para que a atualização seja verdadeiramente simultânea, muito provavelmente deixaremos de fazer alterações devido ao excesso de trabalho; pelo outro, se deixarmos de atualizar uma das formas de documentação, estaremos tornando-as dispensáveis.
+Outro tipo de empecilho que podemos encontrar são os comentários e documentações para métodos e classes. Para qualquer alteração feita no código, em tese os comentários e formas de documentação também deveriam ser mudados para ficarem de acordo com o estado atual. Uma contraposição é muito frequente, como aponta Robert Martin: por um lado, se nos policiarmos para que a atualização do código e comentários seja simultânea, muito provavelmente deixaremos de fazer alterações devido ao excesso de trabalho; pelo outro, se deixarmos de atualizar uma das formas de documentação, estaremos tornando-as dispensáveis, além de potencialmente se tornarem fontes de informações incorretas.
 
-A solução dada é focar a atenção na criação de um código limpo. Se as variáveis estiverem devidamente nomeadas, não precisaremos criar um comentário para explicá-la. Se os métodos estiverem bem nomeados e tiverem uma única atividade, não será necessário documentar o que são os parâmetros e o valor de retorno. E por fim, se os testes estiverem bem executados, teremos uma documentação do código que garante a corretude.
+A solução dada é focar a atenção no desenvolvimento de um código limpo. Se as variáveis estiverem devidamente nomeadas, não precisaremos criar um comentário para explicá-la. Se os métodos estiverem bem nomeados e tiverem uma única atividade, não será necessário documentar o que são os parâmetros e o valor de retorno. E por fim, se os testes estiverem bem executados, teremos uma documentação do código que garante a corretude.
 
+Robert Martin enfatiza que o desejado é não engessar o desenvolvimento e melhoria do código com dificuldades para os programadores, mas compreender quais elementos do software precisam de documentação e contruí-la adequadamente.
+
+As sessões subsequentes apresentam aspectos importantes quanto a um código limpo no que diz respeito a detalhes quanto aos nomes, métodos e classes.
 
 \section{Nomes}
 \label{sec:nomes}

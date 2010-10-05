@@ -53,13 +53,13 @@ Em uma primeira análise sobre um código-fonte, uma das afirmações que pode s
 \subsubsection{Nomes que Revelam Intenção}
 De acordo com Robert Martin, o nome de uma variável, função ou classe deveria responder todas as questões acerca do elemento sendo nomeado. Deveria contar porque o elemento existe, o que faz e como deve ser usado, de forma que comentários se tornem redundantes. O exemplo abaixo ilustra a dificuldade do leitor compreender um código com nomes pouco reveladores.
 
-\lstinputlisting[label=nomes_pouco_reveladores, caption={Exemplo de nomes pouco reveladores}]{capitulos/codigos/nomes_pouco_reveladores}
+\lstinputlisting[label=nomes_pouco_reveladores, caption={Exemplo de nomes pouco reveladores}]{codigos/nomes_pouco_reveladores}
 
 Esse método, pertencente à uma classe Grafo, é difícil de ser compreendido sem um vasto conhecimento da convenção de notações e o algoritmo utilizado. Muitas perguntas poderiam ser feitas como (i) O que faz caminhoR?,  (ii) O que é o vértice v?  E quanto ao w? Eles tem algo em comum?, (iii)  O que significa adj(v, w) ser igual a 1?”.
 
 A seguir segue o mesmo código com alterações somente nos nomes das variáveis e métodos, sem nenhuma alteração na implementação.
 
-\lstinputlisting[label=passeio_com_origem_em, caption={Melhorias nos nomes podem tornar o código mais claro}]{capitulos/codigos/passeio_com_origem_em}
+\lstinputlisting[label=passeio_com_origem_em, caption={Melhorias nos nomes podem tornar o código mais claro}]{codigos/passeio_com_origem_em}
 
 Muitas questões podem ser respondidas depois da leitura deste trecho. O nome da função deixa claro que sua atividade é passear pelos vértices do grafo começando pelo vértice origem passado como parâmetro. O vetor est foi renomeado para estado e as constante 0 e -1 receberam um nome, revelando o significado das operações em que constam. A simples mudança de tamanho() para numeroDeVertices() provê um contexto mais completo para o entendimento do laço.
 	
@@ -73,11 +73,11 @@ Quando um leitor se depara com um método como copiaElementos(lista1, lista2), p
 \subsubsection{Nomes Temporários}
 Uma solução utilizada para melhorar a clareza das operações de um trecho de código é utilizar nomes temporários para revelar como um objeto será utilizado naquele contexto. O exemplo abaixo ilustra bem esse tipo de situação.
 
-\lstinputlisting[label=encontra_caminho_entre_v1, caption={Exemplo sem o uso de nomes temporários}]{capitulos/codigos/encontra_caminho_entre_v1}
+\lstinputlisting[label=encontra_caminho_entre_v1, caption={Exemplo sem o uso de nomes temporários}]{codigos/encontra_caminho_entre_v1}
 
 Com algum esforço, o leitor identificará que o código está buscando o caminho entre a estação Jabaquara e a última estação da linha Amarela. Porém, a expressividade da versão alterada abaixo deixa com que a leitura e compreensão sejam imediatas.
 
-\lstinputlisting[label=encontra_caminho_entre_v2, caption={Usando nomes temporários}]{capitulos/codigos/encontra_caminho_entre_v2}
+\lstinputlisting[label=encontra_caminho_entre_v2, caption={Usando nomes temporários}]{codigos/encontra_caminho_entre_v2}
 
 
 \subsubsection{Único Nome por Conceito}
@@ -122,7 +122,7 @@ A composição de método é a base para a criação de um código limpo. A prop
 	
 Usando novamente o exemplo do algoritmo do Crivo de Erastótenes, para encontrar os primos de 1 a N devemos criar um conjunto de elementos que represente os inteiros de 1 a N, marcar todos números múltiplos de outros e depois coletar todos aqueles que não estão marcados (os primos). Para isso criamos um método da classe GeradorDePrimos:
 
-\lstinputlisting[label=primos_ate, caption={Algoritmo do Crivo de Erastótenes decomposto em métodos}]{capitulos/codigos/primos_ate}
+\lstinputlisting[label=primos_ate, caption={Algoritmo do Crivo de Erastótenes decomposto em métodos}]{codigos/primos_ate}
 
 Nesse exemplo, compusemos o método primosAte(N) em chamadas para outros métodos, cada um com uma atividade e um nome explicativo. Dessa forma, o leitor pode entender facilmente como funciona o algoritmo de uma maneira geral. 
 	
@@ -135,15 +135,15 @@ Para auxiliar na expressividade de um trecho de código, podemos criar uma funç
 	
 Essa ideia pode ser empregada em diferentes contextos e níveis de abstração. Uma circunstância pode ser ilustrada pela afirmação de Kent Beck: “Considero a criação de um método explicativo quando fico tentado a comentar uma única linha de código”. Abaixo está um exemplo em Java extraído do livro do mesmo.
 
-\lstinputlisting[label=operacao_estranha, caption={Exemplo de operação pouco clara que recebe comentário}]{capitulos/codigos/operacao_estranha}
+\lstinputlisting[label=operacao_estranha, caption={Exemplo de operação pouco clara que recebe comentário}]{codigos/operacao_estranha}
 
 O comentário pede uma mudança usando um método explicativo.
 	
-\lstinputlisting[label=metodo_explicativo, caption={Exemplo de Método Explicativo que dispensa os comentários}]{capitulos/codigos/metodo_explicativo}
+\lstinputlisting[label=metodo_explicativo, caption={Exemplo de Método Explicativo que dispensa os comentários}]{codigos/metodo_explicativo}
 
 Em outro exemplo, criamos um método chamado destaca() para dar o contexto necessário para uma operação de nível mais baixo. 
 
-\lstinputlisting[label=destaca, caption={Método destaca() facilita a leitura do código cliente}]{capitulos/codigos/destaca}
+\lstinputlisting[label=destaca, caption={Método destaca() facilita a leitura do código cliente}]{codigos/destaca}
 
 Considerando a região de código que chama destaca(), as melhorias são diversas com essa alteração. Se a operação fosse simplesmente colocada sem nenhum comentário, provavelmente o leitor se perguntaria porque a cor de fundo da palavra está sendo alterada naquele contexto. O comentário seria algo como “destacar a palavra no texto”, o que se torna obsoleto com o método explicativo. 
 
@@ -152,11 +152,11 @@ Por fim, ainda há formas mais implícitas de utilizar métodos explicativos. Qu
 \subsubsection{Funções como Condicionais}
 Um caso específico de método explicativo bastante utilizado é uma chamada para uma função que contenha uma expressão booleana como valor de retorno.
 	
-\lstinputlisting[label=condicional_estranho, caption={Exemplo de uma expressão booleana pouco clara}]{capitulos/codigos/condicional_estranho}
+\lstinputlisting[label=condicional_estranho, caption={Exemplo de uma expressão booleana pouco clara}]{codigos/condicional_estranho}
 
 Um condicional como o mostrado acima não é muito claro e deixa o próprio autor confuso quanto ao seu significado depois de certo tempo após sua redação. A criação de uma função que contenha a expressão booleana nos permite escolher um nome apropriado para a circunstância, deixando o condicional claro.
 
-\lstinputlisting[label=condicional_com_funcao, caption={Método que encapsula expressão booleana}]{capitulos/codigos/condicional_com_funcao}
+\lstinputlisting[label=condicional_com_funcao, caption={Método que encapsula expressão booleana}]{codigos/condicional_com_funcao}
 
 \subsubsection{Evitar Estruturas Encadeadas}
 Tendo em vista a busca por funções pequenas e com uma única atividade, um aspecto relevante é a criação de estruturas encadeadas. Se um método tem uma cadeia de ifs e elses, o leitor terá dificuldades para compreender todos os casos e fluxos possíveis.
@@ -165,15 +165,15 @@ Em ambos os livros trabalhados, os autores enfatizam sobre o uso de chamadas de 
 	
 Novamente utilizando o exemplo do Crivo de Eristótenes, é necessário marcar todos os números que sejam múltiplos de um primo, representado por um número não marcado.
 
-\lstinputlisting[label=marca_multiplos, caption={Alternativa para evitar estruturas encadeadas usando funções pequenas}]{capitulos/codigos/marca_multiplos}
+\lstinputlisting[label=marca_multiplos, caption={Alternativa para evitar estruturas encadeadas usando funções pequenas}]{codigos/marca_multiplos}
 
 Cada função encapsula um nível na cadeia de estruturas encadeadas. Ao invés de muitos fors e ifs encadeados, obtivemos funções pequenas e muito focadas em uma única atividade que podem ser mais facilmente testadas de forma independente.
 
 \subsubsection{Cláusulas Guarda (Guard Clauses)}
 Outra técnica para evitar o uso de estruturas complexas de condicionais são as cláusulas guarda. Quando criamos uma expressão condicional (if), o leitor naturalmente espera um bloco com a contrapartida (else). A ideia é criar um retorno breve para expressar que uma das partes dessa contraposição é mais relevante. Portanto, a estrutura exemplificada em \ref{guarda2} é mais recomendada do que em \ref{guarda1} nos exemplos abaixo, pois revela ao leitor que o fluxo mais relevante é o caso em que ocorre a inicialização.
 
-\lstinputlisting[label=guarda1, caption={Método sem Cláusula Guarda}]{capitulos/codigos/guarda1}
-\lstinputlisting[label=guarda2, caption={Método com Cláusula Guarda}]{capitulos/codigos/guarda2}
+\lstinputlisting[label=guarda1, caption={Método sem Cláusula Guarda}]{codigos/guarda1}
+\lstinputlisting[label=guarda2, caption={Método com Cláusula Guarda}]{codigos/guarda2}
 
 \subsubsection{Objeto Método (Method Object)}
 Ao dividir os métodos em outros menores com uma única atividade, podemos criar métodos com grande complexidade e difícil refatoração: muitas variáveis, muito parâmetros necessários e muitas estruturas encadeadas. Diante dessa situação, podemos criar um objeto que encapsule toda essa lógica. 
@@ -190,8 +190,8 @@ Com essa motivação queremos evitar parâmetros desnecessários e que confundem
 \subsubsection{Evitar Flags como Argumentos}
 Se passamos uma Flag (booleana ou proveniente de uma enumeração) como argumento para gerar dois tipos de comportamentos de um método, claramente esse último faz mais do que uma atividade. O natural seria criar um método para cada uma das atividades como mostrado no exemplo \ref{rotaciona2} abaixo de uma classe Figura abaixo.
 
-\lstinputlisting[label=rotaciona1, caption={Método rotaciona() com dois comportamentos através do uso de uma flag como argumento}]{capitulos/codigos/rotaciona1}
-\lstinputlisting[label=rotaciona2, caption={Dois métodos com uma única atividade}]{capitulos/codigos/rotaciona2}
+\lstinputlisting[label=rotaciona1, caption={Método rotaciona() com dois comportamentos através do uso de uma flag como argumento}]{codigos/rotaciona1}
+\lstinputlisting[label=rotaciona2, caption={Dois métodos com uma única atividade}]{codigos/rotaciona2}
 
 \subsubsection{Objeto como Parâmetro}
 Diante de uma lista grande de argumentos, devemos questionar se não existe alguma abstração que une esses elementos. Por exemplo, considere uma classe FábricaDeMáquinas cujo construtor é FábricaDeMáquinas(númeroDeMáquinas, númeroDeFuncionários, horasDeFuncionamento). Uma possibilidade seria criar um objeto EspecificaçãoDeFábrica que contivesse esses argumentos como variáveis de instância e métodos que fossem úteis para que o código desta FábricaDeMáquinas fosse o mais claro possível.
@@ -257,7 +257,7 @@ O cumprimento desta heurística visa evitar que uma classe conheça os detalhes 
 	
 Um exemplo claro de violação são os chamados ``train wreck''. Suponha que temos uma classe JogoDeFutebol e uma classe cliente C executa a seguinte operação:
 	
-\lstinputlisting[label=train_wreck, caption={Um chamado ``train wreck'' que exemplifica uma violação à Lei de Demeter}]{capitulos/codigos/train_wreck}
+\lstinputlisting[label=train_wreck, caption={Um chamado ``train wreck'' que exemplifica uma violação à Lei de Demeter}]{codigos/train_wreck}
 
 A chamada para getTimes() está de acordo com a Lei de Demeter pois é uma invocação de um método de um objeto guardado em um variável de instância jogoDeFutebol da classe JogoDeFutebol. O valor de retorno dessa chamada é uma lista contendo os dois times que não é objeto criado e/ou guardado dentro da classe C, nem um argumento passado para M. Dessa forma, a chamada para primeiro() sobre essa lista é a primeira das violações à heurística.
 	

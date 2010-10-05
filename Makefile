@@ -16,6 +16,7 @@ open_pdf: clean tcc.pdf
 
 tcc.pdf: tcc.tex 
 	$(PDFLATEX) tcc.tex
+	$(BIBTEX) referencias.bib
 	$(PDFLATEX) tcc.tex
 
 clean:

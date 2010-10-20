@@ -1,12 +1,12 @@
 \chapter{Introdução}
 \label{chap:introducao}
 
-A indústria de software sempre lidou com um busca contínua por melhorias nos métodos
-de desenvolvimento. Os processos tradicionais investem tempo especificando requisitos
+A indústria de software busc continuamente por melhorias nos métodos
+de desenvolvimento. Do ponto de vista prático, os processos tradicionais investem tempo especificando requisitos
 e planejando a arquitetura do software para que o trabalho possa ser dividido entre os
 programadores, cujo trabalho é transformar o design anteriormente concebido em código.
-Diante de uma perspectiva ágil [REF], valoriza-se a entrega constante 
-de valor ao cliente. Se há um agente financiador ou uma comunidade de software livre
+Diante de uma perspectiva dos métodos ágeis, valoriza-se a entrega constante 
+de valor ao cliente \cite{}. Por exemplo, se há um agente financiador ou uma comunidade de software livre
 como cliente, o foco é na entrega de funcionalidades que possam ser rapidamente colocadas
 no ambiente produção e receber ``feedback'' constante.
 
@@ -14,44 +14,38 @@ Em ambos os casos, não há como ignorar o fato de que o código-fonte da aplica
 desenvolvido gradativamente e diferentes programadores farão alterações e extensões
 continuamente. Nesse contexto, as funcionalidades são adicionadas e as falhas sanadas.
 
-Uma situação bastante comum durante o desenvolvimento, é um programador lidar com um trecho que
-ainda não teve contato para fazer alterações. Nessa tarefa, lida com métodos extensos e classes
-com muitas linhas de código que se comunicam com diversos objetos; também encontra comentários
-desatualizados relacionados a uma variável com nome abreviado e sem significado, além de métodos que 
+Uma situação comum durante o desenvolvimento, é um programador lidar com um trecho que
+ainda não teve contato para fazer alterações. Nessa tarefa, por exemplo, (i) lida com métodos extensos e classes
+com muitas linhas de código que se comunicam com diversos objetos; (ii) encontra comentários
+desatualizados relacionados a uma variável com nome abreviado e sem significado, e (iii) se depara com métodos que
 recebem valores booleanos e possuem estruturas encadeadas complexas com muitas operações duplicadas.
 
-Depois um longo período de leitura, o desenvolvedor encontra o trecho de lógica em que deve 
+Portanto, depois um longo período de leitura, o desenvolvedor encontra o trecho de lógica em que deve 
 fazer a mudança. A alteração freqüentemente consiste na modificação de poucas linhas e o 
-desenvolvedor fica satisfeito com o trabalho feito.
+desenvolvedor tem seu trabalho como terminado, sem ter feito melhorias no código complexo com o qual enfrentou dificuldades.
 
 O quadro exemplificado ilustra uma circustância com aspectos a serem observados.
 Primeiramente, há uma diferença significativa na proporção entre linhas lidas e as inseridas.
 Para cada uma das poucas linhas que escreveu, o desenvolvedor teve que compreender muitas
-outras. Além disso, não houve melhorias na clareza ou flexibilidade do código, fazendo 
+outras \cite{}. Além disso, não houve melhorias na clareza ou flexibilidade do código, fazendo 
 com que os responsáveis pela próxima alteração, seja o próprio desenvolvedor ou o seguinte,
 tenham que enfrentar a mesma dificuldade.
 
-Tendo essa situação em vista, nesse trabalho prentendemos ilustrar um estilo de programação baseado
-no paradigma da Orientação a Objetos que busca o chamado Código Limpo, concebido e aplicado por renomados desenvolvedores de software
-como Robert C. Martin e Kent Beck. Baseado em testes e decisões técnicas que visam a clareza, flexibilidade
+Tendo essa situação em vista, nesse trabalho apresentamos um estilo de programação baseado
+no paradigma da Orientação a Objetos que busca o que denominamos ``Código Limpo'', concebido e aplicado por renomados desenvolvedores de software
+como Robert C. Martin \cite{} e Kent Beck \cite{}. Baseado em testes e decisões técnicas que visam a clareza, flexibilidade
 e simplicidade do código-fonte, um código limpo pode ter um impacto importante no desenvolvimento 
 de software, aumentando a produtividade e diminuindo os custos de manutenção.
 
-Ao longo desta monografia, também abordaremos uma maneira objetiva fazer um mapeamento objetivo 
-entre os conceitos relaciados a um código limpo e métricas de código-fonte. Além de poderem ser
+Para promover o teste dessas hipóteses, ao longo desta monografia, também abordaremos uma maneira objetiva fazer um mapeamento objetivo 
+entre os conceitos relaciados a um código limpo e métricas de código-fonte. Em resumo, além de poderem ser
 automatizadas computacionalmente, os valores das métricas podem dar uma base de comparação entre
-as versões de um mesmo software e destacar trechos que poderiam sofrer alterações importantes.
-
+as versões de um mesmo software e destacar trechos que poderiam sofrer alterações relacionadas à ``limpeza do código''.
 
 \section{Objetivos}
 \label{sec:objetivo}
 
-O principal objetivo deste trabalho é auxiliar os programadores a melhorem a expressividade e clareza de seus códigos-fonte através de um mapeamento objetivo do conhecimento de especialistas em desenvolvimento de software. Para tanto, agruparemos os principais conceitos da literatura relacionada e proporemos um conjunto de métricas para facilitar melhorias.
-
-A proposta surgiu da nossa própria necessidade de entender o que é um bom código orientado a objetos. Gostaríamos de desenvolver um trabalho para nos aprofundarmos no tema, além de possivelmente auxiliar outras pessoas a pensarem nos seus códigos. Com um mapeamento das ideias subjetivas para medidas objetivas, podemos facilitar o processo de avaliação e dar uma base de comparação, tanto entre projetos e suas versões, quanto com os conceitos propostos.
-
-Uma vez com um modelo teórico, gostaríamos de obter as métricas de maneira automatizada. Sendo assim, também temos como objetivo desenvolver e apresentar ferramentas que podem calcular tais valores e que possibilitem um acompanhamento do projeto.
-
+Objetivos
 
 \section{Metodologia}
 \label{sec:metodologia}
@@ -62,7 +56,7 @@ Metodologia
 \section{Organização do Trabalho}
 \label{sec:organizacao_trabalho}
 
-Este texto está organizado em três capítulos bem definidos.
+Além dessa introdução, este texto está organizado em quatro capítulos.
 
 No Capítulo~\ref{chap:codigo_limpo}, apresentamos o que é um código limpo através
 da união das concepções de importantes especialistas no desenvolvimento de software.
@@ -75,5 +69,7 @@ código-fonte e como podemos utilizá-las para extrair características importan
 código. Além disso, apresentaremos o mapeamento objetivo entre os aspectos levantados
 no capítulo anterior e as métricas para auxiliar os programadores.
 
-Por fim, no Capítulo~\ref{chap:ferramentas} apresentamos as ferramentas que estão sendo desenvolvidas
+No Capítulo~\ref{chap:ferramentas} apresentamos as ferramentas que estão sendo desenvolvidas
 no contexto de nossa iniciação científica e no doutorado de Paulo Meirelles e Antonio Terceiro.
+
+Por fim, as conclusões e possibilidades de trabalhos futuros serão trabalhos no Capítulo~\ref{chap:conclusao}

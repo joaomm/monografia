@@ -1,0 +1,4 @@
+classe Email:
+	setaAssunto(String assunto)
+	setaDestinatarios(Lista destinatarios)
+	setaConteudo(String conteudo)

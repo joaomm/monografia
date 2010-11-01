@@ -1,0 +1,23 @@
+classe Pilha
+	int maxPosicoes
+	int topo
+	vetor[maxPosicoes] elementos
+	
+	vazia?():
+		return topo == 0
+		
+	cheia?():
+		return topo == maxPosicoes
+	
+	insere(Elemento elemento):
+		levanta_excecao("Pilha cheia") if cheia? 
+		elementos[topo] = elemento
+		topo += 1
+	
+	remove_topo():
+		levanta_excecao("Pilha vazia") if vazia? 
+		topo -= 1
+		elementos[topo]
+
+		
+	

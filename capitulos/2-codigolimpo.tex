@@ -3,14 +3,14 @@
 
 A definição de um bom código não é precisa ou exata. Do mesmo modo que enfretamos dificuldades para definir o que é arte, não podemos definir um conjunto de parâmetros lógicos e mensuráveis para delimitar a diferença de qualidade entre códigos-fonte. Podemos considerar aspectos como testabilidade, eficiência, facilidade de modificação, processo pelo o qual foi desenvolvido, entre outros. Portanto, no âmbito deste trabalho, nos deteremos a trabalhar com o chamado código limpo orientado a objetos.
 
-No livro Clean Code [REF], o autor entrevistou grandes especialistas em desenvolvimento de software como Ward Cunningham [REF] e Dave Thomas [REF] questionando-os quanto a uma definição para código limpo. Cada um dos entrevistados elaborou respostas diferentes, destacando características subjetivas, como elegância, facilidade de alteração e simplicidade, e outras puramente técnicas, incluindo a falta de duplicações, presença de testes unitários e de aceitação e a minimização do número de entidades.
+No livro \textit{Clean Code} [REF] \cite{}, o autor entrevistou grandes especialistas em desenvolvimento de software como Ward Cunningham (inventor de \textit{Fit}, \textit{Wiki} e \textit{Programação Extrema}) e Dave Thomas (fundador da OTI e muito envolvido no Projeto Eclipse) questionando-os quanto a uma definição para código limpo. Cada um dos entrevistados elaborou respostas diferentes, destacando características subjetivas, como elegância, facilidade de alteração e simplicidade, e outras puramente técnicas, incluindo a falta de duplicações, presença de testes unitários e de aceitação e a minimização do número de entidades.
 
 Em certo sentido, um código limpo está inserido em um estilo de programação que busca a proximidade para com três valores: expressividade, simplicidade e flexibilidade. Tais termos são utilizados por Kent Beck no livro Implementation Patterns [REF] que estão em conforme com a unidade de pensamento que permeia as respostas dos especialistas.
 
 \subsubsection{Expressividade}
 Dentre as definições encontradas pela pesquisa de Robert Martin acima citada, algumas afirmações se destacam quanto a expressividade. Na visão de Grady Booch [REF], um código limpo pode ser lido como um texto em prosa e deixa claro as intenções do autor através de operações e abstrações bem escolhidas. Já para Dave Thomas e Kent Beck, a medida para a expressividade está na facilidade para um desenvolvedor, que não o autor original do trecho de código, entender, modificar e utilizá-lo.
 
-Grande parte dessas ideias receberam influência do livro de Donald Knuth, Literate Programming \cite{Knuth92}. A intenção era programar em linguagens naturais, como o inglês e português, e intercalar as expressões com macros e pequenos trechos de código-fonte tradicional. O arquivo poderia ser lido como um texto comum, mas no plano de fundo seriam executados os trechos correspondentes à cada uma das expressões em linguagem natural.
+Grande parte dessas ideias receberam influência do livro de Donald Knuth, \textit{Literate Programming} \cite{Knuth92}. A intenção era programar em linguagens naturais, como o inglês e português, e intercalar as expressões com macros e pequenos trechos de código-fonte tradicional. O arquivo poderia ser lido como um texto comum, mas no plano de fundo seriam executados os trechos correspondentes à cada uma das expressões em linguagem natural.
 
 Nesse sentido, um código é expressivo quando pode ser facilmente lido nas diferentes camadas de abstração, deixando detalhes de implementação ``escondidos'' em níveis mais baixos. Nas palavras de Ward Cunningham, a solução implementada faz com que a linguagem pareça ter sido feita para o problema sendo resolvido.
 
@@ -23,7 +23,7 @@ A flexibilidade reflete a facilidade de estender a aplicação sem fazer grandes
 O código pretendido deve se adequar e aproveitar bem das vantagens inerentes ao paradigma da orientação a objetos. Tal adequação está bem representada tanto nos princípios SOLID [REF], quanto nos princípios apresentados em Implementation Patterns [REF] abaixo.
 
 \begin{itemize}
-	\item Conseqüencias Locais: devemos estruturar o código de forma que as alterações fiquem encapsuladas em partes do programa;
+	\item Consequências Locais: devemos estruturar o código de forma que as alterações fiquem encapsuladas em partes do programa;
 	\item Minimizar Duplicações: devemos particionar o programa em partes pequenas com o intuito de minimizar as repetições tanto na forma de trechos semelhantes como em hierarquias de classe parelelas e estruturas com informações duplicadas;
 	\item Proximidade da Lógica e Dados: devemos aproximar a lógica e os dados sobre quais trabalha uma vez que ambos serão alterados simultaneamente;
 	\item Simetria: devemos criar abstrações de maneira simétrica para que o leitor, uma vez entendida uma das partes, entenda rapidamente as demais.
@@ -44,32 +44,32 @@ A solução dada é focar a atenção no desenvolvimento de um código limpo. Se
 Robert Martin enfatiza que o desejado é não engessar o desenvolvimento e melhoria do código com dificuldades para os programadores, mas compreender quais elementos do software precisam de documentação e contruí-la adequadamente.
 
 \vskip 1.0cm
-As sessões subsequentes apresentam aspectos importantes quanto a um código limpo no que diz respeito a detalhes quanto aos nomes, métodos e classes.
+As sessões subsequentes apresentam aspectos importantes para termos um código limpo no que diz respeito a detalhes quanto aos nomes, métodos e classes.
 
 \section{Nomes}
 \label{sec:nomes}
 
-Em uma primeira análise sobre um código-fonte, uma das afirmações que pode ser feita é que ele é constituído por um conjunto de palavras reservadas da linguagem e um número imenso de nomes escolhidos pelos desenvolvedores. Um código escrito em Smalltalk praticamente não contém palavras da sintaxe da linguagem, contendo uma grande quantidade de envio de mensagens aos objetos e usos de variáveis, ambos com nomes escolhidos pelos desenvolvedores.
+Em uma primeira análise sobre um código-fonte, uma das afirmações que pode ser feita é que ele é constituído por um conjunto de palavras reservadas da linguagem e um número imenso de nomes escolhidos pelos desenvolvedores. Por exemplo, um código escrito em Smalltalk praticamente não contém palavras da sintaxe da linguagem, contendo uma grande quantidade de envio de mensagens aos objetos e usos de variáveis, ambos com nomes escolhidos pelos desenvolvedores.
 
 \subsubsection{Nomes que Revelam Intenção}
-De acordo com Robert Martin, o nome de uma variável, função ou classe deveria responder todas as questões acerca do elemento sendo nomeado. Deveria contar porque o elemento existe, o que faz e como deve ser usado, de forma que comentários se tornem redundantes. O exemplo abaixo ilustra a dificuldade do leitor compreender um código com nomes pouco reveladores.
+De acordo com Robert Martin, o nome de uma variável, método ou classe deveria responder todas as questões acerca do elemento sendo nomeado. Deveria contar porque o elemento existe, o que faz e como deve ser usado, de forma que comentários se tornem redundantes. O exemplo abaixo ilustra a dificuldade do leitor compreender um código com nomes pouco reveladores.
 
 \lstinputlisting[label=nomes_pouco_reveladores, caption={Exemplo de nomes pouco reveladores}]{codigos/nomes_pouco_reveladores}
 
-Esse método, pertencente à uma classe Grafo, é difícil de ser compreendido sem um vasto conhecimento da convenção de notações e o algoritmo utilizado. Muitas perguntas poderiam ser feitas como (i) O que faz caminhoR?,  (ii) O que é o vértice v?  E quanto ao w? Eles tem algo em comum?, (iii)  O que significa adj(v, w) ser igual a 1?”.
+Esse método, pertencente à uma classe Grafo, é difícil de ser compreendido sem um vasto conhecimento da convenção de notações e o algoritmo utilizado. Muitas perguntas poderiam ser feitas como (i) O que faz caminhoR?,  (ii) O que é o vértice v?  E quanto ao w? Eles tem algo em comum?, (iii)  O que significa adj(v, w) ser igual a 1?.
 
 A seguir segue o mesmo código com alterações somente nos nomes das variáveis e métodos, sem nenhuma alteração na implementação.
 
 \lstinputlisting[label=passeio_com_origem_em, caption={Melhorias nos nomes podem tornar o código mais claro}]{codigos/passeio_com_origem_em}
 
-Muitas questões podem ser respondidas depois da leitura deste trecho. O nome da função deixa claro que sua atividade é passear pelos vértices do grafo começando pelo vértice origem passado como parâmetro. O vetor est foi renomeado para estado e as constante 0 e -1 receberam um nome, revelando o significado das operações em que constam. A simples mudança de tamanho() para numeroDeVertices() provê um contexto mais completo para o entendimento do laço.
+Muitas questões podem ser respondidas depois da leitura desse trecho. O nome da função deixa claro que sua atividade é passear pelos vértices do grafo começando pelo vértice origem passado como parâmetro. O vetor est foi renomeado para estado e as constante 0 e -1 receberam um nome, revelando o significado das operações em que constam. A simples mudança de \textit{tamanho()} para \textit{numeroDeVertices()} provê um contexto mais completo para o entendimento do laço.
 	
 O exemplo poderia ser melhorado para ficar mais alinhado com o paradigma da orientação a objetos e com os conceitos que serão apresentados mais adiante. Nesta sessão tratamos a importância da escolha de nomes e como pode auxiliar o entendimento. É possível revelar o significado de elementos dando nomes para as constantes, por exemplo. Nomes como origem e próximo podem nomear objetos da mesma classe para mostrar o contexto e semântica de como estão sendo usados. Métodos podem trazer mais expressividade e fluência à leitura se forem nomeados levando em conta o código cliente e nas circunstâncias em que será chamado.
 
-\subsubsection{Distinções Significativas}
-Durante a criação de um método ou uma classe, é muito comum que, no mesmo contexto, haja  objetos de tipos iguais. Nessa situação, não basta escolher nomes que representem bem o que é o objeto, mas também é preciso criar uma distinção significativa entre eles. O intuito é deixar claro ao leitor do código  (i.e. programador) o papel de cada uma das partes, tanto para facilitar o uso de métodos deixando claro a ordem dos parâmetros, quanto para que a semântica de uma operação fique mais clara.
+\subsubsection{Diferenças Significativas}
+Durante a criação de um método ou uma classe, é muito comum que, no mesmo contexto, haja  objetos de tipos iguais. Nessa situação, não basta escolher nomes que representem bem o que é o objeto, mas também é preciso criar uma diferença significativa entre eles. O intuito é deixar claro ao leitor do código  (i.e. programador) o papel de cada uma das partes, tanto para facilitar o uso de métodos deixando claro a ordem dos parâmetros, quanto para que a semântica de uma operação fique mais clara.
 	
-Quando um leitor se depara com um método como copiaElementos(lista1, lista2), pode não ficar claro qual é a ordem dos argumentos: os elementos da lista1 são copiados para lista2 ou vice-versa? Com uma simples distinção criada através dos nomes, a leitura não levanta nenhum tipo de dúvidas em copiaElementos(origem, destino).
+Quando um leitor se depara com um método como \textit{copiaElementos(lista1, lista2)}, pode não ficar claro qual é a ordem dos argumentos: os elementos da lista1 são copiados para lista2 ou vice-versa? Com uma simples distinção criada através dos nomes, a leitura não levanta nenhum tipo de dúvidas em \textit{copiaElementos(origem, destino)}.
 
 \subsubsection{Nomes Temporários}
 Uma solução utilizada para melhorar a clareza das operações de um trecho de código é utilizar nomes temporários para revelar como um objeto será utilizado naquele contexto. O exemplo abaixo ilustra bem esse tipo de situação.
@@ -81,17 +81,17 @@ Com algum esforço, o leitor identificará que o código está buscando o caminh
 \lstinputlisting[label=encontra_caminho_entre_v2, caption={Usando nomes temporários}]{codigos/encontra_caminho_entre_v2}
 
 
-\subsubsection{Único Nome por Conceito}
-Outra recomendação dada por Robert Martin [REF + pag] se refere a unicidade de nomes por conceito. O objetivo do estilo de programação buscado é facilitar a compreensão do código e nomear um conceito de maneiras diferentes é bastante confuso, uma vez que o leitor não saberá se o contexto trata de ideias distintas. Qual seria a diferença entre get, fetch, retrieve? Ou encontrar, procurar e buscar?
+\subsubsection{Nome Único por Conceito}
+Outra recomendação dada por Robert Martin [REF + pag] se refere a unicidade de nomes por conceito. O objetivo do estilo de programação buscado é facilitar a compreensão do código e nomear um conceito de maneiras diferentes é bastante confuso, uma vez que o leitor não saberá se o contexto trata de ideias distintas. Qual seria a diferença entre \textit{get}, \textit{fetch}, \textit{retrieve}? Ou encontrar, procurar e buscar?
 	
-Se apenas uma nomenclatura for utilizada, o leitor não terá questões, além de poder se aproveitar da simetria de operações valorizada por Kent Beck [REF]. Não é um acaso que os métodos sobre coleções sempre possuem um mesmo conjunto de nomes como o método add para adicionar elementos. Desta forma, as dúvidas de qual deles utilizar para cada uma das opções é minimizada, sendo mais fácil a assimilação do conceito.
+Se apenas uma nomenclatura for utilizada, o leitor não terá questões, além de poder se aproveitar da simetria de operações valorizada por Kent Beck [REF]. Não é um acaso que os métodos sobre coleções sempre possuem um mesmo conjunto de nomes como o método \textit{add} para adicionar elementos. Desta forma, as dúvidas de qual deles utilizar para cada uma das opções é minimizada, sendo mais fácil a assimilação do conceito.
 
 \subsubsection{Nomes dos Métodos}
-Na próxima sessão serão apresentados fundamentos teóricos quanto ao uso de funções para a documentação do código através de sua expressividade. Antes, para que as técnicas exemplificadas sejam eficazes como pretendido por Robert Martin e Kent Beck, os nomes dos métodos devem ser bem escolhidos de modo que descrevem muito bem a atividade que realizam.
+Na próxima sessão serão apresentados fundamentos teóricos quanto ao uso de métodos para a documentação do código através de sua expressividade. Antes, para que as técnicas exemplificadas sejam eficazes como pretendido por Robert Martin e Kent Beck, os nomes dos métodos devem ser bem escolhidos de modo que descrevem muito bem a atividade que realizam.
 	
 O uso de nomes descritivos pode muitas vezes resultar em nomes longos e difíceis de serem digitados muitas vezes. Entretanto, a quantidade de ocasiões em que serão lidos é substancialmente maior do que a quantidade em que as escrevemos. Desta maneira, a economia de palavras deve ser descartada em favor de uma boa expressividade [REF].
 	
-A linguagem Smalltalk é extremamente elogiada quanto a sua expressividade. Grande parte dos elogios estão concentrados no uso de seletores para o envio de mensagens para os objetos. Podemos gerar métodos como criaJogoDeFutebolEntre: SãoPaulo e: Palmeiras naData: data. Os elementos em itálico são o verdadeiro protótipo do método, deixando claro a ordem dos argumentos, seu papel e o que exatamente está sendo executado. Essas são as características desejadas para os nomes dos métodos formarem em conjunto uma narrativa da execução.
+A linguagem Smalltalk é constantemente elogiada quanto a sua expressividade. Grande parte dos elogios estão concentrados no uso de seletores para o envio de mensagens para os objetos. Podemos gerar métodos como \textit{criaJogoDeFutebolEntre:} SãoPaulo \textit{e:} Palmeiras \textit{naData:} data. Os elementos em itálico são o verdadeiro protótipo do método, deixando claro a ordem dos argumentos, seu papel e o que exatamente está sendo executado. Essas são as características desejadas para os nomes dos métodos formarem em conjunto uma narrativa da execução.
 
 \section{Métodos}
 \label{sec:metodos}
@@ -101,40 +101,40 @@ Os métodos são o núcleo fundamental para a criação de um código expressivo
 De acordo com os princípios já abordados anteriormente, buscamos minimizar as repetições e queremos que as mudanças sejam localizadas, de forma que a lógica esteja perto dos dados que manipula. Nesse sentido, os métodos encapsulam um trecho de código, provendo um escopo fechado para variáveis locais e permitindo chamadas como uma maneira de evitar duplicações.
 
 \subsection{Fundamentação Teórica}
-O primeiro fundamento levantado no livro Clean Code quanto aos métodos é uma preocupação quanto ao tamanho. Segundo Robert Martin, métodos devem ser pequenos (e se possível menores do que isso). O autor também cita que não existe uma fundamentação científica para tal afirmação, além de não podermos afirmar o que é “pequeno” e definir limitantes quanto ao número de linhas.
+O primeiro fundamento levantado no livro \textit{Clean Code} quanto aos métodos é uma preocupação quanto ao tamanho. Segundo Robert Martin, métodos devem ser pequenos (e se possível menores do que isso). O autor também cita que não existe uma fundamentação científica para tal afirmação, além de não podermos afirmar o que é “pequeno” e definir limitantes quanto ao número de linhas.
 	
-A proposta é que cada função seja pequena o suficiente para facilitar sua leitura e compreensão. Devemos ter em vista a dificuldade de assimilação de grandes porções de informação durante a leitura e o fato de que nem sempre uma instrução é clara. A partir dessas ideias, uma função será uma porção curta de código que trabalha com poucas variáveis e tem um nome explicativo que espelha a sua funcionalidade.
+A proposta é que cada método seja pequeno o suficiente para facilitar sua leitura e compreensão. Devemos ter em vista a dificuldade de assimilação de grandes porções de informação durante a leitura e o fato de que nem sempre uma instrução é clara. A partir dessas ideias, um método será uma porção curta de código que trabalha com poucas variáveis e tem um nome explicativo que espelha a sua funcionalidade.
 	
-Uma maneira bastante interessante de pensar sobre o tamanho das funções não é simplesmente contar seu número de linhas, mas compreender bem a atividade que realiza. Nas palavras de R. Martin, “Funções deveriam ter uma única atividade. Deveriam fazê-la bem. E fazê-la somente.”
+Uma maneira bastante interessante de pensar sobre o tamanho dos métodos não é simplesmente contar seu número de linhas, mas compreender bem a atividade que realiza. Nas palavras de R. Martin, “Funções deveriam ter uma única atividade. Deveriam fazê-la bem. E fazê-la somente.”
 	
-Isso significa que para criar uma lista de números primos usando o algoritmo do Crivo de Erastótenes, não queremos ter uma única função que contenha todos os detalhes da criação de uma lista de inteiros e a marcação de múltiplos que não tem chance de serem primos. Seria muito difícil entendê-la e modificar alguma das minúcias da implementação. Queremos várias pequenas funções que fazem cada uma das atividades necessárias para essa computação, de forma que a leitura seja suficiente e uma documentação externa redundante.
+Isso significa que para criar uma lista de números primos usando o algoritmo do \textit{Crivo de Erastótenes}, não queremos ter um único método que contenha todos os detalhes da criação de uma lista de inteiros e a marcação de múltiplos que não tem chance de serem primos. Seria muito difícil entendê-lo e modificar detalhes da implementação. Queremos várias métodos pequenos que fazem cada uma das atividades necessárias para essa computação, de forma que a leitura seja suficiente e uma documentação externa redundante.
 	
-Outra questão teórica importante e enfatizada por Kent Beck são os níveis de abstrações e a simetria de operações dentro de um método. Um incremento de uma variável de instância está fundamentalmente em outro nível de abstração do que a chamada de uma outra função. Não queremos uma função com essas duas instruções. Isso possivelmente faz com que o leitor não saiba se uma operação é um detalhe de implementação ou um conceito importante dentro da lógica, além de abrir as portas para mais ocorrências deste mesmo tipo, aumentando a complexidade do código a cada alteração.
+Outra questão teórica importante e enfatizada por Kent Beck são os níveis de abstrações e a simetria de operações dentro de um método. Um incremento de uma variável de instância está fundamentalmente em outro nível de abstração do que a chamada de um método. Não queremos um método com essas duas instruções. Isso possivelmente faz com que o leitor não saiba se uma operação é um detalhe de implementação ou um conceito importante dentro da lógica, além de abrir as portas para mais ocorrências deste mesmo tipo, aumentando a complexidade do código a cada alteração.
 	
-Pensando em outros fatores que podem levar em dificuldades para a leitura do nosso código, temos que considerar a afirmação de Ward Cunningham relativa à um código limpo: “Sabemos que estamos trabalhando em um código limpo quando cada rotina que lemos faz o que esperávamos”. Refletindo esse pensamento para as funções, como seus nomes são a documentação da atividade que fazem, não queremos que, ao olhar o corpo de uma delas, nos deparemos com uma operação que não imaginávamos. Ao criar um método, temos que considerar que os leitores não terão a mesma linha de pensamento que temos naquele momento e, diante disso, temos que ter uma crescente preocupação com todas as nossas decisões.
+Pensando em outros fatores que podem levar a dificuldades para a leitura do nosso código, sabemos que estamos trabalhando em um código limpo quando cada rotina que lemos faz o que esperávamos [REF p/ Ward Cunningham]. No contexto de métodos, como seus nomes são a documentação da atividade que fazem, não queremos que, ao olhar o corpo de um deles, nos deparemos com uma operação que não imaginávamos. Ao criar um método, temos que considerar que os leitores não terão a mesma linha de pensamento que temos naquele momento e, diante disso, temos que ter uma crescente preocupação com todas as nossas decisões~\citep{}.
 	
-O último fundamento teórico quanto as funções também diz respeito ao programa como um todo. Queremos ter um fluxo normal bem estabelecido, deixando-o simples e o tratamento de erros separado. Ou seja, não queremos que o código fiquei cheio de verificações de erro misturados com a lógica sem erros.
+O último fundamento teórico quanto aos métodos também diz respeito ao programa como um todo. Queremos ter um fluxo normal bem estabelecido, deixando-o simples e o tratamento de erros separado. Em outras palavras, não queremos que o código fiquei cheio de verificações de erro misturados com a lógica sem erros.
 	
 \subsection{Técnicas}
-Tendo em vista a fundamentação teórica, a seguir estão algumas técnicas que nos possibilitam criar funções que se encaixem no estilo de programação buscado.
+Tendo em vista a fundamentação teórica, a seguir estão algumas técnicas que nos possibilitam criar métodos que se encaixem no estilo de programação buscado.
 
 \subsubsection{Composição de Métodos}
 A composição de método é a base para a criação de um código limpo. A proposta é compor nossos métodos em chamadas para outros métodos rigorosamente no mesmo nível de abstração.
 	
-Usando novamente o exemplo do algoritmo do Crivo de Erastótenes, para encontrar os primos de 1 a N devemos criar um conjunto de elementos que represente os inteiros de 1 a N, marcar todos números múltiplos de outros e depois coletar todos aqueles que não estão marcados (os primos). Para isso criamos um método da classe GeradorDePrimos:
+Usando novamente o exemplo do algoritmo do \textit{Crivo de Erastótenes}, para encontrar os primos de 1 a N devemos criar um conjunto de elementos que represente os inteiros de 1 a N, marcar todos números múltiplos de outros e depois coletar todos aqueles que não estão marcados (os primos). Para isso criamos um método da classe \textit{GeradorDePrimos}:
 
 \lstinputlisting[label=primos_ate, caption={Algoritmo do Crivo de Erastótenes decomposto em métodos}]{codigos/primos_ate}
 
-Nesse exemplo, compusemos o método primosAte(N) em chamadas para outros métodos, cada um com uma atividade e um nome explicativo. Dessa forma, o leitor pode entender facilmente como funciona o algoritmo de uma maneira geral. 
+Nesse exemplo, compusemos o método \textit{primosAte(N)} em chamadas para outros métodos, cada um com uma atividade e um nome explicativo. Dessa forma, o leitor pode entender facilmente como funciona o algoritmo de uma maneira geral. 
 	
 Também ficam bastante claros os níveis de abstrações criados. A função primosAte(n) está em um nível e os métodos que invoca estão todos no mesmo patamar logo abaixo. Queremos criar essa estrutura em cadeia, tornando possível que o leitor só precise entender os níveis que interessem no momento.
 	
-A composição de métodos não é uma técnica que desconhecemos, uma vez que a todo momento criamos estruturas dessa maneira sem o ter conhecimento da sua efetividade. Porém, segundo o autor de Implementation Patterns em uma entrevista para a InfoQ, a facilidade de leitura propiciada faz com que esse seja o padrão mais relevante do livro. 	
+A composição de métodos não é uma técnica que desconhecemos, uma vez que a todo momento criamos estruturas dessa maneira sem ter conhecimento da sua efetividade. Entretanto, a facilidade de leitura propiciada faz com que esse seja o padrão mais relevante do livro~\citep{Beck2007, InfoQ2010}. 	
 
 \subsubsection{Métodos Explicativos (Explaining Methods)}
-Para auxiliar na expressividade de um trecho de código, podemos criar uma função com nome específico do contexto em que será invocada. A operação pode ser bastante simples como um incremento de variável ou a chamada de um método em um objeto guardado em uma variável de instância, mas o nome dado será de grande valor para a documentação do código. Além disso, a função pode ser reutilizada posteriormente evitando duplicações e encapsulando a operação.
+Para auxiliar na expressividade de um trecho de código, podemos criar um método com nome específico do contexto em que será invocada. A operação pode ser bastante simples como um incremento de variável ou a chamada de um método em um objeto guardado em uma variável de instância, mas o nome dado será de grande valor para a documentação do código. Além disso, a função pode ser reutilizada posteriormente evitando duplicações e encapsulando a operação.
 	
-Essa ideia pode ser empregada em diferentes contextos e níveis de abstração. Uma circunstância pode ser ilustrada pela afirmação de Kent Beck: “Considero a criação de um método explicativo quando fico tentado a comentar uma única linha de código”. Abaixo está um exemplo em Java extraído do livro do mesmo.
+Essa ideia pode ser empregada em diferentes contextos e níveis de abstração. Para Kent Beck, devemos considerar a criação de um método explicativo quando ficamos tentados a comentar uma única linha de código. Abaixo está um exemplo em Java extraído do livro \textit{Implementation Patterns}.
 
 \lstinputlisting[label=operacao_estranha, caption={Exemplo de operação pouco clara que recebe comentário}]{codigos/operacao_estranha}
 
@@ -142,16 +142,16 @@ O comentário pede uma mudança usando um método explicativo.
 	
 \lstinputlisting[label=metodo_explicativo, caption={Exemplo de Método Explicativo que dispensa os comentários}]{codigos/metodo_explicativo}
 
-Em outro exemplo, criamos um método chamado destaca() para dar o contexto necessário para uma operação de nível mais baixo. 
+Em outro exemplo, criamos um método chamado \textit{destaca()} para dar o contexto necessário para uma operação de nível mais baixo. 
 
 \lstinputlisting[label=destaca, caption={Método destaca() facilita a leitura do código cliente}]{codigos/destaca}
 
-Considerando a região de código que chama destaca(), as melhorias são diversas com essa alteração. Se a operação fosse simplesmente colocada sem nenhum comentário, provavelmente o leitor se perguntaria porque a cor de fundo da palavra está sendo alterada naquele contexto. O comentário seria algo como “destacar a palavra no texto”, o que se torna obsoleto com o método explicativo. 
+Considerando a região de código que chama \textit{destaca()}, as melhorias são diversas com essa alteração. Se a operação fosse simplesmente colocada sem nenhum comentário, provavelmente o leitor se perguntaria porque a cor de fundo da palavra está sendo alterada naquele contexto. O comentário seria algo como “destacar a palavra no texto”, o que se torna obsoleto com o método explicativo. 
 
 Por fim, ainda há formas mais implícitas de utilizar métodos explicativos. Quando utilizamos o padrão de projeto Wrapper[REF] para criar uma classe que abstrai uma coleção de elementos, estamos de uma maneira criando uma interface cujos métodos façam mais sentido para o domínio de aplicação trabalhado.
 
-\subsubsection{Funções como Condicionais}
-Um caso específico de método explicativo bastante utilizado é uma chamada para uma função que contenha uma expressão booleana como valor de retorno.
+\subsubsection{Métodos como Condicionais}
+Um caso específico de método explicativo bastante utilizado é uma chamada para um método que contenha uma expressão booleana como valor de retorno.
 	
 \lstinputlisting[label=condicional_estranho, caption={Exemplo de uma expressão booleana pouco clara}]{codigos/condicional_estranho}
 
@@ -160,15 +160,15 @@ Um condicional como o mostrado acima não é muito claro e deixa o próprio auto
 \lstinputlisting[label=condicional_com_funcao, caption={Método que encapsula expressão booleana}]{codigos/condicional_com_funcao}
 
 \subsubsection{Evitar Estruturas Encadeadas}
-Tendo em vista a busca por funções pequenas e com uma única atividade, um aspecto relevante é a criação de estruturas encadeadas. Se um método tem uma cadeia de ifs e elses, o leitor terá dificuldades para compreender todos os casos e fluxos possíveis.
+Tendo em vista a busca por métodos pequenos e com uma única atividade, um aspecto relevante é a criação de estruturas encadeadas. Se um método tem uma cadeia de \textit{ifs} e \textit{elses}, o leitor terá dificuldades para compreender todos os casos e fluxos possíveis.
 	
-Em ambos os livros trabalhados, os autores enfatizam sobre o uso de chamadas de funções logo em seguida de um condicional. Novamente a operação que será encapsulada estará dentro de um método com nome expressivo, deixando a função que a continha curta e expressiva.
+Em ambos os livros trabalhados, os autores enfatizam sobre o uso de chamadas de métodos logo em seguida de um condicional. Novamente a operação que será encapsulada estará dentro de um método com nome expressivo, o que deixa esse método curto e expressivo.
 	
-Novamente utilizando o exemplo do Crivo de Eristótenes, é necessário marcar todos os números que sejam múltiplos de um primo, representado por um número não marcado.
+Mais uma vez utilizando o exemplo do \textit{Crivo de Eristótenes}, é necessário marcar todos os números que sejam múltiplos de um primo, representado por um número não marcado.
 
 \lstinputlisting[label=marca_multiplos, caption={Alternativa para evitar estruturas encadeadas usando funções pequenas}]{codigos/marca_multiplos}
 
-Cada função encapsula um nível na cadeia de estruturas encadeadas. Ao invés de muitos fors e ifs encadeados, obtivemos funções pequenas e muito focadas em uma única atividade que podem ser mais facilmente testadas de forma independente.
+Cada método encapsula um nível na cadeia de estruturas encadeadas. Ao invés de muitos \textit{fors} e \textit{ifs} encadeados, obtivemos funções pequenas e muito focadas em uma única atividade que podem ser mais facilmente testadas de forma independente.
 
 \subsubsection{Cláusulas Guarda (Guard Clauses)}
 Outra técnica para evitar o uso de estruturas complexas de condicionais são as cláusulas guarda. Quando criamos uma expressão condicional (if), o leitor naturalmente espera um bloco com a contrapartida (else). A ideia é criar um retorno breve para expressar que uma das partes dessa contraposição é mais relevante. Portanto, a estrutura exemplificada em \ref{guarda2} é mais recomendada do que em \ref{guarda1} nos exemplos abaixo, pois revela ao leitor que o fluxo mais relevante é o caso em que ocorre a inicialização.
@@ -177,28 +177,28 @@ Outra técnica para evitar o uso de estruturas complexas de condicionais são as
 \lstinputlisting[label=guarda2, caption={Método com Cláusula Guarda}]{codigos/guarda2}
 
 \subsubsection{Objeto Método (Method Object)}
-Ao dividir os métodos em outros menores com uma única atividade, podemos criar métodos com grande complexidade e difícil refatoração: muitas variáveis, muito parâmetros necessários e muitas estruturas encadeadas. Diante dessa situação, podemos criar um objeto que encapsule toda essa lógica. 
+Ao dividir os métodos em outros menores com uma única atividade, podemos criar métodos com grande complexidade e difícil refatoração: muitas variáveis, muito parâmetros necessários e muitas estruturas encadeadas. Diante dessa situação, podemos criar um objeto (\textit{Method Object}) que encapsule toda essa lógica.
 	
-Suponha que temos um método complexo chamado operaçãoComplexa(). Criamos uma classe com nome relacionado como OperadorComplexo cujas variáveis de instância são os parâmetros que a função recebia anteriormente. Em um método chamado calcula(), por exemplo, colocamos a funcionalidade que o método original continha. Com essa mudança, todos os detalhes dessa operação complexa foram encapsulados em uma classe que terá testes, aumentando nossa confiança e flexibilidade para refatorações.
+Supondo que temos um método complexo chamado \textit{operaçãoComplexa()}. Criamos uma classe com nome relacionado como \textit{OperadorComplexo} cujas variáveis de instância são os parâmetros que o método recebia anteriormente. Em um método chamado \textit{calcula()}, por exemplo, colocamos a funcionalidade que o método original continha. Com essa mudança, todos os detalhes dessa operação complexa foram encapsulados em uma classe que terá testes, aumentando nossa confiança e flexibilidade para refatorações.
 	
-Tal solução está bem inserida diante do paradigma da orientação a objetos uma vez que a nova  classe será coesa e conterá uma estrutura complexa cujos clientes não terão que conhecer. Portanto, os clientes terão seu código simplificado através de uma delegação.
+Tal solução está bem inserida diante do paradigma da orientação a objetos uma vez que a nova classe será coesa e conterá uma estrutura complexa cujos clientes não terão que conhecer. Portanto, os clientes terão seu código simplificado através de uma delegação.
 
 \subsubsection{Minimizar os Argumentos}
-O número de argumentos se torna bastante importante quando queremos métodos pequenos e com apenas uma atividade. Se uma função recebe muitos argumentos, provavelmente os utiliza para um conjunto de operações e não uma somente. Diante disso, nosso objetivo é sempre minimizá-los por algumas razões. 	Primeiramente, testes de funções com poucos ou nenhum argumento requerem menores esforços  uma vez que as combinações de casos de teste são limitadas. Além disso, teremos um maior acoplamento da classe em que a função está contida com todas as classes dos objetos que recebe, já que é necessário conhecer suas interfaces para utilizá-los. E por fim, o leitor terá que entender todos esses casos de uso.
+O número de argumentos se torna bastante importante quando queremos métodos pequenos e com apenas uma atividade. Se um método recebe muitos argumentos, provavelmente os utiliza para um conjunto de operações e não uma somente. Diante disso, nosso objetivo é sempre minimizá-los por algumas razões. Primeiramente, testes de funções com poucos ou nenhum argumento requerem menores esforços  uma vez que as combinações de casos de teste são limitadas. Além disso, teremos um maior acoplamento da classe em que a função está contida com todas as classes dos objetos que recebe, já que é necessário conhecer suas interfaces para utilizá-los. E por fim, o leitor terá que entender todos esses casos de uso.
 
-Com essa motivação queremos evitar parâmetros desnecessários e que confundem o leitor. Abaixo estão algumas clarificações citadas pelos autores.
+Com essa motivação queremos evitar parâmetros desnecessários e que confundem o leitor. Os três tópicos subsequentes ilustram abordagens mais específicas quanto ao uso de parâmetros.
 
-\subsubsection{Evitar Flags como Argumentos}
-Se passamos uma Flag (booleana ou proveniente de uma enumeração) como argumento para gerar dois tipos de comportamentos de um método, claramente esse último faz mais do que uma atividade. O natural seria criar um método para cada uma das atividades como mostrado no exemplo \ref{rotaciona2} abaixo de uma classe Figura abaixo.
+\subsubsection{Evitar \textit{Flags} como Argumentos}
+Se passamos uma \textit{Flag} (booleana ou proveniente de uma enumeração) como argumento para gerar dois tipos de comportamentos de um método, claramente esse último faz mais do que uma atividade. O natural seria criar um método para cada uma das atividades como mostrado no exemplo \ref{rotaciona2} abaixo de uma classe Figura abaixo.
 
 \lstinputlisting[label=rotaciona1, caption={Método rotaciona() com dois comportamentos através do uso de uma flag como argumento}]{codigos/rotaciona1}
 \lstinputlisting[label=rotaciona2, caption={Dois métodos com uma única atividade}]{codigos/rotaciona2}
 
 \subsubsection{Objeto como Parâmetro}
-Diante de uma lista grande de argumentos, devemos questionar se não existe alguma abstração que une esses elementos. Por exemplo, considere uma classe FábricaDeMáquinas cujo construtor é FábricaDeMáquinas(númeroDeMáquinas, númeroDeFuncionários, horasDeFuncionamento). Uma possibilidade seria criar um objeto EspecificaçãoDeFábrica que contivesse esses argumentos como variáveis de instância e métodos que fossem úteis para que o código desta FábricaDeMáquinas fosse o mais claro possível.
+Diante de uma lista grande de argumentos, devemos questionar se não existe alguma abstração que une esses elementos. Por exemplo, considere uma classe \textit{FábricaDeMáquinas} cujo construtor é \textit{FábricaDeMáquinas(númeroDeMáquinas, númeroDeFuncionários, horasDeFuncionamento)}. Uma possibilidade seria criar um objeto \textit{EspecificaçãoDeFábrica} que contivesse esses argumentos como variáveis de instância e métodos que fossem úteis para que o código desta \textit{FábricaDeMáquinas} fosse o mais claro possível.
 
 \subsubsection{Parâmetros com Variável de Instância}
-Na utilização da composição de métodos, freqüentemente será preciso passar um argumento para diversos métodos, que possivelmente não o utilizam, somente para satisfazer a necessidade de um deles. Uma solução plausível é transformar esse argumento em uma variável de instância acessível por todos os métodos.
+Na utilização da composição de métodos, frequentemente será preciso passar um argumento para diversos métodos, que possivelmente não o utilizam, somente para satisfazer a necessidade de um deles. Uma solução plausível é transformar esse argumento em uma variável de instância acessível por todos os métodos.
 	
 Esse tipo de alteração tem grande importância no design do sistema como um todo. Na sessão de Classes abordaremos esse tópico e veremos o papel dessa técnica em refatorações de maior escala.
 
@@ -210,91 +210,148 @@ O grande problema com o retorno de códigos de erros e valores nulos está na li
 \section{Classes}
 \label{sec:classes}
 
-Entre os princípios propostos por Kent Beck estão a proximidade da lógica com os dados na qual trabalha e a preocupação quanto às conseqüências locais. Esses conceitos além de estarem inseridos na justificativa para a adoção do paradigma da orientação a objetos, também estão intimamente relacionados com as classes que compõe o sistema. Queremos que as classes encapsulem dados e operações e tenham uma interface que permita um código cliente com o mínimo de dependências, sempre visando a simplicidade do design e do conteúdo das classes.
+Entre os princípios propostos por Kent Beck estão a proximidade da lógica com os dados na qual trabalha e a preocupação quanto às consequências locais. Esses conceitos além de estarem inseridos na justificativa para a adoção do paradigma da orientação a objetos, também estão intimamente relacionados com as classes que compõe o sistema. Queremos que as classes encapsulem dados e operações e tenham uma interface que permita um código cliente com o mínimo de dependências, sempre visando a simplicidade do design e do conteúdo das classes.
 	
 Diante da concepção ágil de tomar boas decisões durante o desenvolvimento que proporcionem melhorias imediatas, nessa sessão serão discutidas algumas preocupações quanto as classes, buscando facilitar as mudanças no sistema.
 
 \subsubsection{Muitas Classes Pequenas}
-Do mesmo modo que consideramos importante limitar a quantidade de informação que o leitor tem que se deparar quando lê funções, queremos que as classes sejam o menores possível. Além de facilitar a leitura e entendimento, programar buscando minimizar o tamanho das classes nos auxilia a criar unidades coesas e a evitar duplicações. 
+Do mesmo modo que consideramos importante limitar a quantidade de informação que o leitor lida ao ler métodos, queremos que as classes sejam o menores possível. Além de facilitar a leitura e entendimento, programar buscando minimizar o tamanho das classes nos auxilia a criar unidades coesas e a evitar duplicações. 
 	
-Logicamente, se nossas classes são pequenas, teremos que reunir uma grande quantidade delas, tornando nossos sistemas compostos de muitas classes pequenas. Em uma analogia bastante simples, é mais fácil encontrar um objeto em muitas gavetas pequenas do que em poucas gavetas grandes e lotadas.
+Logicamente, se nossas classes são pequenas, teremos que reunir uma grande quantidade delas, tornando nossos sistemas compostos de muitas classes pequenas. Em uma analogia bastante simples, é mais fácil encontrar um objeto em muitas gavetas pequenas do que em poucas gavetas grandes e repletas.
 
-\subsubsection{Princípio da Única Responsabilidade (Single Responsibility Principle)}
-A questão que surge após a afirmação que as classes deveriam ser pequenas é como definir o que é ser pequena. O número de métodos pode nos dar um bom indicativo quanto a quantidade de operações diferentes que a classe pode executar, mas podemos encontrar classes com poucos métodos e que possuem contextos totalmente diferentes. Por exemplo, uma classe Controlador com um método os capturaEntrada() criaCorpoHtml e criaCabecalhoHtml() possui dois tipos de atividades completamente diferentes.
+\subsubsection{Princípio da Responsabilidade Única (Single Responsibility Principle)}
+A questão que surge após a afirmação que as classes deveriam ser pequenas é como definir o que é ser pequena. O número de métodos pode nos dar um bom indicativo quanto a quantidade de operações diferentes que a classe pode executar, mas podemos encontrar classes com poucos métodos e que possuem contextos totalmente diferentes. Por exemplo, uma classe \textit{Controlador} com os métodos \textit{capturaEntrada()}, \textit{criaCorpoHtml()} e \textit{criaCabecalhoHtml()} possui dois tipos de atividades diferentes: lidar com a criação de HTML e processar a entrada do usuário.
 	
-A forma de medir o tamanho de uma classe proposto por Robert Martin está atrelado com a quantidade de responsabilidades que a mesma possui. Podemos pensar em uma responsabilidade como uma razão para mudar. No exemplo acima, para que o sistema seja adaptado para utilizar um novo padrão HTML, é necessário alterar a classe Controlador. O mesmo teria que ser feito caso um novo tipo de entrada do usuário fosse concebido. Dessa forma, dizemos que o Controlador tem pelo menos duas responsabilidades: lidar com a criação de HTML e processar a entrada do usuário.
+A forma de medir o tamanho de uma classe proposto por Robert Martin está atrelado com a quantidade de responsabilidades que a mesma possui. Podemos pensar em uma responsabilidade como uma razão para mudar. No exemplo acima, para que o sistema seja adaptado para utilizar um novo padrão HTML, é necessário alterar a classe \textit{Controlador}. O mesmo teria que ser feito caso um novo tipo de entrada do usuário fosse concebido. Dessa forma, dizemos que o \textit{Controlador} tem pelo menos duas responsabilidades.
 	
-Dentro do estilo de programação buscando, queremos que nossas classes sigam o Princípio da Única Responsabilidade que, de maneira geral, afirma: as classes deveriam ter uma única responsabilidade, ou seja, ter uma única razão para mudar. Seguindo o princípio SOLID [REF] acima exposto por Robert Martin em Agile Software Development, Principles, Patterns, and Practices [REF], queremos evitar classes como o Controlador.
+Dentro da ideia de código limpo, queremos que nossas classes sigam o Princípio da Responsabilidade Única (\textit{Single Responsibility Principle}) que, de maneira geral, afirma: as classes deveriam ter uma única responsabilidade, ou seja, ter uma única razão para mudar. Seguindo o princípio SOLID acima exposto por Robert Martin em \textit{Agile Software Development, Principles, Patterns, and Practices} [REF], queremos evitar classes como o \textit{Controlador}.
 
-É importante destacar que esse princípio não é uma contraposição com as ideias empregadas na concepção da arquitetura através dos Cartões CRC [REF] ou do chamado Design Dirigido a Responsabilidades [REF]. Nessas duas abordagens criamos o design da aplicação considerando as classes envolvidas, suas colaborações e responsabilidades. O Princípio da Única Responsabilidade é mais atrelado à implementação, enquanto que nos cartões CRC consideramos as abstrações. Dessa forma, podemos conceber que um software precisa de uma abstração Gerente representada por uma classe, mesmo que na implementação suas responsabilidades sejam obtidas através de delegações para classes pequenas como Objetos Métodos [REF].
+É importante destacar que esse princípio não é uma contraposição com as ideias empregadas na concepção da arquitetura através dos Cartões CRC (\textbf{C}lasse, \textbf{R}esponsabilidade e \textbf{C}olaboração) [REF] ou do chamado Design Dirigido a Responsabilidades [REF]. Nessas duas abordagens criamos o design da aplicação considerando as classes envolvidas, suas colaborações e responsabilidades. O Princípio da Responsabilidade Única é mais atrelado à implementação, enquanto que nos cartões CRC consideramos principalmente as abstrações. Dessa forma, podemos conceber que um software precisa de uma abstração \textit{Gerente} representada por uma classe, mesmo que na implementação suas responsabilidades sejam obtidas através de delegações para classes pequenas como Objetos Métodos [REF].
+
+Abaixo está um exemplo adaptado do livro \textit{Agile Software Development, Principles, Patterns, and
+Practices}. A classe Modem faz bastante sentido do ponto de vista abstrato: é responsável pela comunicação entre máquinas estabelecendo a conexão, enviando e recebendo dados e fechando a conexão.
+
+\lstinputlisting[label=modem, caption={Classe Modem com duas responsabilidades (omitindo a implementação dos métodos)}]{codigos/modem}
+
+Porém, considerando a associação entre responsabilidade e uma razão para mudar, poderiamos dizer que a classe
+Modem viola o Princípio da Responsabilidade Única. São duas responsabilidades: tratar da conexão através de 
+\textit{ligarParaNumero} e \textit{desliga} e a segunda é enviar e receber dados usando \textit{enviar} e
+\textit{receber}.
+
+Uma opção para essa classe seria uma divisão das responsabilidades em duas classes distintas. A nova classe 
+Conexao teria uma única responsabilidade que seria a criação de uma conexão entre dois pontos, enquanto que a 
+classe CanalDeDados ficaria com o envio e recebimento de informação através de uma conexão. Por fim, a antiga 
+classe Modem teria apenas que ligar entre as duas classes, mantendo sua antiga interface para os clientes que 
+já a utilizavam, mas agora delegando seu trabalho para as classes recentemente criadas.
+
+Outro exemplo é apresentado na classe \textit{Email} abaixo. Essa classe é responsável pela criação de um 
+e-mail e a configuração de seus dados assunto, destinatários e conteúdo. Claramente não há nenhuma violação.
+
+\lstinputlisting[label=email, caption={Classe Email recebendo uma string como conteúdo}]{codigos/email}
+
+No entanto, vamos supor que se tornou necessária a criação de duas formatações para o conteúdo: uma como HTML e 
+outra como XML. A primeira solução seria a criação do código abaixo.
+
+\lstinputlisting[label=email2, caption={Classe Email com duas responsabilidades}]{codigos/email2}
+
+Nesse caso, podemos observar que a classe possui duas responsabilidades, podendo ser alterada tanto para 
+mudanças nos dados que primeiramente guardava, quanto para a criação de novas formatações.
+
+Uma opção de design que preserva o Princípio da Responsabilidade Única é exemplificado no diagrama UML da figura \ref{img:email}.
+O método \textit{setaConteudo} recebe um objeto \textit{Conteudo} e passa a ser somente um \textit{setter} de uma variável de instância de \textit{Email}. Além disso, teremos duas classes \textit{ConteudoHTML} e \textit{ConteudoXML} filhas de \textit{Conteudo}, que só terão como atividades a formatação de uma string.
+
+\begin{figure}[!t]
+\begin{centering}
+\includegraphics[scale=0.7]{imagens/email.png}
+\par\end{centering}
+
+\caption{Design que respeita o Princípio da Responsabilidade Única \label{img:email}}
+
+\end{figure}
 
 \subsubsection{Coesão}
-De um ponto de vista técnico, qual crítica poderia ser feita sobre a classe Controlador? 
+De um ponto de vista técnico, qual crítica poderia ser feita sobre a classe \textit{Controlador}? 
+A classe \textit{Controlador} não é coesa. Se tal classe tem a responsabilidade de lidar com a criação de HTML, logicamente terá um conjunto de variáveis de instância e métodos que as utilizam capazes de executar o trabalho em conjunto. O mesmo pode ser dito para o processamento da entrada do usuário. Um leitor que precisa entender apenas um desses contextos se deparará com inúmeros detalhes de implementação tanto da responsabilidade que deseja trabalhar, quanto da que não está interessado.
 	
-A classe Controlador não é coesa. Se tal classe tem a responsabilidade de lidar com a criação de HTML, logicamente terá um conjunto de variáveis de instância e métodos que as utilizam capazes de executar o trabalho em conjunto. O mesmo pode ser dito para o processamento da entrada do usuário. Um leitor que precisa entender apenas um desses contextos se deparará com inúmeros detalhes de implementação tanto da responsabilidade que deseja trabalhar, quanto da que não está interessado.
-	
-Nas palavras do autor de Clean Code, “Quando a coesão de uma classe é alta seus métodos e variáveis são co-dependentes e se unem como uma unidade lógica”. De maneira mais prática, uma classe é totalmente coesa quando todos os seus métodos usam todas as variáveis de instância.
+Quando a coesão de uma classe é alta, seus métodos e variáveis são codependentes e se unem como uma unidade lógica [REF].De maneira mais prática, uma classe é totalmente coesa quando todos os seus métodos usam todas as variáveis de instância.
 	
 Dessa forma, a coesão da classe está intimamente relacionada com as responsabilidades que assume. Se uma classe tem muitas responsabilidades, provavelmente terá um conjunto de métodos que pouco se comunicam e usam poucas variáveis em comum, tendo baixa coesão. Quando a coesão é baixa, provavelmente será uma boa ideia criar uma nova classe.
 
+Um bom exemplo de classe extremamente coesa é a implementação de uma estrutura de dados e suas operações. Na implementação simplificada de uma pilha apresentada abaixo, é fácil perceber como os métodos da classe \textit{Pilha} estão intimamente relacionados com suas variáveis de instância.
+
+\lstinputlisting[label=pilha, caption={Classe coesa que implementa uma pilha}]{codigos/pilha}
+
 \subsubsection{Acoplamento}
-Outro aspecto muito relevante do posto de vista de orientação a objetos é o acoplamento entre as classes. Essa medida está atrelada a quanto as classes do sistema dependem uma das outras. As  dependências podem se expressar de diversas formas desde o simples uso de um método de outra classe até a perigosa manipulação e modificação de dados de outra classe.
+Outro aspecto muito relevante do ponto de vista da orientação a objetos é o acoplamento entre as classes. Essa medida 
+está atrelada a quanto as classes do sistema dependem uma das outras. As dependências podem se expressar de diversas 
+formas desde o uso de um método de outra classe até a ``perigosa'' manipulação e modificação de dados de outra classe.
 	
-Tendo em vista a busca por conseqüências locais e a simplicidade e expressividade do código, não queremos que as classes dependam largamente umas das outras de forma que o entendimento e a modificação de uma leve a alterações em outras classes. Além disso, a cada dependência gerada, os testes unitários criados provavelmente precisaram da utilização de artifícios para isolar cada uma das partes sendo mais difíceis de serem compreendidos.
+Tendo em vista a busca por consequências locais e a simplicidade e expressividade do código, não queremos que as 
+classes dependam fortemente umas das outras de forma que o entendimento e a modificação de uma leve a alterações em 
+outras classes. Além disso, a cada dependência gerada, os testes unitários criados provavelmente precisaram da 
+utilização de artifícios para isolar cada uma das partes sendo mais difíceis de serem compreendidos.
 	
-Abaixo seguem fatores relacionados com o acoplamento que devem ser considerados para o desenvolvimento de um código limpo.
+Abaixo seguem fatores relacionados com o acoplamento que devem ser considerados para o desenvolvimento de um código 
+limpo.
 
 \subsubsection{A Lei de Demeter (The Law of Demeter)}
-A Lei de Demeter diz que um método M de uma classe C só deveria chamar um dos seguintes métodos:
+A Lei de Demeter (\textit{The Law of Demeter}) diz que um método ``M'' de uma classe ``C'' só deveria chamar um dos 
+seguintes métodos:
 
 \begin{itemize}
-	\item Da própria classe;
-	\item De um objeto criado por M;
-	\item De um objeto passado como argumento para M;
-	\item De um objeto guardado em uma variável de instância de C.
+	\item da própria classe;
+	\item de um objeto criado por M;
+	\item de um objeto passado como argumento para M;
+	\item de um objeto guardado em uma variável de instância de C.
 \end{itemize}
 
-O cumprimento desta heurística visa evitar que uma classe conheça os detalhes de implementação dos objetos aos quais manipula. A invocação de métodos da própria classe não causa nenhum tipo de dependência pela óbvia ausência de algo sobre a qual depender. Os outros tipos de chamadas especificados na Lei causam uma dependência, mas que se limita as interfaces dos objetos trabalhados. A classe deve conhecer quais os métodos dos objetos, os argumentos que aceitam e o tipo do valor de retorno, caso houver.
+O cumprimento dessa heurística visa evitar que uma classe conheça os detalhes de implementação dos objetos aos quais 
+manipula. A invocação de métodos da própria classe não causa nenhum tipo de dependência pela óbvia ausência de algo 
+sobre a qual depender. Os outros tipos de chamadas especificados na Lei causam uma dependência, mas que se limita as 
+interfaces dos objetos trabalhados. A classe deve conhecer quais os métodos dos objetos, os argumentos que aceitam e o 
+tipo do valor de retorno, caso houver.
 	
-Um exemplo claro de violação são os chamados ``train wreck''. Suponha que temos uma classe JogoDeFutebol e uma classe cliente C executa a seguinte operação:
+Um exemplo claro de violação são os chamados ``train wreck''. Suponha que temos uma classe \textit{JogoDeFutebol} e uma classe cliente ``C'' executa a seguinte operação:
 	
 \lstinputlisting[label=train_wreck, caption={Um chamado ``train wreck'' que exemplifica uma violação à Lei de Demeter}]{codigos/train_wreck}
 
-A chamada para getTimes() está de acordo com a Lei de Demeter pois é uma invocação de um método de um objeto guardado em um variável de instância jogoDeFutebol da classe JogoDeFutebol. O valor de retorno dessa chamada é uma lista contendo os dois times que não é objeto criado e/ou guardado dentro da classe C, nem um argumento passado para M. Dessa forma, a chamada para primeiro() sobre essa lista é a primeira das violações à heurística.
+A chamada para \textit{getTimes()} está de acordo com a Lei de Demeter, pois é uma invocação de um método de um objeto guardado em um variável de instância \textit{jogoDeFutebol} da classe \textit{JogoDeFutebol}. O valor de retorno dessa chamada é uma lista contendo os dois times que não é objeto criado e/ou guardado dentro da classe ``C'', nem um argumento passado para ``M''. Dessa forma, a chamada para \textit{primeiro()} sobre essa lista é a primeira das violações à heurística.
 	
-Considerando os problemas dessa abordagem e o acoplamento gerado, que partes do sistema a classe C conhece? Primeiramente, conhece a classe JogoDeFutebol, já que possui um destes objetos guardados em uma variável de instância e chama um método getTimes(). Além disso, conhece o valor de retorno desta chamada e sabe que é uma lista composta por objetos da classe Time e que, portanto, poderia chamar o método primeiro() sobre a lista. Ainda conhece que um Time tem uma coleção de cartões acessada através de getCartões(), que aceita a mensagem count().
+Considerando os problemas dessa abordagem e o acoplamento gerado, que partes do sistema a classe ``C'' conhece? Primeiramente, conhece a classe \textit{JogoDeFutebol}, já que possui um destes objetos guardados em uma variável de instância e chama um método \textit{getTimes()}. Além disso, conhece o valor de retorno desta chamada e sabe que é uma lista composta por objetos da classe \textit{Time} e que, portanto, poderia chamar o método \textit{primeiro()} sobre a lista. Ainda conhece que um Time tem uma coleção de cartões acessada através de \textit{getCartões()}, que aceita a mensagem \textit{count()}.
 	
-Esse exemplo mostra bem que tipo de problemas podem ocorrer quando acoplamento entre as partes do sistema está alta. Claramente, a classe C conhece muitas partes do sistema e, a partir desse momento, qualquer mudança nessa estrutura pode quebrar seu código. Quando temos que criar estruturas como a exemplificada, é necessário repensar o design e nos perguntar porque a classe C precisava ter acesso a todas aquelas informações. Provavelmente é o caso de fazer mais delegações ao invés de depender tanto dos dados de outros objetos.
+Esse exemplo mostra bem que tipo de problemas podem ocorrer quando acoplamento entre as partes do sistema está alta. Claramente, a classe ``C'' conhece muitas partes do sistema e, a partir desse momento, qualquer mudança nessa estrutura pode quebrar seu código. Quando temos que criar estruturas como a exemplificada, é necessário repensar o design e nos perguntarmos porque a classe ``C'' precisava ter acesso a todas aquelas informações. Provavelmente, é o caso de fazer mais delegações ao invés de depender tanto dos dados de outros objetos.
 
 \subsubsection{Princípio da Inversão de Dependência (Dependency Inversion Principle)}
 O objetivo da minimização do acoplamento entre nossas classes é facilitar as alterações que serão feitas no sistema. Queremos conseguir estender a infra-estrutura de classes que temos para criar novas funcionalidades.
 	
-No exemplo utilizado por Robert Martin em sua coluna para a The C++ Report sobre o assunto discutido, temos uma classe Copiador que utiliza um LeitorDeTeclado para coletar inteiros digitados pelo usuário e um EscritorDeArquivo para escrever o dado em um arquivo. Que alterações precisam ser feitas  para adicionar a funcionalidade de ler os inteiros de um arquivo? Infelizmente será necessário criar mudanças na classe Copiador para que possa receber dados coletados de dois tipos diferentes de objetos que lidam com a entrada de dados. Tal alteração só se torna necessária devido a dependência que Copiador tem com classes como EscritorDeArquivos e LeitorDoTeclado.
+No exemplo utilizado por Robert Martin em sua coluna para a revista \textit{The C++ Report}
+sobre o assunto discutido, temos uma classe  \textit{Copiador} que utiliza um \textit{LeitorDeTeclado} para coletar inteiros digitados pelo usuário e um  \textit{EscritorDeArquivo} para escrever o dado em um arquivo. Quais alterações precisam ser feitas  para adicionar a funcionalidade de ler os inteiros de um arquivo? Será necessário criar mudanças na classe  \textit{Copiador} para que possa receber dados coletados de dois tipos diferentes de objetos que lidam com a entrada de dados. Tal alteração só se torna necessária devido a dependência que Copiador tem com classes como \textit{EscritorDeArquivos} e \textit{LeitorDoTeclado}.
 	
-A solução ideal para o problema seria que Copiador dependesse de abstrações como Leitor e Escritor que tivesse uma interface definida de forma que subclasses como LeitorDeTeclado ou LeitorDeArquivo pudessem ser utilizadas polimorficamente. Todos os Leitores teriam que seguir uma abstração ao implementar o método lerInteiro() e Copiador só precisaria depender dessa interface. Essa mudança seguiria o Princípio da Inversão de Dependência que diz:
+A solução ideal para o problema seria que  \textit{Copiador} dependesse de abstrações como  \textit{Leitor} e  \textit{Escritor} que tivesse uma interface definida de forma que subclasses como  \textit{LeitorDeTeclado} ou  \textit{LeitorDeArquivo} pudessem ser utilizadas polimorficamente. Todos os tipos de  \textit{Leitor} teriam que seguir uma abstração ao implementar o método  \textit{lerInteiro()} e  \textit{Copiador} só precisaria depender dessa interface. Essa mudança seguiria o Princípio da Inversão de Dependência (\textit{Dependency Inversion Principle}) [REF], que diz:
 	
-Classes de alto nível não devem depender de classes de baixo nível. Ambas deveriam depender de abstrações.
-
 \begin{itemize}
+ 	\item Classes de alto nível não devem depender de classes de baixo nível. Ambas deveriam depender de abstrações.
 	\item Abstrações não devem depender de detalhes. Detalhes devem depender de abstrações.
 \end{itemize}
 
-Durante o desenvolvimento, freqüentemente essa solução pode não ser clara ou, em um cenário oposto, os programadores tentam prever todas as partes do código que enfrentam esse problema e utilizam a Inversão de Dependência. Porém, nenhum dos casos pode ser o ideal para o código. Como afirmado por Kent Beck, só devemos investir em flexibilidade em partes do sistema que realmente precisam de flexibilidade. Dessa forma, talvez a melhor solução não precise ser implementada em um primeiro momento, mas quando a necessidade surgir. Provavelmente nesse instante temos que ter certeza que fizemos uma boa escolha para as próximas alterações.
-	
-Outro fato importante a ser considerado quanto a Inversão de Dependência está no isolamento dos testes automatizados. Ao testar classes que dependem de outras classes, queremos isolar a testada de forma que os testes sejam de fato unitários. Se a classe em teste depender de abstrações, o trabalho será simplificado. No exemplo do Copiador acima, poderíamos criar um EscritorTeste e um LeitorTeste que tivesse operações convenientes para que os testes de Copiador fosse isolados.
+Durante o desenvolvimento, frequentemente essa solução pode não ser clara ou, em um cenário oposto, os programadores tentam prever todas as partes do código que enfrentam esse problema e utilizam a Inversão de Dependência. Entretanto, nenhum dos casos pode ser o ideal para o código. Como afirmado por Kent Beck [REF] ~\citep{}, só devemos investir em flexibilidade em partes do sistema que realmente precisam de flexibilidade. Dessa forma, talvez a melhor solução não precise ser implementada em um primeiro momento, mas quando a necessidade surgir. Provavelmente, nesse instante temos que ter certeza que fizemos uma boa escolha para as próximas alterações.
+
+Outro fato importante a ser considerado quanto a Inversão de Dependência está no isolamento dos testes automatizados. Ao testar classes que dependem de outras classes, queremos isolar a testada de forma que os testes sejam de fato unitários. Se a classe em teste depender de abstrações, o trabalho será simplificado. No exemplo da classe \textit{Copiador}, poderíamos criar um \textit{EscritorTeste} e um \textit{LeitorTeste} que tivesse operações convenientes para que os testes de \textit{Copiador} fosse isolados.
 
 
 \section{Unindo Conceitos}
 \label{unindo_conceitos}
+Nas sessões anteriores foram enumeradas diversas características que devem ser consideradas para o desenvolvimento de um código limpo. Através de uma parcela do conjunto apresentado, podemos fazer boas escolhas que trarão melhorias imediatas para o código. Entretanto, o entendimento e aplicações de composições das recomendações podem causar alterações ainda mais poderosas.
 
-Nas sessões anteriores foram enumeradas diversas características que devem ser consideradas para o desenvolvimento de um código limpo. Através de uma parcela do conjunto apresentado, podemos fazer boas escolhas que trarão melhorias imediatas para o código. Porém, o entendimento e aplicações de composições das recomendações podem causar alterações ainda mais poderosas.
+Na busca pelo desenvolvimento de um código expressivo, podemos decompor métodos de mais alto nível em outros métodos no nível de abstração abaixo. Associada a busca por métodos sempre pequenos e sem estruturas encadeadas, tal decomposição forçará o encapsulamento e a escolha de bons nomes para uma atividade dentro da cadeia de métodos.
 
-Na busca pelo desenvolvimento de um código expressivo, podemos decompor métodos de mais alto nível em outros métodos no nível de abstração abaixo. Associada a busca por métodos sempre pequenos e sem estruturas encadeadas, tal decomposição forçará o encapsulamento e a escolha de bons nomes para uma atividade dentro da cadeia de funções.
-
-Enquanto dividimos as atividades, é muito freqüente que a lista de argumentos dos métodos criados comece a aumentar. Isso acontece principalmente porque as atividades de mais baixo nível são responsáveis pela manipulação dos dados. Diante de tal situação, é comum transformarmos parâmetros muito utilizados em variáveis de instância da classe trabalhada.
-
-A medida que criamos mais métodos e mais variáveis através da decomposição e adição de novas funcionalidades, devemos questionar se a classe não está concentrando responsabilidades. Muito provavelmente teremos uma divisão entre os elementos dessa classe: teremos dois conjuntos de métodos e variáveis que não entram em contato. Desta maneira, e classe terá duas unidades lógicas distintas, revelando que não está maximizando a coesão. Um passo natural seria dividir essa classe em duas classes. 
-
-O resultado do esforço exemplificado é um sistema que provavelmente atingiu grande proximidade para com os três valores. O código será significamente expressivo, pois as classes serão formadas por muitos métodos com bons nomes de forma que o leitor possa ler cada nível de abstração em uma linguagem bastante próxima da natural.
-
-Além disso, como o sistema é formado por muitas classes pequenas e extremamente coesas, será simples encontrar e compreender cada uma das partes, uma vez que será necessário trabalhar com pouca informação. Essas características também auxiliaram na minimização de duplicações, na aproximação da lógica e dados e na manutenção de conseqüencias locais, provendo grande flexibilidade.
+Enquanto dividimos as atividades, é muito frequente que a lista de argumentos dos métodos criados comece a aumentar. Isso acontece principalmente porque as atividades de mais baixo nível são responsáveis pela manipulação dos dados. Diante de tal situação, é comum transformarmos parâmetros muito utilizados em variáveis de instância da classe trabalhada.
+ 
+A medida que criamos mais métodos e mais variáveis através da decomposição e adição de novas funcionalidades, devemos questionar se a classe não está concentrando responsabilidades. Podemos assim ter uma divisão entre os elementos dessa classe: teremos dois conjuntos de métodos e variáveis que não entram em contato. Desta maneira, a classe terá duas unidades lógicas distintas, revelando que não está maximizando a coesão. Um passo natural seria dividir essa classe em duas classes. 
+ 
+O resultado do esforço exemplificado é um sistema que provavelmente atingiu grande proximidade para com os três valores: expressividade, simplicidade e flexibilidade.
+O código será significantemente expressivo, pois as classes serão formadas por muitos métodos com bons nomes de forma que o leitor possa ler cada nível de abstração em uma linguagem bastante próxima da natural.
+ 
+Além disso, como o sistema é formado por muitas classes pequenas e extremamente coesas, será simples encontrar e compreender cada uma das partes, uma vez que será necessário trabalhar com pouca informação. Essas características também auxiliaram na minimização de duplicações, na aproximação da lógica e dados e na manutenção de consequências locais, provendo grande flexibilidade.
+ 
+ 

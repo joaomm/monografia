@@ -1,0 +1,5 @@
+classe Email:
+	setaAssunto(String assunto)
+	setaDestinatarios(Lista destinatarios)
+	setaConteudoComoHTML(String conteudo)
+	setaConteudoComoXML(String conteudo)

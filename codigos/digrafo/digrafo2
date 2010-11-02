@@ -1,0 +1,63 @@
+class Digrafo:
+	var numeroDeVertices
+	var listaDeAdjacencia
+	var Infinito = -1
+
+	def construtor(noVertices):
+		numeroDeVertices = noVertices
+		listaDeAdjacencia = new Lista(numeroDeVertices)
+
+	def adicionaAresta(origem, destino, custo):
+		listaDeAdjacencia[origem] = new Aresta(destino, custo)
+
+	def arestasDoVertice(vertice):
+		return listaDeAdjacencia[vertice]
+	
+	def custosAPartirDoVertice(vertice):
+		custos = inicializaCustos(vertice)
+		fila = inicializaFila()
+		
+		while(aindaHaVertices(fila)):
+			verticeDoMomento = fila.verticeDaArestaComCustoMinimo()
+			for aresta in (arestasDoVertice(verticeDoMomento)):
+				verticeDestino = aresta.verticeDestino()
+				custo = aresta.custo()
+				
+				if(verticeNuncaAtingido(custos, verticeDestino)):
+					custos[verticeDestino] = custos[verticeDoMomento] + custo
+					fila.insere(nova Aresta(verticeDestino, custos[verticeDestino]))
+					
+				else if(caminhoComNovaArestaMaisBarato(custos, verticeDestino, verticeDoMomento, custo)):
+					custos[verticeDestino] = custos[verticeDoMomento] + custo
+		
+		return custos
+
+	def inicializaCustos(vertice):
+		custos = novo Lista(numeroDeVertices)
+		setaTodosOsVerticesComNaoAtingidos(custos)
+		setaVerticeOrigemComoAtingidoSemCusto(custos, vertice)
+		retorna custos
+	
+	def setaTodosOsVerticesComoNaoAtingidos(custos):
+		for i in (1, numeroDeVertices):
+			custos[i] = Infinito
+	
+	def setaVerticeOrigemComoAtingidoSemCusto(custos, vertice):
+		custos[vertice] = 0
+		
+	def inicializaCustos():
+		fila = nova FilaDePrioridades(numeroDeVertices)
+		inserePrimeiraArestaNula(fila)
+		retorna fila
+	
+	def inserePrimeiraArestaNula(fila):
+		fila.insere(nova Aresta(0,0))
+	
+	def aindaHaVertices(fila):
+  		return fila.vazia()
+  	
+	def verticeNuncaAtingido(custos, vertice):
+		custos[vertice] == Infinito
+		
+	def caminhoComNovaArestaMaisBarato(custos, verticeDestino, verticeDoMomento, custo):
+	  custos[verticeDestino] > custos[verticeDoMomento] + custo

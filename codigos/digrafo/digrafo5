@@ -1,0 +1,91 @@
+class Digrafo:
+	var numeroDeVertices
+	var listaDeAdjacencia
+
+	def construtor(noVertices):
+		numeroDeVertices = noVertices
+		listaDeAdjacencia = new Lista(numeroDeVertices)
+
+	def adicionaAresta(origem, destino, custo):
+		listaDeAdjacencia[origem] = new Aresta(destino, custo)
+
+	def arestasDoVertice(vertice):
+		return listaDeAdjacencia[vertice]
+
+
+
+class CalculadorDijkstra:
+	var custo
+	var fila
+	var verticeOrigem
+	var Infinito = -1
+	
+	def construtor(digrafo):
+		numeroDeVertices = digrafo.numeroDeVertices
+	
+	def custosAPartirDoVertice(vertice):
+		inicializaCustosEFila(vertice)
+		atualizaCustosAteAcabarVertices()
+		return custos
+	
+	def inicializaCustosEFila(vertice):
+		verticeOrigem = vertice
+		inicializaCustos()
+		inicializaFila()
+	
+	def inicializaCustos():
+		custos = novo Lista(numeroDeVertices)
+		setaTodosOsVerticesComNaoAtingidos()
+		setaVerticeOrigemComoAtingidoSemCusto()
+	
+	def setaTodosOsVerticesComCustoInfinito():
+		for i in (1, numeroDeVertices):
+			custos[i] = Infinito
+	
+	def setaVerticeOrigemComoAtingidoSemCusto():
+		custos[verticeOrigem] = 0
+		
+	def inicializaCustos():
+		fila = nova FilaDePrioridades(numeroDeVertices)
+		inserePrimeiraArestaNula()
+		return fila
+	
+	def inserePrimeiraArestaNula():
+		fila.insere(nova Aresta(0,0))
+	
+	def aindaHaVertices(fila):
+		return fila.vazia()
+	
+	def atualizaCustosAPartirDoVerticeComCustoMinimo()
+		while(aindaHaVertices()):
+			atualizaCustosAPartirDoVerticeComCustoMinimo()
+					
+		
+	def atualizaCustosAPartirDoVerticeComCustoMinimo():
+		verticeMinimo = fila.verticeDaArestaComCustoMinimo()
+		for aresta in (digrafo.arestasDoVertice(verticeMinimo)):			
+			atualizaCustoSeCaminhoMaisBarato(verticeMinimo, aresta)
+	
+	
+	def atualizaCustoSeCaminhoMaisBarato(verticeMinimo, aresta):
+	  verticeDestino = aresta.verticeDestino()
+	  custo = aresta.custo()
+	  
+	  if(verticeNuncaAtingido(verticeDestino)):
+		  atualizaCusto(verticeDestino, verticeMinimo, custo)
+		  fila.insere(nova Aresta(verticeDestino, custos[verticeDestino]))
+		
+	  if(caminhoComNovaArestaMaisBarato(verticeDestino, verticeMinimo, custo)):
+		  atualizaCusto(verticeDestino, verticeMinimo, custo)
+		
+		
+	def verticeNuncaAtingido(custos, vertice):
+		custos[vertice] == Infinito
+		
+		
+	def caminhoComNovaArestaMaisBarato(verticeDestino, verticeMinimo, custo):
+	  return custos[verticeDestino] > custos[verticeMinimo] + custo
+	  
+	  
+	def atualizaCusto(verticeDestino, verticeMinimo, custo):
+	  custos[verticeDestino] = custos[verticeMinimo] + custo

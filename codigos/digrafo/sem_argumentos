@@ -1,0 +1,17 @@
+var custos
+var fila
+
+def custosAPartirDoVertice(vertice):
+	inicializaCustos(vertice)
+	inicializaFila()
+	atualizaCustosAteAcabarVertices()
+	return custos
+
+def atualizaCustosAPartirDoVerticeComCustoMinimo()
+	while(aindaHaVertices()):
+		atualizaCustosAPartirDoVerticeComCustoMinimo()
+		
+def atualizaCustosAPartirDoVerticeComCustoMinimo():
+	verticeDoMomento = fila.verticeDaArestaComCustoMinimo()
+	for aresta in (arestasDoVertice(verticeDoMomento)):			
+		atualizaCustoSeCaminhoMaisBarato(verticeDoMomento, aresta)

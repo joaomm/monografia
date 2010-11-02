@@ -1,0 +1,38 @@
+class Digrafo:
+	var numeroDeVertices
+	var listaDeAdjacencia
+
+	def construtor(noVertices):
+		numeroDeVertices = noVertices
+		listaDeAdjacencia = new Lista(numeroDeVertices)
+
+	def adicionaAresta(origem, destino, custo):
+		listaDeAdjacencia[origem] = new Aresta(destino, custo)
+
+	def arestasDoVertice(vertice):
+		return listaDeAdjacencia[vertice]
+	
+	def custosAPartirDoVertice(vertice):
+		custos = novo Lista(numeroDeVertices)
+		fila = nova FilaDePrioridades(numeroDeVertices)
+		
+		for i in (1, numeroDeVertices):
+			custos[i] = -1
+		
+		custos[vertice] = 0
+		fila.insere(nova Aresta(0,0))
+		
+		while(fila.vazia()):
+			verticeDoMomento = fila.verticeDaArestaComCustoMinimo()
+			for aresta in (arestasDoVertice(verticeDoMomento)):
+				verticeDestino = aresta.verticeDestino()
+				custo = aresta.custo()
+				
+				if(custos[verticeDestino] == -1):
+					custos[verticeDestino] = custos[verticeDoMomento] + custo
+					fila.insere(nova Aresta(verticeDestino, custos[verticeDestino]))
+					
+				else if(custos[verticeDestino] > custos[verticeDoMomento] + custo):
+					custos[verticeDestino] = custos[verticeDoMomento] + custo
+		
+		return custos

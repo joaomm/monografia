@@ -119,6 +119,7 @@ O último fundamento teórico quanto aos métodos também diz respeito ao progra
 Tendo em vista a fundamentação teórica, a seguir estão algumas técnicas que nos possibilitam criar métodos que se encaixem no estilo de programação buscado.
 
 \subsubsection{Composição de Métodos}
+\label{metodos:composicao}
 A composição de método é a base para a criação de um código limpo. A proposta é compor nossos métodos em chamadas para outros métodos rigorosamente no mesmo nível de abstração.
 	
 Usando novamente o exemplo do algoritmo do \textit{Crivo de Erastótenes}, para encontrar os primos de 1 a N devemos criar um conjunto de elementos que represente os inteiros de 1 a N, marcar todos números múltiplos de outros e depois coletar todos aqueles que não estão marcados (os primos). Para isso criamos um método da classe \textit{GeradorDePrimos}:
@@ -132,6 +133,7 @@ Também ficam bastante claros os níveis de abstrações criados. A função pri
 A composição de métodos não é uma técnica que desconhecemos, uma vez que a todo momento criamos estruturas dessa maneira sem ter conhecimento da sua efetividade. Entretanto, a facilidade de leitura propiciada faz com que esse seja o padrão mais relevante do livro~\citep{Beck2007, InfoQ2010}. 	
 
 \subsubsection{Métodos Explicativos (Explaining Methods)}
+\label{metodos:explicativos}
 Para auxiliar na expressividade de um trecho de código, podemos criar um método com nome específico do contexto em que será invocada. A operação pode ser bastante simples como um incremento de variável ou a chamada de um método em um objeto guardado em uma variável de instância, mas o nome dado será de grande valor para a documentação do código. Além disso, a função pode ser reutilizada posteriormente evitando duplicações e encapsulando a operação.
 	
 Essa ideia pode ser empregada em diferentes contextos e níveis de abstração. Para Kent Beck, devemos considerar a criação de um método explicativo quando ficamos tentados a comentar uma única linha de código. Abaixo está um exemplo em Java extraído do livro \textit{Implementation Patterns}.
@@ -151,6 +153,7 @@ Considerando a região de código que chama \textit{destaca()}, as melhorias sã
 Por fim, ainda há formas mais implícitas de utilizar métodos explicativos. Quando utilizamos o padrão de projeto Wrapper[REF] para criar uma classe que abstrai uma coleção de elementos, estamos de uma maneira criando uma interface cujos métodos façam mais sentido para o domínio de aplicação trabalhado.
 
 \subsubsection{Métodos como Condicionais}
+\label{metodos:condicionais}
 Um caso específico de método explicativo bastante utilizado é uma chamada para um método que contenha uma expressão booleana como valor de retorno.
 	
 \lstinputlisting[label=condicional_estranho, caption={Exemplo de uma expressão booleana pouco clara}]{codigos/condicional_estranho}
@@ -197,7 +200,8 @@ Se passamos uma \textit{Flag} (booleana ou proveniente de uma enumeração) como
 \subsubsection{Objeto como Parâmetro}
 Diante de uma lista grande de argumentos, devemos questionar se não existe alguma abstração que une esses elementos. Por exemplo, considere uma classe \textit{FábricaDeMáquinas} cujo construtor é \textit{FábricaDeMáquinas(númeroDeMáquinas, númeroDeFuncionários, horasDeFuncionamento)}. Uma possibilidade seria criar um objeto \textit{EspecificaçãoDeFábrica} que contivesse esses argumentos como variáveis de instância e métodos que fossem úteis para que o código desta \textit{FábricaDeMáquinas} fosse o mais claro possível.
 
-\subsubsection{Parâmetros com Variável de Instância}
+\subsubsection{Parâmetros como Variável de Instância}
+\label{metodos:parametros}
 Na utilização da composição de métodos, frequentemente será preciso passar um argumento para diversos métodos, que possivelmente não o utilizam, somente para satisfazer a necessidade de um deles. Uma solução plausível é transformar esse argumento em uma variável de instância acessível por todos os métodos.
 	
 Esse tipo de alteração tem grande importância no design do sistema como um todo. Na sessão de Classes abordaremos esse tópico e veremos o papel dessa técnica em refatorações de maior escala.
@@ -290,7 +294,9 @@ Tendo em vista a busca por consequências locais e a simplicidade e expressivida
 classes dependam fortemente umas das outras de forma que o entendimento e a modificação de uma leve a alterações em 
 outras classes. Além disso, a cada dependência gerada, os testes unitários criados provavelmente precisaram da 
 utilização de artifícios para isolar cada uma das partes sendo mais difíceis de serem compreendidos.
-	
+
+Por outro lado, buscamos um sistema formado por muitas classes coesas e com uma única responsabilidade, fazendo com a comunicação entre os objeto seja inevitável. Sendo assim, o objetivo é a criação de acoplamentos que possam aumentar a flexibilidade e a simplicidade das classes. Como vimos no exemplo da figura \ref{img:email}, uma boa solução para o problema foi gerar um acoplamento entre duas classes, mas essa decisão flexibilizou a criação de novas formatações.
+
 Abaixo seguem fatores relacionados com o acoplamento que devem ser considerados para o desenvolvimento de um código 
 limpo.
 
@@ -321,13 +327,21 @@ Considerando os problemas dessa abordagem e o acoplamento gerado, que partes do 
 	
 Esse exemplo mostra bem que tipo de problemas podem ocorrer quando acoplamento entre as partes do sistema está alta. Claramente, a classe ``C'' conhece muitas partes do sistema e, a partir desse momento, qualquer mudança nessa estrutura pode quebrar seu código. Quando temos que criar estruturas como a exemplificada, é necessário repensar o design e nos perguntarmos porque a classe ``C'' precisava ter acesso a todas aquelas informações. Provavelmente, é o caso de fazer mais delegações ao invés de depender tanto dos dados de outros objetos.
 
+\subsubsection{Acoplamento entre Método e Classe}
+Em alguns casos, um método mesmo sem violar a Lei de Demeter, tem um grande acoplamento com outra classe.
+O método abaixo não viola a Lei de Demeter, já que está fazendo somente chamadas a métodos de um objeto que lhe foi passado como parâmetro.
+
+\lstinputlisting[label=envy, caption={Método salario() é muito acoplado a classe Empregado sem violar a Lei de Demeter}]{codigos/train_wreck}
+
+No entanto, \textit{salario} possui um grande acoplamento com a classe \textit{Empregado} ao utilizar diversos de seus métodos, de forma que ``inveja'' os seus dados [REF Feature Envy e Refactoring]. A melhor opção para essa situação é colocar esse método na classe \textit{Empregado}.
+
 \subsubsection{Princípio da Inversão de Dependência (Dependency Inversion Principle)}
 O objetivo da minimização do acoplamento entre nossas classes é facilitar as alterações que serão feitas no sistema. Queremos conseguir estender a infra-estrutura de classes que temos para criar novas funcionalidades.
 	
 No exemplo utilizado por Robert Martin em sua coluna para a revista \textit{The C++ Report}
 sobre o assunto discutido, temos uma classe  \textit{Copiador} que utiliza um \textit{LeitorDeTeclado} para coletar inteiros digitados pelo usuário e um  \textit{EscritorDeArquivo} para escrever o dado em um arquivo. Quais alterações precisam ser feitas  para adicionar a funcionalidade de ler os inteiros de um arquivo? Será necessário criar mudanças na classe  \textit{Copiador} para que possa receber dados coletados de dois tipos diferentes de objetos que lidam com a entrada de dados. Tal alteração só se torna necessária devido a dependência que Copiador tem com classes como \textit{EscritorDeArquivos} e \textit{LeitorDoTeclado}.
 	
-A solução ideal para o problema seria que  \textit{Copiador} dependesse de abstrações como  \textit{Leitor} e  \textit{Escritor} que tivesse uma interface definida de forma que subclasses como  \textit{LeitorDeTeclado} ou  \textit{LeitorDeArquivo} pudessem ser utilizadas polimorficamente. Todos os tipos de  \textit{Leitor} teriam que seguir uma abstração ao implementar o método  \textit{lerInteiro()} e  \textit{Copiador} só precisaria depender dessa interface. Essa mudança seguiria o Princípio da Inversão de Dependência (\textit{Dependency Inversion Principle}) [REF], que diz:
+A solução ideal para o problema seria que  \textit{Copiador} dependesse de abstrações como \textit{Leitor} e  \textit{Escritor} que tivesse uma interface definida de forma que subclasses como  \textit{LeitorDeTeclado} ou  \textit{LeitorDeArquivo} pudessem ser utilizadas polimorficamente. Todos os tipos de  \textit{Leitor} teriam que seguir uma abstração ao implementar o método  \textit{lerInteiro()} e  \textit{Copiador} só precisaria depender dessa interface. Essa mudança seguiria o Princípio da Inversão de Dependência (\textit{Dependency Inversion Principle}) [REF], que diz:
 	
 \begin{itemize}
  	\item Classes de alto nível não devem depender de classes de baixo nível. Ambas deveriam depender de abstrações.
@@ -341,17 +355,88 @@ Outro fato importante a ser considerado quanto a Inversão de Dependência está
 
 \section{Unindo Conceitos}
 \label{unindo_conceitos}
-Nas sessões anteriores foram enumeradas diversas características que devem ser consideradas para o desenvolvimento de um código limpo. Através de uma parcela do conjunto apresentado, podemos fazer boas escolhas que trarão melhorias imediatas para o código. Entretanto, o entendimento e aplicações de composições das recomendações podem causar alterações ainda mais poderosas.
+Nas sessões anteriores foram enumeradas diversas características que devem ser consideradas para o desenvolvimento de 
+um código limpo. Através de uma parcela do conjunto apresentado, podemos fazer boas escolhas que trarão melhorias 
+imediatas para o código. Entretanto, o entendimento e aplicações de composições das recomendações podem causar 
+alterações ainda mais poderosas.
 
-Na busca pelo desenvolvimento de um código expressivo, podemos decompor métodos de mais alto nível em outros métodos no nível de abstração abaixo. Associada a busca por métodos sempre pequenos e sem estruturas encadeadas, tal decomposição forçará o encapsulamento e a escolha de bons nomes para uma atividade dentro da cadeia de métodos.
+Para exemplificar a união dos conceitos apresentados ao longo capítulo, apresentaremos a seguir um 
+conjunto de melhorias para o código de uma classe \textit{Digrafo} que implementa uma lista de adjacência para 
+representar as arestas de um grafo dirigido, além de calcular a árvore geradora de custo mínimo através do algoritmo de 
+Dijkstra [REF] no método \textit{custosAPartirDoVertice}.
 
-Enquanto dividimos as atividades, é muito frequente que a lista de argumentos dos métodos criados comece a aumentar. Isso acontece principalmente porque as atividades de mais baixo nível são responsáveis pela manipulação dos dados. Diante de tal situação, é comum transformarmos parâmetros muito utilizados em variáveis de instância da classe trabalhada.
+Inicialmente, a classe se comunica com duas classes: \textit{Aresta} representa uma ligação de um vértice com outro e o 
+custo desta ligação, enquanto que \textit{FilaDePrioridade} representa uma uma fila com prioridades com as operações 
+\textit{vazia()}, \textit{insere(aresta)} e \textit{verticeDaArestaComCustoMinimo()}.
+
+\lstinputlisting[label=digrafo1, caption={Classe Digrafo com problemas de limpeza}]{codigos/digrafo/digrafo1}
+
+O problema mais aparente desse código é a complexidade do método \textit{custosAPartirDoVertice}. Um leitor 
+que não conhece o algoritmo teria grandes dificuldades para compreender sua implementação devido a falta de 
+expressividade do método. São muitas linhas de código, diversos detalhes de implementação e estruturas encadeadas 
+complexas para realizar muitas atividades. 
+
+A primeira alteração que pode ser feita é a criação de Métodos como Condicionais (\ref{metodos:condicionais}) e 
+Métodos Explicativos (\ref{metodos:explicativos}) para auxiliar a responder questões sobre algumas operações.
+
+Por exemplo, o que significa a expressão booleana \textit{custos[verticeDestino] == -1}? Em uma visão mais detalhada, 
+podemos observar que os custos de todos os vértices foram inicialmente inicializados com a constante ``-1'', 
+representando que, até momento, o vértice não foi atingido e não sabemos quanto custa um caminho até ele. Uma solução 
+interessante capaz de gerar uma maior clareza e documentação da implementação é a criação dos métodos abaixo
+exibidos.
+
+\lstinputlisting[label=metodos_explicativos, caption={Métodos Explicativos}]{codigos/digrafo/nao_atingido}
+
+Além da criação de métodos com a mesma motivação, poderemos também quebrar as etapas do algoritmo através da Composição 
+de Métodos (\ref{metodos:composicao}). Essa mudança se baseia no desenvolvimento de um conjunto de métodos com nomes 
+significativos para encapsular operações em diferentes níveis de abstração, além de minimizar as estruturas encadeadas.
+O trecho de código abaixo mostra um método \textit{inicializaCustos} criado para encapsular a inicialização do vetor de 
+custos.
+
+\lstinputlisting[label=inicializa_custos, caption={Processo de inicialização do vetor de custos fica mais claro com a Composição de Métodos}]{codigos/digrafo/inicializa_custos}
+
+Toda inicialização do vetor de custos fica mais clara através desse método. Operações confusas como 
+\textit{custos[vertice] = 0} agora se encontram encapsuladas e com um nome explicativo.
+
+Podemos observar que a contínua aplicação da Composição de Métodos gera um crescimento no número de métodos e no total de 
+linhas da classe, mas cada um dos métodos possui poucas linhas de código e realiza apenas uma atividade simples e direta. 
+Outra consequência é a necessidade da passagem de argumentos como \textit{custos} e \textit{fila}, uma vez que os métodos 
+de menor nível de abstração são aqueles que efetivamente realizam as operações utilizando-os.
+
+Para solucionar esse aumento no número de argumentos sendo repassados através da classe, podemos promover alguns destes à 
+variáveis de instância (\ref{metodos:parametros}). É fácil notar nos exemplos abaixo como essa alteração limpa o código 
+dos métodos de mais alto nível que não utilizam os argumentos em suas atividades.
+
+\lstinputlisting[label=sem_argumentos, caption={Métodos de alto nível sem a passagem de argumentos}]{codigos/digrafo/sem_argumentos}
+
+Todas as alterações feitas até o momento foram feitas levando em conta a melhoria do código dos métodos que compõe a 
+classe \textit{Digrafo}. Porém uma grande alteração podería ser feita ao levar a abstração encapsulada sobre essa classe.
+Por quais motivos poderia ser alterada? Primeiramente, poderia ser mudada caso fosse necessário implementar o grafo 
+dirigido com uma matriz de adjacência ao invés de uma lista. Também poderiamos querer alterar o algoritmo de Dijkstra 
+para utilizar outra alternativa.
+
+Claramente a classe \textit{Digrafo} viola o Princípio da Única Responsabilidade. De um ponto de vista mais técnico, 
+podemos observar que as variáveis de instância \textit{custo} e \textit{fila} não são utilizadas pelos métodos 
+\textit{adicionaAresta} e \textit{arestaDoVértice}, mas só são de interesse dos métodos desenvolvidos para a composição 
+do método \textit{custosAPartirDoVertice}.
+
+A solução para essa falta de coesão é a divisão em duas classes. Essa ruptura poderia ser feita de forma a preservar o 
+método \textit{custosAPartirDoVertice} na interface \textit{Digrafo}, implementando o método através da delegação para 
+uma nova classe que encapsula o algoritmo. No entanto, essa decisão causaria uma dependência circular: \textit{Digrafo} 
+dependeria da nova classe \textit{CalculadorDijkstra} para calcular a árvore geradora de custo mínimo e, por outro lado,
+\textit{CalculadorDijkstra} dependeria das arestas e vértices de \textit{Digrafo}.
+
+Uma solução mais interessante é \textit{CalculadorDijkstra} receber como argumento de seu construtor um objeto \textit{Digrafo}. Dessa maneira, a classe \textit{Digrafo} ficou pequena e coesa com a única responsabilidade de criar a representação do grafo.
+
+\lstinputlisting[label=digrafo_final, caption={Classe Digrafo com apenas uma responsabilidade}]{codigos/digrafo/digrafo_final}
  
-A medida que criamos mais métodos e mais variáveis através da decomposição e adição de novas funcionalidades, devemos questionar se a classe não está concentrando responsabilidades. Podemos assim ter uma divisão entre os elementos dessa classe: teremos dois conjuntos de métodos e variáveis que não entram em contato. Desta maneira, a classe terá duas unidades lógicas distintas, revelando que não está maximizando a coesão. Um passo natural seria dividir essa classe em duas classes. 
+O resultado do esforço exemplificado é um conjunto de classes que atingiu grande proximidade para com os três valores: 
+expressividade, simplicidade e flexibilidade.
+O código ficou significantemente mais expressivo, pois as classes são formadas por muitos métodos com bons nomes de forma que o leitor possa ler cada nível de abstração em uma linguagem bastante próxima da natural.
  
-O resultado do esforço exemplificado é um sistema que provavelmente atingiu grande proximidade para com os três valores: expressividade, simplicidade e flexibilidade.
-O código será significantemente expressivo, pois as classes serão formadas por muitos métodos com bons nomes de forma que o leitor possa ler cada nível de abstração em uma linguagem bastante próxima da natural.
- 
-Além disso, como o sistema é formado por muitas classes pequenas e extremamente coesas, será simples encontrar e compreender cada uma das partes, uma vez que será necessário trabalhar com pouca informação. Essas características também auxiliaram na minimização de duplicações, na aproximação da lógica e dados e na manutenção de consequências locais, provendo grande flexibilidade.
- 
+Além disso, a composição com classes pequenas e extremamente coesas torna mais simples a compreensão de cada uma das partes, uma vez que é necessário trabalhar com pouca informação para entender um método ou uma classe. Se essas características também forem empregadas para as outras classes do sistema, resultam na minimização de duplicações, na aproximação da lógica e dados e na manutenção de consequências locais, provendo maior flexibilidade.
+
+A tabela abaixo resume as técnicas apresentadas ao longo do capítulo.
+
+
  

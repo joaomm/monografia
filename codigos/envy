@@ -1,0 +1,6 @@
+salario(empregado):
+	return if empregado.naoTrabalhouEsseMes()
+	salarioPorHora = empregado.salarioPorHora()
+	bonus = empregado.bonus()
+	horasTrabalhadas = empregado.horasTrabalhadas()
+	return salarioPorHora * horasTrabalhadas + bonus

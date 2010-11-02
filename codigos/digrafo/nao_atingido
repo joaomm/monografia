@@ -1,0 +1,9 @@
+var Infinito = -1
+
+def setaTodosOsVerticesComoNaoAtingidos(custos):
+	for i in (1, numeroDeVertices):
+		custos[i] = Infinito
+
+def verticeNuncaAtingido(custos, vertice):
+	custos[vertice] == Infinito
+

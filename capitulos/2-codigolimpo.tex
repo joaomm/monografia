@@ -438,5 +438,188 @@ Além disso, a composição com classes pequenas e extremamente coesas torna mai
 
 A tabela abaixo resume as técnicas apresentadas ao longo do capítulo.
 
+\newenvironment{my_itemize}
+{\begin{list}{\labelitemi}
+{  \setlength{\itemsep}{0pt}
+  \setlength{\parskip}{0pt}
+  \setlength{\parsep}{0pt}
+  \setlength{\topsep}{0pt}
+  \setlength{\partopsep}{0pt}
+  \setlength{\leftmargin}{1em}
+  \setlength{\rightmargin}{0.5em}
+  \setlength{\topmargin}{0.5em}
+}
+}
+{\end{list}}    
+     
 
- 
+\begin{landscape}
+
+\begin{table}[hbt]
+
+\scalefont{.7}
+\begin{tabular}{|p{3.5cm}|p{5cm}|p{8.5cm}|p{7.2cm}|}
+\hline 
+\textbf{Técnica} & \textbf{Descrição} & \textbf{Contribuições} & \textbf{Consequências} \tabularnewline
+\hline
+
+\hline 
+Composição de Métodos 
+& Compor os métodos em chamadas para outros rigorosamente no mesmo nível de abstração abaixo
+& \begin{my_itemize}
+	\item Facilidade de entendimento de métodos menores
+	\item Criação de métodos menores com nomes explicativos
+  \end{my_itemize}
+& \begin{my_itemize}
+	\item[-] Operações por métodos
+	\item[+] Número de parâmetros da classe
+	\item[+] Métodos na classe
+  \end{my_itemize}
+\tabularnewline
+
+\hline 
+Métodos Explicativos
+& Criar um método que encapsule uma operação pouco clara geralmente associada a um comentário
+& \begin{my_itemize}
+	\item O código cliente do método novo terá uma operação com nome que melhor se encaixa no contexto
+  \end{my_itemize}
+& \begin{my_itemize}
+	\item[+] Métodos na classe
+  \end{my_itemize}
+\tabularnewline
+\hline
+Métodos como Condicionais
+& Criar um método que encapsule uma expressão booleana para obter condicionais mais claros
+& \begin{my_itemize}
+	\item Facilidade na leitura de condicionais no código cliente
+	\item Encapsulamento de uma expressão booleana	
+  \end{my_itemize}
+& \begin{my_itemize}
+	\item[+] Métodos na classe
+  \end{my_itemize}
+\tabularnewline
+
+\hline 
+Métodos como Condicionais
+& Criar um método que encapsule uma expressão booleana para obter condicionais mais claros
+& \begin{my_itemize}
+	\item Facilidade na leitura de condicionais no código cliente
+	\item Encapsulamento de uma expressão booleana	
+  \end{my_itemize}
+& \begin{my_itemize}
+	\item[+] Métodos na classe
+  \end{my_itemize}
+\tabularnewline
+
+\hline 
+Evitar Estruturas Encadeadas
+& Utilizar a composição de métodos para minimizar a quantidade de estruturas encadeadas em cada método
+& \begin{my_itemize}
+	\item Facilidade para a criação de testes
+	\item Cada método terá estruturas mais simples e fáceis de serem compreendidas
+  \end{my_itemize}
+& \begin{my_itemize}
+	\item[-] Estruturas encadeadas por método (o número total da classe continuará inalterado)
+  \end{my_itemize}
+\tabularnewline
+
+\hline 
+Cláusulas Guardas
+& Criar um retorno logo no inicio de um método ao invés da criação de estruturas encadeadas com if sem else
+& \begin{my_itemize}
+	\item Estruturas de condicionais mais simples
+	\item Leitor não espera por uma contrapartida do condicional(ex: if sem else)
+  \end{my_itemize}
+& \begin{my_itemize}
+	\item[-] Estruturas encadeadas na classe
+  \end{my_itemize}
+\tabularnewline
+
+\hline
+Objeto Método
+& Criar uma classe que encapsule uma operação complexa simplificando a original (cliente)
+& \begin{my_itemize}
+	\item O código cliente terá um método bastante simples
+	\item Nova classe poderá ser refatorada sem preocupações com alterações no código cliente
+	\item Nova classe poderá ter testes separados
+  \end{my_itemize}
+& \begin{my_itemize}
+	\item[-] Operações no método cliente
+	\item[-] Responsabilidades da classe cliente
+	\item[+] Classes
+	\item[+] Acoplamento da classe cliente com a nova classe
+  \end{my_itemize}
+\tabularnewline
+
+\hline
+Evitar Flags como Argumentos
+& Ao invés de criar um método que recebe uma flag e tem diversos comportamentos, criar  um  método para cada comportamento
+& \begin{my_itemize}
+	\item Leitor não precisará entender um método com muitos condicionais
+	\item Testes unitários independentes
+  \end{my_itemize}
+& \begin{my_itemize}
+	\item[+] Métodos na classe
+  \end{my_itemize}
+\tabularnewline
+
+\hline
+Objeto como Parâmetro
+& Localizar parâmetros que formam uma unidade e criar uma classe que os encapsule
+& \begin{my_itemize}
+	\item Menor número de parâmetros facilita testes e legibilidade
+	\item Criação de uma classe que poderá ser reutilizada em outras partes do sistema
+  \end{my_itemize}
+& \begin{my_itemize}
+	\item[-] Parâmetros passados pela classe
+	\item[+] Classes
+	\item[+] Acoplamento da classe cliente com a nova classe
+  \end{my_itemize}
+\tabularnewline
+
+\hline
+Parâmetros como Variável de Instância
+& Localizar parâmetro muito utilizado pelos métodos de uma classe e transformá-lo em variável de instância
+& \begin{my_itemize}
+	\item Não haverá a necessidade de passar longas listas de parâmetros através de todos os métodos
+  \end{my_itemize}
+& \begin{my_itemize}
+	\item[-] Parâmetros passados pela classe
+	\item[-] Possível diminuição na coesão
+  \end{my_itemize}
+\tabularnewline
+
+\hline
+Uso de Exceções
+& Criar um fluxo normal separado do fluxo de tratamento de erros utilizando exceções ao invés de valores de retornos e condicionais
+& \begin{my_itemize}
+	\item Clareza do fluxo normal sem tratamento de erros através de valores de retornos e condicionais
+  \end{my_itemize}
+& \begin{my_itemize}
+	\item[-] Estruturas Encadeadas
+  \end{my_itemize}
+\tabularnewline
+
+\hline
+Maximizar Coesão
+& Quebrar uma classe que não segue o Princípio da Responsabilidade Única
+& \begin{my_itemize}
+	\item Cada classe terá uma única responsabilidade
+	\item Cada classe terá seus testes independentes
+	\item Sem interferências na implementação das responsabilidades
+  \end{my_itemize}
+& \begin{my_itemize}
+	\item[+] Classes
+	\item[-] Métodos em cada classe
+	\item[-] Atributos em cada classe
+  \end{my_itemize}
+\tabularnewline
+\hline
+\end{tabular}
+
+\caption{Técnicas: descrição, contribuições e consequências}
+\scalefont{1}
+\end{table}
+
+\end{landscape}
+

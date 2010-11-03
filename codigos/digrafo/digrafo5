@@ -18,10 +18,13 @@ class CalculadorDijkstra:
 	var custo
 	var fila
 	var verticeOrigem
+	var digrafo
+	var numeroDeVertices
 	var Infinito = -1
 	
-	def construtor(digrafo):
-		numeroDeVertices = digrafo.numeroDeVertices
+	def construtor(umDigrafo):
+		numeroDeVertices = umDigrafo.numeroDeVertices
+		digrafo = umDigrafo
 	
 	def custosAPartirDoVertice(vertice):
 		inicializaCustosEFila(vertice)
@@ -48,7 +51,7 @@ class CalculadorDijkstra:
 	def inicializaCustos():
 		fila = nova FilaDePrioridades(numeroDeVertices)
 		inserePrimeiraArestaNula()
-		return fila
+
 	
 	def inserePrimeiraArestaNula():
 		fila.insere(nova Aresta(0,0))
@@ -69,23 +72,27 @@ class CalculadorDijkstra:
 	
 	def atualizaCustoSeCaminhoMaisBarato(verticeMinimo, aresta):
 	  verticeDestino = aresta.verticeDestino()
-	  custo = aresta.custo()
-	  
+			  
 	  if(verticeNuncaAtingido(verticeDestino)):
-		  atualizaCusto(verticeDestino, verticeMinimo, custo)
-		  fila.insere(nova Aresta(verticeDestino, custos[verticeDestino]))
+		  atualizaCustoEInsereNaFila(verticeDestino, aresta)
 		
-	  if(caminhoComNovaArestaMaisBarato(verticeDestino, verticeMinimo, custo)):
-		  atualizaCusto(verticeDestino, verticeMinimo, custo)
+	  else if(caminhoComNovaArestaMaisBarato(verticeDestino, aresta)):
+		  atualizaCustoComNovaAresta(verticeDestino, aresta)
 		
-		
-	def verticeNuncaAtingido(custos, vertice):
+	def verticeNuncaAtingido(vertice):
 		custos[vertice] == Infinito
 		
+	def atualizaCustoEInsereNaFila(verticeDestino, aresta):
+		atualizaCusto(verticeDestino, aresta)
+		fila.insere(nova Aresta(verticeDestino, custos[verticeDestino]))
 		
-	def caminhoComNovaArestaMaisBarato(verticeDestino, verticeMinimo, custo):
-	  return custos[verticeDestino] > custos[verticeMinimo] + custo
+	def caminhoComNovaArestaMaisBarato(verticeDestino, aresta):
+	  novoCusto = custoComNovaAresta(aresta)
+	  return custos[verticeDestino] > novoCusto
 	  
-	  
-	def atualizaCusto(verticeDestino, verticeMinimo, custo):
-	  custos[verticeDestino] = custos[verticeMinimo] + custo
+	def atualizaCustoComNovaAresta(verticeDestino, aresta):
+	  novoCusto = custoComNovaAresta(aresta)
+	  custos[verticeDestino] = custos[verticeMinimo] + novoCusto
+
+	def custoComNovaAresta(aresta):
+	  return custos[aresta.verticeDestino()] + aresta.custo()

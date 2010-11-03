@@ -57,12 +57,29 @@ citados, de forma a facilitar a detecção de trechos de código que poderiam re
 métricas possam ser mais facilmente incorporadas no cotidiano dos programadores, também temos como objetivo a apresentação 
 de uma maneira de interpretar os valores das métricas.
 
-Deste modo, queremos apresentar uma maneira de utilizar o poder da automatização das métricas associada a sua interpretação, facilitando assim a aproximação para com os conceitos relacionados com código limpo.
+Deste modo, queremos apresentar uma maneira de utilizar o poder da automatização das métricas associada a sua interpretação, facilitando assim 
+a aproximação para com os conceitos relacionados com código limpo.
 
-\section{Metodologia}
-\label{sec:metodologia}
+\section{Desenvolvimento}
+\label{sec:desenvolvimento}
 
-Metodologia
+Para definir um código limpo e selecionar o conjunto de conceitos e técnicas desta monografia, trabalhamos sobre duas principais referências: 
+``Implementation Patterns'' [REF] \cite{} de Kent Beck e ``Clean Code'' [REF] \cite{} de Robert C. Martin. Ambos os livros foram escolhidos 
+pelo grande reconhecimento dado a esses autores pela comunidade de desenvolvimento de software. Baseado em suas experiência, Beck e Martin 
+expõe muitas recomendações para a criação de um bom código orientado a objetos.
+
+Ao longo desse trabalho, escolhemos uma parcela dos conceitos comuns em ambos os livros. Como diversos aspectos tratados são bastante 
+conhecidos, encontramos exemplos práticos que possam explicitar como as técnicas alteram a clareza e legibilidade do código sem se ater 
+somente ao ponto de vista teórico. Por fim, trabalhamos sobre uma implementação do algoritmo de Dijkstra para encontrar a árvore geradora de 
+custo mínimos, buscando encontrar melhorias que ilustrassem a aplicação dos tópicos estudados.
+
+Para elaborar o mapeamento das métricas de código-fonte, utilizamos grande parte do conhecimento adquirido ao longo do desenvolvimento da 
+ferramenta Analizo \cite{}, capaz de extrair uma grande variedade de métricas nas linguagens C++, C e Java. Além disso, trabalhamos sobre o 
+livro ``Object Oriented Metrics In Practice'' \cite{} de Michele Lanza e Radu Marinescu, que apresenta uma maneira bastante sistemica de avaliar o design de aplicações orientadas a objetos. 
+
+A união destas referências tornou possível a seleção das métricas trabalhadas. No entanto, desde o desenvolvimento e estudo sobre a Analizo, nosso grupo de pesquisa enfrentou dificuldades com a compreensão dos valores das métricas, o que nos motivou a focar no entendimento dos mesmos. Para tal, trabalhamos sobre pequenos exemplos de código utilizando o seguinte ciclo: (a) cálculo das métricas; (b) análise do código para a encontrar uma melhoria que pudesse aproximá-lo de um código limpo e observação dos valores das métricas para encontrar relações com a melhoria; (c) implementação da melhoria; (d) recálculo das métricas e análise das alterações.
+
+Uma vez com a seleção das métricas e um bom entendimento quanto a um código limpo, trabalhamos sobre o código da ferramenta Analizo para implementar melhorias e tornar seu código mais limpo. Desta forma, validamos os conceitos utilizados ao longo da monografia para contribuir com o desenvolvimento de um software livre.
 
 %% ------------------------------------------------------------------------- %%
 \section{Organização do Trabalho}
@@ -81,7 +98,6 @@ código-fonte e como podemos utilizá-las para extrair características importan
 código. Além disso, apresentaremos o mapeamento objetivo entre os aspectos levantados
 no capítulo anterior e as métricas para auxiliar os programadores.
 
-No Capítulo~\ref{chap:ferramentas} apresentamos as ferramentas que estão sendo desenvolvidas
-no contexto de nossa iniciação científica e no doutorado de Paulo Meirelles e Antonio Terceiro.
+No Capítulo~\ref{chap:estudo} apresentamos o trabalho feito sobre a ferramenta Analizo para implementar melhorias que pudessem aproximar seu código de um código limpo. Também mostramos algumas outras ferramentas desenvolvidas por nosso grupo de pesquisa.
 
 Por fim, as conclusões e possibilidades de trabalhos futuros serão trabalhos no Capítulo~\ref{chap:conclusao}

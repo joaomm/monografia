@@ -1,0 +1,157 @@
+Analizo Versão 1
+
+Classe Metrics
+
+nom (sem contar construtor): 22
+avg_loc: 10.73
+sum_loc: 236
+avg_params: 1.78
+sum_params: 39
+wmc=sum_cc: 79
+
+
+Métodos:
+	new:
+		no parametros: 1
+		loc: 2
+		cc: 1
+		MaxNesting: 0
+	
+	list_of_global_metrics:
+		no parametros: 0
+		loc: 11
+		cc: 11
+		MaxNesting: 0
+		
+	acc:
+		no parametros: 2
+		loc: 10
+		cc: 5
+		MaxNesting: 4
+	
+	amloc:
+		no parametros: 3
+		loc: 8
+		cc: 3
+		MaxNesting: 1
+	
+	anpm:
+		no parametros: 2
+		loc: 8
+		cc: 3
+		MaxNesting: 1
+	
+	cbo:
+		no parametros: 2
+		loc: 8
+		cc: 5
+		MaxNesting: 3
+	
+	dit:
+		no parametros: 2
+		loc: 8
+		cc: 2
+		MaxNesting: 1
+		
+	lcom4:
+		no parametros: 2
+		loc: 11
+		cc: 4
+		MaxNesting: 3
+		
+	noa:
+		no parametros: 2
+		loc: 3
+		cc: 1
+		MaxNesting: 0
+	
+	noc:	
+		no parametros: 2
+		loc: 6
+		cc: 2
+		MaxNesting: 2
+	
+	nom:
+		no parametros: 2
+		loc: 3
+		cc: 1
+		MaxNesting: 0
+	
+	npm:
+		no parametros: 2
+		loc: 6
+		cc: 2
+		MaxNesting: 1
+		
+	npa:
+		no parametros: 2
+		loc: 6
+		cc: 2
+		MaxNesting: 1
+	
+	rfc:
+		no parametros: 2
+		loc: 6
+		cc: 2
+		MaxNesting: 1
+	
+	loc:
+		no parametros: 2
+		loc: 9
+		cc: 3
+		MaxNesting: 2
+	
+	total_abstract_classes:
+		no parametros: 1
+		loc: 3
+		cc: 2
+		MaxNesting: 1
+	
+	methods_per_abstract_class:
+		no parametros: 1
+		loc: 6
+		cc: 3
+		MaxNesting: 1
+	
+	total_eloc:
+		no parametros: 1
+		loc: 2
+		cc: 1
+		MaxNesting: 0
+	
+	_recursive_noc:
+		no parametros: 2
+		loc: 6
+		cc: 3
+		MaxNesting: 2
+	
+	_is_public:
+		no parametros: 2
+		loc: 2
+		cc: 1
+		MaxNesting: 0
+	
+	_report_module:
+		no parametros: 2
+		loc: 34
+		cc: 1
+		MaxNesting: 0
+	
+	report:
+		no parametros: 1
+		loc: 73
+		cc: 9
+		MaxNesting: 2
+		
+	list_of_metrics:
+		no parametros: 1
+		loc: 7
+		cc: 2
+		MaxNesting: 1
+		
+	
+	
+		
+		
+	
+		

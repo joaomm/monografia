@@ -1,3 +1,9 @@
+calculaTotalDeSalarios():
+	total = 0
+	for empregado in empregados:
+		total += salarioDoMes(empregado)
+	return total
+
 salarioDoMes(empregado):
 	return 0 if empregado.naoTrabalhouEsseMes()
 	salarioPorHora = empregado.salarioPorHora()

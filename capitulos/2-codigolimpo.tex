@@ -39,7 +39,7 @@ Além de auxiliar nas alterações, os testes compõe parte da expressividade, s
 
 Outro tipo de empecilho que podemos encontrar são os comentários e documentações para métodos e classes. Para qualquer alteração feita no código, em tese os comentários e formas de documentação também deveriam ser mudados para ficarem de acordo com o estado atual. Uma contraposição é muito frequente, como aponta Robert Martin: por um lado, se nos policiarmos para que a atualização do código e comentários seja simultânea, muito provavelmente deixaremos de fazer alterações devido ao excesso de trabalho; pelo outro, se deixarmos de atualizar uma das formas de documentação, estaremos tornando-as dispensáveis, além de potencialmente se tornarem fontes de informações incorretas.
 
-A solução dada é focar a atenção no desenvolvimento de um código limpo. Se as variáveis estiverem devidamente nomeadas, não precisaremos criar um comentário para explicá-la. Se os métodos estiverem bem nomeados e tiverem uma única atividade, não será necessário documentar o que são os parâmetros e o valor de retorno. E por fim, se os testes estiverem bem executados, teremos uma documentação do código que garante a corretude.
+A solução dada é focar a atenção no desenvolvimento de um código limpo. Se as variáveis estiverem devidamente nomeadas, não precisaremos criar um comentário para explicá-la. Se os métodos estiverem bem nomeados e tiverem uma única tarefa, não será necessário documentar o que são os parâmetros e o valor de retorno. E por fim, se os testes estiverem bem executados, teremos uma documentação do código que garante a corretude.
 
 Robert Martin enfatiza que o desejado é não engessar o desenvolvimento e melhoria do código com dificuldades para os programadores, mas compreender quais elementos do software precisam de documentação e contruí-la adequadamente.
 
@@ -62,7 +62,7 @@ A seguir segue o mesmo código com alterações somente nos nomes das variáveis
 
 \lstinputlisting[label=passeio_com_origem_em, caption={Melhorias nos nomes podem tornar o código mais claro}]{codigos/passeio_com_origem_em}
 
-Muitas questões podem ser respondidas depois da leitura desse trecho. O nome da função deixa claro que sua atividade é passear pelos vértices do grafo começando pelo vértice origem passado como parâmetro. O vetor est foi renomeado para estado e as constante 0 e -1 receberam um nome, revelando o significado das operações em que constam. A simples mudança de \textit{tamanho()} para \textit{numeroDeVertices()} provê um contexto mais completo para o entendimento do laço.
+Muitas questões podem ser respondidas depois da leitura desse trecho. O nome da função deixa claro que sua tarefa é passear pelos vértices do grafo começando pelo vértice origem passado como parâmetro. O vetor est foi renomeado para estado e as constante 0 e -1 receberam um nome, revelando o significado das operações em que constam. A simples mudança de \textit{tamanho()} para \textit{numeroDeVertices()} provê um contexto mais completo para o entendimento do laço.
 	
 O exemplo poderia ser melhorado para ficar mais alinhado com o paradigma da orientação a objetos e com os conceitos que serão apresentados mais adiante. Nesta sessão tratamos a importância da escolha de nomes e como pode auxiliar o entendimento. É possível revelar o significado de elementos dando nomes para as constantes, por exemplo. Nomes como origem e próximo podem nomear objetos da mesma classe para mostrar o contexto e semântica de como estão sendo usados. Métodos podem trazer mais expressividade e fluência à leitura se forem nomeados levando em conta o código cliente e nas circunstâncias em que será chamado.
 
@@ -87,7 +87,7 @@ Outra recomendação dada por Robert Martin [REF + pag] se refere a unicidade de
 Se apenas uma nomenclatura for utilizada, o leitor não terá questões, além de poder se aproveitar da simetria de operações valorizada por Kent Beck [REF]. Não é um acaso que os métodos sobre coleções sempre possuem um mesmo conjunto de nomes como o método \textit{add} para adicionar elementos. Desta forma, as dúvidas de qual deles utilizar para cada uma das opções é minimizada, sendo mais fácil a assimilação do conceito.
 
 \subsubsection{Nomes dos Métodos}
-Na próxima sessão serão apresentados fundamentos teóricos quanto ao uso de métodos para a documentação do código através de sua expressividade. Antes, para que as técnicas exemplificadas sejam eficazes como pretendido por Robert Martin e Kent Beck, os nomes dos métodos devem ser bem escolhidos de modo que descrevem muito bem a atividade que realizam.
+Na próxima sessão serão apresentados fundamentos teóricos quanto ao uso de métodos para a documentação do código através de sua expressividade. Antes, para que as técnicas exemplificadas sejam eficazes como pretendido por Robert Martin e Kent Beck, os nomes dos métodos devem ser bem escolhidos de modo que descrevem muito bem a tarefa que realizam.
 	
 O uso de nomes descritivos pode muitas vezes resultar em nomes longos e difíceis de serem digitados muitas vezes. Entretanto, a quantidade de ocasiões em que serão lidos é substancialmente maior do que a quantidade em que as escrevemos. Desta maneira, a economia de palavras deve ser descartada em favor de uma boa expressividade [REF].
 	
@@ -105,13 +105,13 @@ O primeiro fundamento levantado no livro \textit{Clean Code} quanto aos métodos
 	
 A proposta é que cada método seja pequeno o suficiente para facilitar sua leitura e compreensão. Devemos ter em vista a dificuldade de assimilação de grandes porções de informação durante a leitura e o fato de que nem sempre uma instrução é clara. A partir dessas ideias, um método será uma porção curta de código que trabalha com poucas variáveis e tem um nome explicativo que espelha a sua funcionalidade.
 	
-Uma maneira bastante interessante de pensar sobre o tamanho dos métodos não é simplesmente contar seu número de linhas, mas compreender bem a atividade que realiza. Nas palavras de R. Martin, “Funções deveriam ter uma única atividade. Deveriam fazê-la bem. E fazê-la somente.”
+Uma maneira bastante interessante de pensar sobre o tamanho dos métodos não é simplesmente contar seu número de linhas, mas compreender bem a tarefa que realiza. Nas palavras de R. Martin, “Funções deveriam ter uma única tarefa. Deveriam fazê-la bem. E fazê-la somente.”
 	
-Isso significa que para criar uma lista de números primos usando o algoritmo do \textit{Crivo de Erastótenes}, não queremos ter um único método que contenha todos os detalhes da criação de uma lista de inteiros e a marcação de múltiplos que não tem chance de serem primos. Seria muito difícil entendê-lo e modificar detalhes da implementação. Queremos várias métodos pequenos que fazem cada uma das atividades necessárias para essa computação, de forma que a leitura seja suficiente e uma documentação externa redundante.
+Isso significa que para criar uma lista de números primos usando o algoritmo do \textit{Crivo de Erastótenes}, não queremos ter um único método que contenha todos os detalhes da criação de uma lista de inteiros e a marcação de múltiplos que não tem chance de serem primos. Seria muito difícil entendê-lo e modificar detalhes da implementação. Queremos várias métodos pequenos que fazem cada uma das tarefas necessárias para essa computação, de forma que a leitura seja suficiente e uma documentação externa redundante.
 	
 Outra questão teórica importante e enfatizada por Kent Beck são os níveis de abstrações e a simetria de operações dentro de um método. Um incremento de uma variável de instância está fundamentalmente em outro nível de abstração do que a chamada de um método. Não queremos um método com essas duas instruções. Isso possivelmente faz com que o leitor não saiba se uma operação é um detalhe de implementação ou um conceito importante dentro da lógica, além de abrir as portas para mais ocorrências deste mesmo tipo, aumentando a complexidade do código a cada alteração.
 	
-Pensando em outros fatores que podem levar a dificuldades para a leitura do nosso código, sabemos que estamos trabalhando em um código limpo quando cada rotina que lemos faz o que esperávamos [REF p/ Ward Cunningham]. No contexto de métodos, como seus nomes são a documentação da atividade que fazem, não queremos que, ao olhar o corpo de um deles, nos deparemos com uma operação que não imaginávamos. Ao criar um método, temos que considerar que os leitores não terão a mesma linha de pensamento que temos naquele momento e, diante disso, temos que ter uma crescente preocupação com todas as nossas decisões~\citep{}.
+Pensando em outros fatores que podem levar a dificuldades para a leitura do nosso código, sabemos que estamos trabalhando em um código limpo quando cada rotina que lemos faz o que esperávamos [REF p/ Ward Cunningham]. No contexto de métodos, como seus nomes são a documentação da tarefa que realizam, não queremos que, ao olhar o corpo de um deles, nos deparemos com uma operação que não imaginávamos. Ao criar um método, temos que considerar que os leitores não terão a mesma linha de pensamento que temos naquele momento e, diante disso, temos que ter uma crescente preocupação com todas as nossas decisões~\citep{}.
 	
 O último fundamento teórico quanto aos métodos também diz respeito ao programa como um todo. Queremos ter um fluxo normal bem estabelecido, deixando-o simples e o tratamento de erros separado. Em outras palavras, não queremos que o código fiquei cheio de verificações de erro misturados com a lógica sem erros.
 	
@@ -126,7 +126,7 @@ Usando novamente o exemplo do algoritmo do \textit{Crivo de Erastótenes}, para 
 
 \lstinputlisting[label=primos_ate, caption={Algoritmo do Crivo de Erastótenes decomposto em métodos}]{codigos/primos_ate}
 
-Nesse exemplo, compusemos o método \textit{primosAte(N)} em chamadas para outros métodos, cada um com uma atividade e um nome explicativo. Dessa forma, o leitor pode entender facilmente como funciona o algoritmo de uma maneira geral. 
+Nesse exemplo, compusemos o método \textit{primosAte(N)} em chamadas para outros métodos, cada um com uma tarefa e um nome explicativo. Dessa forma, o leitor pode entender facilmente como funciona o algoritmo de uma maneira geral. 
 	
 Também ficam bastante claros os níveis de abstrações criados. A função primosAte(n) está em um nível e os métodos que invoca estão todos no mesmo patamar logo abaixo. Queremos criar essa estrutura em cadeia, tornando possível que o leitor só precise entender os níveis que interessem no momento.
 	
@@ -163,7 +163,7 @@ Um condicional como o mostrado acima não é muito claro e deixa o próprio auto
 \lstinputlisting[label=condicional_com_funcao, caption={Método que encapsula expressão booleana}]{codigos/condicional_com_funcao}
 
 \subsubsection{Evitar Estruturas Encadeadas}
-Tendo em vista a busca por métodos pequenos e com uma única atividade, um aspecto relevante é a criação de estruturas encadeadas. Se um método tem uma cadeia de \textit{ifs} e \textit{elses}, o leitor terá dificuldades para compreender todos os casos e fluxos possíveis.
+Tendo em vista a busca por métodos pequenos e com uma única tarefa, um aspecto relevante é a criação de estruturas encadeadas. Se um método tem uma cadeia de \textit{ifs} e \textit{elses}, o leitor terá dificuldades para compreender todos os casos e fluxos possíveis.
 	
 Em ambos os livros trabalhados, os autores enfatizam sobre o uso de chamadas de métodos logo em seguida de um condicional. Novamente a operação que será encapsulada estará dentro de um método com nome expressivo, o que deixa esse método curto e expressivo.
 	
@@ -171,7 +171,7 @@ Mais uma vez utilizando o exemplo do \textit{Crivo de Eristótenes}, é necessá
 
 \lstinputlisting[label=marca_multiplos, caption={Alternativa para evitar estruturas encadeadas usando funções pequenas}]{codigos/marca_multiplos}
 
-Cada método encapsula um nível na cadeia de estruturas encadeadas. Ao invés de muitos \textit{fors} e \textit{ifs} encadeados, obtivemos funções pequenas e muito focadas em uma única atividade que podem ser mais facilmente testadas de forma independente.
+Cada método encapsula um nível na cadeia de estruturas encadeadas. Ao invés de muitos \textit{fors} e \textit{ifs} encadeados, obtivemos funções pequenas e muito focadas em uma única tarefa que podem ser mais facilmente testadas de forma independente.
 
 \subsubsection{Cláusulas Guarda (Guard Clauses)}
 Outra técnica para evitar o uso de estruturas complexas de condicionais são as cláusulas guarda. Quando criamos uma expressão condicional (if), o leitor naturalmente espera um bloco com a contrapartida (else). A ideia é criar um retorno breve para expressar que uma das partes dessa contraposição é mais relevante. Portanto, a estrutura exemplificada em \ref{guarda2} é mais recomendada do que em \ref{guarda1} nos exemplos abaixo, pois revela ao leitor que o fluxo mais relevante é o caso em que ocorre a inicialização.
@@ -180,22 +180,23 @@ Outra técnica para evitar o uso de estruturas complexas de condicionais são as
 \lstinputlisting[label=guarda2, caption={Método com Cláusula Guarda}]{codigos/guarda2}
 
 \subsubsection{Objeto Método (Method Object)}
-Ao dividir os métodos em outros menores com uma única atividade, podemos criar métodos com grande complexidade e difícil refatoração: muitas variáveis, muito parâmetros necessários e muitas estruturas encadeadas. Diante dessa situação, podemos criar um objeto (\textit{Method Object}) que encapsule toda essa lógica.
+\label{objeto_metodo}
+Ao dividir os métodos em outros menores com uma única tarefa, podemos criar métodos com grande complexidade e difícil refatoração: muitas variáveis, muito parâmetros necessários e muitas estruturas encadeadas. Diante dessa situação, podemos criar um objeto (\textit{Method Object}) que encapsule toda essa lógica.
 	
-Supondo que temos um método complexo chamado \textit{operaçãoComplexa()}. Criamos uma classe com nome relacionado como \textit{OperadorComplexo} cujas variáveis de instância são os parâmetros que o método recebia anteriormente. Em um método chamado \textit{calcula()}, por exemplo, colocamos a funcionalidade que o método original continha. Com essa mudança, todos os detalhes dessa operação complexa foram encapsulados em uma classe que terá testes, aumentando nossa confiança e flexibilidade para refatorações.
+Supondo que temos um método complexo chamado \textit{operaçãoComplexa}. Criamos uma classe com nome relacionado como \textit{OperadorComplexo} cujas variáveis de instância são os parâmetros que o método recebia anteriormente. Em um método chamado \textit{calcula}, por exemplo, colocamos a funcionalidade que o método original continha. Com essa mudança, todos os detalhes dessa operação complexa foram encapsulados em uma classe que terá testes, aumentando nossa confiança e flexibilidade para refatorações.
 	
 Tal solução está bem inserida diante do paradigma da orientação a objetos uma vez que a nova classe será coesa e conterá uma estrutura complexa cujos clientes não terão que conhecer. Portanto, os clientes terão seu código simplificado através de uma delegação.
 
 \subsubsection{Minimizar os Argumentos}
-O número de argumentos se torna bastante importante quando queremos métodos pequenos e com apenas uma atividade. Se um método recebe muitos argumentos, provavelmente os utiliza para um conjunto de operações e não uma somente. Diante disso, nosso objetivo é sempre minimizá-los por algumas razões. Primeiramente, testes de funções com poucos ou nenhum argumento requerem menores esforços  uma vez que as combinações de casos de teste são limitadas. Além disso, teremos um maior acoplamento da classe em que a função está contida com todas as classes dos objetos que recebe, já que é necessário conhecer suas interfaces para utilizá-los. E por fim, o leitor terá que entender todos esses casos de uso.
+O número de argumentos se torna bastante importante quando queremos métodos pequenos e com apenas uma tarefa. Se um método recebe muitos argumentos, provavelmente os utiliza para um conjunto de operações e não uma somente. Diante disso, nosso objetivo é sempre minimizá-los por algumas razões. Primeiramente, testes de funções com poucos ou nenhum argumento requerem menores esforços  uma vez que as combinações de casos de teste são limitadas. Além disso, teremos um maior acoplamento da classe em que a função está contida com todas as classes dos objetos que recebe, já que é necessário conhecer suas interfaces para utilizá-los. E por fim, o leitor terá que entender todos esses casos de uso.
 
 Com essa motivação queremos evitar parâmetros desnecessários e que confundem o leitor. Os três tópicos subsequentes ilustram abordagens mais específicas quanto ao uso de parâmetros.
 
 \subsubsection{Evitar \textit{Flags} como Argumentos}
-Se passamos uma \textit{Flag} (booleana ou proveniente de uma enumeração) como argumento para gerar dois tipos de comportamentos de um método, claramente esse último faz mais do que uma atividade. O natural seria criar um método para cada uma das atividades como mostrado no exemplo \ref{rotaciona2} abaixo de uma classe Figura abaixo.
+Se passamos uma \textit{Flag} (booleana ou proveniente de uma enumeração) como argumento para gerar dois tipos de comportamentos de um método, claramente esse último realiza mais do que uma tarefa. O natural seria criar um método para cada uma das tarefas como mostrado no exemplo \ref{rotaciona2} abaixo de uma classe Figura abaixo.
 
 \lstinputlisting[label=rotaciona1, caption={Método rotaciona() com dois comportamentos através do uso de uma flag como argumento}]{codigos/rotaciona1}
-\lstinputlisting[label=rotaciona2, caption={Dois métodos com uma única atividade}]{codigos/rotaciona2}
+\lstinputlisting[label=rotaciona2, caption={Dois métodos com uma única tarefa}]{codigos/rotaciona2}
 
 \subsubsection{Objeto como Parâmetro}
 Diante de uma lista grande de argumentos, devemos questionar se não existe alguma abstração que une esses elementos. Por exemplo, considere uma classe \textit{FábricaDeMáquinas} cujo construtor é \textit{FábricaDeMáquinas(númeroDeMáquinas, númeroDeFuncionários, horasDeFuncionamento)}. Uma possibilidade seria criar um objeto \textit{EspecificaçãoDeFábrica} que contivesse esses argumentos como variáveis de instância e métodos que fossem úteis para que o código desta \textit{FábricaDeMáquinas} fosse o mais claro possível.
@@ -218,13 +219,13 @@ Entre os princípios propostos por Kent Beck estão a proximidade da lógica com
 	
 Diante da concepção ágil de tomar boas decisões durante o desenvolvimento que proporcionem melhorias imediatas, nessa sessão serão discutidas algumas preocupações quanto as classes, buscando facilitar as mudanças no sistema.
 
-\subsubsection{Muitas Classes Pequenas}
+\subsection{Responsabilidades e Coesão}
 Do mesmo modo que consideramos importante limitar a quantidade de informação que o leitor lida ao ler métodos, queremos que as classes sejam o menores possível. Além de facilitar a leitura e entendimento, programar buscando minimizar o tamanho das classes nos auxilia a criar unidades coesas e a evitar duplicações. 
 	
 Logicamente, se nossas classes são pequenas, teremos que reunir uma grande quantidade delas, tornando nossos sistemas compostos de muitas classes pequenas. Em uma analogia bastante simples, é mais fácil encontrar um objeto em muitas gavetas pequenas do que em poucas gavetas grandes e repletas.
 
 \subsubsection{Princípio da Responsabilidade Única (Single Responsibility Principle)}
-A questão que surge após a afirmação que as classes deveriam ser pequenas é como definir o que é ser pequena. O número de métodos pode nos dar um bom indicativo quanto a quantidade de operações diferentes que a classe pode executar, mas podemos encontrar classes com poucos métodos e que possuem contextos totalmente diferentes. Por exemplo, uma classe \textit{Controlador} com os métodos \textit{capturaEntrada()}, \textit{criaCorpoHtml()} e \textit{criaCabecalhoHtml()} possui dois tipos de atividades diferentes: lidar com a criação de HTML e processar a entrada do usuário.
+A questão que surge após a afirmação que as classes deveriam ser pequenas é como definir o que é ser pequena. O número de métodos pode nos dar um bom indicativo quanto a quantidade de operações diferentes que a classe pode executar, mas podemos encontrar classes com poucos métodos e que possuem contextos totalmente diferentes. Por exemplo, uma classe \textit{Controlador} com os métodos \textit{capturaEntrada()}, \textit{criaCorpoHtml()} e \textit{criaCabecalhoHtml()} possui dois tipos de tarefas diferentes: lidar com a criação de HTML e processar a entrada do usuário.
 	
 A forma de medir o tamanho de uma classe proposto por Robert Martin está atrelado com a quantidade de responsabilidades que a mesma possui. Podemos pensar em uma responsabilidade como uma razão para mudar. No exemplo acima, para que o sistema seja adaptado para utilizar um novo padrão HTML, é necessário alterar a classe \textit{Controlador}. O mesmo teria que ser feito caso um novo tipo de entrada do usuário fosse concebido. Dessa forma, dizemos que o \textit{Controlador} tem pelo menos duas responsabilidades.
 	
@@ -262,7 +263,7 @@ Nesse caso, podemos observar que a classe possui duas responsabilidades, podendo
 mudanças nos dados que primeiramente guardava, quanto para a criação de novas formatações.
 
 Uma opção de design que preserva o Princípio da Responsabilidade Única é exemplificado no diagrama UML da figura \ref{img:email}.
-O método \textit{setaConteudo} recebe um objeto \textit{Conteudo} e passa a ser somente um \textit{setter} de uma variável de instância de \textit{Email}. Além disso, teremos duas classes \textit{ConteudoHTML} e \textit{ConteudoXML} filhas de \textit{Conteudo}, que só terão como atividades a formatação de uma string.
+O método \textit{setaConteudo} recebe um objeto \textit{Conteudo} e passa a ser somente um \textit{setter} de uma variável de instância de \textit{Email}. Além disso, teremos duas classes \textit{ConteudoHTML} e \textit{ConteudoXML} filhas de \textit{Conteudo}, que só terão como tarefa a formatação de uma string.
 
 \begin{figure}[!t]
 \begin{centering}
@@ -279,13 +280,17 @@ A classe \textit{Controlador} não é coesa. Se tal classe tem a responsabilidad
 	
 Quando a coesão de uma classe é alta, seus métodos e variáveis são codependentes e se unem como uma unidade lógica [REF].De maneira mais prática, uma classe é totalmente coesa quando todos os seus métodos usam todas as variáveis de instância.
 	
-Dessa forma, a coesão da classe está intimamente relacionada com as responsabilidades que assume. Se uma classe tem muitas responsabilidades, provavelmente terá um conjunto de métodos que pouco se comunicam e usam poucas variáveis em comum, tendo baixa coesão. Quando a coesão é baixa, provavelmente será uma boa ideia criar uma nova classe.
+Dessa forma, a coesão da classe está intimamente relacionada com as responsabilidades que assume. Se uma classe tem muitas 
+responsabilidades, provavelmente terá um conjunto de métodos que pouco se comunicam e usam poucas variáveis em comum, tendo baixa 
+coesão. Quando a coesão é baixa, provavelmente será uma boa ideia criar uma nova classe.
 
-Um bom exemplo de classe extremamente coesa é a implementação de uma estrutura de dados e suas operações. Na implementação simplificada de uma pilha apresentada abaixo, é fácil perceber como os métodos da classe \textit{Pilha} estão intimamente relacionados com suas variáveis de instância.
+Um bom exemplo de classe extremamente coesa é a implementação de uma estrutura de dados e suas operações. Na implementação 
+simplificada de uma pilha apresentada abaixo, é fácil perceber como os métodos da classe \textit{Pilha} estão intimamente 
+relacionados com suas variáveis de instância.
 
 \lstinputlisting[label=pilha, caption={Classe coesa que implementa uma pilha}]{codigos/pilha}
 
-\subsubsection{Acoplamento}
+\subsection{Acoplamento entre Classes}
 Outro aspecto muito relevante do ponto de vista da orientação a objetos é o acoplamento entre as classes. Essa medida 
 está atrelada a quanto as classes do sistema dependem uma das outras. As dependências podem se expressar de diversas 
 formas desde o uso de um método de outra classe até a ``perigosa'' manipulação e modificação de dados de outra classe.
@@ -295,10 +300,14 @@ classes dependam fortemente umas das outras de forma que o entendimento e a modi
 outras classes. Além disso, a cada dependência gerada, os testes unitários criados provavelmente precisaram da 
 utilização de artifícios para isolar cada uma das partes sendo mais difíceis de serem compreendidos.
 
-Por outro lado, buscamos um sistema formado por muitas classes coesas e com uma única responsabilidade, fazendo com a comunicação entre os objeto seja inevitável. Sendo assim, o objetivo é a criação de acoplamentos que possam aumentar a flexibilidade e a simplicidade das classes. Como vimos no exemplo da figura \ref{img:email}, uma boa solução para o problema foi gerar um acoplamento entre duas classes, mas essa decisão flexibilizou a criação de novas formatações.
+Por outro lado, buscamos um sistema formado por muitas classes coesas e com uma única responsabilidade, fazendo com a comunicação 
+entre os objeto seja inevitável. Diante desse cenário, o objetivo passa a ser a detecção de acoplamentos desnecessários, visando 
+simplificar a comunicação entre os objetos através de suas interfaces.
 
-Abaixo seguem fatores relacionados com o acoplamento que devem ser considerados para o desenvolvimento de um código 
-limpo.
+Como vimos no exemplo da figura \ref{img:email}, uma solução encontrada para o problema foi criar uma depedência entre \textit{Email} 
+com \textit{Conteudo}. O acoplamento criado não deixou as classes mais complexas, mas flexibilizou a criação de novas formatações.
+
+Abaixo estão apresentados alguns conceitos e técnicas relacionados ao acoplamento em um código limpo.
 
 \subsubsection{A Lei de Demeter (The Law of Demeter)}
 A Lei de Demeter (\textit{The Law of Demeter}) diz que um método ``M'' de uma classe ``C'' só deveria chamar um dos 
@@ -317,23 +326,68 @@ sobre a qual depender. Os outros tipos de chamadas especificados na Lei causam u
 interfaces dos objetos trabalhados. A classe deve conhecer quais os métodos dos objetos, os argumentos que aceitam e o 
 tipo do valor de retorno, caso houver.
 	
-Um exemplo claro de violação são os chamados ``train wreck''. Suponha que temos uma classe \textit{JogoDeFutebol} e uma classe cliente ``C'' executa a seguinte operação:
+Um exemplo claro de violação são os chamados ``train wreck''. Suponha que temos uma classe \textit{JogoDeFutebol} e uma classe 
+cliente ``C'' executa a seguinte operação:
 	
-\lstinputlisting[label=train_wreck, caption={Um chamado ``train wreck'' que exemplifica uma violação à Lei de Demeter}]{codigos/train_wreck}
+\lstinputlisting[label=train_wreck, caption={Um chamado ``train wreck'' que exemplifica uma violação à Lei de 
+Demeter}]{codigos/train_wreck}
 
-A chamada para \textit{getTimes()} está de acordo com a Lei de Demeter, pois é uma invocação de um método de um objeto guardado em um variável de instância \textit{jogoDeFutebol} da classe \textit{JogoDeFutebol}. O valor de retorno dessa chamada é uma lista contendo os dois times que não é objeto criado e/ou guardado dentro da classe ``C'', nem um argumento passado para ``M''. Dessa forma, a chamada para \textit{primeiro()} sobre essa lista é a primeira das violações à heurística.
+A chamada para \textit{getTimes()} está de acordo com a Lei de Demeter, pois é uma invocação de um método de um objeto guardado em um 
+variável de instância \textit{jogoDeFutebol} da classe \textit{JogoDeFutebol}. O valor de retorno dessa chamada é uma lista contendo 
+os dois times que não é objeto criado e/ou guardado dentro da classe ``C'', nem um argumento passado para ``M''. Dessa forma, a 
+chamada para \textit{primeiro()} sobre essa lista é a primeira das violações à heurística.
 	
-Considerando os problemas dessa abordagem e o acoplamento gerado, que partes do sistema a classe ``C'' conhece? Primeiramente, conhece a classe \textit{JogoDeFutebol}, já que possui um destes objetos guardados em uma variável de instância e chama um método \textit{getTimes()}. Além disso, conhece o valor de retorno desta chamada e sabe que é uma lista composta por objetos da classe \textit{Time} e que, portanto, poderia chamar o método \textit{primeiro()} sobre a lista. Ainda conhece que um Time tem uma coleção de cartões acessada através de \textit{getCartões()}, que aceita a mensagem \textit{count()}.
+Considerando os problemas dessa abordagem e o acoplamento gerado, que partes do sistema a classe ``C'' conhece? Primeiramente, 
+conhece a classe \textit{JogoDeFutebol}, já que possui um destes objetos guardados em uma variável de instância e chama um método 
+\textit{getTimes()}. Além disso, conhece o valor de retorno desta chamada e sabe que é uma lista composta por objetos da classe 
+\textit{Time} e que, portanto, poderia chamar o método \textit{primeiro()} sobre a lista. Ainda conhece que um Time tem uma coleção 
+de cartões acessada através de \textit{getCartões()}, que aceita a mensagem \textit{count()}.
 	
-Esse exemplo mostra bem que tipo de problemas podem ocorrer quando acoplamento entre as partes do sistema está alta. Claramente, a classe ``C'' conhece muitas partes do sistema e, a partir desse momento, qualquer mudança nessa estrutura pode quebrar seu código. Quando temos que criar estruturas como a exemplificada, é necessário repensar o design e nos perguntarmos porque a classe ``C'' precisava ter acesso a todas aquelas informações. Provavelmente, é o caso de fazer mais delegações ao invés de depender tanto dos dados de outros objetos.
+Esse exemplo mostra bem que tipo de problemas podem ocorrer quando acoplamento entre as partes do sistema está alta. Claramente, a 
+classe ``C'' conhece muitas partes do sistema e, a partir desse momento, qualquer mudança nessa estrutura pode quebrar seu código. 
+Quando temos que criar estruturas como a exemplificada, é necessário repensar o design e nos perguntarmos porque a classe ``C'' 
+precisava ter acesso a todas aquelas informações. Provavelmente, é o caso de fazer mais delegações ao invés de depender tanto dos 
+dados de outros objetos.
 
-\subsubsection{Acoplamento entre Método e Classe}
+\subsubsection{Métodos ``Invejosos''}
 Em alguns casos, um método mesmo sem violar a Lei de Demeter, tem um grande acoplamento com outra classe.
-O método abaixo não viola a Lei de Demeter, já que está fazendo somente chamadas a métodos de um objeto que lhe foi passado como parâmetro.
+O exemplo abaixo não viola a Lei de Demeter, já que faz chamadas somente a métodos de um objeto que lhe foi passado como parâmetro.
 
-\lstinputlisting[label=envy, caption={Método salario() é muito acoplado a classe Empregado sem violar a Lei de Demeter}]{codigos/train_wreck}
+\lstinputlisting[label=envy, caption={Método salario() é muito acoplado a classe Empregado sem violar a Lei de 
+Demeter}]{codigos/envy}
 
-No entanto, \textit{salario} possui um grande acoplamento com a classe \textit{Empregado} ao utilizar diversos de seus métodos, de forma que ``inveja'' os seus dados [REF Feature Envy e Refactoring]. A melhor opção para essa situação é colocar esse método na classe \textit{Empregado}.
+O método \textit{salario} possui um grande acoplamento com a classe \textit{Empregado} ao utilizar diversos de seus métodos, de forma 
+que ``inveja'' os seus dados [REF Feature Envy e Refactoring].
+
+\subsubsection{Pedido de Tarefa}
+Para minimizar o acoplamento gerado pelos ``train wrecks'' e métodos ``invejosos'', temos que considerar uma mudança nas 
+tarefas realizadas pelas classes envolvidas. Se um método da classe ``A'' utiliza muitos métodos e dados da classe ``B'', muito 
+provavelmente sua tarefa pertence a ``B'' já que queremos aproximar a lógica e seus dados.
+
+Dessa maneira, uma possível solução consiste na alteração do método para que ``peça'' a classe ``B'' para que realize uma tarefa 
+através de um novo método. Podemos dizer que o método fez um ``Pedido de Tarefa''.
+
+O exemplo abaixo ilustra métodos de uma classe \textit{CalculaReceita}, cujo código poderia se beneficiar com um Pedido de Tarefa.
+
+\lstinputlisting[label=pedido_de_tarefa, caption={Método salarioDoMes com problemas de ``inveja''}]{codigos/pedido_de_tarefa}
+
+Claramente o método \textit{salarioDoMes} tem problemas de ``inveja'' sobre a classe \textit{Empregado}. Podemos observar algumas mudanças 
+importantes: (i) o método \textit{calculaTotalDeSalarios} ficou muito simples só fazendo um Pedido de Tarefa para a classe \textit{Empregado}; 
+(ii) o código do método \textit{salarioDoMes} também ficou mais simples já que foi transferido para perto dos dados que utiliza; (iii) de forma 
+geral, reduzimos o acoplamento entre as classes pois existe apenas uma chamada de método para fazer a comunicação.
+
+\lstinputlisting[label=pedido_de_tarefa2, caption={Redução entre o acoplamento das classes CalculaReceita e Empregado}]{codigos/pedido_de_tarefa2}
+
+\subsubsection{Objeto Moderador}
+Os cenários apresentados acima consideram que uma classe depende somente de uma segunda. No entanto, frequentemente criamos métodos 
+que lidam com mais de uma classe, gerando um grande acoplamento entre as envolvidas.
+
+Associada com o objetivo de minimização de dependências e a criação de classes com única responsabilidade, uma maneira de contornar 
+esse cenário é criar uma classe que possa fazer essa relação entre classes. De maneira bastante análoga ao desenvolvimento do Objeto Método 
+(\ref{objeto_metodo}), o intuito é transferir a atividade complexa de moderar a comunicação entre objetos diferentes para um novo ``objeto 
+moderador''.
+
+São dois resultados importantes dessa alteração: (i) isolaremos a complexidade do acoplamento entre classes em uma classe que poderá receber testes e refatorações independentes; (ii) a medida que encapsulamos as dependências entre objetos, obtemos mais classes que podem ser mais facilmente reaproveitadas posteriormente.
 
 \subsubsection{Princípio da Inversão de Dependência (Dependency Inversion Principle)}
 O objetivo da minimização do acoplamento entre nossas classes é facilitar as alterações que serão feitas no sistema. Queremos conseguir estender a infra-estrutura de classes que temos para criar novas funcionalidades.
@@ -374,7 +428,7 @@ custo desta ligação, enquanto que \textit{FilaDePrioridade} representa uma uma
 O problema mais aparente desse código é a complexidade do método \textit{custosAPartirDoVertice}. Um leitor 
 que não conhece o algoritmo teria grandes dificuldades para compreender sua implementação devido a falta de 
 expressividade do método. São muitas linhas de código, diversos detalhes de implementação e estruturas encadeadas 
-complexas para realizar muitas atividades. 
+complexas para realizar muitas tarefas. 
 
 A primeira alteração que pode ser feita é a criação de Métodos como Condicionais (\ref{metodos:condicionais}) e 
 Métodos Explicativos (\ref{metodos:explicativos}) para auxiliar a responder questões sobre algumas operações.
@@ -399,13 +453,13 @@ Toda inicialização do vetor de custos fica mais clara através desse método. 
 \textit{custos[vertice] = 0} agora se encontram encapsuladas e com um nome explicativo.
 
 Podemos observar que a contínua aplicação da Composição de Métodos gera um crescimento no número de métodos e no total de 
-linhas da classe, mas cada um dos métodos possui poucas linhas de código e realiza apenas uma atividade simples e direta. 
+linhas da classe, mas cada um dos métodos possui poucas linhas de código e realiza apenas uma tarefa simples e direta. 
 Outra consequência é a necessidade da passagem de argumentos como \textit{custos} e \textit{fila}, uma vez que os métodos 
 de menor nível de abstração são aqueles que efetivamente realizam as operações utilizando-os.
 
 Para solucionar esse aumento no número de argumentos sendo repassados através da classe, podemos promover alguns destes à 
 variáveis de instância (\ref{metodos:parametros}). É fácil notar nos exemplos abaixo como essa alteração limpa o código 
-dos métodos de mais alto nível que não utilizam os argumentos em suas atividades.
+dos métodos de mais alto nível que não utilizam os argumentos em suas tarefas.
 
 \lstinputlisting[label=sem_argumentos, caption={Métodos de alto nível sem a passagem de argumentos}]{codigos/digrafo/sem_argumentos}
 
@@ -513,7 +567,7 @@ Evitar Estruturas Encadeadas
 \tabularnewline
 
 \hline 
-Cláusulas Guardas
+Cláusulas Guarda
 & Criar um retorno logo no inicio de um método ao invés da criação de estruturas encadeadas com if sem else
 & \begin{my_itemize}
 	\item Estruturas de condicionais mais simples

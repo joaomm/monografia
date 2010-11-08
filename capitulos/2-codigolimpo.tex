@@ -511,7 +511,7 @@ A tabela abaixo resume as técnicas apresentadas ao longo do capítulo.
 
 \begin{table}[hbt]
 
-\scalefont{.75}
+\scalefont{.85}
 \begin{tabular}{|p{3.5cm}|p{5cm}|p{8.5cm}|p{7.2cm}|}
 \hline 
 \textbf{Técnica} & \textbf{Descrição} & \textbf{Contribuições} & \textbf{Consequências} \tabularnewline
@@ -607,6 +607,20 @@ Evitar Flags como Argumentos
 \tabularnewline
 
 \hline
+\end{tabular}
+\caption{Parte I - Técnicas: descrição, contribuições e consequências}
+\scalefont{1}
+\end{table}
+
+
+\begin{table}[hbt]
+\scalefont{.85}
+\begin{tabular}{|p{3.5cm}|p{5cm}|p{8.5cm}|p{7.2cm}|}
+\hline 
+\textbf{Técnica} & \textbf{Descrição} & \textbf{Contribuições} & \textbf{Consequências} \tabularnewline
+\hline
+
+\hline
 Objeto como Parâmetro
 & Localizar parâmetros que formam uma unidade e criar uma classe que os encapsule
 & \begin{my_itemize}
@@ -657,10 +671,39 @@ Maximizar Coesão
 	\item[-] Atributos em cada classe
   \end{my_itemize}
 \tabularnewline
+
+\hline
+Pedido de Tarefa
+& Transferir um método que utiliza dados de uma classe ``B'' para a ``B'' 
+& \begin{my_itemize}
+	\item Redução do acoplamento entre as classes
+	\item Proximidade dos métodos e dados sobre os quais trabalham
+  \end{my_itemize}
+& \begin{my_itemize}
+	\item[-] Métodos na classe inicial
+	\item[+] Métodos na classe que recebe o novo método
+  \end{my_itemize}
+\tabularnewline
+
+\hline
+Objeto Moderador
+& Criar uma classe que encapsule uma operação com alta dependência entre classes
+& \begin{my_itemize}
+	\item Simplificação da classe cliente
+	\item Redução do acoplamento da classe cliente com as demais
+	\item Nova classe poderá receber testes e melhorias independentes
+  \end{my_itemize}
+& \begin{my_itemize}
+	\item[-] Operações no método cliente
+	\item[-] Responsabilidades da classe cliente
+	\item[+] Classes
+	\item[+] Acoplamento da classe cliente com a nova classe
+  \end{my_itemize}
+\tabularnewline
 \hline
 \end{tabular}
 
-\caption{Técnicas: descrição, contribuições e consequências}
+\caption{Parte II - Técnicas: descrição, contribuições e consequências}
 \scalefont{1}
 \end{table}
 

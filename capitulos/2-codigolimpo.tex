@@ -15,7 +15,7 @@ Grande parte dessas ideias receberam influência do livro de Donald Knuth, \text
 Nesse sentido, um código é expressivo quando pode ser facilmente lido nas diferentes camadas de abstração, deixando detalhes de implementação ``escondidos'' em níveis mais baixos. Nas palavras de Ward Cunningham, a solução implementada faz com que a linguagem pareça ter sido feita para o problema sendo resolvido.
 
 \subsubsection{Simplicidade}
-A simplicidade é um dos aspectos mais valorizados por Kent Beck. Na sua visão, devemos programar buscando reduzir a quantidade de informação que o leitor deve compreender para fazer alterações. Desta maneira, o autor dá grande importância para a minimização do número de abstrações, comentários e estruturas complexas entre as classes desnecessários.
+A simplicidade é um dos aspectos mais valorizados por Kent Beck. Na sua visão, devemos programar buscando reduzir a quantidade de informação que o leitor deve compreender para fazer alterações. Desta maneira, o autor dá grande importância para a minimização do número de abstrações, comentários e estruturas complexas entre as classes que são desnecessários.
 
 \subsubsection{Flexibilidade}
 A flexibilidade reflete a facilidade de estender a aplicação sem fazer grandes alterações na estrutura já implementada. Não queremos ter que mudar diversos métodos e diversas classes para adicionar uma funcionalidade.
@@ -359,33 +359,34 @@ Demeter}]{codigos/envy}
 O método \textit{salario} possui um grande acoplamento com a classe \textit{Empregado} ao utilizar diversos de seus métodos, de forma 
 que ``inveja'' os seus dados [REF Feature Envy e Refactoring].
 
-\subsubsection{Pedido de Tarefa}
+\subsubsection{Delegação de Tarefa}
 Para minimizar o acoplamento gerado pelos ``train wrecks'' e métodos ``invejosos'', temos que considerar uma mudança nas 
 tarefas realizadas pelas classes envolvidas. Se um método da classe ``A'' utiliza muitos métodos e dados da classe ``B'', muito 
 provavelmente sua tarefa pertence a ``B'' já que queremos aproximar a lógica e seus dados.
 
 Dessa maneira, uma possível solução consiste na alteração do método para que ``peça'' a classe ``B'' para que realize uma tarefa 
-através de um novo método. Podemos dizer que o método fez um ``Pedido de Tarefa''.
+através de um novo método. Podemos dizer que o método fez uma ``Delegação de Tarefa''.
 
-O exemplo abaixo ilustra métodos de uma classe \textit{CalculaReceita}, cujo código poderia se beneficiar com um Pedido de Tarefa.
+O exemplo abaixo ilustra métodos de uma classe \textit{CalculaReceita}, cujo código poderia se beneficiar com uma Delegação de Tarefa.
 
 \lstinputlisting[label=pedido_de_tarefa, caption={Método salarioDoMes com problemas de ``inveja''}]{codigos/pedido_de_tarefa}
 
 Claramente o método \textit{salarioDoMes} tem problemas de ``inveja'' sobre a classe \textit{Empregado}. Podemos observar algumas mudanças 
-importantes: (i) o método \textit{calculaTotalDeSalarios} ficou muito simples só fazendo um Pedido de Tarefa para a classe \textit{Empregado}; 
+importantes: (i) o método \textit{calculaTotalDeSalarios} ficou muito simples só fazendo um Delegação de Tarefa para a classe \textit{Empregado}; 
 (ii) o código do método \textit{salarioDoMes} também ficou mais simples já que foi transferido para perto dos dados que utiliza; (iii) de forma 
 geral, reduzimos o acoplamento entre as classes pois existe apenas uma chamada de método para fazer a comunicação.
 
 \lstinputlisting[label=pedido_de_tarefa2, caption={Redução entre o acoplamento das classes CalculaReceita e Empregado}]{codigos/pedido_de_tarefa2}
 
-\subsubsection{Objeto Moderador}
+\subsubsection{Objeto Centralizador}
 Os cenários apresentados acima consideram que uma classe depende somente de uma segunda. No entanto, frequentemente criamos métodos 
 que lidam com mais de uma classe, gerando um grande acoplamento entre as envolvidas.
 
-Associada com o objetivo de minimização de dependências e a criação de classes com única responsabilidade, uma maneira de contornar 
-esse cenário é criar uma classe que possa fazer essa relação entre classes. De maneira bastante análoga ao desenvolvimento do Objeto Método 
-(\ref{objeto_metodo}), o intuito é transferir a atividade complexa de moderar a comunicação entre objetos diferentes para um novo ``objeto 
-moderador''.
+Associada com o objetivo de minimização de dependências e a criação de classes com única responsabilidade, uma 
+maneira de contornar esse cenário é criar uma classe que possa fazer essa relação entre classes. De maneira 
+bastante análoga ao desenvolvimento do Objeto Método 
+(\ref{objeto_metodo}), o intuito é transferir a atividade complexa de centralizar a comunicação entre objetos 
+diferentes para um novo ``objeto centralizador''.
 
 São dois resultados importantes dessa alteração: (i) isolaremos a complexidade do acoplamento entre classes em uma classe que poderá receber testes e refatorações independentes; (ii) a medida que encapsulamos as dependências entre objetos, obtemos mais classes que podem ser mais facilmente reaproveitadas posteriormente.
 
@@ -673,7 +674,7 @@ Maximizar Coesão
 \tabularnewline
 
 \hline
-Pedido de Tarefa
+Delegação de Tarefa
 & Transferir um método que utiliza dados de uma classe ``B'' para a ``B'' 
 & \begin{my_itemize}
 	\item Redução do acoplamento entre as classes
@@ -686,7 +687,7 @@ Pedido de Tarefa
 \tabularnewline
 
 \hline
-Objeto Moderador
+Objeto Centralizador
 & Criar uma classe que encapsule uma operação com alta dependência entre classes
 & \begin{my_itemize}
 	\item Simplificação da classe cliente

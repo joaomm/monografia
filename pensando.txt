@@ -1,18 +1,21 @@
-Na parte de código limpo:
-FEITO- Adicionar em Feature Envy e Train Wreck, a questão do "pedir e não tomar". Melhoria através da delegação de tarefas! Colocar na tabela!
-FEITO- Adicionar Método Moderador -> classe Moderadora
 
 Na parte da Analizo:
 	- Escrever as métricas iniciais não fica muito grande? Acho que a melhor ideia é fazer um resumo das características
 	- Escrever o que esperávamos do código em termos de métricas antes de fazer as refatorações
 	- Escrever se ocorreu o esperado.
+	
+	Texto:
+		- Escrever um pouco sobre as melhorias que ficam expostas com as métricas
+		- Comentar as melhorias e como poderia ser feita
+		- Dizer que não é possível ficar mexendo em todo o sistema, então vamos nos focar em uma parte das métricas e ver como é refatorar uma classe.
+
 
 Na parte da Lu:
-	- Talvez seja interessante adicionar na argumentação sobre a proposta do nosso mapeamento que o nosso objetivo não é encontrar um conjunto de métricas mínimo. Sabemos que as métricas tem correlação: MAXNESTING é extramamente relacionado com CC, mas elas nos dizem coisas diferentes do ponto de vista das mudanças que poderiam ser feitas.
+	- Talvez seja interessante adicionar na argumentação sobre a proposta do nosso mapeamento que o nosso objetivo não é encontrar um conjunto de métricas mínimo. Sabemos que as métricas tem correlação: MAXNESTING é extremamente relacionado com CC, mas elas nos dizem coisas diferentes do ponto de vista das mudanças que poderiam ser feitas.
 	- Citar que esse conjunto de métricas poderia ser diferente. Outras métricas podem fazer o mesmo papel das métricas que selecionamos.
 	- Não queremos fazer um mapeamento para dizer se um código é limpo ou não.
 	- Não há uma preocupação estatistica de peso. Provavelmente as correlações acima citadas poderiam tornar muitos dados redundantes. A ideia é prover uma maneira de trazer o uso das métricas como uma maneira de gradativamente melhorar o código detectando alguns pontos que poderiam receber refatorações.
-	- A ideia é fazer um mapeamento que possa ser usado no dia a dia para cada classe sendo criada. Poderíamos pensar em criar um código originalmente e depois refatorá-lo, mas também poderíamos usá-lo constante durante o desenvolvimento obtendo resultados imediatos. Parece fazer bastante usar para TDD.
+	- A ideia é fazer um mapeamento que possa ser usado no dia a dia para cada classe sendo criada. Poderíamos pensar em criar um código originalmente e depois refatorá-lo, mas também poderíamos usá-lo constante durante o desenvolvimento obtendo resultados imediatos. 
 	- Não nos aprofundamos em muitas possíveis métricas como número de variáveis publicas. Nosso foco foi em melhorias para os métodos e possiveis quebras nas classes.
 	- FOCO NOS MÉTODOS. Nos focamos mais no métodos e deixamos um pouco de lado as medidas do sistema completo.
 	- Talvez fosse legal criar uma sessão de "aberturas de pesquisa futuras" contando o que deixamos de nos focar e porque seriam interessantes de serem investigadas (ou não).
@@ -33,63 +36,24 @@ Apendice:
 
 
 Métricas:
-	- Será que MAXNESTING não é o número de estruturas encadeadas mesmo? Tipo um if e outro if depois não encadeado, tem MAXNESTING = 0?
-	- LOC != Numero de Expressões. Isso tá ok?
-LU	- O que são métodos distintos em CINT?
+OK	- Será que MAXNESTING não é o número de estruturas encadeadas mesmo? Tipo um if e outro if depois não encadeado, tem MAXNESTING = 0? 
+OK	- LOC != Numero de Expressões. Isso tá ok?
+OK	- O que são métodos distintos em CINT?
 LU  - Será que ATFD e LAA não são muito redundantes? O que queremos com elas exatamente? Imagino que seja encontrar que o método "gosta" de usar mais as caracteristicas da outra classe. Será que não queremos contar somente o uso de métodos outro atributos de outra classe? Contar atributos não é meio dificil?
-LU 	- Será que os valores de CDISP não são sempre muito parecidos para todos os métodos da classe? Porque precisamos calcular para todos os métodos? Será que não é algo da classe? Será que o interessante não é so saber quanto depende de outras classes e qual é o método ou métodos que fazem isso?
+LU 	- Será que os valores de CDISP não são sempre muito parecidos para todos os métodos da classe? Porque precisamos calcular para todos os métodos? Será que não é algo da classe? Será que o interessante não é so saber quanto depende de outras classes e qual é o método ou métodos que fazem isso?	
 
 
 
-Sobre acoplamento:
-	- Começo a achar que o que queremos medir de acoplamento é o quanto a classe depende da outra.
-		- IDEIA: 
-			Calculamos:
-				- Para cada método quantos métodos e atributos usa de uma classe de fora = 1
- 				- Para cada método quantos métodos usa
-				- Para cada método quantas classes usa
-				- Para cada método a relação 1/2 = 3
-				- Soma de usos
-				- Média de usos
-			
-		 	???? Interpretação 1: Classe muito dependente:
-				- Alto uso de outras classes
-				- Alta média de uso
-				Melhoria:
-					- Reduzir média -> Encapsular a dependencia
-					- Repensar acoplamento
-			
-			Interpretação 2: Método Interesseiro
-				- Valores altos para relação 3
-				- Baixo valor de classe que usa
-				Melhoria:
-					- Minimização de 1 = Pedir ao invés de tomar = Se o método M usa muito a classe C, talvez seja uma 
-					- Minimização de 3 como consequencia
-				Esperado:
-					- Redução de 1 e 3
-					
-			Interpretação 2: Método Moderador
-				- Classe com baixa média de usos menor que os usos do método
-				- Valores altos para relação 3
-				- Alto valor de classe que usa
-				Melhoria:
-					- Minimização dos uso das classes na classe avaliada
-					- Uso da Classe Moderadora
-				Esperado:
-					- Redução do uso das classes
-					- Aumento no numero de classes
-				
-
-
-
-	- IDEIA: métrica baseada em grafo de acoplamento
-		- Fazer um grafo:
-			- Vertices são metodos da classe avaliada
-			- Arestas entre V e W se: (1) V usa W (2) V e W chamam o mesma classe
+- IDEIA SOBRE ACOPLAMENTO: métrica baseada em grafo de acoplamento
+	- Fazer um grafo:
+		- Vertices são metodos da classe avaliada
+		- Arestas entre V e W se: (1) V usa W (2) V e W chamam o mesma classe
 		- Calcular o número de componentes
-		Interpretação:
-			- Se o número de componentes é 1, a abstração da classe avaliada está intimamente relacionada com outras classes uniformemente
-			- Se o numero é 2, existem conjuntos de métodos que utilizam uma mesma outra classe.
-		O que esperamos de um codigo limpo:
-			- Se uma classe é extremamente coesa, provavelmente terá um baixo numero de componentes
+	Interpretação:
+		- Se o número de componentes é 1, a abstração da classe avaliada está intimamente relacionada com outras classes uniformemente
+		- Se o numero é 2, existem conjuntos de métodos que utilizam uma mesma outra classe.
+	O que esperamos de um codigo limpo:
+		- Se uma classe é extremamente coesa, provavelmente terá um baixo numero de componentes
 
+
+		

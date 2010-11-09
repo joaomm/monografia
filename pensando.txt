@@ -11,8 +11,6 @@ Na parte da Analizo:
 
 
 Na parte da Lu:
-	- Talvez seja interessante adicionar na argumentação sobre a proposta do nosso mapeamento que o nosso objetivo não é encontrar um conjunto de métricas mínimo. Sabemos que as métricas tem correlação: MAXNESTING é extremamente relacionado com CC, mas elas nos dizem coisas diferentes do ponto de vista das mudanças que poderiam ser feitas.
-	- Citar que esse conjunto de métricas poderia ser diferente. Outras métricas podem fazer o mesmo papel das métricas que selecionamos.
 	- Não queremos fazer um mapeamento para dizer se um código é limpo ou não.
 	- Não há uma preocupação estatistica de peso. Provavelmente as correlações acima citadas poderiam tornar muitos dados redundantes. A ideia é prover uma maneira de trazer o uso das métricas como uma maneira de gradativamente melhorar o código detectando alguns pontos que poderiam receber refatorações.
 	- A ideia é fazer um mapeamento que possa ser usado no dia a dia para cada classe sendo criada. Poderíamos pensar em criar um código originalmente e depois refatorá-lo, mas também poderíamos usá-lo constante durante o desenvolvimento obtendo resultados imediatos. 

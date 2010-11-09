@@ -1,25 +1,26 @@
-Analizo Versão 1
+Analizo Versão 2
 
 Classe Metrics
 
-NOM (sem contar construtor): 23
-NOA: 2
+NOM (sem contar construtor): 
+NOA: 
 
-sum_loc: 244
-avg_loc: 10.6
+sum_loc: 
+avg_loc: 
 
-avg_params: 1.78
-sum_params: 41
+avg_params: 
+sum_params: 
 
-//wmc=sum_cc: 82
+//wmc=sum_cc: 84
 
-sum_nec: 54
-avg_nec: 2.34
+sum_nec: 
+avg_nec: 
 
-avg_nra: 19/23 = 0.82
+avg_nra: 
 
-lcom4: 1 ou 2 (causado pelo list_of_global_metrics)
+lcom4:
 
+avg_nrp: 
 
 Métodos:
 	new:
@@ -30,254 +31,276 @@ Métodos:
 	
 	list_of_global_metrics:
 		nec: 0
-		noc: 0
+		nc: 0
 		ncc: 0
 		ecr: 0
 		nra: 1
 		no parametros: 0
+		nrp: 0
 		loc: 11
 		cc: 11
 		MaxNesting: 0
 		
-	acc:
-		nec: 4
-		noc: 5
-		ncc: 1
-		ecr: 0.8
-		nra: 1
+	afferent_connections_per_class:
+		nec: 0
+		nc: 0
+		ncc: 0
+		ecr: 0
+		nrp: 1
 		no parametros: 2
+		nrp: 1
 		loc: 10
 		cc: 5
 		MaxNesting: 4
 	
 	amloc:
 		nec: 0
-		noc: 0
+		nc: 0
 		ncc: 0
 		ecr: 0
 		nra: 0
 		no parametros: 3
+		nrp: 0
 		loc: 8
 		cc: 3
 		MaxNesting: 1
 	
 	accm:
 		nec: 2
-	   	noc: 2
+	   	nc: 2
 	   	ncc: 1
 	   	ecr: 1
 	   	nra: 1
 	   	no parametros: 2
+		nrp: 0
 	   	loc: 8
 	   	cc: 3
 	   	MaxNesting: 1
 	
 	anpm:
 	 	nec: 2
-		noc: 2
+		nc: 2
 		ncc: 1
 		ecr: 1
 		nra: 1
 		no parametros: 2
+		nrp: 0
 		loc: 8
 		cc: 3
 		MaxNesting: 1
 	
 	cbo:
 		nec: 3
-		noc: 3
+		nc: 3
 		ncc: 1
 		ecr: 1
 		nra: 1
 		no parametros: 2
+		nrp: 0
 		loc: 8
 		cc: 5
 		MaxNesting: 3
 	
 	dit:
 		nec: 1
-		noc: 2
+		nc: 2
 		ncc: 1
 		ecr: 0.5
 		nra: 1
 		no parametros: 2
+		nrp: 0
 		loc: 8
 		cc: 2
 		MaxNesting: 1
 		
 	lcom4:
 		nec: 7
-		noc: 7
+		nc: 7
 		ncc: 2
 		ecr: 1
 		nra: 1
 		no parametros: 2
+		nrp: 0
 		loc: 11
 		cc: 4
 		MaxNesting: 3
 		
 	noa:
 		nec: 1
-		noc: 1
+		nc: 1
 		ncc: 1
 		ecr: 1
 		nra: 1
 		no parametros: 2
+		nrp: 0
 		loc: 3
 		cc: 1
 		MaxNesting: 0
 	
-	noc:
+	nc:
 		nec: 2
-		noc: 2
+		nc: 2
 		ncc: 1
 		ecr: 1
 		nra: 1
 		no parametros: 2
+		nrp: 0
 		loc: 6
 		cc: 2
 		MaxNesting: 2
 	
 	nom:
 		nec: 1
-		noc: 1
+		nc: 1
 		ncc: 1
 		ecr: 1
 		nra: 1
 		no parametros: 2
+		nrp: 0
 		loc: 3
 		cc: 1
 		MaxNesting: 0
 	
 	npm:
 		nec: 1
-		noc: 1
+		nc: 1
 		ncc: 1
 		ecr: 1
 		nra: 1
 		no parametros: 2
+		nrp: 0
 		loc: 6
 		cc: 2
 		MaxNesting: 1
 		
 	npa:
 		nec: 1
-		noc: 2
+		nc: 2
 		ncc: 1
 		ecr: 0.5
 		nra: 1
 		no parametros: 2
+		nrp: 0
 		loc: 6
 		cc: 2
 		MaxNesting: 1
 	
 	rfc:
 		nec: 2
-		noc: 2
+		nc: 2
 		ncc: 1
 		ecr: 1
 		nra: 1
 		no parametros: 2
+		nrp: 0
 		loc: 6
 		cc: 2
 		MaxNesting: 1
 	
 	loc:
 		nec: 2
-		noc: 2
+		nc: 2
 		ncc: 1
 		ecr: 1
 		nra: 1
 		no parametros: 2
+		nrp: 0
 		loc: 9
 		cc: 3
 		MaxNesting: 2
 	
 	total_abstract_classes:
 		nec: 1
-		noc: 1
+		nc: 1
 		ncc: 1
 		ecr: 1
 		nra: 0
 		no parametros: 1
+		nrp: 0
 		loc: 3
 		cc: 2
 		MaxNesting: 1
 	
 	methods_per_abstract_class:
 		nec: 2
-		noc: 2
+		nc: 2
 		ncc: 1
 		ecr: 1
 		nra: 0
 		no parametros: 1
+		nrp: 0
 		loc: 6
 		cc: 3
 		MaxNesting: 1
 	
 	total_eloc:
 		nec: 1
-		noc: 1
+		nc: 1
 		ncc: 1
 		ecr: 1
 		nra: 1
 		no parametros: 1
+		nrp: 0
 		loc: 2
 		cc: 1
 		MaxNesting: 0
 	
-	_recursive_noc:
+	_recursive_nc:
 		nec: 2
-		noc: 3
+		nc: 3
 		ncc: 1
 		ecr: 0.67
 		nra: 1
 		no parametros: 2
+		nrp: 1
 		loc: 6
 		cc: 3
 		MaxNesting: 2
 	
 	_is_public:
 		nec: 2
-		noc: 2
+		nc: 2
 		ncc: 1
 		ecr: 2
 		nra: 1
 		no parametros: 2
+		nrp: 0
 		loc: 2
 		cc: 1
 		MaxNesting: 0
 	
 	_report_module:
 		nec: 0
-		noc: 14
+		nc: 14
 		ncc: 0
 		ecr: 0
 		nra: 0
 		no parametros: 2
+		nrp: 1
 		loc: 34
 		cc: 1
 		MaxNesting: 0
 	
 	report:
 		nec: 17
-		noc: 22
+		nc: 22
 		ncc: 3
 		ecr: 17/22 = 0.78
 		nra: 2
 		no parametros: 1
+		nrp: 0
 		loc: 73
-		cc: 9
+		cc: 11
 		MaxNesting: 2
 		
 	list_of_metrics:
 		nec: 0
-		noc: 1
+		nc: 1
 		ncc: 0
 		ecr: 0
 		nra: 0
 		no parametros: 1
+		nrp: 0
 		loc: 7
 		cc: 2
 		MaxNesting: 1
-		

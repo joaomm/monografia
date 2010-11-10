@@ -80,14 +80,14 @@ sub _member_calls_searched_module {
 
   for my $called_member (keys(%{$self->model->calls->{$caller_member}})) {
     my $called_module = $self->model->members->{$called_member};
-    if(_called_module_is_the_searched($called_module, $searched_module, $caller_module)) {
+    if(_called_module_is_the_searched_one($called_module, $searched_module, $caller_module)) {
         return 1;
     }
   }
   return 0;
 }
 
-sub _called_module_is_the_searched {
+sub _called_module_is_the_searched_one {
   my ($called_module, $searched_module, $caller_module) = @_;
   return $caller_module ne $called_module && $called_module eq $searched_module;
 }
@@ -96,19 +96,17 @@ sub _recursive_number_of_children {
   my ($self, $module) = @_;
 
   my $number_of_children = 0;
-
   for my $other_module ($self->model->module_names){
     if ($self->_module_parent_of_other($module, $other_module)) {
       $number_of_children += $self->_recursive_number_of_children($other_module) + 1;
     }
   }
-
   return $number_of_children;
 }
 
 sub average_method_lines_of_code {
   my ($self, $lines_of_code, $count) = @_;
-  return ($count > 0) ? ($lines_of_code / $count) : 0;
+  return _division($lines_of_code, $count);
 }
 
 sub average_cyclo_complexity_per_method {
@@ -118,7 +116,6 @@ sub average_cyclo_complexity_per_method {
   for my $function ($self->model->functions($module)) {
     $statisticalCalculator->add_data($self->model->{conditional_paths}->{$function} || 0);
   }
-
   return $statisticalCalculator->mean();
 }
 
@@ -129,7 +126,6 @@ sub average_number_of_parameters_per_method {
   for my $function ($self->model->functions($module)) {
     $statisticalCalculator->add_data($self->model->{parameters}->{$function} || 0);
   }
-
   return $statisticalCalculator->mean();
 }
 
@@ -202,7 +198,6 @@ sub _cohesion_graph_of_module {
     $self->_add_function_as_vertix($graph, $function);
     $self->_add_edges_to_used_functions_and_variables($graph, $function, @functions, @variables);
   }
-
   return $graph;
 }
 
@@ -255,7 +250,6 @@ sub number_of_methods {
 
 sub number_of_public_methods {
   my ($self, $module) = @_;
-
   my @functions = $self->model->functions($module);
   return $self->_number_of_public(@functions);
 }
@@ -295,7 +289,7 @@ sub response_for_class {
 sub _number_of_functions_called_by {
   my ($self, @functions) = @_;
 
-  my $count = ();
+  my $count = 0;
   for my $function (@functions){
     $count += scalar keys(%{$self->model->calls->{$function}});
  }
@@ -306,16 +300,14 @@ sub lines_of_code {
   my ($self, $module) = @_;
 
   my $statisticalCalculator = Statistics::Descriptive::Full->new();
-
   for my $function ($self->model->functions($module)) {
     $statisticalCalculator->add_data($self->model->{lines}->{$function} || 0);
   }
-
   return ($statisticalCalculator->sum(), $statisticalCalculator->max() || 0);
 }
 
 sub total_abstract_classes{
-  my ($self)= @_;
+  my ($self) = @_;
   my @total_of_abstract_classes = $self->model->abstract_classes;
   return scalar(@total_of_abstract_classes) || 0;
 }
@@ -479,7 +471,7 @@ sub _collect_global_metrics_report {
   $self->_add_module_metrics_totals($summary, $module_metrics_totals);
   $self->_add_module_counts($summary, $module_counts);
   $self->_add_statistical_values($summary, $values_lists);
-  $self->_add_total_cof($summary, $module_counts->{'total_modules'}, $module_metrics_totals->{'acc'});
+  $self->_add_total_coupling_factor($summary, $module_counts->{'total_modules'}, $module_metrics_totals->{'acc'});
   return $summary;
 }
 
@@ -544,7 +536,7 @@ sub _add_distributions_statistics {
   }
 }
 
-sub _add_total_cof {
+sub _add_total_coupling_factor {
   my ($self, $summary, $total_modules, $acc) = @_;
   if ($total_modules > 1) {
     $summary->{"total_cof"} = ($acc) / ($total_modules * ($total_modules - 1));

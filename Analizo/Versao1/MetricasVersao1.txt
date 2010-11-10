@@ -1,28 +1,25 @@
 Analizo Versão 1
 
-Classe Metrics
+Global:
+    NOM: 25
+    NOA: 2
+    sum_loc: 244
+    avg_loc: 9.76
+    sum_params: 41
+    avg_params: 1.64
+    sum_maxNesting: 28
+    avg_maxNesting: 1.12
+    sum_cc: 84
+    avg_cc: 3.36
+    sum_nec: 54
+    avg_nec: 2.16
+    sum_nra: 19
+    avg_nra: 0.79
+    sum_nrp: 3
+    avg_nrp: 0.12
+    lcom4: 2
 
-NOM (sem contar construtor): 23
-NOA: 2
-
-sum_loc: 244
-avg_loc: 10.6
-
-avg_params: 1.78
-sum_params: 41
-
-//wmc=sum_cc: 84
-
-sum_nec: 54
-avg_nec: 2.34
-
-avg_nra: 19/23 = 0.82
-
-lcom4: 1 ou 2 (causado pelo list_of_global_metrics)
-
-avg_nrp: 3/23 = 0.14
-
-Métodos:
+Methods:
 	new:
 		no parametros: 1
 		loc: 2
@@ -31,7 +28,7 @@ Métodos:
 	
 	list_of_global_metrics:
 		nec: 0
-		noc: 0
+		nc: 0
 		ncc: 0
 		ecr: 0
 		nra: 1
@@ -43,7 +40,7 @@ Métodos:
 		
 	acc:
 		nec: 4
-		noc: 5
+		nc: 5
 		ncc: 1
 		ecr: 0.8
 		nra: 1
@@ -55,7 +52,7 @@ Métodos:
 	
 	amloc:
 		nec: 0
-		noc: 0
+		nc: 0
 		ncc: 0
 		ecr: 0
 		nra: 0
@@ -67,7 +64,7 @@ Métodos:
 	
 	accm:
 		nec: 2
-	   	noc: 2
+	   	nc: 2
 	   	ncc: 1
 	   	ecr: 1
 	   	nra: 1
@@ -79,7 +76,7 @@ Métodos:
 	
 	anpm:
 	 	nec: 2
-		noc: 2
+		nc: 2
 		ncc: 1
 		ecr: 1
 		nra: 1
@@ -91,7 +88,7 @@ Métodos:
 	
 	cbo:
 		nec: 3
-		noc: 3
+		nc: 3
 		ncc: 1
 		ecr: 1
 		nra: 1
@@ -103,7 +100,7 @@ Métodos:
 	
 	dit:
 		nec: 1
-		noc: 2
+		nc: 2
 		ncc: 1
 		ecr: 0.5
 		nra: 1
@@ -115,7 +112,7 @@ Métodos:
 		
 	lcom4:
 		nec: 7
-		noc: 7
+		nc: 7
 		ncc: 2
 		ecr: 1
 		nra: 1
@@ -127,7 +124,7 @@ Métodos:
 		
 	noa:
 		nec: 1
-		noc: 1
+		nc: 1
 		ncc: 1
 		ecr: 1
 		nra: 1
@@ -137,9 +134,9 @@ Métodos:
 		cc: 1
 		MaxNesting: 0
 	
-	noc:
+	nc:
 		nec: 2
-		noc: 2
+		nc: 2
 		ncc: 1
 		ecr: 1
 		nra: 1
@@ -151,7 +148,7 @@ Métodos:
 	
 	nom:
 		nec: 1
-		noc: 1
+		nc: 1
 		ncc: 1
 		ecr: 1
 		nra: 1
@@ -163,7 +160,7 @@ Métodos:
 	
 	npm:
 		nec: 1
-		noc: 1
+		nc: 1
 		ncc: 1
 		ecr: 1
 		nra: 1
@@ -175,7 +172,7 @@ Métodos:
 		
 	npa:
 		nec: 1
-		noc: 2
+		nc: 2
 		ncc: 1
 		ecr: 0.5
 		nra: 1
@@ -187,7 +184,7 @@ Métodos:
 	
 	rfc:
 		nec: 2
-		noc: 2
+		nc: 2
 		ncc: 1
 		ecr: 1
 		nra: 1
@@ -199,7 +196,7 @@ Métodos:
 	
 	loc:
 		nec: 2
-		noc: 2
+		nc: 2
 		ncc: 1
 		ecr: 1
 		nra: 1
@@ -211,7 +208,7 @@ Métodos:
 	
 	total_abstract_classes:
 		nec: 1
-		noc: 1
+		nc: 1
 		ncc: 1
 		ecr: 1
 		nra: 0
@@ -223,7 +220,7 @@ Métodos:
 	
 	methods_per_abstract_class:
 		nec: 2
-		noc: 2
+		nc: 2
 		ncc: 1
 		ecr: 1
 		nra: 0
@@ -235,7 +232,7 @@ Métodos:
 	
 	total_eloc:
 		nec: 1
-		noc: 1
+		nc: 1
 		ncc: 1
 		ecr: 1
 		nra: 1
@@ -245,9 +242,9 @@ Métodos:
 		cc: 1
 		MaxNesting: 0
 	
-	_recursive_noc:
+	_recursive_nc:
 		nec: 2
-		noc: 3
+		nc: 3
 		ncc: 1
 		ecr: 0.67
 		nra: 1
@@ -259,7 +256,7 @@ Métodos:
 	
 	_is_public:
 		nec: 2
-		noc: 2
+		nc: 2
 		ncc: 1
 		ecr: 2
 		nra: 1
@@ -271,7 +268,7 @@ Métodos:
 	
 	_report_module:
 		nec: 0
-		noc: 14
+		nc: 14
 		ncc: 0
 		ecr: 0
 		nra: 0
@@ -283,9 +280,9 @@ Métodos:
 	
 	report:
 		nec: 17
-		noc: 22
+		nc: 22
 		ncc: 3
-		ecr: 17/22 = 0.78
+		ecr:  0.78
 		nra: 2
 		no parametros: 1
 		nrp: 0
@@ -295,10 +292,10 @@ Métodos:
 		
 	list_of_metrics:
 		nec: 0
-		noc: 1
+		nc: 1
 		ncc: 0
 		ecr: 0
-		nra: 0
+		nra: 1
 		no parametros: 1
 		nrp: 0
 		loc: 7

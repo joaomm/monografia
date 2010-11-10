@@ -2,13 +2,13 @@ Comentários sobre as métricas da Versão 1
 
 Características:
 	Olhando para a classe toda:
-		- Alto número de linhas
+		- Alto número de linhas dos métodos
 		- Alto número de métodos
-		- Alta complexidade (avg_cc=wmc)
+		- Alta média de complexidade (avg_cc=wmc)
 		- Alto avg_nec
-		- Baixo relacão avg_nau e NOA
+		- avg_nra - NAU = 0.2 (pequeno)
 		- A média de parâmetros é 1.78 (em Perl sempre temos um argumento quando usamos OO) 
-			-> Ou seja, os métodos geralmente recebem 1 parâmetro
+			-> Ou seja, os métodos geralmente recebem 0 ou 1 parâmetro
 	
 	Olhando para os métodos de maneira geral:
 		- Alto NEC para a maioria das classes
@@ -19,8 +19,7 @@ Características:
 		- Método extremamente complexo
 			- Muitas linhas de código
 			- Altíssima CC
-	
-
+			
 Interpretações:
 	Olhando para report:
 		- Método Grande!
@@ -36,6 +35,10 @@ Interpretações:
 	Olhando para a classe:
 		- 1 parâmetro sempre é passado, mas logo é consumido pela função
 
+    Olhando para _report_modules:
+        - Método Grande
+            - Muitas linhas de código e muitas chamadas para outros métodos
+    
 
 Ideias de Mudanças:
 	1 - Quebrar os métodos -> Composição de Métodos

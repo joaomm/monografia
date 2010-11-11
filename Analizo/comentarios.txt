@@ -1,0 +1,279 @@
+Versão 1:
+
+Características:
+	Olhando para a classe toda:
+		- Alto número de linhas dos métodos
+		- Alto número de métodos
+		- Alta média de complexidade (avg_cc=wmc)
+		- Alto avg_nec
+		- avg_nra - NAU = 0.2 (pequeno)
+		- A média de parâmetros é 1.78 (em Perl sempre temos um argumento quando usamos OO) 
+			-> Ou seja, os métodos geralmente recebem 0 ou 1 parâmetro
+	
+	Olhando para os métodos de maneira geral:
+		- Alto NEC para a maioria das classes
+		- Alto ECR
+		- A maioria não possui muitas linhas de código, mas são bastante complexos (alto CC e MAXNESTING)
+	
+	Olhando para report:
+		- Método extremamente complexo
+			- Muitas linhas de código
+			- Altíssima CC
+			
+Interpretações:
+	Olhando para report:
+		- Método Grande!
+			- Precisa ser quebrado em métodos menores -> Composição de Métodos
+	
+	Olhando para os métodos de métricas:
+		- Método Invejoso
+			- Só usa métodos de MODEL o tempo todo
+	
+		- Métodos com muitos Fluxos
+			- Sua alta complexidade ciclomática e maxnesting poderia ser quebrada
+			
+	Olhando para a classe:
+		- 1 parâmetro sempre é passado, mas logo é consumido pela função
+
+    Olhando para _report_modules:
+        - Método Grande
+            - Muitas linhas de código e muitas chamadas para outros métodos
+    
+
+Ideias de Mudanças:
+	1 - Quebrar os métodos -> Composição de Métodos
+	2 - A classe está bastante complexa
+		- Muitas tarefas = muitos métodos
+		- Tarefas complexas = alto wcm=sum_cc
+		-> Precisa ser quebrada em outras classes
+	3 - O método list_of_metrics não é utilizado por ninguém -> Não precisaria estar aqui
+	4 - O grande valor de NEC dos métodos mostra que essas operações provavelmente são todas pertencentes ao modelo. A classe que reporta dados não deveria ser responsável pelo cálculo das métricas.
+	
+	Passo:
+		Quebrar os métodos
+
+
+------------------------------------------
+
+    Comentários sobre as métricas da Versão 2
+
+    Características:
+    	Olhando para a classe toda:
+    		- Baixo LOC/Metodo = 5.3
+    		- Altíssimo número de métodos
+    		- avg_nra - NAU = 0.4  (consideravel)
+    		- avg_params = 2.25 -> funções geralmente passam um argumento
+    		- avg_nrp = 0.4 (considerável conjunto de métodos que repassam)
+
+    	Olhando para os métodos de maneira geral:
+    		- Baixo NEC na grande maioria
+    		- Baixo MaxNesting -> maior valor é 2
+    		- Baixa CC -> média é 1.35 -> métodos tem zero condicionais geralmente e logo em seguida 1
+
+    	Olhando para _add_descriptive_statistics:
+    		- Alto NEC
+    		- Baixo NCC
+    		- Alto ECR -> Faz muitas chamadas para a classe Statistics::Descriptive
+
+    Comentários a partir da Versão 1 -> Composição de Métodos e Evitar Estruturas Encadeadas:
+        - Dobrou a quantidade de Métodos
+
+        - Continuam as somas de MaxNesting e CC
+
+        - Enorme redução no LOC/método -> de 9.76 para 5.36
+
+        - Distribuição dos condicionais
+            - Enorme redução na CC/método -> de 3.36 para 1.53
+            - Redução do MaxNesting -> 1.12 para 0.53
+
+        - Distribuição do NEC
+            - Trabalho foi dividido 
+
+        - Aumento no número de parâmetros - de 41 para 117
+            - Trabalho foi dividido e os métodos de menor nível de abstração devem fazer o trabalho com parâmetros.
+            - Métodos com muitos parâmetros
+            - Considerável número de repasses
+
+        - Coesão caiu:
+            - Lcom4 continua o mesmo
+            - Considerável conjunto de métodos que repassam
+
+
+    Interpretações:
+        Olhando para _add_descriptive_statistics:
+        	- Método Invejoso
+    			- Só usa métodos de Statistical::Descriptive o tempo todo
+    			- O ideal seria essa classe fornecer um único método que devolvesse essa lista
+
+        Olhando para _report_modules:
+            - Método Grande
+                - Muitas linhas de código e muitas chamadas para outros métodos
+
+        Olhando para alguns métodos:
+            -  _add_descriptive_statistics, _collect_global_metrics_report, _collect_all_modules_report, ...
+            - Método com muitos parâmetros e Classe com muitos repasses de parâmetros
+                - Alto número de parâmetros causado pela necessidade de repasse
+
+
+    Ideias de Mudanças:
+    	1 - Passar os hashes $module_metrics_totals, $module_counts, $values_lists para variável de instância
+
+    	Passo:
+    		Parâmetro como Variável de Instância
+    		
+------------------------
+    Comentários sobre as métricas da Versão 3
+
+
+
+    Comentários a partir da Versão 2 
+    -> Parâmetros como Variável de instância (module_metrics_totals, module_counts, values_lists, global_report)
+
+        - Número de parâmetros total baixou para valores próximos dos iniciais
+
+        - Dimunição no NRP para 0.3
+            - O valor continua longe do inicial porque não passamos as variáveis de instância das métricas
+
+        - QUEDA NA COESÃO
+            - Queda enorme no AVG_NRA << NOM
+                - Apenas um pedaço da classe teve seu NRA aumentado
+
+
+
+    Interpretações:
+        Olhando para _add_descriptive_statistics:
+        	- Método Invejoso
+    			- Só usa métodos de Statistical::Descriptive o tempo todo
+    			- O ideal seria essa classe fornecer um único método que devolvesse essa lista
+
+        Olhando para a classe em geral:
+            - Classe pouco coesa
+                - Uma operação que nunca é chamada dentro da classe e nem usa atributos ou métodos
+                - A queda na diferença avg_nra - NOA chega a 4.9
+                    - Com um olhar mais cuidadoso, vemos que os métodos de report não usam o MODEL
+                    - Lcom4 só não é maior, porque _report_module chama todos os método de métricas
+
+        Olhando para _report_modules:
+            - Método Grande
+                - Muitas linhas de código e muitas chamadas para outros métodos
+
+
+    Ideias de Mudanças:
+    	1 - Quebrar a classe em menores com alta AVG_NRA
+
+    	Passo:
+    		Maximizar a Coesão
+
+------------------------
+    Comentários sobre as métricas da Versão 4
+
+    Comentários a partir da Versão 3:
+        Maximizar a coesão através do encapsulamento do cálculo das métricas de modulo em classes
+
+        Olhando para Metrics:
+            Leve aumento na relação avg_nra << NOA
+            Grande número de métodos retirados - de 54 para 39
+
+        Olhando para as classes de Metricas:
+            Alta coesão
+                lcom4 = 1 e avg_nra menos NOA perto de zero
+
+
+    Interpretações:
+        Olhando para Metrics:
+            Classe pouco coesa
+                Uma operação que nunca é chamada dentro da classe e nem usa atributos ou métodos
+                A queda na diferença avg_nra - NOA chega a 4.75
+                    Com um olhar mais cuidadoso, vemos que os métodos de report não usam o MODEL
+                    Lcom4 só não é maior, porque _report_module chama todos os método de métricas
+                Responsabilidades: 
+                    Coletar métricas globais, reportar, coletar métricas dos
+
+        Olhando para _report_modules:
+            Método Grande
+                Muitas linhas de código e muitas chamadas para outros métodos
+
+        Olhando para a classe Afferent Connections, Coupling Between Objects e LackOfCohesion:
+            Classe com muita passagem de parâmetros
+
+
+    Ideias de Mudanças:
+    	1 - Maximizar a coesão da classe Metrics quebrando-a em 3
+    	2 - Parâmetros como Variáveis de Instância em algumas classes de métricas de modulo
+
+    
+------------------------
+    
+Comentários Finais:
+    
+    Características:
+        Ao final das mudanças feitas podemos observar as seguintes caracteristicas
+        
+        Métodos Simples:
+            Médias de LOC ficaram abaixo de 5 linhas de código
+            Médias de CC ficaram perto de 1, mostrando que os métodos possui em geral no maximo 1 condicional
+            Médias de MAXNESTING ficaram perto de 0, ou seja, perto de CC
+                Ambos valores são extremamente baixos indicando que os métodos não 
+                tem grandes estruturas encadeadas, nem estruturas uma seguida da outra
+            -> Objetivo Cumprido: Métodos pequenos e com apenas uma tarefa
+        
+        
+        Pouca passagem de parâmetros:
+            Médias de parâmetros ficaram abaixo dos 2 parâmetros
+                Lembrando para implementar Orientação a Objetos em Perl é necessário passar o próprio objeto
+                Na realidade, a grande maioria dos métodos recebe nenhum e no máximo 1 parâmetros, exceto raras exceções
+            Pouca passagem de parâmetros
+                Ao promover os parâmetros a variáveis de instância, reduzimos o número de parâmetros de cada método significamente
+            -> Objetivo Cumprido: Minimizar o número de parâmetros dos métodos
+        
+        Coesão Alta:
+            A coesão das classes melhorou significamente
+                Inicialmente tinhamos apenas uma classe para todas as responsabilidades
+                    Responsabilidades: 
+                        Calculava cada uma das métricas globais (5) e de módulo (16)
+                        Acumulava os valores das metricas de módulos
+                        Cálculo de Estatísticas
+                Para pensar em quanto mudou, basta contar quantas classes temos e ver que tudo estava em uma
+            A classe GlobalMetrics ainda pode ser melhorada
+                Existem responsabilidades como acumular valores para calculos estatisticos e calcular algumas métricas
+                Baixo valor de avg_nra em relação
+            -> Objetivo Cumprido até certo ponto: Maximizar a coesão
+            
+        Acoplamento controlado:
+            Poucos métodos com alto valores de NEC
+                A grande maioria dos métodos tem poucos usos de alguma classe externa
+                O uso é mais relacionado ao Model
+                    Muito provavelmente muitos métodos poderiam ser passados para dentro do Model para diminuir ainda mais essa relação
+                    Como nos limitamos para não mexer em Model, essa realidade não foi alterada.
+                    O ideal seria acessar poucas vezes o Model e depois calcular métricas sobre o que foi retirado
+    
+    Interessante:
+        Classe Metrics:
+            A classe Metrics foi a que mais recebeu alterações e acabou com um código bastante interessantes.
+            Através da sua leitura, podemos perceber quão simplificado ficou seu código
+                Nesse momento podemos literalmente dizer:
+                    "Para reportar as métricas sobre um Modelo basta coletar os valores das metricas de cada modulo e combiná-las
+                    retornando as métricas globais seguidas das métricas de cada modulo"
+            Métodos extremamente curtos com nomes bastante explicativos e pouca passagem de parâmetros.
+        
+        Classe LackOfCohesionOfMethods ou Coupling Between Objects:
+            Antigamente, o código que calculava a métrica LCOM4 era bastante confuso, fazendo com que o leitor a relesse várias vezes para entender
+            os fluxos condicionais complicados e o que estava acontecendo.
+                O código final ficou bastante limpo:
+                    "Para calcular LCOM4, montamos um grafo de coesão e calculamos a quantidade de componentes conexas."
+                Obtivemos esse resultado através de:
+                    Métodos com poucas linhas, sem grandes estruturas encadeadas e métodos explicativos.
+                    O fato de ser uma classe sozinha também ajuda para podermos passar parâmetros como o grafo como variável de instância.
+                    Além disso, a classe tem poucas informações fazendo a leitura ficar bastante simples.
+        
+        Acoplamentos interessantes:
+            - Classe ModuleMetrics:
+                Essa classe possui método _initialize_calculators que usa todos as classes de métricas de módulo.
+                    Alto ECR = 1 e alto NCC = 15 - Método Dispersamente Acoplado
+                    Alguma classe tem que se sacrificar, mas o interessante é que ficou encapsulado - Objeto Centralizador
+                
+            - Classe GlobalMetrics:
+                Essa classe posui método _add_descriptive_statistics que usa vários métodos da class StatisticsDescriptive
+                    Alto ECR = 1 e baixo NCC = 1 - Método Invejoso
+                    O interesante seria que a class StatististicsDescriptive tivesse um método que retorna se uma lista de valores computados
+                    Pedido de Tarefa 

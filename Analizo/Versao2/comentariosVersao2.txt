@@ -1,4 +1,4 @@
-Comentários sobre as métricas da Versão 1
+Comentários sobre as métricas da Versão 2
 
 Características:
 	Olhando para a classe toda:
@@ -48,17 +48,9 @@ Interpretações:
 			- Só usa métodos de Statistical::Descriptive o tempo todo
 			- O ideal seria essa classe fornecer um único método que devolvesse essa lista
 
-    Olhando para a classe em geral:
-        - Classe pouco coesa
-            - Uma operação que nunca é chamada dentro da classe e nem usa atributos ou métodos
-            - A queda na diferença avg_nra - NOA chega a 0.4
-                - Com um olhar mais cuidadoso, vemos que os métodos de report não usam o MODEL
-                - Lcom4 só não é maior, porque _report_module chama todos os método de métricas
-
     Olhando para _report_modules:
         - Método Grande
             - Muitas linhas de código e muitas chamadas para outros métodos
-
 
     Olhando para alguns métodos:
         -  _add_descriptive_statistics, _collect_global_metrics_report, _collect_all_modules_report, ...

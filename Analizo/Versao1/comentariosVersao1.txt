@@ -26,9 +26,6 @@ Interpretações:
 			- Precisa ser quebrado em métodos menores -> Composição de Métodos
 	
 	Olhando para os métodos de métricas:
-		- Método Invejoso
-			- Só usa métodos de MODEL o tempo todo
-	
 		- Métodos com muitos Fluxos
 			- Sua alta complexidade ciclomática e maxnesting poderia ser quebrada
 			

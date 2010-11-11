@@ -1,0 +1,79 @@
+Comentários Finais:
+    
+    Características:
+        Ao final das mudanças feitas podemos observar as seguintes caracteristicas
+        
+        Métodos Simples:
+            Médias de LOC ficaram abaixo de 5 linhas de código
+            Médias de CC ficaram perto de 1, mostrando que os métodos possui em geral no maximo 1 condicional
+            Médias de MAXNESTING ficaram perto de 0, ou seja, perto de CC
+                Ambos valores são extremamente baixos indicando que os métodos não 
+                tem grandes estruturas encadeadas, nem estruturas uma seguida da outra
+            -> Objetivo Cumprido: Métodos pequenos e com apenas uma tarefa
+        
+        
+        Pouca passagem de parâmetros:
+            Médias de parâmetros ficaram abaixo dos 2 parâmetros
+                Lembrando para implementar Orientação a Objetos em Perl é necessário passar o próprio objeto
+                Na realidade, a grande maioria dos métodos recebe nenhum e no máximo 1 parâmetros, exceto raras exceções
+            Pouca passagem de parâmetros
+                Ao promover os parâmetros a variáveis de instância, reduzimos o número de parâmetros de cada método significamente
+            -> Objetivo Cumprido: Minimizar o número de parâmetros dos métodos
+        
+        Coesão Alta:
+            A coesão das classes melhorou significamente
+                Inicialmente tinhamos apenas uma classe para todas as responsabilidades
+                    Responsabilidades: 
+                        Calculava cada uma das métricas globais (5) e de módulo (16)
+                        Acumulava os valores das metricas de módulos
+                        Cálculo de Estatísticas
+                Para pensar em quanto mudou, basta contar quantas classes temos e ver que tudo estava em uma
+            A classe GlobalMetrics ainda pode ser melhorada
+                Existem responsabilidades como acumular valores para calculos estatisticos e calcular algumas métricas
+                Baixo valor de avg_nra em relação
+            -> Objetivo Cumprido até certo ponto: Maximizar a coesão
+            
+        Acoplamento controlado:
+            Poucos métodos com alto valores de NEC
+                A grande maioria dos métodos tem poucos usos de alguma classe externa
+                O uso é mais relacionado ao Model
+                    Muito provavelmente muitos métodos poderiam ser passados para dentro do Model para diminuir ainda mais essa relação
+                    Como nos limitamos para não mexer em Model, essa realidade não foi alterada.
+                    O ideal seria acessar poucas vezes o Model e depois calcular métricas sobre o que foi retirado
+    
+    Interessante:
+        Classe Metrics:
+            A classe Metrics foi a que mais recebeu alterações e acabou com um código bastante interessantes.
+            Através da sua leitura, podemos perceber quão simplificado ficou seu código
+                Nesse momento podemos literalmente dizer:
+                    "Para reportar as métricas sobre um Modelo basta coletar os valores das metricas de cada modulo e combiná-las
+                    retornando as métricas globais seguidas das métricas de cada modulo"
+            Métodos extremamente curtos com nomes bastante explicativos e pouca passagem de parâmetros.
+        
+        Classe LackOfCohesionOfMethods ou Coupling Between Objects:
+            Antigamente, o código que calculava a métrica LCOM4 era bastante confuso, fazendo com que o leitor a relesse várias vezes para entender
+            os fluxos condicionais complicados e o que estava acontecendo.
+                O código final ficou bastante limpo:
+                    "Para calcular LCOM4, montamos um grafo de coesão e calculamos a quantidade de componentes conexas."
+                Obtivemos esse resultado através de:
+                    Métodos com poucas linhas, sem grandes estruturas encadeadas e métodos explicativos.
+                    O fato de ser uma classe sozinha também ajuda para podermos passar parâmetros como o grafo como variável de instância.
+                    Além disso, a classe tem poucas informações fazendo a leitura ficar bastante simples.
+        
+        Acoplamentos interessantes:
+            - Classe ModuleMetrics:
+                Essa classe possui método _initialize_calculators que usa todos as classes de métricas de módulo.
+                    Alto ECR = 1 e alto NCC = 15 - Método Dispersamente Acoplado
+                    Alguma classe tem que se sacrificar, mas o interessante é que ficou encapsulado - Objeto Centralizador
+                
+            - Classe GlobalMetrics:
+                Essa classe posui método _add_descriptive_statistics que usa vários métodos da class StatisticsDescriptive
+                    Alto ECR = 1 e baixo NCC = 1 - Método Invejoso
+                    O interesante seria que a class StatististicsDescriptive tivesse um método que retorna se uma lista de valores computados
+                    Pedido de Tarefa 
+                    
+                    
+                
+            
+                
+        

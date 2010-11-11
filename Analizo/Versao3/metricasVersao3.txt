@@ -1,22 +1,22 @@
 Analizo Versão 2
 
 Global:
-    NOM: 53
-    NOA: 2
-    sum_loc: 298
-    avg_loc: 5.62
-    sum_params: 124
-    avg_params: 2.33
+    NOM: 54
+    NOA: 6
+    sum_loc: 282
+    avg_loc: 5.22
+    sum_params: 99
+    avg_params: 1.83
     sum_maxNesting: 28
-    avg_maxNesting: 0.53
+    avg_maxNesting: 0.51
     sum_cc: 80
-    avg_cc: 1.51
+    avg_cc: 1.48
     sum_nec: 66
-    avg_nec: 1.24
-    sum_nra: 32
-    avg_nra: 0.6
-    sum_nrp: 21
-    avg_nrp: 0.4
+    avg_nec: 1.22
+    sum_nra: 58
+    avg_nra: 1.1
+    sum_nrp: 16
+    avg_nrp: 0.3
     lcom4: 2
 
 Methods:
@@ -313,7 +313,7 @@ Methods:
 		loc: 3
 		cc: 1
 		MaxNesting: 0
-	
+
 	number_of_public_methods:
 		nec: 1
 		nc: 2
@@ -460,13 +460,13 @@ Methods:
 	
 	report:
 		nec: 2
-		nc: 9
+		nc: 6
 		ncc: 1
-		ecr: 0.23
-		nra: 1
+		ecr: 0.33
+		nra: 6
 		no parametros: 1
 		nrp: 0
-		loc: 9
+		loc: 6
 		cc: 3
 		MaxNesting: 1
 	
@@ -488,9 +488,9 @@ Methods:
 		ncc: 0
 		ecr: 0
 		nra: 0
-		no parametros: 1
+		no parametros: 0
 		nrp: 0
-		loc: 18
+		loc: 17
 		cc: 1
 		MaxNesting: 0
 	
@@ -500,9 +500,9 @@ Methods:
 		ncc: 0
 		ecr: 0
 		nra: 0
-		no parametros: 1
+		no parametros: 0
 		nrp: 0
-		loc: 6
+		loc: 5
 		cc: 1
 		MaxNesting: 0
 	
@@ -512,20 +512,32 @@ Methods:
 		ncc: 0
 		ecr: 0
 		nra: 0
-		no parametros: 1
+		no parametros: 0
 		nrp: 0
-		loc: 5
+		loc: 4
 		cc: 2
 		MaxNesting: 1
+
+	_initialize_global_report:
+	    nec: 0
+		nc: 0
+		ncc: 0
+		ecr: 0
+		nra: 0
+		no parametros: 0
+		nrp: 0
+		loc: 2
+		cc: 1
+		MaxNesting: 0
 	
-	_collect_all_modules_report:
+	_collect_and_dump_all_modules_report:
 	    nec: 2
 		nc: 5
 		ncc: 2
 		ecr: 0.4
-		nra: 1
-		no parametros: 4
-		nrp: 3
+		nra: 4
+		no parametros: 1
+		nrp: 0
 		loc: 8
 		cc: 2
 		MaxNesting: 1
@@ -535,8 +547,8 @@ Methods:
 		nc: 0
 		ncc: 0
 		ecr: 0
-		nra: 0
-		no parametros: 4
+		nra: 2
+		no parametros: 2
 		nrp: 0
 		loc: 4
 		cc: 2
@@ -547,10 +559,10 @@ Methods:
 		nc: 0
 		ncc: 0
 		ecr: 0
-		nra: 0
-		no parametros: 3
+		nra: 1
+		no parametros: 2
 		nrp: 0
-		loc: 4
+		loc: 3
 		cc: 1
 		MaxNesting: 0
 	
@@ -559,44 +571,32 @@ Methods:
 		nc: 5
 		ncc: 0
 		ecr: 0
-		nra: 0
-		no parametros: 4
-		nrp: 3
-		loc: 7
+		nra: 4
+		no parametros: 2
+		nrp: 0
+		loc: 5
 		cc: 1
 		MaxNesting: 0
-	
-	_initialize_summary:
+		
+	_add_module_metrics_total:
 	    nec: 0
-		nc: 0
+		nc: 5
 		ncc: 0
 		ecr: 0
-		nra: 0
+		nra: 2
 		no parametros: 1
 		nrp: 0
-		loc: 3
+		loc: 6
 		cc: 1
 		MaxNesting: 0
-	
-    _add_module_metrics_total:
-        nec: 0
-        nc: 5
-        ncc: 0
-        ecr: 0
-        nra: 0
-        no parametros: 3
-        nrp: 0
-        loc: 6
-        cc: 1
-        MaxNesting: 0
 	
 	_add_module_counts:
 	    nec: 0
 		nc: 0
 		ncc: 0
 		ecr: 0
-		nra: 0
-		no parametros: 3
+		nra: 2
+		no parametros: 1
 		nrp: 0
 		loc: 3
 		cc: 2
@@ -607,32 +607,32 @@ Methods:
 		nc: 7
 		ncc: 2
 		ecr: 0.71
-		nra: 0
-		no parametros: 3
-		nrp: 1
+		nra: 2
+		no parametros: 1
+		nrp: 0
 		loc: 9
 		cc: 2
 		MaxNesting: 1
-	
+
 	_add_descriptive_statistics:
 	    nec: 8
 		nc: 8
 		ncc: 1
 		ecr: 1
-		nra: 0
-		no parametros: 4
+		nra: 1
+		no parametros: 3
 		nrp: 0
 		loc: 9
 		cc: 1
 		MaxNesting: 0
 	
 	_add_distributions_statistics:
-	    nec: 3
-		nc: 3
+	    nec: 4
+		nc: 4
 		ncc: 1
 		ecr: 1
-		nra: 0
-		no parametros: 4
+		nra: 1
+		no parametros: 1
 		nrp: 0
 		loc: 7
 		cc: 1
@@ -640,15 +640,27 @@ Methods:
 	
 	_add_total_coupling_factor:
 	    nec: 0
-		nc: 0
+		nc: 1
 		ncc: 0
 		ecr: 0
-		nra: 0
-		no parametros: 4
+		nra: 3
+		no parametros: 1
 		nrp: 0
 		loc: 7
 		cc: 2
 		MaxNesting: 1
+	
+	_number_of_combinations:
+	    nec: 0
+		nc: 0
+		ncc: 0
+		ecr: 0
+		nra: 0
+		no parametros: 1
+		nrp: 0
+		loc: 2
+		cc: 1
+		MaxNesting: 0
 	
 	list_of_metrics:
 		nec: 0

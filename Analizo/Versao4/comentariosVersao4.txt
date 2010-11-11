@@ -1,0 +1,36 @@
+Comentários sobre as métricas da Versão 4
+
+Comentários a partir da Versão 3:
+    Maximizar a coesão através do encapsulamento do cálculo das métricas de modulo em classes
+    
+    Olhando para Metrics:
+        Leve aumento na relação avg_nra << NOA
+        Grande número de métodos retirados - de 54 para 39
+        
+    Olhando para as classes de Metricas:
+        Alta coesão
+            lcom4 = 1 e avg_nra menos NOA perto de zero
+
+
+Interpretações:
+    Olhando para Metrics:
+        Classe pouco coesa
+            Uma operação que nunca é chamada dentro da classe e nem usa atributos ou métodos
+            A queda na diferença avg_nra - NOA chega a 4.75
+                Com um olhar mais cuidadoso, vemos que os métodos de report não usam o MODEL
+                Lcom4 só não é maior, porque _report_module chama todos os método de métricas
+            Responsabilidades: 
+                Coletar métricas globais, reportar, coletar métricas dos
+
+    Olhando para _report_modules:
+        Método Grande
+            Muitas linhas de código e muitas chamadas para outros métodos
+
+    Olhando para a classe Afferent Connections, Coupling Between Objects e LackOfCohesion:
+        Classe com muita passagem de parâmetros
+        
+
+Ideias de Mudanças:
+	1 - Maximizar a coesão da classe Metrics quebrando-a em 3
+	2 - Parâmetros como Variáveis de Instância em algumas classes de métricas de modulo
+	

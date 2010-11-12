@@ -52,7 +52,6 @@ Ideias de Mudanças:
 	Passo:
 		Quebrar os métodos
 
-
 ------------------------------------------
 
     Comentários sobre as métricas da Versão 2

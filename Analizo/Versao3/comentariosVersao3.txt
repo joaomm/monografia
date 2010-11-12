@@ -1,8 +1,6 @@
 Comentários sobre as métricas da Versão 3
 
-
-
-Comentários a partir da Versão 2 
+Comentários a partir da Versão 2:
 -> Parâmetros como Variável de instância (module_metrics_totals, module_counts, values_lists, global_report)
     
     - Número de parâmetros total baixou para valores próximos dos iniciais

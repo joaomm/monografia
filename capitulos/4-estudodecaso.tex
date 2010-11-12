@@ -2,10 +2,58 @@
 \label{chap:estudodecaso}
 
 
-Utilizando as técnicas e conceitos relacionados a um código limpo e seu mapeamento em métricas de código fonte, apresentaremos ao longo desse capítulo um 
-estudo de caso sobre o código da ferramenta Analizo. O objetivo é analisar a versão atual da ferramenta olhando para as métricas e as interpretações anteriormente apresentadas para detectar melhorias possíveis. Ao final, destacaremos as principais mudanças e contribuições para a sua ``limpeza''.
+Utilizando as técnicas e conceitos relacionados a um código limpo e seu mapeamento 
+em métricas de código fonte, apresentaremos ao longo desse capítulo um estudo de caso
+sobre o código da ferramenta Analizo. O objetivo é analisar a versão atual da ferramenta
+olhando para as métricas e as interpretações anteriormente apresentadas para detectar
+melhorias possíveis. Ao final, destacaremos as principais mudanças e contribuições para
+a sua ``limpeza''.
 
 
 \section{Analizo}
-A Analizo [REF artigo] é um conjunto de ferramentas livres para análise e visualização do código-fonte. Ela suporta a extração e cálculo de um 
-significativo número de métricas de código-fonte, a geração de grafos de dependência e o acompanhamento da evolução do software.
+A \textit{Analizo} [REF artigo] é um conjunto de ferramentas livres para análise e visualização
+do código-fonte. Ela suporta a extração e cálculo de um número significativo de métricas
+de código-fonte, além da geração de grafos de dependência e o acompanhamento da evolução do software.
+Seu diferencial em relação as demais ferramentas para coleta de dados é o suporte multi-linguagem,
+podendo trabalhar sobre código Java, C++ e C.
+
+A escolha da Analizo para o estudo de caso se deu devido a familiaridade com as ferramentas, 
+uma vez que grande parte de seu desenvolvimento foi feito durante o projeto de Iniciação
+Científica em colaboração com os doutorandos Paulo Meirelles da Universidade de São Paulo
+e Antonio Terceiro da Universidade Federal da Bahia.
+
+Durante o processo, o esforço foi dirigido na implementação de métricas para o projeto
+de forma a possibilitar as pesquisas relacionadas a qualidade de software de 
+projetos de software livre através do cálculo de métricas de código-fonte [REF]. Essa
+realidade fez com que muito código fosse adicionado sem significativa preocupação quanto
+à limpeza do código. Assim sendo, esse estudo de caso se baseia na possibilidade de promover
+melhorias para o código de forma a deixar seu código mais limpo.
+
+O foco do estudo foi a ferramenta \textit{Analizo Metrics} responsável pelo cálculo de
+uma quantidade significativa de métricas de código-fonte como as apresentadas anteriormente
+nesse trabalho, LCOM4 e NOM, e outras como Número de Atributos Públicos e o Acoplamento
+entre Objetos (CBO - \textit{Coupling Between Objects} [REF].
+
+Essa ferramenta é inteiramente escrita na linguagem \textit{Perl} [REF] seguindo o paradigma da
+Orientação a Objetos. Como não há aplicativo capaz de calcular as métricas selecionadas
+sobre essa linguagem, todos os valores foram obtidos manualmente ao longo do desenvolvimento.
+
+A arquitetura da \textit{Analizo Metrics} é bastante simples e composta por poucas classes.
+Quando o usuário fornecesse um arquivo sobre o qual deseja obter as métricas, uma ferramenta
+auxiliar é chamada para extrair as características do código-fonte e construir um objeto da
+classe \textit{Model}. Esse objeto abstrai uma representação simplificada do código e detém 
+informações como usa lista de todos os módulos do código avaliado, além de características
+de suas variáveis e funções \footnote{Como a ferramenta também analisa códigos não orientados
+a objetos foram escolhidos os termos ``módulo'', ``variáveis'' e ``funções'' para generalizar os paradigmas.}.
+
+O passo seguinte é feito pela classe \textit{Metrics}, onde é feito cálculo de métricas de dois 
+tipos: (i) métricas de módulo como o número de linhas de suas funções e número de variáveis de
+um dado módulo; (ii) métricas globais que contabilizam os valores do primeiro conjunto para o
+cálculo de outras métricas como COF [REF] e valores estatísticos como a variância e média.
+
+Nesse estudo de caso, o foco foi na melhoria da classe \textit{Metrics}, cujo estado inicial continha:
+(i) um conjunto de métodos que, dado um módulo, calcula o valor de uma métrica deste módulo;
+(ii) um método \textit{report_module} que retorna um dicionário que associa o nome de uma métrica
+e seu valor sobre um dado módulo; e (iii) um método \texit{report} que combina os valores das métricas
+de cada módulo, calcula as métricas globais e retorna um YAML contendo todos os valores.
+

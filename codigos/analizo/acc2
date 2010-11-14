@@ -1,0 +1,8 @@
+sub afferent_connections_per_class {
+  my ($self, $module) = @_;
+
+  my $number_of_caller_modules = $self->_number_of_modules_that_call_module($module);
+  my $number_of_modules_on_inheritance_tree = $self->_recursive_number_of_children($module);
+
+  return $number_of_caller_modules + $number_of_modules_on_inheritance_tree;
+}

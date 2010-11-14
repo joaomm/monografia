@@ -1,0 +1,4 @@
+sub _module_parent_of_other {
+  my ($self, $module, $other_module) = @_;
+  return grep {$_ eq $module} $self->model->inheritance($other_module);
+}

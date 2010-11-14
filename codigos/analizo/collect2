@@ -1,0 +1,7 @@
+sub _collect_global_metrics_report {
+  my $self = shift;
+  $self->_add_module_metrics_totals();
+  $self->_add_module_counts();
+  $self->_add_statistical_values();
+  $self->_add_total_coupling_factor();
+}

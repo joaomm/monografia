@@ -1,0 +1,9 @@
+sub _collect_global_metrics_report {
+  my ($self, $module_metrics_totals, $module_counts, $values_lists) = @_;
+  my $summary = $self->_initialize_summary();
+  $self->_add_module_metrics_totals($summary, $module_metrics_totals);
+  $self->_add_module_counts($summary, $module_counts);
+  $self->_add_statistical_values($summary, $values_lists);
+  $self->_add_total_coupling_factor($summary, $module_counts);
+  return $summary;
+}

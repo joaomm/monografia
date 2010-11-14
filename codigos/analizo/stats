@@ -1,0 +1,13 @@
+sub _add_descriptive_statistics {
+  my ($self, $metric) = @_;
+  my $statistics = Statistics::Descriptive::Full->new();
+  $statistics->add_data(@{$self->values_lists->{$metric}});
+
+  $self->metric_report->{$metric . "_average"} = $statistics->mean;
+  $self->metric_report->{$metric . "_maximum"} = $statistics->max;
+  $self->metric_report->{$metric . "_mininum"} = $statistics->min;
+  $self->metric_report->{$metric . "_median"} = $statistics->median;
+  $self->metric_report->{$metric . "_mode"} = $statistics->mode;
+  $self->metric_report->{$metric . "_sum"} = $statistics->sum;
+  $self->metric_report->{$metric . "_variance"} = $statistics->variance;
+}

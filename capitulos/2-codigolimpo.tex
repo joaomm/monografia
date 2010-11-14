@@ -203,9 +203,17 @@ Diante de uma lista grande de argumentos, devemos questionar se não existe algu
 
 \subsubsection{Parâmetros como Variável de Instância}
 \label{metodos:parametros}
-Na utilização da composição de métodos, frequentemente será preciso passar um argumento para diversos métodos, que possivelmente não o utilizam, somente para satisfazer a necessidade de um deles. Uma solução plausível é transformar esse argumento em uma variável de instância acessível por todos os métodos.
-	
-Esse tipo de alteração tem grande importância no design do sistema como um todo. Na sessão de Classes abordaremos esse tópico e veremos o papel dessa técnica em refatorações de maior escala.
+Na utilização da composição de métodos, frequentemente será preciso passar um argumento para diversos métodos, que 
+possivelmente não o utilizam, somente para satisfazer a necessidade de um deles. Uma solução plausível é transformar esse 
+argumento em uma variável de instância acessível por todos os métodos.
+
+No entando, ao longo das alterações para minimizar o número de parâmetros dos métodos, não podemos
+deliberadamente transformar um parâmetro em variável de instância sem o devido cuidado
+com a abstração da classe. A mudança só faz sentido se a variável de fato pertence ao 
+estado do objeto da classe em questão. Uma variável que é passada em um método e repassado
+para outro, provavelmente não pertence ao estado do objeto.
+
+Esse tipo de alteração tem grande importância no design do sistema como um todo. Na sessão de Classes esse tópico será abordado e veremos o papel dessa técnica em refatorações de maior escala.
 
 \subsubsection{Uso de Exceções}
 Como foi dito nos fundamentos teóricos dessa sessão, queremos ter um fluxo normal bem definido e sem interferências do código de tratamento de erros. Nesse contexto, devemos preferir o uso de exceções sobre retornar códigos de erro e valores nulos.

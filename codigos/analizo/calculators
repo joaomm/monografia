@@ -1,0 +1,21 @@
+sub _initialize_metric_calculators {
+  my $model = shift;
+  my  %calculators = (
+    acc                  => new Analizo::Metric::AfferentConnections(model => $model),
+    accm                 => new Analizo::Metric::AverageCycloComplexity(model => $model),
+    amloc                => new Analizo::Metric::AverageMethodLinesOfCode(model => $model),
+    anpm                 => new Analizo::Metric::AverageNumberOfParameters(model => $model),
+    cbo                  => new Analizo::Metric::CouplingBetweenObjects(model => $model),
+    dit                  => new Analizo::Metric::DepthOfInheritanceTree(model => $model),
+    lcom4                => new Analizo::Metric::LackOfCohesionOfMethods(model => $model),
+    loc                  => new Analizo::Metric::LinesOfCode(model => $model),
+    mmloc                => new Analizo::Metric::MaximumMethodLinesOfCode(model => $model),
+    noa                  => new Analizo::Metric::NumberOfAttributes(model => $model),
+    noc                  => new Analizo::Metric::NumberOfChildren(model => $model),
+    nom                  => new Analizo::Metric::NumberOfMethods(model => $model),
+    npm                  => new Analizo::Metric::NumberOfPublicMethods(model => $model),
+    npa                  => new Analizo::Metric::NumberOfPublicAttributes(model => $model),
+    rfc                  => new Analizo::Metric::ResponseForClass(model => $model)
+  );
+  return \%calculators;
+}

@@ -1,0 +1,17 @@
+sub acc {
+  my ($self, $module) = @_;
+
+  my @seen_modules = ();
+  for my $caller_member (keys(%{$self->model->calls})){
+    my $caller_module = $self->model->members->{$caller_member};
+    for my $called_member (keys(%{$self->model->calls->{$caller_member}})) {
+      my $called_module = $self->model->members->{$called_member};
+      if($caller_module ne $called_module && $called_module eq $module){
+        if(! grep { $_ eq $caller_module } @seen_modules){
+          push @seen_modules, $caller_module;
+        }
+      }
+    }
+  }
+  return scalar @seen_modules + $self->_recursive_noc($module);
+}

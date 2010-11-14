@@ -1,0 +1,9 @@
+sub _add_edges_to_used_functions_and_variables {
+  my ($self, $graph, $function, @functions, @variables) = @_;
+
+  for my $used (keys(%{$self->model->calls->{$function}})) {
+    if (_used_inside_the_module($used, @functions, @variables)) {
+      $graph->add_edge($function, $used);
+    }
+  }
+}

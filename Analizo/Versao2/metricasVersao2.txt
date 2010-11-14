@@ -5,8 +5,8 @@ Global:
     NOA: 2
     sum_loc: 298
     avg_loc: 5.62
-    sum_params: 124
-    avg_params: 2.33
+    sum_params: 124 - 52 = 72
+    avg_params: 1.38
     sum_maxNesting: 28
     avg_maxNesting: 0.53
     sum_cc: 80

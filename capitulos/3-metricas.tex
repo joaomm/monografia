@@ -52,33 +52,93 @@
 
 \subsection{Os Cenários}
 
-\subsubsection{Método grande}
+PROCURAR EXEMPLOS PARA OS CENARIOS!!
 
-
-ESCREVER ALGUMA COISA COMO INTRODUCAO DESSA PARTE
- 
-\subsubsection{Método grande}
-
-	Como já foi discutido nesse trabalho, métodos grandes são indesejáveis pois dificultam o entendimento e a diminuem a flexibilidade do código. Características comuns encontradas neles são: 
+\subsubsection{Método Grande}
 	
-\begin{itemize}
-	\item realização de várias atividades, quando deveria ser responsável por apenas uma;
-	\item grande número de linhas (algumas vezes, muito maior que a média do número de linhas dos métodos da sua classe). Usamos a métrica \textit{LOC} para calcular a quantidade de linhas efetivas de cada método;
-	\item muitas estruturas encadeadas. Usamos a métrica \textit{MAXNESTING} para calcular o nível máximo de estruturas encadeadas no método;
-	\item muitos fluxos diferentes. Usamos a métrica \textit{Cyclo} que mostra a complexidade ciclomática que calcula o número de caminhos linearmente independentes presentes no método avaliado;
-\end{itemize}
-
-	Quando nos deparamos com um método com alguma, ou algumas dessas características, nossos objetivos são:
+	O que motivou a formação desse cenário foi o conceito de composição de métodos, a necessidade de evitar estruturas encadeadas e a possibilidade de usar cláusula guarda.
 	
-\begin{itemize}
-	\item ESCREVER OS OBJETIVOS.....
-\end{itemize}
+	Métodos grandes tem como principal característica um elevado número de linhas. Verificamos que o método possui muitas linhas quando o valor da métrica LOC está alto. Outras características desse cenário são o elevado número de quebras condicionais de fluxo, indicada por um valor alto da CYCLO, e profundas estruturas com condicionais encadeados, indicada por um valor alto do MaxNesting. 
+	
+	Durante a refatoração desse cenário, nosso objetivo é diminuir o número de linhas (reduzir o LOC), diminuir a complexidade ciclomática (reduzir o CYCLO) e eliminar as estruturas encadeadas (reduzir o MaxNesting) no método em análise. Conseguimos atingir esses obejetivos decompondo o método grande em métodos menores. Normalmente começamos essa decomposição passando os blocos de código dos desvios de fluxo para outros lugares, pois esses são conjuntos de operações evidentemente isoladas do resto do método.
+	
+	Após a refatoração de todas as ocorrências desse cenário na classe em análise, esperamos que a sua média de linhas por método (média de LOC) e as profundidades máximas de estruturas encadeadas de cada método (o MaxNesting) abaixem. Provavelmente a complexidade ciclomática da classe (CYCLO) não sofrerá alterações. Isso acontece porque normalmente espalhamos essas quebras de fluxo em outros métodos da mesma classe, mas não as eliminamos da sua lógica. Teremos uma redução da complexidade ciclomática, quando parte do código for eliminado, ou trasferido para métodos de outras classes. Além disso, pode acontecer um aumento no número de métodos da classe, um aumento do número de métodos de outras classes ou até a criação de novas classes.
+	
+	Possuir muitas funcionalidades e parâmetros são mais duas características desse cenário. Porém, não precisamos nos preocupar com elas diretamente. Suas quantidades serão reduzidas como consequência da refatoração baseada nos outros aspéctos citados.
 	
 	
-
-
-\subsubsection{Método com muitos fluxos condicionais}
-\subsubsection{Método com muitos parâmetros}
-\subsubsection{Muita repassagem de parâmetro pela classe}
-
 	
+\subsubsection{Método com Muitos Fluxos Condicionais}
+
+	As referências que motivaram a criação desse cenário são a composição de métodos e o uso de exceções.
+	
+	Esse cenário acontece quando temos métodos que são complexos mas não são grandes. Apesar deles não terem muitas linhas de código (o valor de LOC deles não é elevado), eles poderiam ser mais simples e diretos. Sua principal característica é possuir muitas quebras condicionais de fluxo (valor alto da CYCLO). Também é comum encontrarmos longas estruturas com condicionais encadeados (valor alto de MaxNesting).
+	
+	Na refatoração desse cenário, buscamos minimizar a complexidade ciclomática (CYCLO) e a profundidade máxima de estruturas encadeadas (MaxNesting) do método. Podemos nos basear na decomposição de métodos para atingirmos nossos objetivos.
+	
+	Depois das modificações, esperamos que o a profundidade máxima de estruturas encadeadas tenha diminuído (redução do MaxNesting). Quando a refatoração for baseada no uso de exceções, como "try catch" é provável que a complexidade ciclomática do método não se altere, pois essas estruturas também são contadas como desvios de fluxo no calculo da CYCLO. Pode acontecer também um aumento no número de métodos da classe, porque, em alguns casos, o conteúdo do bloco de cada desvio condicional é deslocado para novos métodos. 
+
+
+\subsubsection{Método com Muitos Parâmetros}
+	INCLUIR OS NOMES DAS METRICAS ONDE FOR NECESSARIO
+
+	Esse é um cenário bastante simples. Sua referência base é o agrupamento de parâmetros em objetos. Ter um número elevado de parâmetros é a sua principal característica.
+	
+	Na refatoração o objetivo é minimizar o número de parâmetros recebidos. Os resultados esperados são a redução do número de parâmetros e o aumento do número de classe. A criação de classes acontece pois a solução proposta para esse problema é agrupar os parâmetros que possuem fortes relações em um único objeto.
+	
+
+
+\subsubsection{Muita Passagem de Parâmetros Pela Classe}
+	INCLUIR OS NOMES DAS METRICAS ONDE FOR NECESSARIO
+	
+	Esse é o primeiro cenário que descrevemos voltado para avaliação da classe como um todo e não de métodos separados. Suas referências são o agrupamento de parâmetros em objetos e a transformação de parâmetros em variáveis de instância.
+	
+	Podemos separar esse cenário em dois casos diferentes. O primeiro caso trata do repasse de muitos parâmetros e tem como característica uma média elevada de parâmetros repassados. Parâmetros repassados são aqueles recebidos e repassados em chamadas a operações pelo mesmo método. O segundo se preocupa com a elevada média do número de parâmetros dos métodos da classe analisada.
+	
+	Os objetivos durante a refatoração são diminuir o número de repasses de parâmetros pela classe e reduzir o número de parâmetros dos métodos. Fazemos isso tranformando os parâmetros muito repassados ou usados em muitos métodos em atributos e criando objetos com conjuntos de parâmetros relacionados.
+	
+	Os resultados esperados após as alterações são a redução da média do número de parâmetros por método e do número de passagens de parâmetro, e o aumento do número de variáveis de instância. Além disso, pode ocorrer um aumento no número de classes, caso ocorra a junção de variáveis em um único objeto, e uma redução na coesão da classe, nos casos em que algum parâmetro passava por métodos que apenas o repassavam e na verdade não o usavam diretamente.
+	
+	
+
+
+\subsubsection{Método Invejoso}
+
+	A principal referência desse cenário é a delegação de tarefa.
+	
+	Método invejoso é aquele que usa um número elevado de métodos e atributos de poucas classes não relacionadas hierarquicamente com a sua própria. Mapeando essas características em métricas de código fonte, temos nesse cenário alta ECR, que indica a taxa de chamadas a métodos e atributos externos, e baixa NCC, número de classes não relacionadas chamadas pelo método.
+	
+	A preocupação durante uma refatoração nesse contexto, deve ser a minimização do número de chamadas externas, calculado através do NEC.
+	
+	Após aplicadas as alterações esperamos uma redução do número de chamadas externas (diminuição do NEC), da taxa de chamadas externas (diminuição do ECR) e  da média do número de chamadas externas da classe (diminuição da média de NEC).
+
+
+
+\subsubsection{Método Dispersamente Acoplado}
+
+	Esse cenário foi criado com base nas referências de objeto centralizador e objeto método.
+	
+	Um método dispersamente acoplado utiliza um elevado número de atributos e métodos de várias classes não relacionadas hierarquicamente com a sua. Assim como no contexto de método invejoso, nesse cenário temos um valor alto de ECR, indicando que o uso de métodos e atributos externos é maior do que de internos. Porém, a diferença entre eles é o número de classes não relacionadas chamadas pelo método, sendo o valor do NCC alto nesse cenário e baixo para métodos invejosos.
+	
+	Na refatoração devemos focar na redução do número de chamadas externas, que é calculado através da métrica NEC.
+	
+	Os resultados esperados após essa refatoração é a redução do número de chamadas externas e da média dela na classe do método analisado (NEC e média de NEC) e a diminuição do número de classes não relacionadas chamadas (NCC). É possível que ocorra um aumento no número de classes. Isso acontecerá quando uma classe for criada para centralizar o diálogo entre as classes não relacionadas, sendo sacrificado para que as outras possam manter suas características e serem reutilizadas em outros projetos. 
+	
+	
+
+\subsubsection{Classe Pouco Coesa}
+
+	As referências desse cenário são a maximização da coesão e o princípio da responsabilidade única. Assim como o cenário que indica muita passagem de parâmetros pela classe, esse contexto analisa a classe como um todo.
+	
+	A principal característica de uma classe pouco coesa é possuir subdivisões em grupos de métodos e atributos que não se relacionam (valor de LCOM4 > 1), ou possuir métodos que alcançam em média poucos atributos da propria classe (média de NRA <<< NOA). Nessse contexto, dizemos que um método alcança um atributo se ele usa o atributo no seu próprio corpo ou de forma indireta, ou seja, através da chamada de algum método que usa o atributo direta ou indiretamente.
+	
+	Os objeticos durante a refatoração são aumentar a coesão (diminuir a LCOM4) e diminuir a diferença entre média do número de atributos alcançáveis (NRA) e o número de atributos da classe analisada (NOA). Portando, uma boa refatoração para esse cenário seria separar as subdivisões já existentes na classe analisada em classes mais coesas.
+	
+	Como resultado da refatoração desse cenário, esperamos encontrar um aumento do número de classes. Além disso, desejamos que as classes existentes não tenham subdivisões (LCOM4 = 1) e que a média do número de atributos alcançáveis por cada método seja mais próxima da quantidade de atributos da classe (média de NRA próxima de NOA).
+	
+
+
+
+
+
+

@@ -3,14 +3,14 @@
 
 A definição de um bom código não é precisa ou exata. Do mesmo modo que enfretamos dificuldades para definir o que é arte, não podemos definir um conjunto de parâmetros lógicos e mensuráveis para delimitar a diferença de qualidade entre códigos-fonte. Podemos considerar aspectos como testabilidade, eficiência, facilidade de modificação, processo pelo o qual foi desenvolvido, entre outros. Portanto, no âmbito deste trabalho, nos deteremos a trabalhar com o chamado código limpo orientado a objetos.
 
-No livro \textit{Clean Code} [REF] \cite{}, o autor entrevistou grandes especialistas em desenvolvimento de software como Ward Cunningham (inventor de \textit{Fit}, \textit{Wiki} e \textit{Programação Extrema}) e Dave Thomas (fundador da OTI e muito envolvido no Projeto Eclipse) questionando-os quanto a uma definição para código limpo. Cada um dos entrevistados elaborou respostas diferentes, destacando características subjetivas, como elegância, facilidade de alteração e simplicidade, e outras puramente técnicas, incluindo a falta de duplicações, presença de testes unitários e de aceitação e a minimização do número de entidades.
+No livro \textit{Clean Code} \citep{Martin2008}, o autor entrevistou grandes especialistas em desenvolvimento de software como Ward Cunningham (inventor de \textit{Fit}, \textit{Wiki} e \textit{Programação Extrema} \citep{Beck1999}) e Dave Thomas (fundador da OTI e muito envolvido no Projeto Eclipse) questionando-os quanto a uma definição para código limpo. Cada um dos entrevistados elaborou respostas diferentes, destacando características subjetivas, como elegância, facilidade de alteração e simplicidade, e outras puramente técnicas, incluindo a falta de duplicações, presença de testes unitários e de aceitação e a minimização do número de entidades.
 
 Em certo sentido, um código limpo está inserido em um estilo de programação que busca a proximidade para com três valores: expressividade, simplicidade e flexibilidade. Tais termos são utilizados por Kent Beck no livro Implementation Patterns [REF] que estão em conforme com a unidade de pensamento que permeia as respostas dos especialistas.
 
 \subsubsection{Expressividade}
-Dentre as definições encontradas pela pesquisa de Robert Martin acima citada, algumas afirmações se destacam quanto a expressividade. Na visão de Grady Booch [REF], um código limpo pode ser lido como um texto em prosa e deixa claro as intenções do autor através de operações e abstrações bem escolhidas. Já para Dave Thomas e Kent Beck, a medida para a expressividade está na facilidade para um desenvolvedor, que não o autor original do trecho de código, entender, modificar e utilizá-lo.
+Dentre as definições encontradas pela pesquisa de Robert Martin acima citada, algumas afirmações se destacam quanto a expressividade. Na visão de Grady Booch \citep{Booch2007}, um código limpo pode ser lido como um texto em prosa e deixa claro as intenções do autor através de operações e abstrações bem escolhidas. Já para Dave Thomas e Kent Beck, a medida para a expressividade está na facilidade para um desenvolvedor, que não o autor original do trecho de código, entender, modificar e utilizá-lo.
 
-Grande parte dessas ideias receberam influência do livro de Donald Knuth, \textit{Literate Programming} \cite{Knuth92}. A intenção era programar em linguagens naturais, como o inglês e português, e intercalar as expressões com macros e pequenos trechos de código-fonte tradicional. O arquivo poderia ser lido como um texto comum, mas no plano de fundo seriam executados os trechos correspondentes à cada uma das expressões em linguagem natural.
+Grande parte dessas ideias receberam influência do livro de Donald Knuth, \textit{Literate Programming} \citep{Knuth92}. A intenção era programar em linguagens naturais, como o inglês e português, e intercalar as expressões com macros e pequenos trechos de código-fonte tradicional. O arquivo poderia ser lido como um texto comum, mas no plano de fundo seriam executados os trechos correspondentes à cada uma das expressões em linguagem natural.
 
 Nesse sentido, um código é expressivo quando pode ser facilmente lido nas diferentes camadas de abstração, deixando detalhes de implementação ``escondidos'' em níveis mais baixos. Nas palavras de Ward Cunningham, a solução implementada faz com que a linguagem pareça ter sido feita para o problema sendo resolvido.
 
@@ -20,7 +20,7 @@ A simplicidade é um dos aspectos mais valorizados por Kent Beck. Na sua visão,
 \subsubsection{Flexibilidade}
 A flexibilidade reflete a facilidade de estender a aplicação sem fazer grandes alterações na estrutura já implementada. Não queremos ter que mudar diversos métodos e diversas classes para adicionar uma funcionalidade.
 
-O código pretendido deve se adequar e aproveitar bem das vantagens inerentes ao paradigma da orientação a objetos. Tal adequação está bem representada tanto nos princípios SOLID [REF], quanto nos princípios apresentados em Implementation Patterns [REF] abaixo.
+O código pretendido deve se adequar e aproveitar bem das vantagens inerentes ao paradigma da orientação a objetos. Tal adequação está bem representada tanto nos princípios \textit{SOLID} \citep{Martin2000}, quanto nos princípios apresentados em \textit{Implementation Patterns} abaixo.
 
 \begin{itemize}
 	\item Consequências Locais: devemos estruturar o código de forma que as alterações fiquem encapsuladas em partes do programa;
@@ -82,14 +82,14 @@ Com algum esforço, o leitor identificará que o código está buscando o caminh
 
 
 \subsubsection{Nome Único por Conceito}
-Outra recomendação dada por Robert Martin [REF + pag] se refere a unicidade de nomes por conceito. O objetivo do estilo de programação buscado é facilitar a compreensão do código e nomear um conceito de maneiras diferentes é bastante confuso, uma vez que o leitor não saberá se o contexto trata de ideias distintas. Qual seria a diferença entre \textit{get}, \textit{fetch}, \textit{retrieve}? Ou encontrar, procurar e buscar?
+Outra recomendação dada por Robert Martin \citep{Martin2008} se refere a unicidade de nomes por conceito. O objetivo do estilo de programação buscado é facilitar a compreensão do código e nomear um conceito de maneiras diferentes é bastante confuso, uma vez que o leitor não saberá se o contexto trata de ideias distintas. Qual seria a diferença entre \textit{get}, \textit{fetch}, \textit{retrieve}? Ou encontrar, procurar e buscar?
 	
 Se apenas uma nomenclatura for utilizada, o leitor não terá questões, além de poder se aproveitar da simetria de operações valorizada por Kent Beck [REF]. Não é um acaso que os métodos sobre coleções sempre possuem um mesmo conjunto de nomes como o método \textit{add} para adicionar elementos. Desta forma, as dúvidas de qual deles utilizar para cada uma das opções é minimizada, sendo mais fácil a assimilação do conceito.
 
 \subsubsection{Nomes dos Métodos}
 Na próxima sessão serão apresentados fundamentos teóricos quanto ao uso de métodos para a documentação do código através de sua expressividade. Antes, para que as técnicas exemplificadas sejam eficazes como pretendido por Robert Martin e Kent Beck, os nomes dos métodos devem ser bem escolhidos de modo que descrevem muito bem a tarefa que realizam.
 	
-O uso de nomes descritivos pode muitas vezes resultar em nomes longos e difíceis de serem digitados muitas vezes. Entretanto, a quantidade de ocasiões em que serão lidos é substancialmente maior do que a quantidade em que as escrevemos. Desta maneira, a economia de palavras deve ser descartada em favor de uma boa expressividade [REF].
+O uso de nomes descritivos pode muitas vezes resultar em nomes longos e difíceis de serem digitados muitas vezes. Entretanto, a quantidade de ocasiões em que serão lidos é substancialmente maior do que a quantidade em que as escrevemos. Desta maneira, a economia de palavras deve ser descartada em favor de uma boa expressividade \citep{Beck2007}.
 	
 A linguagem Smalltalk é constantemente elogiada quanto a sua expressividade. Grande parte dos elogios estão concentrados no uso de seletores para o envio de mensagens para os objetos. Podemos gerar métodos como \textit{criaJogoDeFutebolEntre:} SãoPaulo \textit{e:} Palmeiras \textit{naData:} data. Os elementos em itálico são o verdadeiro protótipo do método, deixando claro a ordem dos argumentos, seu papel e o que exatamente está sendo executado. Essas são as características desejadas para os nomes dos métodos formarem em conjunto uma narrativa da execução.
 
@@ -411,7 +411,7 @@ A solução ideal para o problema seria que  \textit{Copiador} dependesse de abs
 	\item Abstrações não devem depender de detalhes. Detalhes devem depender de abstrações.
 \end{itemize}
 
-Durante o desenvolvimento, frequentemente essa solução pode não ser clara ou, em um cenário oposto, os programadores tentam prever todas as partes do código que enfrentam esse problema e utilizam a Inversão de Dependência. Entretanto, nenhum dos casos pode ser o ideal para o código. Como afirmado por Kent Beck [REF] ~\citep{}, só devemos investir em flexibilidade em partes do sistema que realmente precisam de flexibilidade. Dessa forma, talvez a melhor solução não precise ser implementada em um primeiro momento, mas quando a necessidade surgir. Provavelmente, nesse instante temos que ter certeza que fizemos uma boa escolha para as próximas alterações.
+Durante o desenvolvimento, frequentemente essa solução pode não ser clara ou, em um cenário oposto, os programadores tentam prever todas as partes do código que enfrentam esse problema e utilizam a Inversão de Dependência. Entretanto, nenhum dos casos pode ser o ideal para o código. Como afirmado por Kent Beck ~\citep{Beck2007}, só devemos investir em flexibilidade em partes do sistema que realmente precisam de flexibilidade. Dessa forma, talvez a melhor solução não precise ser implementada em um primeiro momento, mas quando a necessidade surgir. Provavelmente, nesse instante temos que ter certeza que fizemos uma boa escolha para as próximas alterações.
 
 Outro fato importante a ser considerado quanto a Inversão de Dependência está no isolamento dos testes automatizados. Ao testar classes que dependem de outras classes, queremos isolar a testada de forma que os testes sejam de fato unitários. Se a classe em teste depender de abstrações, o trabalho será simplificado. No exemplo da classe \textit{Copiador}, poderíamos criar um \textit{EscritorTeste} e um \textit{LeitorTeste} que tivesse operações convenientes para que os testes de \textit{Copiador} fosse isolados.
 

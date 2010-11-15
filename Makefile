@@ -15,7 +15,10 @@ open_pdf: clean tcc.pdf
 	open tcc.pdf
 
 tcc.pdf: tcc.tex 
-	$(PDFLATEX) tcc.tex 
+	$(PDFLATEX) tcc.tex
+	$(BIBTEX) tcc 
+	$(PDFLATEX) tcc.tex
+	$(PDFLATEX) tcc.tex
 	$(PDFLATEX) tcc.tex
 
 clean:

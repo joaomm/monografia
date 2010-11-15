@@ -119,20 +119,27 @@ framexrightmargin=5pt
 % Resumo
 \chapter*{Resumo}
 
-%Ao produzir software, os desenvolvedores não podem ficar satisfeitos com um código que simplesmente faz o trabalho que deve ser feito. É preciso considerar que será necessário manter a aplicação, fazer mudanças à medida em que os requisitos se alterarem e que outros terão que usar e aprimorar o código.
-%
+Ao produzir software, os desenvolvedores não podem ficar satisfeitos com um código que simplesmente faz o trabalho que deve ser feito. É preciso 
+considerar que será necessário manter a aplicação, fazer mudanças à medida em que os requisitos se alterarem e que outros terão que usar e aprimorar o 
+código.
 
-%Diante disso, este trabalho aborda ideias e conceitos elaborados por especialistas no desenvolvimento de software orientado a objetos, buscando um maior entendimento de boas soluções, práticas e cuidados quanto ao código-fonte. Segundo Robert Martin, um programador deveria sempre fazer com que seu código seja uma composição de instruções e abstrações que possam ser facilmente entendidas, uma vez que gastamos a maior parte do tempo lendo-o para incluir funcionalidades e corrigir falhas.
-%
+Diante disso, este trabalho aborda ideias e conceitos elaborados por especialistas no desenvolvimento de software
+orientado a objetos, buscando um maior entendimento de boas soluções, práticas e cuidados quanto ao código-fonte.
+Segundo Robert Martin, um programador deveria sempre fazer com que seu código seja uma composição de instruções e
+abstrações que possam ser facilmente entendidas, uma vez que gastamos a maior parte do tempo lendo-o para incluir
+funcionalidades e corrigir falhas.
 
-%Os seguintes livros são base para os nossos estudos: Clean Code de Robert Martin e Implementation Patterns de Kent Beck. Todos possuem diversos aspectos que ajudam a identificar o que é um código limpo como escolhas de bons nomes, falta de duplicações, organização e simplicidade. Esta monografia conterá uma reunião de todos esses, explicitando sua relevância e aplicação.
-%
+Os seguintes livros são base para os nossos estudos: Clean Code de Robert Martin e Implementation Patterns de Kent Beck.
+Todos possuem diversos aspectos que ajudam a identificar o que é um código limpo como escolhas de bons nomes, ausência de
+duplicações, organização e simplicidade. Esta monografia conterá uma reunião de todos esses, explicitando sua relevância e aplicação.
 
-%Além de conter o levantamento teórico acima citado, esse trabalho também apresentará um mapeamento entre os conceitos encontrados na literatura em uma avaliação objetiva através de métricas de código-fonte. A ideia é possibilitar aos programadores fazer uma avaliação do software usando dados que espelham o que os especialistas recomendam, tornando possível um acompanhamento do projeto.
-%
+Além disso, essa monografia apresenta um mapeamento entre um conjunto de métricas de código-fonte e os conceitos acima citados,
+de forma a facilitar a detecção de trechos de código que poderiam receber melhorias. Para que as métricas possam ser mais 
+facilmente incorporadas no cotidiano dos programadores, apresentamos uma maneira de interpretar os valores das métricas através de cenários
+problemáticos e suas possíveis melhorias.
 
-%A grande vantagem de usar métricas de código-fonte é que elas podem ser bons indicativos para os critérios subjetivos, além de serem extraídas computacionalmente com ferramentas capazes de interpretar o código-fonte e calculá-las. Diante disso, apresentaremos o Projeto Mezuro que contém ferramentas com intuito de automatizar a extração dessas métricas.
-
+Por fim, um estudo de caso sobre a ferramenta Analizo permitiu uma validação dos conceitos apresentados ao longo
+do trabalho, além de contribuir diretamente com melhorias para o código da aplicação.
 
 % ---------------------------------------------------------------------------- %
 \mainmatter
@@ -147,6 +154,7 @@ framexrightmargin=5pt
 \input capitulos/2-codigolimpo
 \input capitulos/3-metricas
 \input capitulos/4-estudodecaso
+\input capitulos/5-conclusao
 
 % ---------------------------------------------------------------------------- %
 % Bibliografia

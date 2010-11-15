@@ -12,7 +12,7 @@ no ambiente produção e receber ``feedback'' constante.
 
 Em ambos os casos, não há como ignorar o fato de que o código-fonte da aplicação será
 desenvolvido gradativamente e diferentes programadores farão alterações e extensões
-continuamente. Nesse contexto, as funcionalidades são adicionadas e as falhas sanadas.
+continuamente. Nesse contexto, novas funcionalidades são adicionadas e falhas sanadas.
 
 Uma situação comum durante o desenvolvimento, é um programador lidar com um trecho que
 ainda não teve contato para fazer alterações. Nessa tarefa, por exemplo, (i) lida com métodos extensos e classes
@@ -20,43 +20,45 @@ com muitas linhas de código que se comunicam com diversos objetos; (ii) encontr
 desatualizados relacionados a uma variável com nome abreviado e sem significado, e (iii) se depara com métodos que
 recebem valores booleanos e possuem estruturas encadeadas complexas com muitas operações duplicadas.
 
-Depois um longo período de leitura, o desenvolvedor encontra o trecho de lógica em que deve 
+Depois de um longo período de leitura, o desenvolvedor encontra o trecho de lógica em que deve 
 fazer a mudança. A alteração freqüentemente consiste na modificação de poucas linhas e o 
-desenvolvedor considera seu trabalho como terminado, sem ter feito melhorias no código complexo com o qual teve dificuldades.
+desenvolvedor considera seu trabalho como terminado, sem ter feito melhorias no código confuso
+com o qual teve dificuldades.
 
 O quadro exemplificado ilustra uma circustância com aspectos a serem observados.
 Primeiramente, há uma diferença significativa na proporção entre linhas lidas e as inseridas.
-Para cada uma das poucas linhas que escreveu, o desenvolvedor teve que compreender muitas
+Para cada uma das poucas linhas que escreveu, o desenvolvedor teve que compreender diversas
 outras \citep{Beck2007}. Além disso, não houve melhorias na clareza ou flexibilidade do código, fazendo 
 com que os responsáveis pela próxima alteração, seja o próprio desenvolvedor ou o seguinte,
 tenham que enfrentar as mesmas dificuldades.
 
 Tendo essa situação em vista, nesse trabalho apresentamos um estilo de programação baseado
 no paradigma da Orientação a Objetos que busca o que denominamos ``Código Limpo'', concebido e aplicado por renomados desenvolvedores de software
-como Robert C. Martin \citep{Martin2008} e Kent Beck \citep{Beck2007}. Baseado em testes e decisões técnicas que visam a clareza, flexibilidade
+como Robert C. Martin \citep{Martin2008} e Kent Beck \citep{Beck2007}. Fundamentado em testes e decisões técnicas que visam a clareza, flexibilidade
 e simplicidade do código-fonte, um código limpo pode ter um impacto importante no desenvolvimento 
 de software, aumentando a produtividade e diminuindo os custos de manutenção.
 
-Para promover o teste dessas hipóteses, ao longo desta monografia, também abordaremos uma maneira objetiva fazer um mapeamento objetivo 
-entre os conceitos relaciados a um código limpo e métricas de código-fonte. Em resumo, além de poderem ser
-automatizadas computacionalmente, os valores das métricas podem dar uma base de comparação entre
-as versões de um mesmo software e destacar trechos que poderiam sofrer alterações relacionadas à ``limpeza do código''.
+Ao longo desta monografia também apresentaremos uma maneira de utilizar métricas de código-fonte para auxiliar no desenvolvimento
+de um código limpo. Se beneficiando da automação da coleta de métricas e de uma maneira objetiva de interpretar seus valores,
+os desenvolvedores poderão acompanhar seu trabalho e detectar cenários problemáticos.
 
 \section{Objetivos}
 \label{sec:objetivo}
 
-O primeiro objetivo deste trabalho é apresentar um levantamento teórico de conceitos relacionados ao que denominamos de 
+O primeiro objetivo deste trabalho é apresentar um levantamento teórico de conceitos relacionados ao que denominamos
 código limpo, buscando expor um conjunto de técnicas e boas decisões que possam ser adotadas ao longo do 
 desenvolvimento para auxiliar a criação de um código mais expressivo, simples e flexível. Essa apresentação permite um 
 contato com recomendações e preocupações de desenvolvedores de software reconhecidos internacionalmente ao trabalharem com 
 o paradigma da Orientação a Objetos.
 
 Além disso, também temos como objetivo o mapeamento entre um grupo de métricas de código-fonte e os conceitos acima 
-citados, de forma a facilitar a detecção de trechos de código que poderiam receber refatorações e melhorias. Para que as 
+citados, de forma a facilitar a detecção de trechos de código que poderiam receber melhorias. Para que as 
 métricas possam ser mais facilmente incorporadas no cotidiano dos programadores, também temos como objetivo a apresentação 
-de uma maneira de interpretar os valores das métricas.
+de uma maneira de interpretar os valores das métricas através de cenários problemáticos que ocorrem frequentemente durante
+o desenvolvimento.
 
-Deste modo, queremos apresentar uma maneira de utilizar o poder da automatização das métricas associado a interpretação dos valores calculados, facilitando assim a aproximação para com os conceitos relacionados com código limpo.
+Deste modo, queremos apresentar uma maneira de utilizar o poder da automatização das métricas associado a interpretação dos valores calculados, 
+facilitando assim a aproximação para com os conceitos relacionados com código limpo.
 
 \section{Desenvolvimento}
 \label{sec:desenvolvimento}
@@ -72,12 +74,19 @@ somente ao ponto de vista teórico. Por fim, trabalhamos sobre uma implementaç�
 custo mínimos, buscando encontrar melhorias que ilustrassem a aplicação dos tópicos estudados.
 
 Para elaborar o mapeamento das métricas de código-fonte, utilizamos grande parte do conhecimento adquirido ao longo do desenvolvimento da 
-ferramenta Analizo \cite{analizo2010} \cite{analizo_homepage}, capaz de extrair uma grande variedade de métricas nas linguagens C++, C e Java. Além disso, trabalhamos sobre o 
-livro ``Object Oriented Metrics In Practice'' \cite{Lanza06} de Michele Lanza e Radu Marinescu, que apresenta uma maneira bastante sistemica de avaliar o design de aplicações orientadas a objetos. 
+ferramenta Analizo \cite{analizo2010} \cite{analizo_homepage}, capaz de extrair uma grande variedade de métricas nas linguagens C++, C e Java.
+Além disso, trabalhamos sobre o livro ``Object Oriented Metrics In Practice'' \cite{Lanza06} de Michele Lanza e Radu Marinescu, que apresenta uma 
+maneira bastante sistêmica de avaliar o design de aplicações orientadas a objetos. 
 
-A união destas referências tornou possível a seleção das métricas trabalhadas. No entanto, desde o desenvolvimento e estudo sobre a Analizo, nosso grupo de pesquisa enfrentou dificuldades com a compreensão dos valores das métricas, o que nos motivou a focar no entendimento dos mesmos. Para tal, trabalhamos sobre pequenos exemplos de código utilizando o seguinte ciclo: (a) cálculo das métricas; (b) análise do código para a encontrar uma melhoria que pudesse aproximá-lo de um código limpo e observação dos valores das métricas para encontrar relações com a melhoria; (c) implementação da melhoria; (d) recálculo das métricas e análise das alterações.
+A união destas referências tornou possível a seleção das métricas trabalhadas. No entanto, desde o desenvolvimento e estudo sobre a Analizo, nosso grupo 
+de pesquisa enfrentou dificuldades com a compreensão dos valores das métricas, o que nos motivou a focar no entendimento dos mesmos. Para tal, 
+trabalhamos sobre pequenos exemplos de código utilizando o seguinte ciclo: (a) cálculo das métricas; (b) análise do código para a encontrar uma melhoria 
+que pudesse aproximá-lo de um código limpo e observação dos valores das métricas para encontrar relações com a melhoria; (c) implementação da melhoria; 
+(d) recálculo das métricas e análise das alterações.
 
-Uma vez com a seleção das métricas e um bom entendimento quanto a um código limpo, trabalhamos sobre o código da ferramenta Analizo para implementar melhorias e tornar seu código mais limpo. Desta forma, validamos os conceitos utilizados ao longo da monografia para contribuir com o desenvolvimento de um software livre.
+Uma vez com a seleção das métricas e um bom entendimento quanto a um código limpo, trabalhamos sobre o código da ferramenta Analizo para implementar 
+melhorias e tornar seu código mais limpo. Desta forma, validamos os conceitos utilizados ao longo da monografia para contribuir com o desenvolvimento de 
+um software livre.
 
 %% ------------------------------------------------------------------------- %%
 \section{Organização do Trabalho}
@@ -91,7 +100,7 @@ O foco será nos livros \textit{Clean Code} de Robert Martin [REF] e \textit{Imp
 Patterns} de Kent Beck [REF] e serão apresentados tantos conceitos teóricos
 quanto técnicas conhecidas para a criação de um código expressivo, simples e flexível.
 
-O capítulo seguinte, Capítulo~\ref{chap:metricas}, mostra o conceito das métricas de 
+O capítulo seguinte, Capítulo~\ref{chap:mapeamento}, mostra o conceito das métricas de 
 código-fonte e como podemos utilizá-las para extrair características importantes do
 código. Além disso, apresentaremos o mapeamento objetivo entre os aspectos levantados
 no capítulo anterior e as métricas para auxiliar os programadores.
@@ -100,4 +109,4 @@ No Capítulo~\ref{chap:estudodecaso} apresentamos o estudo de caso feito sobre a
 validar os conceitos apresentados ao longo do trabalho através da implementação de melhorias que pudessem 
 tornar seu código limpo.
 
-Por fim, as conclusões e possibilidades de trabalhos futuros serão trabalhos no Capítulo~\ref{chap:conclusao}
+Por fim, as conclusões e possibilidades de trabalhos futuros serão expostos no Capítulo~\ref{chap:conclusao}.

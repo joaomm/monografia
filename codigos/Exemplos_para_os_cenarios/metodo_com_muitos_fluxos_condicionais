@@ -1,0 +1,12 @@
+def deletaPaginasETodasAsReferencias(pagina):
+	if(deletaPagina(pagina) == E_OK):
+		if(registro.deletaReferencia(pagina.nome) == E_OK):
+			if(configChaves.deletaChave(pagina.nome.fazChave()) == E_OK):
+				logger.log("pagina deletada.")
+			else:
+				logger.log("confgChave nao foi deletado."")
+		else:
+			logger.log("deletaReferencia do registro falhou.")
+	else:
+		logger.log("falha ao deletar a pagina")
+		return E_ERROR

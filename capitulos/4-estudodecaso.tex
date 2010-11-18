@@ -11,7 +11,7 @@ a sua ``limpeza''.
 
 
 \section{Analizo}
-A \textit{Analizo} [REF artigo] é um conjunto de ferramentas livres para análise e visualização
+A \textit{Analizo} \citep{analizo2010} é um conjunto de ferramentas livres para análise e visualização
 do código-fonte. Ela suporta a extração e cálculo de um número significativo de métricas
 de código-fonte, além da geração de grafos de dependência e o acompanhamento da evolução do software.
 Seu diferencial em relação aos demais aplicativos do mesmo domínio é o suporte multi-linguagem,
@@ -24,7 +24,7 @@ e Antônio Terceiro da Universidade Federal da Bahia.
 
 Durante o processo, o esforço foi dirigido na implementação de métricas para o projeto
 de forma a possibilitar as pesquisas relacionadas a qualidade de 
-projetos de software livre através do cálculo de métricas de código-fonte [REF]. Essa
+projetos de software livre através do cálculo de métricas de código-fonte \citep{meirelles:sbqs09}, \citep{carlos_morais_2009}. Essa
 realidade fez com que muito código fosse adicionado sem significativa preocupação quanto
 à limpeza do código. Assim sendo, esse estudo de caso se baseia na possibilidade de promover
 melhorias para o código de forma a deixar seu código mais limpo.
@@ -34,7 +34,7 @@ uma quantidade significativa de métricas de código-fonte como as apresentadas 
 nesse trabalho, LCOM4 e NOM, e outras como Número de Atributos Públicos e o Acoplamento
 entre Objetos (CBO - \textit{Coupling Between Objects} [REF]).
 
-Essa ferramenta é inteiramente escrita na linguagem \textit{Perl} [REF], seguindo o paradigma da
+Essa ferramenta é inteiramente escrita na linguagem \textit{Perl}, seguindo o paradigma da
 Orientação a Objetos. Como não há aplicativo capaz de calcular as métricas selecionadas
 sobre essa linguagem, todos os valores foram obtidos manualmente ao longo do desenvolvimento.
 
@@ -295,7 +295,7 @@ Além disso, a maximização da coesão também tem grande parte nesse papel. A 
 vai sendo limpo, as responsabilidades começam a ficar mais claras. Ao quebrar as classes,
 semelhanças nas abstrações ficam evidentes. Por exemplo, classes como \textit{AverageCycloComplexity}
 e \textit{AverageMethodLinesOfCode}, poderiam ser refatoradas para implementar o padrão de projeto
-\textit{Template Method} [REF GOF] através de uma herança com uma nova classe.
+\textit{Template Method} \citep{GOF95} através de uma herança com uma nova classe.
 
 Um dos aspectos pouco comentados ao longo desse estudo de caso foi o acoplamento entre as classes.
 Como trabalhamos sobre uma classe, poucas considerações foram feitas acerca desse conceito. No

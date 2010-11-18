@@ -1,0 +1,7 @@
+def deletaPaginasETodasAsReferencias(pagina):
+	try:
+		deletaPagina(pagina)
+		registro.deletaReferencia(pagina.nome)
+		configChaves.deletaChave(pagina.nome.fazChave())
+	catch(Exception e):
+		logger.log(e.pegaMensagem())

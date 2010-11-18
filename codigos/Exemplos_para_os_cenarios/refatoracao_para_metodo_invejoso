@@ -1,0 +1,11 @@
+classe Empregado:
+	salarioDoMes():
+		return 0 if naoTrabalhouEsseMes()
+		return salarioPorHora * horasTrabalhadas + bonus
+
+classe CalculaReceita:
+	calculaTotalDeSalarios():
+		total = 0
+		for empregado in empregados:
+			total += empregado.salarioDoMes()
+		return total

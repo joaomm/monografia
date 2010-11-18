@@ -5,7 +5,7 @@ A definição de um bom código não é precisa ou exata. Do mesmo modo que enfr
 
 No livro \textit{Clean Code} \citep{Martin2008}, o autor entrevistou grandes especialistas em desenvolvimento de software como Ward Cunningham (inventor de \textit{Fit}, \textit{Wiki} e \textit{Programação Extrema} \citep{Beck1999}) e Dave Thomas (fundador da OTI e muito envolvido no Projeto Eclipse) questionando-os quanto a uma definição para código limpo. Cada um dos entrevistados elaborou respostas diferentes, destacando características subjetivas, como elegância, facilidade de alteração e simplicidade, e outras puramente técnicas, incluindo a falta de duplicações, presença de testes unitários e de aceitação e a minimização do número de entidades.
 
-Em certo sentido, um código limpo está inserido em um estilo de programação que busca a proximidade para com três valores: expressividade, simplicidade e flexibilidade. Tais termos são utilizados por Kent Beck no livro Implementation Patterns [REF] que estão em conforme com a unidade de pensamento que permeia as respostas dos especialistas.
+Em certo sentido, um código limpo está inserido em um estilo de programação que busca a proximidade para com três valores: expressividade, simplicidade e flexibilidade. Tais termos são utilizados por Kent Beck no livro Implementation Patterns \citep{Beck2007} que estão em conforme com a unidade de pensamento que permeia as respostas dos especialistas.
 
 \subsubsection{Expressividade}
 Dentre as definições encontradas pela pesquisa de Robert Martin acima citada, algumas afirmações se destacam quanto a expressividade. Na visão de Grady Booch \citep{Booch2007}, um código limpo pode ser lido como um texto em prosa e deixa claro as intenções do autor através de operações e abstrações bem escolhidas. Já para Dave Thomas e Kent Beck, a medida para a expressividade está na facilidade para um desenvolvedor, que não o autor original do trecho de código, entender, modificar e utilizá-lo.
@@ -84,7 +84,7 @@ Com algum esforço, o leitor identificará que o código está buscando o caminh
 \subsubsection{Nome Único por Conceito}
 Outra recomendação dada por Robert Martin \citep{Martin2008} se refere a unicidade de nomes por conceito. O objetivo do estilo de programação buscado é facilitar a compreensão do código e nomear um conceito de maneiras diferentes é bastante confuso, uma vez que o leitor não saberá se o contexto trata de ideias distintas. Qual seria a diferença entre \textit{get}, \textit{fetch}, \textit{retrieve}? Ou encontrar, procurar e buscar?
 	
-Se apenas uma nomenclatura for utilizada, o leitor não terá questões, além de poder se aproveitar da simetria de operações valorizada por Kent Beck [REF]. Não é um acaso que os métodos sobre coleções sempre possuem um mesmo conjunto de nomes como o método \textit{add} para adicionar elementos. Desta forma, as dúvidas de qual deles utilizar para cada uma das opções é minimizada, sendo mais fácil a assimilação do conceito.
+Se apenas uma nomenclatura for utilizada, o leitor não terá questões, além de poder se aproveitar da simetria de operações valorizada por Kent Beck \citep{Beck2007}. Não é um acaso que os métodos sobre coleções sempre possuem um mesmo conjunto de nomes como o método \textit{add} para adicionar elementos. Desta forma, as dúvidas de qual deles utilizar para cada uma das opções é minimizada, sendo mais fácil a assimilação do conceito.
 
 \subsubsection{Nomes dos Métodos}
 Na próxima sessão serão apresentados fundamentos teóricos quanto ao uso de métodos para a documentação do código através de sua expressividade. Antes, para que as técnicas exemplificadas sejam eficazes como pretendido por Robert Martin e Kent Beck, os nomes dos métodos devem ser bem escolhidos de modo que descrevem muito bem a tarefa que realizam.
@@ -111,7 +111,7 @@ Isso significa que para criar uma lista de números primos usando o algoritmo do
 	
 Outra questão teórica importante e enfatizada por Kent Beck são os níveis de abstrações e a simetria de operações dentro de um método. Um incremento de uma variável de instância está fundamentalmente em outro nível de abstração do que a chamada de um método. Não queremos um método com essas duas instruções. Isso possivelmente faz com que o leitor não saiba se uma operação é um detalhe de implementação ou um conceito importante dentro da lógica, além de abrir as portas para mais ocorrências deste mesmo tipo, aumentando a complexidade do código a cada alteração.
 	
-Pensando em outros fatores que podem levar a dificuldades para a leitura do nosso código, sabemos que estamos trabalhando em um código limpo quando cada rotina que lemos faz o que esperávamos [REF p/ Ward Cunningham]. No contexto de métodos, como seus nomes são a documentação da tarefa que realizam, não queremos que, ao olhar o corpo de um deles, nos deparemos com uma operação que não imaginávamos. Ao criar um método, temos que considerar que os leitores não terão a mesma linha de pensamento que temos naquele momento e, diante disso, temos que ter uma crescente preocupação com todas as nossas decisões~\citep{}.
+Pensando em outros fatores que podem levar a dificuldades para a leitura do nosso código, sabemos que estamos trabalhando em um código limpo quando cada rotina que lemos faz o que esperávamos \citep{Martin2008}. No contexto de métodos, como seus nomes são a documentação da tarefa que realizam, não queremos que, ao olhar o corpo de um deles, nos deparemos com uma operação que não imaginávamos. Ao criar um método, temos que considerar que os leitores não terão a mesma linha de pensamento que temos naquele momento e, diante disso, temos que ter uma crescente preocupação com todas as nossas decisões.
 	
 O último fundamento teórico quanto aos métodos também diz respeito ao programa como um todo. Queremos ter um fluxo normal bem estabelecido, deixando-o simples e o tratamento de erros separado. Em outras palavras, não queremos que o código fiquei cheio de verificações de erro misturados com a lógica sem erros.
 	
@@ -150,7 +150,7 @@ Em outro exemplo, criamos um método chamado \textit{destaca()} para dar o conte
 
 Considerando a região de código que chama \textit{destaca()}, as melhorias são diversas com essa alteração. Se a operação fosse simplesmente colocada sem nenhum comentário, provavelmente o leitor se perguntaria porque a cor de fundo da palavra está sendo alterada naquele contexto. O comentário seria algo como “destacar a palavra no texto”, o que se torna obsoleto com o método explicativo. 
 
-Por fim, ainda há formas mais implícitas de utilizar métodos explicativos. Quando utilizamos o padrão de projeto Wrapper[REF] para criar uma classe que abstrai uma coleção de elementos, estamos de uma maneira criando uma interface cujos métodos façam mais sentido para o domínio de aplicação trabalhado.
+Por fim, ainda há formas mais implícitas de utilizar métodos explicativos. Quando utilizamos o padrão de projeto Wrapper \citep{GOF95} para criar uma classe que abstrai uma coleção de elementos, estamos de uma maneira criando uma interface cujos métodos façam mais sentido para o domínio de aplicação trabalhado.
 
 \subsubsection{Métodos como Condicionais}
 \label{metodos:condicionais}
@@ -237,9 +237,9 @@ A questão que surge após a afirmação que as classes deveriam ser pequenas é
 	
 A forma de medir o tamanho de uma classe proposto por Robert Martin está atrelado com a quantidade de responsabilidades que a mesma possui. Podemos pensar em uma responsabilidade como uma razão para mudar. No exemplo acima, para que o sistema seja adaptado para utilizar um novo padrão HTML, é necessário alterar a classe \textit{Controlador}. O mesmo teria que ser feito caso um novo tipo de entrada do usuário fosse concebido. Dessa forma, dizemos que o \textit{Controlador} tem pelo menos duas responsabilidades.
 	
-Dentro da ideia de código limpo, queremos que nossas classes sigam o Princípio da Responsabilidade Única (\textit{Single Responsibility Principle}) que, de maneira geral, afirma: as classes deveriam ter uma única responsabilidade, ou seja, ter uma única razão para mudar. Seguindo o princípio SOLID acima exposto por Robert Martin em \textit{Agile Software Development, Principles, Patterns, and Practices} [REF], queremos evitar classes como o \textit{Controlador}.
+Dentro da ideia de código limpo, queremos que nossas classes sigam o Princípio da Responsabilidade Única (\textit{Single Responsibility Principle}) que, de maneira geral, afirma: as classes deveriam ter uma única responsabilidade, ou seja, ter uma única razão para mudar. Seguindo o princípio SOLID acima exposto por Robert Martin em \textit{Agile Software Development, Principles, Patterns, and Practices} \citep{Martin2002}, queremos evitar classes como o \textit{Controlador}.
 
-É importante destacar que esse princípio não é uma contraposição com as ideias empregadas na concepção da arquitetura através dos Cartões CRC (\textbf{C}lasse, \textbf{R}esponsabilidade e \textbf{C}olaboração) [REF] ou do chamado Design Dirigido a Responsabilidades [REF]. Nessas duas abordagens criamos o design da aplicação considerando as classes envolvidas, suas colaborações e responsabilidades. O Princípio da Responsabilidade Única é mais atrelado à implementação, enquanto que nos cartões CRC consideramos principalmente as abstrações. Dessa forma, podemos conceber que um software precisa de uma abstração \textit{Gerente} representada por uma classe, mesmo que na implementação suas responsabilidades sejam obtidas através de delegações para classes pequenas como Objetos Métodos [REF].
+É importante destacar que esse princípio não é uma contraposição com as ideias empregadas na concepção da arquitetura através dos Cartões CRC (\textbf{C}lasse, \textbf{R}esponsabilidade e \textbf{C}olaboração \citep{crc89})  ou do chamado Design Dirigido a Responsabilidades \citep{Wirfs-Brock03}. Nessas duas abordagens criamos o design da aplicação considerando as classes envolvidas, suas colaborações e responsabilidades. O Princípio da Responsabilidade Única é mais atrelado à implementação, enquanto que nos cartões CRC consideramos principalmente as abstrações. Dessa forma, podemos conceber que um software precisa de uma abstração \textit{Gerente} representada por uma classe, mesmo que na implementação suas responsabilidades sejam obtidas através de delegações para classes pequenas como Objetos Métodos.
 
 Abaixo está um exemplo adaptado do livro \textit{Agile Software Development, Principles, Patterns, and
 Practices}. A classe Modem faz bastante sentido do ponto de vista abstrato: é responsável pela comunicação entre máquinas estabelecendo a conexão, enviando e recebendo dados e fechando a conexão.
@@ -286,7 +286,7 @@ O método \textit{setaConteudo} recebe um objeto \textit{Conteudo} e passa a ser
 De um ponto de vista técnico, qual crítica poderia ser feita sobre a classe \textit{Controlador}? 
 A classe \textit{Controlador} não é coesa. Se tal classe tem a responsabilidade de lidar com a criação de HTML, logicamente terá um conjunto de variáveis de instância e métodos que as utilizam capazes de executar o trabalho em conjunto. O mesmo pode ser dito para o processamento da entrada do usuário. Um leitor que precisa entender apenas um desses contextos se deparará com inúmeros detalhes de implementação tanto da responsabilidade que deseja trabalhar, quanto da que não está interessado.
 	
-Quando a coesão de uma classe é alta, seus métodos e variáveis são codependentes e se unem como uma unidade lógica [REF].De maneira mais prática, uma classe é totalmente coesa quando todos os seus métodos usam todas as variáveis de instância.
+Quando a coesão de uma classe é alta, seus métodos e variáveis são codependentes e se unem como uma unidade lógica \citep{Beck2007}.De maneira mais prática, uma classe é totalmente coesa quando todos os seus métodos usam todas as variáveis de instância.
 	
 Dessa forma, a coesão da classe está intimamente relacionada com as responsabilidades que assume. Se uma classe tem muitas 
 responsabilidades, provavelmente terá um conjunto de métodos que pouco se comunicam e usam poucas variáveis em comum, tendo baixa 
@@ -365,7 +365,7 @@ O exemplo abaixo não viola a Lei de Demeter, já que faz chamadas somente a mé
 Demeter}]{codigos/envy}
 
 O método \textit{salario} possui um grande acoplamento com a classe \textit{Empregado} ao utilizar diversos de seus métodos, de forma 
-que ``inveja'' os seus dados [REF Feature Envy e Refactoring].
+que ``inveja'' os seus dados \citep{Fowler99}.
 
 \subsubsection{Delegação de Tarefa}
 Para minimizar o acoplamento gerado pelos ``train wrecks'' e métodos ``invejosos'', temos que considerar uma mudança nas 
@@ -404,7 +404,7 @@ O objetivo da minimização do acoplamento entre nossas classes é facilitar as 
 No exemplo utilizado por Robert Martin em sua coluna para a revista \textit{The C++ Report}
 sobre o assunto discutido, temos uma classe  \textit{Copiador} que utiliza um \textit{LeitorDeTeclado} para coletar inteiros digitados pelo usuário e um  \textit{EscritorDeArquivo} para escrever o dado em um arquivo. Quais alterações precisam ser feitas  para adicionar a funcionalidade de ler os inteiros de um arquivo? Será necessário criar mudanças na classe  \textit{Copiador} para que possa receber dados coletados de dois tipos diferentes de objetos que lidam com a entrada de dados. Tal alteração só se torna necessária devido a dependência que Copiador tem com classes como \textit{EscritorDeArquivos} e \textit{LeitorDoTeclado}.
 	
-A solução ideal para o problema seria que  \textit{Copiador} dependesse de abstrações como \textit{Leitor} e  \textit{Escritor} que tivesse uma interface definida de forma que subclasses como  \textit{LeitorDeTeclado} ou  \textit{LeitorDeArquivo} pudessem ser utilizadas polimorficamente. Todos os tipos de  \textit{Leitor} teriam que seguir uma abstração ao implementar o método  \textit{lerInteiro()} e  \textit{Copiador} só precisaria depender dessa interface. Essa mudança seguiria o Princípio da Inversão de Dependência (\textit{Dependency Inversion Principle}) [REF], que diz:
+A solução ideal para o problema seria que  \textit{Copiador} dependesse de abstrações como \textit{Leitor} e  \textit{Escritor} que tivesse uma interface definida de forma que subclasses como  \textit{LeitorDeTeclado} ou  \textit{LeitorDeArquivo} pudessem ser utilizadas polimorficamente. Todos os tipos de  \textit{Leitor} teriam que seguir uma abstração ao implementar o método  \textit{lerInteiro()} e  \textit{Copiador} só precisaria depender dessa interface. Essa mudança seguiria o Princípio da Inversão de Dependência (\textit{Dependency Inversion Principle} \citep{Martin97c}) , que diz:
 	
 \begin{itemize}
  	\item Classes de alto nível não devem depender de classes de baixo nível. Ambas deveriam depender de abstrações.
@@ -426,7 +426,7 @@ alterações ainda mais poderosas.
 Para exemplificar a união dos conceitos apresentados ao longo capítulo, apresentaremos a seguir um 
 conjunto de melhorias para o código de uma classe \textit{Digrafo} que implementa uma lista de adjacência para 
 representar as arestas de um grafo dirigido, além de calcular a árvore geradora de custo mínimo através do algoritmo de 
-Dijkstra [REF] no método \textit{custosAPartirDoVertice}.
+Dijkstra no método \textit{custosAPartirDoVertice}.
 
 Inicialmente, a classe se comunica com duas classes: \textit{Aresta} representa uma ligação de um vértice com outro e o 
 custo desta ligação, enquanto que \textit{FilaDePrioridade} representa uma uma fila com prioridades com as operações 

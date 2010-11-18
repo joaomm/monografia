@@ -1,3 +1,63 @@
 \chapter{Conclusão}
 \label{chap:conclusao}
 
+Ao longo desta monografia, apresentamos um conjunto de conceitos relacionados a um código limpo e
+seu mapeamento em métricas de código-fonte com o objetivo de prover aos desenvolvedores uma maneira
+de pensarem em melhorias para os seus códigos.
+
+Considerando o desenvolvimento do estudo de caso, podemos notar que o mapeamento expressou de forma
+bastante fiel aspectos do código nos quais poderíamos fazer melhorias.  Entre os resultados interessantes
+do mapeamento, podemos destacar uma similariedade na sequência da detecção dos cenários e suas respectivas
+melhorias, fato observado tanto no estudo como nos exemplos expostos nos demais capítulos do trabalho.
+
+Em um primeiro momento, frequentemente detectamos a presença dos cenários Método Grande e Métodos com Muitos 
+Fluxos Condicionais, expressos pelo LOC, CYCLO e MAXNESTING dos métodos. Seguindo os conceitos de código limpo,
+diante deste contexto, uma melhoria possível é utilizar a Composição de Métodos buscando Evitar as Estruturas
+Encadeadas.
+
+A medida em que os métodos são decompostos, podemos nos questionar quanto ao limiar entre um método grande e o buscado.
+Em outras palavras, a questão é como um desenvolvedor pode assumir que os resultados da Composição de Métodos
+feita até o dado instante obteve métodos pequenos o suficiente. Nos parece que a resposta de tal questão só pode
+ser feita através de um bom entendimento dos conceitos relacionados a um código limpo. Ao longo deste trabalho,
+não definimos um valor para as métricas LOC, CYCLO e MAXNESTING capaz de expressar esse limiar, de forma que os
+métodos estejam todos realizando apenas uma tarefa.
+
+O segundo estado recorrente durante as alterações é a detecção de Métodos com Muitos Parâmetros e Muita Passagem
+de Parâmetros pela Classe. Para que as tarefas possam ser divididas pelos métodos criados na Composição de Métodos,
+muitos parâmetros são necessários e frequentemente encontramos métodos que simplesmente repassam os mesmos.
+Para minimizar tais cenários, podemos promover alguns parâmetros para variáveis de instância.
+
+Nesse contexto, podemos nos questionar quanto a quais parâmetros promover e qual é o limiar das métricas NRP e NP
+em que podemos tomar a alteração por acabada. Novamente a resposta não está nas métricas, mas nos conceitos.
+Um parâmetros só pode ser promovido se, de fato, faz parte do estado da classe, conceito que não encontramos
+uma maneira de automatizar.
+
+Seguindo os passos frequentes ao longo das alterações, a partir do momento em que novas variáveis de instância
+são adicionadas, frequentemente detectamos a queda na coesão da classe em questão. Nesse momento podemos identificar
+mais facilmente as responsabilidades que a classe concentrava de uma maneira mais próxima da implementação.
+Desta forma, provavelmente existem conjuntos de métodos e variáveis que não se relacionam, causando um valor LCOM4
+maior do que 1, ou métodos que trabalham apenas sobre uma parcela das variáveis, o quer resulta em baixa média de
+NRA em relação ao número de variáveis de instância (NOA).
+
+Sendo assim, geralmente optamos por quebrar a classe com baixa coesão. A medida para essa divisão capaz de
+gerar classes extremamente coesas são as responsabilidades as quais encapsulam. Sabemos que classes com uma
+responsabilidade geralmente possuem LCOM4 igual a 1, mas o inverso não pode ser afirmado.
+
+\section{Considerações Finais}
+De forma geral, podemos notar que o mapamento dos conceitos em métricas de código-fonte através do uso
+de cenários é capaz de detectar trechos de código que poderiam receber melhorias. 
+
+No entanto, notamos a seguinte contraposição: por um lado, as métricas de código-fonte e os cenários nos
+ajudam a aprender e aplicar os conceitos relacionados a um código limpo; por outro, se não conhecermos os
+conceitos e as técnicas de um código limpo, não teremos facilidade para interpretar os cenários e os valores
+das métricas.
+
+Essa limitação torna difícil a automatização completa da detecção dos cenários. Em outras palavras,
+através deste trabalho não foi possível identificar uma maneira automática de decidir se um código é limpo ou
+encontrar trechos de código que definitivamente precisam de melhorias.
+
+O que podemos afirmar é que, nos exemplos de código e conceitos da bibliografia sobre os quais trabalhamos,
+para cada método buscamos minimizar os valores das métricas LOC, NP, NRP, CYCLO e MAXNESTING, além de criar
+classes que minimizem LCOM4 e a diferença entre a média de NRA e NOA. As alterações que permitem tais valores
+são responsáveis pela limpeza do código.
+

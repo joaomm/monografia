@@ -246,12 +246,15 @@
 	
 	Esse é o primeiro cenário que descrevemos relacionado com a avaliação da classe como um todo e não de métodos separados. Suas referências são o agrupamento de parâmetros em objetos e a transformação de parâmetros em variáveis de instância.
 	
-	Podemos separar esse cenário em dois casos diferentes. O primeiro caso trata do repasse de muitos parâmetros. Sua característica é ter uma elevada média de parâmetros repassados (alta média de NRP). Parâmetros repassados são aqueles recebidos e repassados em chamadas a operações pelo mesmo método. O segundo caso se preocupa com a elevada média do número de parâmetros por método da classe analisada (alta média de NP).
+	Podemos separar esse cenário em dois casos diferentes. O primeiro caso trata do repasse de muitos parâmetros. Sua característica é ter uma elevada média de parâmetros repassados (alta média de NRP). Parâmetros repassados são aqueles recebidos por um método que os repassam em chamadas a operações. O segundo caso se preocupa com a elevada média do número de parâmetros por método da classe analisada (alta média de NP).       
+		     
+	Então, é comum que os métodos de classes com muita passagem de parâmetro tenham muitos ou repassem muitos parâmetros ou recebam variáveis que são usadas apenas em chamadas a outros métodos.	O método \textit{acumulaRelatorioDasMetricasGlobais} (\ref{metodo_com_muito_repasse_de_parametros}) exemplifica a existência de parâmetros que são apenas repassados em chamadas a outras operações.
+	                                                               
+\lstinputlisting[label=metodo_com_muito_repasse_de_parametros, caption={O método custosAPartirDoVertice é um exemplo de método com muito repasse de parâmetros}]{codigos/exemplos_para_os_cenarios/metodo_com_muito_repasse_de_parametros}                                     
 	
 	Os objetivos durante a refatoração são diminuir o número de repasses de parâmetros pela classe (diminuir o NRP) e reduzir o número de parâmetros dos métodos (reduzir o NP). Fazemos isso tranformando os parâmetros muito repassados ou usados em muitos métodos, em atributos e criando objetos para guardar conjuntos de parâmetros relacionados.
 	
-	Os resultados esperados após a refatoração do código são a redução da média do número de parâmetros por método (redução da média de NP) e do número de repassagem de parâmetro (redução do NP), e o aumento do número de variáveis de instância. Além disso, pode ocorrer um aumento no número de classes, caso aconteça a junção de variáveis em um único objeto.	
-	
+	Os resultados esperados após a refatoração do código são a redução da média do número de parâmetros por método (redução da média de NP) e do número de repassagem de parâmetro (redução do NP), e o aumento do número de variáveis de instância. Além disso, pode ocorrer um aumento no número de classes, caso aconteça a junção de variáveis em um único objeto.	           
 
 
 \subsubsection{Método ``Invejoso''}
@@ -278,20 +281,31 @@
 	Durante a refatoração, devemos focar na redução do número de chamadas externas que é calculado através da métrica NEC. Esse cenário foi criado com base nas referências de objeto centralizador e objeto método.
 	
 	Os resultados esperados após a refatoração é a redução do número de chamadas externas e da média dela na classe do método analisado (NEC e média de NEC) e a diminuição do número de classes não relacionadas chamadas (NCC). É possível que ocorra um aumento no número de classes. Isso acontecerá quando uma classe for criada para centralizar o diálogo entre as classes não relacionadas, sendo sacrificado para que as outras possam manter suas características e serem reutilizadas em outros projetos. 
-	
-	
+	  
+	Para exemplificar esse cenário, usaremos o método \textit{adicionaDadosDaRodada}. Quando o avaliamos usando as métricas \textit{ECR} e \textit{NCC} obtemos valores elevados, pois nesse código são usados seis métodos externos de quatro classes diferentes. Com esses resultados dizemos que esse método é dispersamente acoplado.
+  
+\lstinputlisting[label=metodo_dispersamente_acoplado, caption={Método ``adicionaDadosDaRodada'' dispersamente acoplado}]{codigos/exemplos_para_os_cenarios/metodo_invejoso}                                      
+  
 
 \subsubsection{Classe Pouco Coesa}
 
 	As referências desse cenário são a maximização da coesão e o princípio da responsabilidade única. Assim como o cenário que indica muita passagem de parâmetros pela classe, esse contexto analisa a classe como um todo.
 	
 	A principal característica de uma classe pouco coesa é possuir subdivisões em grupos de métodos e atributos que não se relacionam (valor de LCOM4 > 1), ou possuir métodos que alcançam em média poucos atributos da propria classe (média de NRA <<< NOA). Nessse contexto, dizemos que um método alcança um atributo se ele usa o atributo no seu próprio corpo ou de forma indireta, ou seja, através da chamada de algum método que usa o atributo direta ou indiretamente.
+	   
+	Na figura abaixo temos a representação abstrata de uma classe. Os círculos cinzas são os métodos e os azuis atributos da classe. As setas representam chamadas e acessos entre esses elementos. Quando contamos os grupos de elementos conexos, obtemos \textit{LCOM4 = 2}, e no cálculo do número médio de atributos atingidos por cada método, obtemos \textit{média de NRA = 1.16}. Como o valor de \textit{LCOM4} é alto e o de \textit{NRA} é muito menor do que o número total de atributos (\textit{NOA = 3}), podemos classificar essa classe como pouco coesa.
+		
+	\begin{figure}[htb]
+		\centering
+		\includegraphics[trim = 0mm 50mm 0mm 60mm, clip, width=0.8\textwidth]{codigos/exemplos_para_os_cenarios/rect4847.png}
+		\caption{Representação abstrata de uma classe pouco coesa}
+		\label{classe_pouco_coesa}
+	\end{figure}
 	
 	Os objeticos durante a refatoração são aumentar a coesão (diminuir a LCOM4) e diminuir a diferença entre média do número de atributos alcançáveis (NRA) e o número de atributos da classe analisada (NOA). Portando, uma boa refatoração para esse cenário seria separar as subdivisões já existentes na classe analisada em classes mais coesas.
 	
 	Como resultado da refatoração desse cenário, esperamos encontrar um aumento do número de classes. Além disso, desejamos que as classes existentes não tenham subdivisões (LCOM4 = 1) e que a média do número de atributos alcançáveis por cada método seja mais próxima da quantidade de atributos da classe (média de NRA próxima de NOA).
-	
-
+                  
 
 
 

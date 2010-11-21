@@ -12,11 +12,11 @@
 	
 	No contexto de métodos ágeis, as métricas são importantes parâmetros para \textit{tracking} de projetos (acompanhamento do desenvolvimento do projeto). Por exemplo, contando linhas de código já produzidas, ou no cálculo da cobertura de teste.	Além disso, elas estão presentes na abordagem do modelo GQM (Goal, Question, Metrics), que é utilizado para gestão de projetos através da formulação de objetivos e questões que auxiliam na interpretação dos valores das métricas escolhidas.
 	
-	Nessa monografia usaremos uma abordagem baseada na determinação de um conjunto de métricas que seja facilmente interpretado e que visa encontrar trechos de código que precisem de melhorias quanto a sua limpeza.
+	Nessa monografia usamos uma abordagem baseada na determinação de um conjunto de métricas que seja facilmente interpretado e que visa encontrar trechos de código que precisem de melhorias quanto a sua limpeza.
 	
-	Sabemos que existem muitas métricas e que quanto maior a quantidade delas calculada, mais difícil compreender os seus valores. Essa dificuldade é suficientemente grande para motivar a criação de ferramentas que automatizam a interpretação dos resultados obtidos.	Uma dessas ferramentas é a Kalibro, descrita no artigo (\citep{meirelles:sbes09}). A mesma permite que o usuário configure intervalos numéricos que possibilitam uma interpretação qualitativa do valor de cada métrica. Assim, podemos usar intervalos como ``Bom'', ``Regular'' e ``Ruim'' ao invés de usar ``0 a 1/3'', ``1/3 a 2/3'' e ``2/3 a 1'', facilitando o entendimento e a classificação dos aspéctos medidos a partir do código-fonte.
+	Sabemos que existem muitas métricas e que quanto maior a quantidade delas calculada, mais difícil compreender os seus valores. Essa dificuldade é suficientemente grande para motivar a criação de ferramentas que automatizam a interpretação dos resultados obtidos. Uma dessas ferramentas é a Kalibro, descrita no artigo (\citep{meirelles:sbes09}). A mesma permite que o usuário configure intervalos numéricos que possibilitam uma interpretação qualitativa do valor de cada métrica. Assim, podemos usar intervalos como ``Bom'', ``Regular'' e ``Ruim'' ao invés de usar ``0 a 1/3'', ``1/3 a 2/3'' e ``2/3 a 1'', facilitando o entendimento e a classificação dos aspéctos medidos a partir do código-fonte.
 	
-	No entanto, ao considerar o uso de uma ferramenta como a Kalibro nesse trabalho, encontramos algumas dificuldades. Uma é a dependência da combinação de métricas para encontrar as características que procuramos, uma vez que há apenas suporte na Kalibro para interpretação de cada valor separadamente e não para conjuntos deles. Outro problema consiste em como definir os intervalos numéricos. Por exemplo, podemos usar os conceitos apresentados por Robert Martin \citep{Martin2008} para definir essas referências. Porém, temos que considerar que diferentes linguagens e domínios de aplicação precisam de padrões de implementação distintos, como comenta Kent Beck \citep{Beck2007}.	
+	No entanto, ao considerar o uso de uma ferramenta como a Kalibro nesse trabalho, encontramos algumas dificuldades. Uma é a dependência da combinação de métricas para encontrar as características que procuramos, uma vez que há apenas suporte na Kalibro para interpretação de cada valor separadamente e não para conjuntos deles. Outro problema consiste em como definir os intervalos numéricos. Por exemplo, podemos usar os conceitos apresentados por Robert Martin \citep{Martin2008} para definir essas referências, porém, temos que considerar que diferentes linguagens e domínios de aplicação precisam de padrões de implementação distintos, como comenta Kent Beck \citep{Beck2007}.	
 	
 	Para evitar esses problemas selecionamos um subconjunto pequeno de métricas que espelha bem as características de código limpo procuradas. A seleção feita não é a única capaz de suprir os mesmos objetivos, pois outras combinações podem ser propostas e obter resultados semelhantes.
 		
@@ -27,7 +27,7 @@
 	
 \section{O Mapeamento}
 
-	O mapeamento proposto nesse trabalho visa facilitar a procura por problemas quanto a limpeza do código. A ideia é criar cenários que relacionem os conceitos de código limpo com métricas de código fonte. Cada cenário é descrito através dos seguintes componentes:
+	O mapeamento proposto nesse trabalho visa facilitar a procura por problemas quanto a limpeza do código. A ideia é criar cenários que relacionem os conceitos de código limpo com métricas de código-fonte. Cada cenário é descrito através dos seguintes componentes:
 	
 \begin{itemize}
 	\item Referências: conceitos de limpeza de código que motivaram a criação do cenário.
@@ -38,20 +38,22 @@
 \end{itemize}	
 
 	
-	Quando algum desses cenários é detectado, sugerimos que o usuário analise o trecho indicado verificando se é possível refatorar o código para melhorar sua limpeza. Esse mapeamento não visa afirmar se existem problemas no código, mas sim indicar partes dele que talvez possam ser melhoradas de acordo com os importantes conceitos discutidos nessa trabalho.
+	Quando algum cenário é detectado, sugerimos que o usuário analise o trecho indicado verificando se é possível refatorar o código para melhorar sua limpeza. Esse mapeamento não visa afirmar se existem problemas no código, mas sim indicar partes dele que talvez possam ser melhoradas de acordo com os importantes conceitos discutidos nessa trabalho.
 
-	Para incentivar a avaliação de códigos ao longo de seu desenvolvimento, é muito importante que sua interpretação seja simples. Esperamos que a preocupação com a limpeza do código não emerja apenas quando ele estiver pronto. Nessa fase é provável que ele tenha vários problemas e que seja muito complicado fazer alterações nele. Por esse motivo, montamos aguns cenários e escolhemos um conjunto pequeno de métricas que nos permite detectar as características procuradas.
+	Para incentivar a avaliação de códigos ao longo de seu desenvolvimento, é muito importante que sua interpretação seja simples. Esperamos que a preocupação com a limpeza do código não emerja apenas quando ele estiver pronto, pois nessa fase é provável que ele tenha vários problemas e que seja muito complicado alterá-lo. Por esse motivo, montamos aguns cenários e escolhemos um conjunto pequeno de métricas que nos permite detectar as características procuradas.
 	
-	Infelizmente, não é possível mapear todos os conceitos de código limpo usando métricas. Por exemplo, não consguimos encontrar problemas relacionados a nomes pouco expressivos usando apenas métricas. Nesse caso, não é suficiente analisarmos a estrutura do código, precisaríamos entender o contexto em que cada nome é usado, e para isso, seria necessária uma análise semântica.
+	Infelizmente, não é possível mapear todos os conceitos de código limpo usando métricas. Por exemplo, não consguimos encontrar problemas relacionados a nomes pouco expressivos usando apenas métricas. Nesse caso, não é suficiente analisarmos somente a estrutura do código, precisaríamos entender o contexto em que cada nome é usado, e para isso, também seria necessária uma análise semântica.
 
-	Existem dois tipos de métricas de código fonte. Algumas avaliam características de métodos, outras de classes. As métricas do segundo tipo são normalmente somas ou médias dos valores das avaliadoras de métodos. Essa divisão de alvo do análise das métricas também existe no contexto dos cenários.
+	Existem dois tipos de métricas de código-fonte. Algumas avaliam características de métodos, outras de classes. As métricas do segundo tipo são normalmente somas ou médias dos valores das avaliadoras de métodos. Essa divisão de alvo do análise das métricas também existe no contexto dos cenários.
 
 
 \subsection{Conjunto de Métricas}
 
+	Abaixo apresentamos o conjunto selecionado de métricas.
+
 \subsubsection{NC: Número de Chamadas}
                              
-	A métrica NC calcula o número métodos e atributos internos e externos usados por um método. NC é uma contração para \textit{Number of Calls}.
+	A métrica NC calcula o número de métodos e atributos internos e externos usados por um método. Elementos exeternos são aqueles que pertencem a classes não relacionadas hierarquicamente com a classe da operação analisada. Os internos são os pertencentes a mesma classe. NC é uma contração para \textit{Number of Calls}.
 
 	O valor dessa métrica pode variar entre zero e a soma do número de atributos e métodos presentes no sistema. Obtemos zero quando o método em análise não acessa nenhum atributo e não faz chamadas a métodos.
 	
@@ -259,7 +261,7 @@
 
 \subsubsection{Método ``Invejoso''}
 	
-	Método ``invejoso'' é aquele que usa um elevado número de métodos e atributos de poucas classes não relacionadas hierarquicamente com a sua própria. Mapeando essas características em métricas de código fonte, temos nesse cenário alta ECR, que indica a taxa de chamadas a métodos e atributos externos, e baixa NCC, que representa o número de classes não relacionadas chamadas pelo método.
+	Método ``invejoso'' é aquele que usa um elevado número de métodos e atributos de poucas classes não relacionadas hierarquicamente com a sua própria. Mapeando essas características em métricas de código-fonte, temos nesse cenário alta ECR, que indica a taxa de chamadas a métodos e atributos externos, e baixa NCC, que representa o número de classes não relacionadas chamadas pelo método.
 	
 	A preocupação durante uma refatoração nesse contexto, deve ser a minimização do número de chamadas externas, calculado através do NEC. A principal referência desse cenário é a delegação de tarefa.
 	

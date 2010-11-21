@@ -1,0 +1,19 @@
+classe Campeonato:
+	varInstancia nome
+	varInstancia times
+	varInstancia tabela
+
+	def adicionaDadosDaRodada(jogos):
+		for jogo in jogos:
+			// usou a classe Jogo
+			jogo.definePontuacaoDosTimes()
+			time1 = jogo.time1
+			time2 = jogo.time2
+			// usou a classe Time
+			time1.adicionaPontos(jogo.pontosGanhosPeloTime1)
+			time2.adicionaPontos(jogo.pontosGanhosPeloTime2)
+			
+		// usou a classe TabelaDeClassificacao
+		tabela.atualizaTabelaDeClassificacao(times)
+		//usou a classe que cuida da EntradaESaida de dados
+		EntradaESaida.imprimeTabela(tabela)

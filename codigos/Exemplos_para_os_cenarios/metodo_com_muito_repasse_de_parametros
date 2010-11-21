@@ -1,0 +1,7 @@
+def acumulaRelatorioDasMetricasGlobais(totaisDasMetricasDeModulo, contagensDeModulo, listaDeValores):
+	resumo = inicializaResumo()
+  	adicionaTotaisDasMetricasDeModulo(resumo, totaisDasMetricasDeModulo)
+	adicionaContagensDeModulo(resumo, contagensDeModulo)
+	adicionaValoresEstatisticos(resumo, listaDeValores)
+	adicionaFatorTotalDeAcoplamento(resumo, contagensDeModulo)
+	return resumo

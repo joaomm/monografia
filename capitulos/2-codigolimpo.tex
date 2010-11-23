@@ -130,7 +130,7 @@ Nesse exemplo, compusemos o método \textit{primosAte(N)} em chamadas para outro
 	
 Também ficam bastante claros os níveis de abstrações criados. A função primosAte(n) está em um nível e os métodos que invoca estão todos no mesmo patamar logo abaixo. Queremos criar essa estrutura em cadeia, tornando possível que o leitor só precise entender os níveis que interessem no momento.
 	
-A composição de métodos não é uma técnica que desconhecemos, uma vez que a todo momento criamos estruturas dessa maneira sem ter conhecimento da sua efetividade. Entretanto, a facilidade de leitura propiciada faz com que esse seja o padrão mais relevante do livro~\citep{Beck2007, InfoQ2010}. 	
+A composição de métodos não é uma técnica que desconhecemos, uma vez que a todo momento criamos estruturas dessa maneira sem ter conhecimento da sua efetividade. Entretanto, a facilidade de leitura propiciada faz com que esse seja o padrão mais relevante do livro \textit{Implementation Patterns} segundo o próprio autor \citep{Beck2007, InfoQ2008}.
 
 \subsubsection{Métodos Explicativos (Explaining Methods)}
 \label{metodos:explicativos}
@@ -181,26 +181,47 @@ Outra técnica para evitar o uso de estruturas complexas de condicionais são as
 
 \subsubsection{Objeto Método (Method Object)}
 \label{objeto_metodo}
-Ao dividir os métodos em outros menores com uma única tarefa, podemos criar métodos com grande complexidade e difícil refatoração: muitas variáveis, muito parâmetros necessários e muitas estruturas encadeadas. Diante dessa situação, podemos criar um objeto (\textit{Method Object}) que encapsule toda essa lógica.
+Ao dividir os métodos em outros menores com uma única tarefa, podemos criar métodos com grande complexidade e difícil refatoração: muitas variáveis, muito parâmetros 
+necessários e/ou muitas estruturas encadeadas. Diante dessa situação, uma alternativa possível é utilizar um objeto (\textit{Method Object}) que encapsule essa 
+lógica.
 	
-Supondo que temos um método complexo chamado \textit{operaçãoComplexa}. Criamos uma classe com nome relacionado como \textit{OperadorComplexo} cujas variáveis de instância são os parâmetros que o método recebia anteriormente. Em um método chamado \textit{calcula}, por exemplo, colocamos a funcionalidade que o método original continha. Com essa mudança, todos os detalhes dessa operação complexa foram encapsulados em uma classe que terá testes, aumentando nossa confiança e flexibilidade para refatorações.
+%Supondo que temos um método complexo chamado \textit{operaçãoComplexa}. Criamos uma classe com nome relacionado como \textit{OperadorComplexo} cujas variáveis de 
+%instância são os parâmetros que o método recebia anteriormente. Em um método chamado \textit{calcula}, por exemplo, colocamos a funcionalidade que o método original 
+%continha. Com essa mudança, todos os detalhes dessa operação complexa foram encapsulados em uma classe que terá testes, aumentando nossa confiança e flexibilidade 
+%para refatorações.
+
+O exemplo \ref{method_object} ilustra uma classe \textit{ImpressorDePrimos} cujo trabalho é imprimir o enésimo primo. Sendo assim, calcula tal número através
+do método \textit{calculaPrimo} que implementa o Crivo de Erastótenes, operação complexa que, apesar de receber poucos parâmetros, possui muitas tarefas.
+
+\lstinputlisting[label=method_object, caption={Classe ImpressorDePrimos com método complexo}]{codigos/method_object}
+
+Abaixo exemplificada, a classe \textit{CalculadorDoEnesimoPrimo} recebe como parâmetro de seu construtor o valor \textit{n} relativo ao número do primo a ser 
+calculado e o atribui a uma variável de instância. Sua interface é somente composta pelo método \textit{calcula}. Com essa mudança, todos os detalhes da operação 
+complexa foram encapsulados em uma classe que terá testes, aumentando nossa confiança e flexibilidade para refatorações de um método com muitas tarefas.
+
+\lstinputlisting[label=method_object2, caption={Classe ImpressorDePrimos delega a tarefa para um novo objeto da classe CalculadorDoEnesimoPrimo}]{codigos/method_object2}
 	
-Tal solução está bem inserida diante do paradigma da orientação a objetos uma vez que a nova classe será coesa e conterá uma estrutura complexa cujos clientes não terão que conhecer. Portanto, os clientes terão seu código simplificado através de uma delegação.
+Tal solução produz uma nova classe que segue o princípio da Proximidade de Lógica e Dados, além de ser coesa e encapsular uma operação complexa. O código cliente 
+é simplificado, uma vez que possui apenas uma delegação para outro objeto.
 
 \subsubsection{Minimizar os Argumentos}
 O número de argumentos se torna bastante importante quando queremos métodos pequenos e com apenas uma tarefa. Se um método recebe muitos argumentos, provavelmente os utiliza para um conjunto de operações e não uma somente. Diante disso, nosso objetivo é sempre minimizá-los por algumas razões. Primeiramente, testes de funções com poucos ou nenhum argumento requerem menores esforços  uma vez que as combinações de casos de teste são limitadas. Além disso, teremos um maior acoplamento da classe em que a função está contida com todas as classes dos objetos que recebe, já que é necessário conhecer suas interfaces para utilizá-los. E por fim, o leitor terá que entender todos esses casos de uso.
 
 Com essa motivação queremos evitar parâmetros desnecessários e que confundem o leitor. Os três tópicos subsequentes ilustram abordagens mais específicas quanto ao uso de parâmetros.
 
+\begin{itemize}
+\item
 \subsubsection{Evitar \textit{Flags} como Argumentos}
 Se passamos uma \textit{Flag} (booleana ou proveniente de uma enumeração) como argumento para gerar dois tipos de comportamentos de um método, claramente esse último realiza mais do que uma tarefa. O natural seria criar um método para cada uma das tarefas como mostrado no exemplo \ref{rotaciona2} abaixo de uma classe Figura abaixo.
 
 \lstinputlisting[label=rotaciona1, caption={Método rotaciona() com dois comportamentos através do uso de uma flag como argumento}]{codigos/rotaciona1}
 \lstinputlisting[label=rotaciona2, caption={Dois métodos com uma única tarefa cada}]{codigos/rotaciona2}
 
+\item
 \subsubsection{Objeto como Parâmetro}
 Diante de uma lista grande de argumentos, devemos questionar se não existe alguma abstração que une esses elementos. Por exemplo, considere uma classe \textit{FábricaDeMáquinas} cujo construtor é \textit{FábricaDeMáquinas(númeroDeMáquinas, númeroDeFuncionários, horasDeFuncionamento)}. Uma possibilidade seria criar um objeto \textit{EspecificaçãoDeFábrica} que contivesse esses argumentos como variáveis de instância e métodos que fossem úteis para que o código desta \textit{FábricaDeMáquinas} fosse o mais claro possível.
 
+\item
 \subsubsection{Parâmetros como Variável de Instância}
 \label{metodos:parametros}
 Na utilização da composição de métodos, frequentemente será preciso passar um argumento para diversos métodos, que 
@@ -214,6 +235,7 @@ estado do objeto da classe em questão. Uma variável que é passada em um méto
 para outro, provavelmente não pertence ao estado do objeto.
 
 Esse tipo de alteração tem grande importância no design do sistema como um todo. Na seção de Classes esse tópico será abordado e veremos o papel dessa técnica em refatorações de maior escala.
+\end{itemize}
 
 \subsubsection{Uso de Exceções}
 Como foi dito nos fundamentos teóricos desta seção, queremos ter um fluxo normal bem definido e sem interferências do código de tratamento de erros. Nesse contexto, devemos preferir o uso de exceções sobre retornar códigos de erro e valores nulos.
@@ -271,7 +293,7 @@ Nesse caso, podemos observar que a classe possui duas responsabilidades, podendo
 mudanças nos dados que primeiramente guardava, quanto para a criação de novas formatações.
 
 Uma opção de design que preserva o Princípio da Responsabilidade Única é exemplificado no diagrama UML da Figura \ref{img:email}.
-O método \textit{setaConteudo} recebe um objeto \textit{Conteudo} e passa a ser somente um \textit{setter} de uma variável de instância de \textit{Email}. Além disso, teremos duas classes \textit{ConteudoHTML} e \textit{ConteudoXML} filhas de \textit{Conteudo}, que só terão como tarefa a formatação de uma string.
+O método \textit{adicionaConteudo} recebe um objeto \textit{Conteudo} e passa a ser somente um \textit{setter} de uma variável de instância de \textit{Email}. Além disso, teremos duas classes \textit{ConteudoHTML} e \textit{ConteudoXML} filhas de \textit{Conteudo}, que só terão como tarefa a formatação de uma string.
 
 \begin{figure}[!t]
 \begin{centering}
@@ -379,12 +401,15 @@ O exemplo abaixo ilustra métodos de uma classe \textit{CalculaReceita}, cujo c�
 
 \lstinputlisting[label=pedido_de_tarefa, caption={Método salarioDoMes com problemas de ``inveja''}]{codigos/pedido_de_tarefa}
 
-Claramente o método \textit{salarioDoMes} tem problemas de ``inveja'' sobre a classe \textit{Empregado}. Podemos observar algumas mudanças 
+O método \textit{salarioDoMes} tem problemas de ``inveja'' sobre a classe \textit{Empregado}, uma vez que faz muitas chamadas e acessos
+a essa classe ao invés de pedir que realize uma tarefa. O código abaixo exibe uma possível solução.
+
+\lstinputlisting[label=pedido_de_tarefa2, caption={Redução entre o acoplamento das classes CalculaReceita e Empregado}]{codigos/pedido_de_tarefa2}
+
+Podemos observar algumas mudanças 
 importantes: (i) o método \textit{calculaTotalDeSalarios} ficou muito simples só fazendo um Delegação de Tarefa para a classe \textit{Empregado}; 
 (ii) o código do método \textit{salarioDoMes} também ficou mais simples já que foi transferido para perto dos dados que utiliza; (iii) de forma 
 geral, reduzimos o acoplamento entre as classes pois existe apenas uma chamada de método para fazer a comunicação.
-
-\lstinputlisting[label=pedido_de_tarefa2, caption={Redução entre o acoplamento das classes CalculaReceita e Empregado}]{codigos/pedido_de_tarefa2}
 
 \subsubsection{Objeto Centralizador}
 Os cenários apresentados acima consideram que uma classe depende somente de uma segunda. No entanto, frequentemente criamos métodos 
@@ -401,7 +426,7 @@ São dois resultados importantes dessa alteração: (i) isolaremos a complexidad
 \subsubsection{Princípio da Inversão de Dependência (Dependency Inversion Principle)}
 O objetivo da minimização do acoplamento entre nossas classes é facilitar as alterações que serão feitas no sistema. Queremos conseguir estender a infra-estrutura de classes que temos para criar novas funcionalidades.
 	
-No exemplo utilizado por Robert Martin em sua coluna para a revista \textit{The C++ Report}
+No exemplo utilizado por Robert Martin em sua coluna para a revista \textit{The C++ Report} \citep{CppReport}
 sobre o assunto discutido, temos uma classe  \textit{Copiador} que utiliza um \textit{LeitorDeTeclado} para coletar inteiros digitados pelo usuário e um  \textit{EscritorDeArquivo} para escrever o dado em um arquivo. Quais alterações precisam ser feitas  para adicionar a funcionalidade de ler os inteiros de um arquivo? Será necessário criar mudanças na classe  \textit{Copiador} para que possa receber dados coletados de dois tipos diferentes de objetos que lidam com a entrada de dados. Tal alteração só se torna necessária devido a dependência que Copiador tem com classes como \textit{EscritorDeArquivos} e \textit{LeitorDoTeclado}.
 	
 A solução ideal para o problema seria que  \textit{Copiador} dependesse de abstrações como \textit{Leitor} e  \textit{Escritor} que tivesse uma interface definida de forma que subclasses como  \textit{LeitorDeTeclado} ou  \textit{LeitorDeArquivo} pudessem ser utilizadas polimorficamente. Todos os tipos de  \textit{Leitor} teriam que seguir uma abstração ao implementar o método  \textit{lerInteiro()} e  \textit{Copiador} só precisaria depender dessa interface. Essa mudança seguiria o Princípio da Inversão de Dependência (\textit{Dependency Inversion Principle} \citep{Martin97c}) , que diz:
@@ -486,10 +511,10 @@ do método \textit{custosAPartirDoVertice}.
 A solução para essa falta de coesão é a divisão em duas classes. Essa ruptura poderia ser feita de forma a preservar o 
 método \textit{custosAPartirDoVertice} na interface \textit{Digrafo}, implementando o método através da delegação para 
 uma nova classe que encapsula o algoritmo. No entanto, essa decisão causaria uma dependência circular: \textit{Digrafo} 
-dependeria da nova classe \textit{CalculadorDijkstra} para calcular a árvore geradora de custo mínimo e, por outro lado,
-\textit{CalculadorDijkstra} dependeria das arestas e vértices de \textit{Digrafo}.
+dependeria da nova classe \textit{CalculadorCaminhosMinimos} para calcular a árvore geradora de custo mínimo e, por outro lado,
+\textit{CalculadorCaminhosMinimos} dependeria das arestas e vértices de \textit{Digrafo}.
 
-Uma solução mais interessante é \textit{CalculadorDijkstra} receber como argumento de seu construtor um objeto \textit{Digrafo}. Dessa maneira, a classe \textit{Digrafo} ficou pequena e coesa com a única responsabilidade de criar a representação do grafo.
+Uma solução mais interessante é \textit{CalculadorCaminhosMinimos} receber como argumento de seu construtor um objeto \textit{Digrafo}. Dessa maneira, a classe \textit{Digrafo} ficou pequena e coesa com a única responsabilidade de criar a representação do grafo.
 
 \lstinputlisting[label=digrafo_final, caption={Classe Digrafo com apenas uma responsabilidade}]{codigos/digrafo/digrafo_final}
  

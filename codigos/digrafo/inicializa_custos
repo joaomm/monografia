@@ -1,5 +1,5 @@
 def inicializaCustos(vertice):
-	custos = novo Lista(numeroDeVertices)
+	custos = nova Lista(numeroDeVertices)
 	setaTodosOsVerticesComNaoAtingidos(custos)
 	setaVerticeInicialComCustoZero(custos, vertice)
 	retorna custos

@@ -1,0 +1,13 @@
+def custosAPartirDoVertice(vertice):
+	inicializaCustosEFila(vertice)
+	atualizaCustosAteAcabarVertices()
+	return custos
+
+def inicializaCustosEFila(vertice):
+	verticeOrigem = vertice
+	inicializaCustos()
+	inicializaFila()
+
+def atualizaCustosAteAcabarVertices()
+	while(aindaHaVertices()):
+		atualizaCustosAPartirDoVerticeComCustoMinimo()

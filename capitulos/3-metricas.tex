@@ -177,6 +177,10 @@ Para exemplificar este cenário, vamos analisar o método \textit{custosAPartirD
 \lstinputlisting[label=metodo_grande, caption={O método custosAPartirDoVertice é um exemplo de método grande}]{codigos/exemplos_para_os_cenarios/metodo_grande}                                                            
 
 Quando contamos o número de linhas efetivas desse método, obtemos \textit{LOC = 17}. Ao contabilizar a quantidade de controladores de fluxo, chegamos a \textit{CYCLO = 6}. Por fim, temos que a profundidade máxima entre as estruturas de controladores encadeados, medida por MaxNesting, é igual a 4. Baseado no príncipio de procurarmos métodos pequenos, esses valores podem ser indícios de que esse método possui problemas relacionados a limpeza de código por ter características de um método grande.
+                                                      
+O trecho de código \ref{refatoracao_para_metodo_grande} é uma possível refatoração para o método \textit{custosAPartirDoVertice}. Nesse caso, reduzimos a quantidade de responsabilidades do método, passando-as para outros métodos menores: \textit{inicializaCustosEFila} e \textit{atualizaCustosAteAcabarVertices}. Esses métodos também são pequenos pois quebram suas tarefas e as passam para outras operações que seguirão esse mesmo princípio. Quando calculamos as métricas deste cenário no método refatorado, obtemos \textit{LOC = 3}, \textit{CYCLO = 1} e \textit{MaxNesting = 0}. Comparando com os resultados antigos, podemos observar uma grande redução nos valores após a refatoração. Dados os novos resultados, podemos dizer que o método \textit{custosAPartirDoVertice} não está mais no cenário de método grande.
+
+\lstinputlisting[label=refatoracao_para_metodo_grande, caption={Uma possível refatoração para o método custosAPartirDoVertice deixar de ser um método grande}]{codigos/exemplos_para_os_cenarios/refatoracao_para_metodo_grande}                                                            
 
 	
 \subsubsection{Método com Muitos Fluxos Condicionais}

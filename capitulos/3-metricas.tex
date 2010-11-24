@@ -266,7 +266,7 @@ Para exemplificar este cenário, usaremos o método \textit{adicionaDadosDaRodad
     
 Os conceitos de código limpo que constituem este cenário são a maximização da coesão e o princípio da responsabilidade única. Assim como o cenário que indica muita passagem de parâmetros pela classe, esse contexto analisa a classe como um todo.
 	
-A principal característica de uma classe pouco coesa é possuir subdivisões em grupos de métodos e atributos que não se relacionam (valor de LCOM4 > 1), ou possuir métodos que alcançam em média poucos atributos da propria classe (média de NRA <<< NOA). Nessse contexto, dizemos que um método alcança um atributo se ele usa o atributo no seu próprio corpo ou de forma indireta, ou seja, através da chamada de algum método que usa o atributo direta ou indiretamente.
+A principal característica de uma classe pouco coesa é possuir subdivisões em grupos de métodos e atributos que não se relacionam (valor de LCOM4 > 1), ou possuir métodos que alcançam em média poucos atributos da propria classe (média de NRA muito menor do que o valor de NOA). Nesse contexto, dizemos que um método alcança um atributo se ele usa o atributo no seu próprio corpo ou de forma indireta, ou seja, através da chamada de algum método que usa o atributo direta ou indiretamente.
 
 
 \vskip 1.0cm		
@@ -465,7 +465,7 @@ Classe Pouco Coesa
   \end{my_itemize}
 & \begin{my_itemize}                            
     \item Classe subdividida em grupos de métodos e atributos que não se relacionam (LCOM4 > 1)
-	\item Métodos atingem em média poucos atributos da sua classe (média de NRA <<< NOA)
+	\item Métodos atingem em média poucos atributos da sua classe (média de NRA muito menor do que NOA)
   \end{my_itemize}
 & \begin{my_itemize}
 	\item Reduzir a subdivisão da classe aumentando sua coesão (reduzir LCOM4)

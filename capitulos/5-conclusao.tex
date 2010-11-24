@@ -11,23 +11,27 @@ do mapeamento, podemos destacar uma similariedade na sequência da detecção do
 melhorias, fato observado tanto no estudo como nos exemplos expostos nos demais capítulos do trabalho.
 
 Em um primeiro momento, frequentemente detectamos a presença dos cenários Método Grande e Métodos com Muitos 
-Fluxos Condicionais, expressos pelo LOC, CYCLO e MAXNESTING dos métodos. Seguindo os conceitos de código limpo,
-diante deste contexto, uma melhoria possível é utilizar a Composição de Métodos buscando Evitar as Estruturas
-Encadeadas.
+Fluxos Condicionais, expressos pelo LOC (Lines of Code), CYCLO (Cyclomatic Complexity) e
+MaxNesting (Maximum Nesting Level) dos métodos. Seguindo os conceitos de código limpo,
+diante desse contexto, uma melhoria possível é utilizar a \textit{Composição de Métodos} buscando
+\textit{Evitar as Estruturas Encadeadas}.
 
-A medida em que os métodos são decompostos, podemos nos questionar quanto ao limiar entre um método grande e o buscado.
-Em outras palavras, a questão é como um desenvolvedor pode assumir que os resultados da Composição de Métodos
-feita até o dado instante obteve métodos pequenos o suficiente. Nos parece que a resposta de tal questão só pode
-ser feita através de um bom entendimento dos conceitos relacionados a um código limpo. Ao longo deste trabalho,
-não definimos um valor para as métricas LOC, CYCLO e MAXNESTING capaz de expressar esse limiar, de forma que os
-métodos estejam todos realizando apenas uma tarefa.
+A medida em que os métodos são decompostos, podemos nos questionar quanto ao limiar entre um método grande e 
+um de acordo com os princípio de código limpo.
+Em outras palavras, a questão é como um desenvolvedor pode assumir que os resultados da
+\textit{Composição de Métodos} feita até o dado instante obteve métodos pequenos o suficiente. Nos parece que a 
+resposta de tal questão só pode ser feita através de um bom entendimento dos conceitos relacionados a um código 
+limpo. Ao longo deste trabalho, não definimos um valor para as métricas LOC, CYCLO e MaxNesting capaz de expressar 
+esse limiar, de forma que os métodos estejam todos realizando apenas uma tarefa.
 
-O segundo estado recorrente durante as alterações é a detecção de Métodos com Muitos Parâmetros e Muita Passagem
-de Parâmetros pela Classe. Para que as tarefas possam ser divididas pelos métodos criados na Composição de Métodos,
-muitos parâmetros são necessários e frequentemente encontramos métodos que simplesmente repassam os mesmos.
-Para minimizar tais cenários, podemos promover alguns parâmetros para variáveis de instância.
+O segundo estado recorrente durante as alterações é a detecção de \textit{Métodos com Muitos Parâmetros} e
+\textit{Muita Passagem de Parâmetros pela Classe}. Para que as tarefas possam ser divididas pelos métodos 
+criados na \textit{Composição de Métodos}, muitos parâmetros são necessários e frequentemente encontramos
+métodos que simplesmente repassam os mesmos.Para minimizar tais cenários, podemos promover alguns parâmetros para 
+variáveis de instância.
 
-Nesse contexto, podemos nos questionar quanto a quais parâmetros promover e qual é o limiar das métricas NRP e NP
+Nesse contexto, podemos nos questionar quanto a quais parâmetros promover e qual é o limiar das métricas
+NRP (Número de Repasses de Parâmetros) e NP (Número de Parâmetros)
 em que podemos tomar a alteração por acabada. Novamente a resposta não está nas métricas, mas nos conceitos.
 Um parâmetros só pode ser promovido se, de fato, faz parte do estado da classe, conceito que não encontramos
 uma maneira de automatizar.
@@ -35,17 +39,18 @@ uma maneira de automatizar.
 Seguindo os passos frequentes ao longo das alterações, a partir do momento em que novas variáveis de instância
 são adicionadas, frequentemente detectamos a queda na coesão da classe em questão. Nesse momento podemos identificar
 mais facilmente as responsabilidades que a classe concentrava de uma maneira mais próxima da implementação.
-Desta forma, provavelmente existem conjuntos de métodos e variáveis que não se relacionam, causando um valor LCOM4
-maior do que 1, ou métodos que trabalham apenas sobre uma parcela das variáveis, o quer resulta em baixa média de
-NRA em relação ao número de variáveis de instância (NOA).
+Desta forma, provavelmente existem conjuntos de métodos e variáveis que não se relacionam, causando um valor
+LCOM4 (Lack of Cohesion of Methods) maior do que 1, ou métodos que trabalham apenas sobre uma parcela das
+variáveis, o quer resulta em baixa média de NRA (Número de Atributos Alcançáveis) em relação ao
+número de variáveis de instância (NOA - Número de Atributos).
 
 Sendo assim, geralmente optamos por quebrar a classe com baixa coesão. A medida para essa divisão capaz de
 gerar classes extremamente coesas são as responsabilidades as quais encapsulam. Sabemos que classes com uma
 responsabilidade geralmente possuem LCOM4 igual a 1, mas o inverso não pode ser afirmado.
 
-\section{Considerações Finais}
-De forma geral, podemos notar que o mapamento dos conceitos em métricas de código-fonte através do uso
-de cenários é capaz de detectar trechos de código que poderiam receber melhorias. 
+\vskip 1.0cm
+Do ponto de vista do mapamento dos conceitos em métricas de código-fonte, o uso
+de cenários é capaz de detectar trechos de código que poderiam receber melhorias.
 
 No entanto, notamos a seguinte contraposição: por um lado, as métricas de código-fonte e os cenários nos
 ajudam a aprender e aplicar os conceitos relacionados a um código limpo; por outro, se não conhecermos os
@@ -57,8 +62,31 @@ através deste trabalho não foi possível identificar uma maneira automática d
 encontrar trechos de código que definitivamente precisam de melhorias.
 
 O que podemos afirmar é que, nos exemplos de código e conceitos da bibliografia sobre os quais trabalhamos,
-para cada método buscamos minimizar os valores das métricas LOC, NP, NRP, CYCLO e MAXNESTING, além de criar
+para cada método buscamos minimizar os valores das métricas LOC, NP, NRP, CYCLO e MaxNesting, além de criar
 classes que minimizem LCOM4 e a diferença entre a média de NRA e NOA. As alterações que permitem tais valores
 são responsáveis pela limpeza do código.
 
+Adicionalmente, sugerimos como trabalho futuro a identificação de outros cenários que ampliem os possíveis
+relacionamentos entre métricas e código limpo. Também será uma boa pesquisa, verificar os cenários descritos neste 
+trabalho com outras métricas, preferencialmente implementadas em ferramentas de cálculo de métricas
+de código-fonte. 
 
+Do ponto de vista prático, outro trabalho futuro seria implementar na Analizo as métricas NRP, MaxNesting e NRA,
+pois dentre as métricas mapeadas com o conceitos de código limpo, são as únicas ainda não implementadas. Além 
+disso, será uma oportunidade de um outro desenvolvedor da Analizo verificar se o código está mais simples, 
+expressivo e flexível ao ponto de inserir essas novas funcionalidade.
+ 
+Em conclusão, é importante ressaltar que este é um trabalho diferenciado ao compilar e abordar de forma prática os
+conceitos sobre código limpo do ponto de vista de renomados especialistas em desenvolvedores de software. 
+Adicionamos exemplos reais para que o entendimento fosse mais próximo do ponto de vista de um programador.
+Também, apresentamos uma forma simples e clara de utilizar métricas de código-fonte, demonstrando em 
+cenários reais as correlações com os conceitos de código limpo que foram amplamente discutidos.
+
+Para exemplificar a união dos conceitos trabalhamos, aplicamos esse mapeamento métricas e código limpo na 
+refatoração de um software livre, chamado Analizo, que contribuimos por mais de uma ano no seu desenvolvimento e vem 
+sendo constantemente usada em pesquisa que envolvem os dados das métricas de código-fonte.
+
+Portanto, além de um texto com uma nova aborgagem que poderá servir de referência para outros estudantes e 
+pesquisadores da área de qualidade e métricas de código-fonte, finalizamos este trabalho com uma contribuição 
+efetiva para uma ferramenta de cálculo de métricas de código-fonte, de tal forma que ficou facilitada
+a inserção de novos contribuidores por agora ter um código mais limpo.

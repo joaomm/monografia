@@ -293,7 +293,8 @@ Nesse caso, podemos observar que a classe possui duas responsabilidades, podendo
 mudanças nos dados que primeiramente guardava, quanto para a criação de novas formatações.
 
 Uma opção de design que preserva o Princípio da Responsabilidade Única é exemplificado no diagrama UML da Figura \ref{img:email}.
-O método \textit{adicionaConteudo} recebe um objeto \textit{Conteudo} e passa a ser somente um \textit{setter} de uma variável de instância de \textit{Email}. Além disso, teremos duas classes \textit{ConteudoHTML} e \textit{ConteudoXML} filhas de \textit{Conteudo}, que só terão como tarefa a formatação de uma string.
+O método \textit{adicionaConteudo} recebe um objeto \textit{Conteudo} e passa a ser somente um \textit{setter} de uma variável de instância de \textit{Email}. Além 
+disso, teremos duas classes \textit{ConteudoHTML} e \textit{ConteudoXML} filhas de \textit{Conteudo}, que só terão como tarefa a formatação de uma string.
 
 \begin{figure}[!t]
 \begin{centering}

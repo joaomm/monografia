@@ -47,7 +47,7 @@ class CalculadorCaminhosMinimos:
 	def setaVerticeOrigemComoAtingidoSemCusto():
 		custos[verticeOrigem] = 0
 		
-	def inicializaCustos():
+	def inicializaFila():
 		fila = nova FilaDePrioridades(numeroDeVertices)
 		inserePrimeiraArestaNula()
 	

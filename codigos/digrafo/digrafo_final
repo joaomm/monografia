@@ -4,10 +4,10 @@ class Digrafo:
 
 	def construtor(noVertices):
 		numeroDeVertices = noVertices
-		listaDeAdjacencia = new Lista(numeroDeVertices)
+		listaDeAdjacencia = nova Lista(numeroDeVertices)
 
 	def adicionaAresta(origem, destino, custo):
-		listaDeAdjacencia[origem] = new Aresta(destino, custo)
+		listaDeAdjacencia[origem] = nova Aresta(destino, custo)
 
 	def arestasDoVertice(vertice):
 		return listaDeAdjacencia[vertice]

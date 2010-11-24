@@ -5,11 +5,12 @@ A indústria de software busca continuamente por melhorias nos métodos
 de desenvolvimento. Do ponto de vista prático, os processos tradicionais investem tempo especificando requisitos
 e planejando a arquitetura do software para que o trabalho possa ser dividido entre os
 programadores, cuja função é transformar o design anteriormente concebido em código.
+%
 Diante de uma perspectiva dos métodos ágeis, é dado muita importância a entrega constante 
 de valor ao cliente \citep{AgM2001}. Neste caso, se há um agente financiador ou uma comunidade de software livre
 como cliente, o foco está na entrega de funcionalidades que possam ser rapidamente colocadas
 no ambiente produção e receber ``feedback'' constante.
-
+%
 Em ambos os casos, não há como ignorar o fato de que o código-fonte da aplicação será
 desenvolvido gradativamente e diferentes programadores farão alterações e extensões
 continuamente. Nesse contexto, novas funcionalidades são adicionadas e falhas sanadas.
@@ -19,7 +20,7 @@ ainda não teve contato para fazer alterações. Nessa tarefa, por exemplo, (i) 
 com muitas linhas de código que se comunicam com diversos objetos; (ii) encontra comentários
 desatualizados relacionados a uma variável com nome abreviado e sem significado, e (iii) se depara com métodos que
 recebem valores booleanos e possuem estruturas encadeadas complexas com muitas operações duplicadas.
-
+%
 Depois de um longo período de leitura, o desenvolvedor encontra o trecho de lógica em que deve 
 fazer a mudança. A alteração freqüentemente consiste na modificação de poucas linhas e o 
 desenvolvedor considera seu trabalho como terminado, sem ter feito melhorias no código confuso
@@ -34,11 +35,13 @@ tenham que enfrentar as mesmas dificuldades.
 
 Tendo essa situação em vista, nesse trabalho apresentamos um estilo de programação baseado
 no paradigma da Orientação a Objetos que busca o que denominamos ``Código Limpo'', concebido e aplicado por renomados desenvolvedores de software
-como Robert C. Martin \citep{Martin2008} e Kent Beck \citep{Beck2007}. Fundamentado em testes e decisões técnicas que visam a clareza, flexibilidade
-e simplicidade do código-fonte, um código limpo pode ter um impacto importante no desenvolvimento 
+como Robert C. Martin \citep{Martin2008} e Kent Beck \citep{Beck2007}.
+%
+Um Código Limpo é fundamentado em testes e decisões técnicas que visam a clareza, flexibilidade
+e simplicidade do código-fonte, o que pode ter um impacto importante no desenvolvimento
 de software, aumentando a produtividade e diminuindo os custos de manutenção.
-
-Ao longo desta monografia também apresentaremos uma maneira de utilizar métricas de código-fonte para auxiliar no desenvolvimento
+%
+Por fim, ao longo desta monografia também apresentaremos uma maneira de utilizar métricas de código-fonte para auxiliar no desenvolvimento
 de um código limpo. Se beneficiando da automação da coleta de métricas e de uma maneira objetiva de interpretar seus valores,
 os desenvolvedores poderão acompanhar seu trabalho e detectar cenários problemáticos.
 
@@ -46,53 +49,53 @@ os desenvolvedores poderão acompanhar seu trabalho e detectar cenários problem
 \label{sec:objetivo}
 
 O primeiro objetivo deste trabalho é apresentar um levantamento teórico de conceitos relacionados ao que denominamos
-código limpo, buscando expor um conjunto de técnicas e boas decisões que possam ser adotadas ao longo do 
-desenvolvimento para auxiliar a criação de um código mais expressivo, simples e flexível. Essa apresentação permite um 
-contato com recomendações e preocupações de desenvolvedores de software reconhecidos internacionalmente ao trabalharem com 
+código limpo, buscando expor um conjunto de técnicas e boas decisões que possam ser adotadas ao longo do
+desenvolvimento para auxiliar a criação de um código mais expressivo, simples e flexível. Essa apresentação permite um
+contato com recomendações e preocupações de desenvolvedores de software reconhecidos internacionalmente ao trabalharem com
 o paradigma da Orientação a Objetos.
 
 Além disso, também temos como objetivo o mapeamento entre um grupo de métricas de código-fonte e os conceitos acima 
-citados, de forma a facilitar a detecção de trechos de código que poderiam receber melhorias. Para que as 
-métricas possam ser mais facilmente incorporadas no cotidiano dos programadores, também temos como objetivo a apresentação 
+citados, de forma a facilitar a detecção de trechos de código que poderiam receber melhorias. Para que as
+métricas possam ser mais facilmente incorporadas no cotidiano dos programadores, também temos como objetivo a apresentação
 de uma maneira de interpretar os valores das métricas através de cenários problemáticos que ocorrem frequentemente durante
 o desenvolvimento.
+%
+Deste modo, queremos apresentar uma maneira de utilizar o poder da automatização das métricas associado a interpretação dos valores calculados,
+facilitando assim a aproximação dos conceitos relacionados ao código limpo.
 
-Deste modo, queremos apresentar uma maneira de utilizar o poder da automatização das métricas associado a interpretação dos valores calculados, 
-facilitando assim a aproximação para com os conceitos relacionados com código limpo.
-
-\section{Desenvolvimento}
+\section{Desenvolvimento do Trabalho}
 \label{sec:desenvolvimento}
 
-Para definir um código limpo e selecionar o conjunto de conceitos e técnicas desta monografia, trabalhamos sobre duas principais referências: 
-``Implementation Patterns'' \citep{Beck2007} de Kent Beck e ``Clean Code'' \citep{Martin2008} de Robert C. Martin. Ambos os livros foram escolhidos 
-pelo grande reconhecimento dado a esses autores pela comunidade de desenvolvimento de software. Baseado em suas experiência, Beck e Martin 
+Para definir um código limpo e selecionar o conjunto de conceitos e técnicas desta monografia, trabalhamos sobre duas principais referências:
+``Implementation Patterns'' \citep{Beck2007} de Kent Beck e ``Clean Code'' \citep{Martin2008} de Robert C. Martin. Ambos os livros foram escolhidos
+pelo grande reconhecimento dado a esses autores pela comunidade de desenvolvimento de software. Baseado em suas experiência, Beck e Martin
 expõe muitas recomendações para a criação de um bom código orientado a objetos.
 
-Ao longo desse trabalho, escolhemos uma parcela dos conceitos comuns em ambos os livros. Como diversos aspectos tratados são bastante 
-conhecidos, encontramos exemplos práticos que possam explicitar como as técnicas alteram a clareza e legibilidade do código sem se ater 
-somente ao ponto de vista teórico. Por fim, trabalhamos sobre uma implementação do algoritmo de Dijkstra para encontrar a árvore geradora de 
+Ao longo desse trabalho, escolhemos uma parcela dos conceitos comuns em ambos os livros. Como diversos aspectos tratados são bastante
+conhecidos, encontramos exemplos práticos que possam explicitar como as técnicas alteram a clareza e legibilidade do código sem se ater
+somente ao ponto de vista teórico. Posteriormente, trabalhamos sobre uma implementação do algoritmo de Dijkstra para encontrar a árvore geradora de
 custo mínimos, buscando encontrar melhorias que ilustrassem a aplicação dos tópicos estudados.
 
-Para elaborar o mapeamento das métricas de código-fonte, utilizamos grande parte do conhecimento adquirido ao longo do desenvolvimento da 
-ferramenta Analizo \cite{analizo2010}, capaz de extrair uma grande variedade de métricas nas linguagens C++, C e Java.
-Além disso, trabalhamos sobre o livro ``Object Oriented Metrics In Practice'' \cite{Lanza06} de Michele Lanza e Radu Marinescu, que apresenta uma 
-maneira bastante sistêmica de avaliar o design de aplicações orientadas a objetos. 
+Para elaborar o mapeamento das métricas de código-fonte, tivemos como ponto de
+partida as 22 métricas da ferramenta Analizo \cite{analizo2010}, na qual colaboramos no seu desenvolvimento por mais de um ano.
+Além disso, trabalhamos sobre o livro ``Object Oriented Metrics In Practice'' \cite{Lanza06} de Michele Lanza e Radu Marinescu, que apresenta uma
+maneira bastante sistêmica de avaliar o design de aplicações orientadas a objetos.
 
-A união destas referências tornou possível a seleção das métricas trabalhadas. No entanto, desde o desenvolvimento e estudo sobre a Analizo, nosso grupo 
-de pesquisa enfrentou dificuldades com a compreensão dos valores das métricas, o que nos motivou a focar no entendimento dos mesmos. Para tal, 
-trabalhamos sobre pequenos exemplos de código utilizando o seguinte ciclo: (a) cálculo das métricas; (b) análise do código para a encontrar uma melhoria 
-que pudesse aproximá-lo de um código limpo e observação dos valores das métricas para encontrar relações com a melhoria; (c) implementação da melhoria; 
-(d) recálculo das métricas e análise das alterações.
+A união da nossa experiência no desenvolvimento da Analizo e o estudo das referências
+tornou possível a seleção das métricas trabalhadas. No entanto, desde o desenvolvimento e estudo sobre a Analizo, nosso grupo
+de pesquisa enfrentou dificuldades com a compreensão dos valores das métricas, o que nos motivou a focar no entendimento dos mesmos. Para tal,
+trabalhamos sobre pequenos exemplos de código utilizando o seguinte ciclo: (i) cálculo das métricas; (ii) análise do código para a encontrar uma melhoria
+que pudesse aproximá-lo de um código limpo e observação dos valores das métricas para encontrar relações com a melhoria; (iii) implementação da melhoria;
+(iv) recálculo das métricas e análise das alterações.
 
-Uma vez com a seleção das métricas e um bom entendimento quanto a um código limpo, trabalhamos sobre o código da ferramenta Analizo para implementar 
-melhorias e tornar seu código mais limpo. Desta forma, validamos os conceitos utilizados ao longo da monografia para contribuir com o desenvolvimento de 
-um software livre.
+Uma vez definida a seleção de métricas e com bom entendimento quanto a um código limpo, trabalhamos sobre o código da própria Analizo para implementar
+melhorias e tornar seu código mais limpo. Desta forma, validamos os conceitos utilizados ao longo da monografia para proporcionarmos mais uma contribuição a essa ferramenta, que é software livre.
 
 %% ------------------------------------------------------------------------- %%
 \section{Organização do Trabalho}
 \label{sec:organizacao_trabalho}
 
-Além dessa introdução, este texto está organizado em quatro capítulos.
+Além dessa introdução, este texto está organizado em quatro capítulos:
 
 No Capítulo~\ref{chap:codigo_limpo}, apresentamos o que é um código limpo através
 da união das concepções de importantes especialistas no desenvolvimento de software.
@@ -100,13 +103,14 @@ O foco será nos livros \textit{Clean Code} de Robert Martin \citep{Martin2008} 
 Patterns} de Kent Beck \citep{Beck2007} e serão apresentados tantos conceitos teóricos
 quanto técnicas conhecidas para a criação de um código expressivo, simples e flexível.
 
-O capítulo seguinte, Capítulo~\ref{chap:mapeamento}, mostra o conceito das métricas de 
-código-fonte e como podemos utilizá-las para extrair características importantes do
-código. Além disso, apresentaremos o mapeamento objetivo entre os aspectos levantados
-no capítulo anterior e as métricas para auxiliar os programadores.
+O capítulo seguinte, Capítulo~\ref{chap:mapeamento}, apresenta os conceito das métricas de
+código-fonte e discute como podemos utilizá-las para extrair informações sobre
+as características do código. Além disso, definimos um mapeamento objetivo entre
+o conceito de código limpo e as métricas de código-fonte, com o objetivo de
+auxiliar os programadores na utilização desses conceitos.
 
-No Capítulo~\ref{chap:estudodecaso} apresentamos o estudo de caso feito sobre a ferramenta Analizo para 
-validar os conceitos apresentados ao longo do trabalho através da implementação de melhorias que pudessem 
+No Capítulo~\ref{chap:estudodecaso} apresentamos o estudo de caso feito sobre a ferramenta Analizo para
+validar o mapeamento definido e aplicarmos os conceitos discutidos ao longo do trabalho através da implementação de melhorias que pudessem
 tornar seu código limpo.
 
 Por fim, as conclusões e possibilidades de trabalhos futuros serão expostos no Capítulo~\ref{chap:conclusao}.

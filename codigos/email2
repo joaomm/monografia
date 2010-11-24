@@ -1,5 +1,5 @@
 classe Email:
-	setaAssunto(String assunto)
-	setaDestinatarios(Lista destinatarios)
-	setaConteudoComoHTML(String conteudo)
-	setaConteudoComoXML(String conteudo)
+	adicionaAssunto(String assunto)
+	adicionaDestinatarios(Lista destinatarios)
+	adicionaConteudoComoHTML(String conteudo)
+	adicionaConteudoComoXML(String conteudo)

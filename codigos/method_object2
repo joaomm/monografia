@@ -1,0 +1,20 @@
+classe ImpressorDePrimos:
+	imprimePrimo(n):
+		primo = calculaPrimo(n)
+		print "----------------------------------"
+		print "O primo numero " + n + "eh " + primo
+		print "----------------------------------"		
+
+	calculaPrimo(n):
+		calculador = CalculadorDoEnesimoPrimo(n)
+		return calculador.calcula()
+
+
+classe CalculadorDoEnesimoPrimo:
+	instVar numeroDoPrimoProcurado
+	
+	construtor(n):
+		numeroDoPrimoProcurado = n
+	
+	calcula():
+		#implementacao do Crivo de Erastotones

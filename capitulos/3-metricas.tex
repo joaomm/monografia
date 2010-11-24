@@ -267,21 +267,23 @@ Para exemplificar este cenário, usaremos o método \textit{adicionaDadosDaRodad
 Os conceitos de código limpo que constituem este cenário são a maximização da coesão e o princípio da responsabilidade única. Assim como o cenário que indica muita passagem de parâmetros pela classe, esse contexto analisa a classe como um todo.
 	
 A principal característica de uma classe pouco coesa é possuir subdivisões em grupos de métodos e atributos que não se relacionam (valor de LCOM4 > 1), ou possuir métodos que alcançam em média poucos atributos da propria classe (média de NRA <<< NOA). Nessse contexto, dizemos que um método alcança um atributo se ele usa o atributo no seu próprio corpo ou de forma indireta, ou seja, através da chamada de algum método que usa o atributo direta ou indiretamente.
-	   
-Na figura abaixo temos a representação abstrata de uma classe. Os círculos cinzas são os métodos e os azuis atributos da classe. As setas representam chamadas e acessos entre esses elementos. Quando contamos os grupos de elementos conexos, obtemos \textit{LCOM4 = 2}, e no cálculo do número médio de atributos atingidos por cada método, obtemos \textit{média de NRA = 1.16}. Como o valor de \textit{LCOM4} é maior do que um e o de \textit{NRA} é razoavelmente menor do que o número total de atributos (\textit{NOA = 3}), podemos classificar essa classe como pouco coesa.                  
-		
-Os objetivos durante uma refatoração deste cenário são aumentar a coesão (diminuir a LCOM4) e diminuir a diferença entre média do número de atributos alcançáveis (NRA) e o número de atributos da classe analisada (NOA). Portando, uma boa refatoração neste contexto seria separar as subdivisões já existentes na classe analisada em classes mais coesas.
 
-Como resultado da refatoração deste cenário, esperamos encontrar um aumento do número de classes. Além disso, desejamos que as classes existentes não tenham subdivisões (LCOM4 = 1) e que a média do número de atributos alcançáveis por cada método seja próxima da quantidade de atributos da classe (média de NRA próxima de NOA).	                            
-		
+
 \vskip 1.0cm		
 \begin{figure}[htb]
 	\centering
-	\includegraphics[trim = 0mm 50mm 0mm 60mm, clip, width=0.6\textwidth]{codigos/exemplos_para_os_cenarios/classe_pouco_coesa.png}
+	\includegraphics[trim = 0mm 50mm 0mm 60mm, clip, width=0.4\textwidth]{codigos/exemplos_para_os_cenarios/classe_pouco_coesa.png}
 	\caption{Representação abstrata de uma classe pouco coesa}
 	\label{classe_pouco_coesa}
 \end{figure}
-	                              
+   
+    
+Na figura acima temos a representação abstrata de uma classe. Os círculos cinzas são os métodos e os azuis atributos da classe. As setas representam chamadas e acessos entre esses elementos. Quando contamos os grupos de elementos conexos, obtemos \textit{LCOM4 = 2}, e no cálculo do número médio de atributos atingidos por cada método, obtemos \textit{média de NRA = 1.16}. Como o valor de \textit{LCOM4} é maior do que um e o de \textit{NRA} é razoavelmente menor do que o número total de atributos (\textit{NOA = 3}), podemos classificar essa classe como pouco coesa.                  
+    
+Os objetivos durante uma refatoração deste cenário são aumentar a coesão (diminuir a LCOM4) e diminuir a diferença entre média do número de atributos alcançáveis (NRA) e o número de atributos da classe analisada (NOA). Portando, uma boa refatoração neste contexto seria separar as subdivisões já existentes na classe analisada em classes mais coesas.
+	
+Como resultado da refatoração deste cenário, esperamos encontrar um aumento do número de classes. Além disso, desejamos que as classes existentes não tenham subdivisões (LCOM4 = 1) e que a média do número de atributos alcançáveis por cada método seja próxima da quantidade de atributos da classe (média de NRA próxima de NOA).
+                  
                 
                            
 \section{Resumo dos Cenários}

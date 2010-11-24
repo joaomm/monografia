@@ -47,7 +47,7 @@ class CalculadorCaminhosMinimos:
 	def setaVerticeOrigemComoAtingidoSemCusto():
 		custos[verticeOrigem] = 0
 		
-	def inicializaCustos():
+	def inicializaFila():
 		fila = nova FilaDePrioridades(numeroDeVertices)
 		inserePrimeiraArestaNula()
 	
@@ -80,7 +80,7 @@ class CalculadorCaminhosMinimos:
 		custos[vertice] == Infinito
 		
 	def atualizaCustoEInsereNaFila(verticeDestino, aresta):
-		atualizaCusto(verticeDestino, aresta)
+		atualizaCustoComNovaAresta(verticeDestino, aresta)
 		fila.insere(nova Aresta(verticeDestino, custos[verticeDestino]))
 		
 	def caminhoComNovaArestaMaisBarato(verticeDestino, aresta):

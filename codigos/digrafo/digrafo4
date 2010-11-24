@@ -23,10 +23,10 @@ class Digrafo:
 
 	def inicializaCustos(vertice):
 		custos = nova Lista(numeroDeVertices)
-		setaTodosOsVerticesComNaoAtingidos()
+		setaTodosOsVerticesComoNaoAtingidos()
 		setaVerticeOrigemComoAtingidoSemCusto(vertice)
 	
-	def setaTodosOsVerticesComNaoAtingidos():
+	def setaTodosOsVerticesComoNaoAtingidos():
 		for i in (1, numeroDeVertices):
 			custos[i] = Infinito
 	

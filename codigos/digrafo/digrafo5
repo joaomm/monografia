@@ -57,11 +57,10 @@ class CalculadorCaminhosMinimos:
 	def aindaHaVertices(fila):
 		return fila.vazia()
 	
-	def atualizaCustosAPartirDoVerticeComCustoMinimo()
+	def atualizaCustosAteAcabarVertices()
 		while(aindaHaVertices()):
 			atualizaCustosAPartirDoVerticeComCustoMinimo()
 					
-		
 	def atualizaCustosAPartirDoVerticeComCustoMinimo():
 		verticeMinimo = fila.verticeDaArestaComCustoMinimo()
 		for aresta in (digrafo.arestasDoVertice(verticeMinimo)):			

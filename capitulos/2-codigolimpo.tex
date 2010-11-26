@@ -1,21 +1,30 @@
 \chapter{Código Limpo}
 \label{chap:codigo_limpo}
 
-A definição de um bom código não é precisa. Do mesmo modo que enfretamos dificuldades para definir o que é arte, não podemos definir um conjunto de parâmetros lógicos e mensuráveis para delimitar a diferença de qualidade entre códigos-fonte. Podemos considerar aspectos como testabilidade, eficiência, facilidade de modificação, processo pelo o qual foi desenvolvido, entre outros. Portanto, no âmbito deste trabalho, nos deteremos a trabalhar com o chamado código limpo orientado a objetos.
+A definição de um bom código não é precisa. Do mesmo modo que enfretamos dificuldades para definir o que é arte, não podemos definir um conjunto 
+de parâmetros lógicos e mensuráveis para delimitar a diferença de qualidade entre códigos-fonte. Podemos considerar aspectos como testabilidade, 
+eficiência, facilidade de modificação, processo pelo o qual foi desenvolvido, entre outros. Diante dessa dificuldade, nos deteremos a trabalhar 
+com o chamado código limpo orientado a objetos no âmbito deste trabalho.
 
-No livro \textit{Clean Code} \citep{Martin2008}, o autor entrevistou grandes especialistas em desenvolvimento de software como Ward Cunningham (inventor do \textit{Fit}, \textit{Wiki} e \textit{Programação Extrema} \citep{Beck1999}) e Dave Thomas (fundador da OTI - \textit{Object Technology International} - e muito envolvido no Projeto Eclipse) questionando-os quanto a uma definição para código limpo. Cada um dos entrevistados elaborou respostas diferentes, destacando características subjetivas, como elegância, facilidade de alteração e simplicidade, e outras puramente técnicas, incluindo a falta de duplicações, presença de testes unitários e de aceitação e a minimização do número de entidades.
+No livro \textit{Clean Code} \citep{Martin2008}, o autor entrevistou grandes especialistas em desenvolvimento de software como Ward Cunningham 
+(colaborador na criação do \textit{Fit}, do \textit{Wiki} e da \textit{Programação Extrema} \citep{Beck1999}) e Dave Thomas (fundador da OTI - 
+\textit{Object Technology International} - e muito envolvido no Projeto Eclipse) questionando-os quanto a uma definição para código limpo. Cada um 
+dos entrevistados elaborou respostas diferentes, destacando características subjetivas, como elegância, facilidade de alteração e simplicidade, e 
+outras puramente técnicas, incluindo a falta de duplicações, presença de testes de unidade e de aceitação e a minimização do número de entidades.
 
-Em certo sentido, um código limpo está inserido em um estilo de programação que busca a proximidade para com três valores: expressividade, simplicidade e flexibilidade. Tais termos são utilizados por Kent Beck no livro Implementation Patterns \citep{Beck2007} que estão em conforme com a unidade de pensamento que permeia as respostas dos especialistas.
+Em certo sentido, um código limpo está inserido em um estilo de programação que busca a proximidade a três valores: expressividade, 
+simplicidade e flexibilidade. Tais termos são utilizados por Kent Beck no livro \textit{Implementation Patterns} \citep{Beck2007} que estão em
+conformidade com a unidade de pensamento que permeia as respostas dos especialistas.
 
 \subsubsection{Expressividade}
 Dentre as definições encontradas pela pesquisa de Robert Martin acima citada, algumas afirmações se destacam quanto a expressividade. Na visão de Grady Booch \citep{Booch2007}, um código limpo pode ser lido como um texto em prosa e deixa claro as intenções do autor através de operações e abstrações bem escolhidas. Já para Dave Thomas e Kent Beck, a medida para a expressividade está na facilidade para um desenvolvedor, que não o autor original do trecho de código, entender, modificar e utilizá-lo.
 
-Grande parte dessas ideias receberam influência do livro de Donald Knuth, \textit{Literate Programming} \citep{Knuth92}. A intenção era programar em linguagens naturais, como o inglês, e intercalar as expressões com macros e pequenos trechos de código-fonte tradicional. O arquivo poderia ser lido como um texto comum, mas no plano de fundo seriam executados os trechos correspondentes à cada uma das expressões em linguagem natural.
+Grande parte dessas ideias receberam influência do livro de Donald Knuth, \textit{Literate Programming} \citep{Knuth92}. A intenção era programar em linguagens naturais, como o inglês, e intercalar as expressões com macros e pequenos trechos de código-fonte tradicional. O arquivo poderia ser lido como um texto comum, mas no plano de fundo seriam executados os trechos correspondentes a cada uma das expressões em linguagem natural.
 
 Nesse sentido, um código é expressivo quando pode ser facilmente lido nas diferentes camadas de abstração, deixando detalhes de implementação ``escondidos'' em níveis mais baixos. Nas palavras de Ward Cunningham, a solução implementada faz com que a linguagem pareça ter sido feita para o problema sendo resolvido.
 
 \subsubsection{Simplicidade}
-A simplicidade é um dos aspectos mais valorizados por Kent Beck. Na sua visão, devemos programar buscando reduzir a quantidade de informação que o leitor deve compreender para fazer alterações. Desta maneira, o autor dá grande importância para a minimização do número de abstrações, comentários e estruturas complexas entre as classes que são desnecessários.
+A simplicidade é um dos aspectos mais valorizados por Kent Beck. Na sua visão, devemos programar buscando reduzir a quantidade de informação que o leitor deve compreender para fazer alterações. Dessa maneira, o autor dá grande importância para a minimização do número de abstrações, comentários e estruturas complexas entre as classes que são desnecessários.
 
 \subsubsection{Flexibilidade}
 A flexibilidade reflete a facilidade de estender a aplicação sem fazer grandes alterações na estrutura já implementada. Não queremos ter que mudar diversos métodos e diversas classes para adicionar uma funcionalidade.
@@ -30,18 +39,34 @@ O código pretendido deve se adequar e aproveitar bem das vantagens inerentes ao
 \end{itemize}
 
 \section{O Desenvolvimento de um Código Limpo} 
-Um importante aspecto quanto o desenvolvimento de um código limpo é o reconhecimento que não será obtido em uma primeira tentativa. Robert Martin ressalta que as versões iniciais de um método, classe e outras estruturas nunca são exatamente uma boa solução. É necessário tempo e preocupação com cada elemento desde o nome escolhido para uma variável até uma hierarquia de classes.
+Um importante aspecto quanto o desenvolvimento de um código limpo é o reconhecimento de que ele não será obtido em uma primeira tentativa. Robert 
+Martin ressalta que as versões iniciais de um método, classe e outras estruturas nunca são exatamente uma boa solução. É necessário tempo e 
+preocupação com cada elemento desde o nome escolhido para uma variável até uma hierarquia de classes.
 
 Diante dessa realidade, queremos garantir que não teremos empecilhos para as refatorações.
-O mais crítico dos impedimentos é a insegurança. Se ao fazer uma alteração, ficamos receosos de que algo pode ter quebrado, provavelmente logo deixaremos de fazê-las, progressivamente afastando o código da limpeza desejada. Desta forma, a presença de testes automatizados são a fundação para o desenvolvimento de um código limpo. Os testes dão a segurança de que as partes estão funcionando corretamente, possibilitando as diversas refatoracões para deixar o código claro.
+O mais crítico dos impedimentos é a insegurança. Se ao fazer uma alteração, ficamos receosos de que algo pode ter quebrado, provavelmente logo 
+deixaremos de fazê-las, progressivamente afastando o código da limpeza desejada. Dessa forma, a presença de testes automatizados são a fundação 
+para o desenvolvimento de um código limpo. Os testes dão a segurança de que as partes estão funcionando corretamente, possibilitando as diversas 
+refatoracões para deixar o código claro.
 
-Além de auxiliar nas alterações, os testes compõe parte da expressividade, simplicidade e flexibilidade de um código. Para que desenvolvedores que não o autor de um trecho de código o compreendam, os testes podem reportar como o elemento deve ser usado. Por fim, a medida para a simplicidade pode ser feita através da suíte de teste: se os testes estão todos corretos, não é necessário adicionar complexidade, apenas melhorias sem adicionar funcionalidade. 
+Além de auxiliar nas alterações, os testes compõem parte da expressividade, simplicidade e flexibilidade de um código. Para que desenvolvedores 
+que não o autor de um trecho de código o compreendam, os testes podem reportar como o elemento deve ser usado. Por fim, a medida para a 
+simplicidade pode ser feita através da suíte de teste: se os testes estão todos corretos, não é necessário adicionar complexidade, apenas 
+melhorias sem adicionar funcionalidade. 
 
-Outro tipo de empecilho que podemos encontrar são os comentários e documentações para métodos e classes. Para qualquer alteração feita no código, em tese os comentários e formas de documentação também deveriam ser mudados para ficarem de acordo com o estado atual. Uma contraposição é muito frequente, como aponta Robert Martin: por um lado, se nos policiarmos para que a atualização do código e comentários seja simultânea, muito provavelmente deixaremos de fazer alterações devido ao excesso de trabalho; pelo outro, se deixarmos de atualizar uma das formas de documentação, estaremos tornando-as dispensáveis, além de potencialmente se tornarem fontes de informações incorretas.
+Outro tipo de empecilho que podemos encontrar são os comentários e documentações para métodos e classes. Para qualquer alteração feita no código, 
+em tese os comentários e formas de documentação também deveriam ser mudados para ficarem de acordo com o estado atual. Uma contraposição é muito 
+frequente, como aponta Robert Martin: por um lado, se nos policiarmos para que a atualização do código e comentários seja simultânea, muito 
+provavelmente deixaremos de fazer alterações devido ao excesso de trabalho; por outro, se deixarmos de atualizar uma das formas de documentação, 
+estaremos tornando-as dispensáveis, além de potencialmente se tornarem fontes de informações incorretas.
 
-A solução dada é focar a atenção no desenvolvimento de um código limpo. Se as variáveis estiverem devidamente nomeadas, não precisaremos criar um comentário para explicá-la. Se os métodos estiverem bem nomeados e tiverem uma única tarefa, não será necessário documentar o que são os parâmetros e o valor de retorno. E por fim, se os testes estiverem bem executados, teremos uma documentação do código que garante a corretude.
+A solução dada é concentrar a atenção no desenvolvimento de um código limpo. Se as variáveis estiverem devidamente nomeadas, não precisaremos 
+criar um comentário para explicá-las. Se os métodos estiverem bem nomeados e possuírem uma única tarefa, não será necessário documentar o que são 
+os parâmetros e o valor de retorno. E por fim, se os testes estiverem bem executados, teremos uma documentação executável do código que garante a 
+corretude.
 
-Robert Martin enfatiza que o desejado é não engessar o desenvolvimento e melhoria do código com dificuldades para os programadores, mas compreender quais elementos do software precisam de documentação e contruí-la adequadamente.
+Robert Martin enfatiza que o desejado é não engessar o desenvolvimento e melhoria do código com dificuldades para os programadores, mas 
+compreender quais elementos do software precisam de documentação e contruí-la adequadamente.
 
 \vskip 1.0cm
 As seções subsequentes apresentam aspectos importantes para termos um código limpo no que diz respeito a detalhes quanto aos nomes, métodos e classes.
@@ -52,22 +77,25 @@ As seções subsequentes apresentam aspectos importantes para termos um código 
 Em uma primeira análise sobre um código-fonte, uma das afirmações que pode ser feita é que ele é constituído por um conjunto de palavras reservadas da linguagem e um número imenso de nomes escolhidos pelos desenvolvedores. Por exemplo, um código escrito em Smalltalk praticamente não contém palavras da sintaxe da linguagem, contendo uma grande quantidade de envio de mensagens aos objetos e usos de variáveis, ambos com nomes escolhidos pelos desenvolvedores.
 
 \subsubsection{Nomes que Revelam Intenção}
-De acordo com Robert Martin, o nome de uma variável, método ou classe deveria responder todas as questões acerca do elemento sendo nomeado. Deveria contar porque o elemento existe, o que faz e como deve ser usado, de forma que comentários se tornem redundantes. O exemplo abaixo ilustra a dificuldade do leitor compreender um código com nomes pouco reveladores.
+De acordo com Robert Martin, o nome de uma variável, método ou classe deveria responder a todas as questões a cerca do elemento sendo nomeado. Deveria contar porque o elemento existe, o que faz e como deve ser usado, de forma que comentários se tornem redundantes. O exemplo abaixo ilustra a dificuldade do leitor em compreender um código com nomes pouco reveladores.
 
 \lstinputlisting[label=nomes_pouco_reveladores, caption={Exemplo de nomes pouco reveladores}]{codigos/nomes_pouco_reveladores}
 
-Esse método, pertencente à uma classe Grafo, é difícil de ser compreendido sem um vasto conhecimento da convenção de notações e o algoritmo utilizado. Muitas perguntas poderiam ser feitas como (i) O que faz caminhoR?,  (ii) O que é o vértice v?  E quanto ao w? Eles tem algo em comum?, (iii)  O que significa adj(v, w) ser igual a 1?.
+Esse método, pertencente a uma classe Grafo, é difícil de ser compreendido sem um vasto conhecimento da convenção de notações e o algoritmo utilizado. Muitas perguntas poderiam ser feitas como (i) O que faz caminhoR?,  (ii) O que é o vértice \textit{v}?  E quanto ao \textit{w}? Eles tem algo em comum?, (iii)  O que significa \textit{adj(v, w)} ser igual a \textit{true}?.
 
 A seguir segue o mesmo código com alterações somente nos nomes das variáveis e métodos, sem nenhuma alteração na implementação.
 
 \lstinputlisting[label=passeio_com_origem_em, caption={Melhorias nos nomes podem tornar o código mais claro}]{codigos/passeio_com_origem_em}
 
-Muitas questões podem ser respondidas depois da leitura desse trecho. O nome da função deixa claro que sua tarefa é passear pelos vértices do grafo começando pelo vértice origem passado como parâmetro. O vetor est foi renomeado para estado e as constante 0 e -1 receberam um nome, revelando o significado das operações em que constam. A simples mudança de \textit{tamanho()} para \textit{numeroDeVertices()} provê um contexto mais completo para o entendimento do laço.
+Muitas questões podem ser respondidas depois da leitura desse trecho. O nome da função deixa claro que sua tarefa é passear pelos vértices do 
+grafo começando pelo vértice origem passado como parâmetro. O vetor \textit{est} foi renomeado para estado e as constante 0 e -1 receberam um 
+nome, revelando o significado das operações em que constam. A simples mudança de \textit{tamanho()} para \textit{numeroDeVertices()} provê um 
+contexto mais completo para o entendimento do laço.
 	
-O exemplo poderia ser melhorado para ficar mais alinhado com o paradigma da orientação a objetos e com os conceitos que serão apresentados mais adiante. Nesta seção tratamos a importância da escolha de nomes e como pode auxiliar o entendimento. É possível revelar o significado de elementos dando nomes para as constantes, por exemplo. Nomes como origem e próximo podem nomear objetos da mesma classe para mostrar o contexto e semântica de como estão sendo usados. Métodos podem trazer mais expressividade e fluência à leitura se forem nomeados levando em conta o código cliente e nas circunstâncias em que será chamado.
+O exemplo poderia ser melhorado para ficar mais alinhado com o paradigma da orientação a objetos e com os conceitos que serão apresentados mais adiante. Nesta seção, tratamos a importância da escolha de nomes e como pode auxiliar o entendimento. É possível revelar o significado de elementos dando nomes para as constantes, por exemplo. Nomes como origem e próximo podem nomear objetos da mesma classe para mostrar o contexto e semântica de como estão sendo usados. Métodos podem trazer mais expressividade e fluência à leitura se forem nomeados levando em conta o código cliente e nas circunstâncias em que será chamado.
 
 \subsubsection{Diferenças Significativas}
-Durante a criação de um método ou uma classe, é muito comum que, no mesmo contexto, haja  objetos de tipos iguais. Nessa situação, não basta escolher nomes que representem bem o que é o objeto, mas também é preciso criar uma diferença significativa entre eles. O intuito é deixar claro ao leitor do código  (i.e. programador) o papel de cada uma das partes, tanto para facilitar o uso de métodos deixando claro a ordem dos parâmetros, quanto para que a semântica de uma operação fique mais clara.
+Durante a criação de um método ou uma classe, é muito comum que, no mesmo contexto, haja  objetos de tipos iguais. Nessa situação, não basta escolher nomes que representem bem o que é o objeto, mas também é preciso criar uma diferença significativa entre eles. O intuito é deixar claro ao leitor do código  (ou seja, o programador) o papel de cada uma das partes, tanto para facilitar o uso de métodos deixando claro a ordem dos parâmetros, quanto para que a semântica de uma operação fique mais clara.
 	
 Quando um leitor se depara com um método como \textit{copiaElementos(lista1, lista2)}, pode não ficar claro qual é a ordem dos argumentos: os elementos da lista1 são copiados para lista2 ou vice-versa? Com uma simples distinção criada através dos nomes, a leitura não levanta nenhum tipo de dúvidas em \textit{copiaElementos(origem, destino)}.
 
@@ -76,7 +104,7 @@ Uma solução utilizada para melhorar a clareza das operações de um trecho de 
 
 \lstinputlisting[label=encontra_caminho_entre_v1, caption={Exemplo sem o uso de nomes temporários}]{codigos/encontra_caminho_entre_v1}
 
-Com algum esforço, o leitor identificará que o código está buscando o caminho entre a estação Jabaquara e a última estação da linha Amarela. Porém, a expressividade da versão alterada abaixo deixa com que a leitura e compreensão sejam imediatas.
+Com algum esforço, o leitor identificará que o código está buscando o caminho entre a estação Jabaquara e a última estação da linha Amarela. Porém, a expressividade da versão alterada abaixo faz com que a leitura e compreensão sejam imediatas.
 
 \lstinputlisting[label=encontra_caminho_entre_v2, caption={Usando nomes temporários}]{codigos/encontra_caminho_entre_v2}
 
@@ -116,17 +144,17 @@ Pensando em outros fatores que podem levar a dificuldades para a leitura do noss
 O último fundamento teórico quanto aos métodos também diz respeito ao programa como um todo. Queremos ter um fluxo normal bem estabelecido, deixando-o simples e o tratamento de erros separado. Em outras palavras, não queremos que o código fiquei cheio de verificações de erro misturados com a lógica sem erros.
 	
 \subsection{Técnicas}
-Tendo em vista a fundamentação teórica, a seguir estão algumas técnicas que nos possibilitam criar métodos que se encaixem no estilo de programação buscado.
+Tendo em vista a fundamentação teórica, a seguir descrevemos algumas técnicas que nos possibilitam criar métodos que se encaixem no estilo de programação buscado.
 
 \subsubsection{Composição de Métodos}
 \label{metodos:composicao}
-A composição de método é a base para a criação de um código limpo. A proposta é compor nossos métodos em chamadas para outros métodos rigorosamente no mesmo nível de abstração.
+A Composição de Métodos é a base para a criação de um código limpo. A proposta é compor nossos métodos em chamadas para outros métodos rigorosamente no mesmo nível de abstração.
 	
-Usando novamente o exemplo do algoritmo do \textit{Crivo de Erastótenes}, para encontrarmos os primos de 1 a N devemos criar um conjunto de elementos que represente os inteiros de 1 a N, marcar todos números múltiplos de outros e depois coletar todos aqueles que não estão marcados (os primos). Para isso criamos um método da classe \textit{GeradorDePrimos}:
+Usando o exemplo do algoritmo do \textit{Crivo de Erastótenes}, para encontrarmos os primos de 1 a N devemos criar um conjunto de elementos que represente os inteiros de 1 a N, marcar todos números múltiplos de outros e depois coletar todos aqueles que não estão marcados (os primos). Para isso criamos um método da classe \textit{GeradorDePrimos}:
 
 \lstinputlisting[label=primos_ate, caption={Algoritmo do Crivo de Erastótenes decomposto em métodos}]{codigos/primos_ate}
 
-Nesse exemplo, compusemos o método \textit{primosAte(N)} em chamadas para outros métodos, cada um com uma tarefa e um nome explicativo. Dessa forma, o leitor pode entender facilmente como funciona o algoritmo de uma maneira geral. 
+Nesse exemplo, compomos o método \textit{primosAte(N)} a partir de chamadas para outros métodos, cada um com uma tarefa e um nome explicativo. Dessa forma, o leitor pode entender facilmente como funciona o algoritmo de uma maneira geral. 
 	
 Também ficam bastante claros os níveis de abstrações criados. A função primosAte(n) está em um nível e os métodos que invoca estão todos no mesmo patamar logo abaixo. Queremos criar essa estrutura em cadeia, tornando possível que o leitor só precise entender os níveis que interessem no momento.
 	
@@ -134,9 +162,9 @@ A composição de métodos não é uma técnica que desconhecemos, uma vez que a
 
 \subsubsection{Métodos Explicativos (Explaining Methods)}
 \label{metodos:explicativos}
-Para auxiliar na expressividade de um trecho de código, podemos criar um método com nome específico do contexto em que será invocada. A operação pode ser bastante simples como um incremento de variável ou a chamada de um método em um objeto guardado em uma variável de instância, mas o nome dado será de grande valor para a documentação do código. Além disso, a função pode ser reutilizada posteriormente evitando duplicações e encapsulando a operação.
+Para auxiliar na expressividade de um trecho de código, podemos criar um método com nome específico do contexto em que será invocado. A operação pode ser bastante simples como um incremento de variável ou a chamada de um método em um objeto guardado em uma variável de instância, mas o nome dado será de grande valor para a documentação do código. Além disso, a função pode ser reutilizada posteriormente evitando duplicações e encapsulando a operação.
 	
-Essa ideia pode ser empregada em diferentes contextos e níveis de abstração. Para Kent Beck, devemos considerar a criação de um método explicativo quando ficamos tentados a comentar uma única linha de código. Abaixo está um exemplo em Java extraído do livro \textit{Implementation Patterns}.
+Essa ideia pode ser empregada em diferentes contextos e níveis de abstração. Para Kent Beck, devemos considerar a criação de um método explicativo quando ficamos tentados a comentar uma única linha de código. Abaixo está um exemplo extraído do livro \textit{Implementation Patterns}.
 
 \lstinputlisting[label=operacao_estranha, caption={Exemplo de operação pouco clara que recebe comentário}]{codigos/operacao_estranha}
 
@@ -148,9 +176,9 @@ Em outro exemplo, criamos um método chamado \textit{destaca()} para dar o conte
 
 \lstinputlisting[label=destaca, caption={Método destaca() facilita a leitura do código cliente}]{codigos/destaca}
 
-Considerando a região de código que chama \textit{destaca()}, as melhorias são diversas com essa alteração. Se a operação fosse simplesmente colocada sem nenhum comentário, provavelmente o leitor se perguntaria porque a cor de fundo da palavra está sendo alterada naquele contexto. O comentário seria algo como “destacar a palavra no texto”, o que se torna obsoleto com o método explicativo. 
+Considerando a região de código que chama \textit{destaca()}, as melhorias são diversas com essa alteração. Se a operação fosse simplesmente colocada sem nenhum comentário, provavelmente o leitor se perguntaria por quê a cor de fundo da palavra está sendo alterada naquele contexto. O comentário seria algo como “destacar a palavra no texto”, o que se torna obsoleto com o método explicativo. 
 
-Por fim, ainda há formas mais implícitas de utilizar métodos explicativos. Quando utilizamos o padrão de projeto Wrapper \citep{GOF95} para criar uma classe que abstrai uma coleção de elementos, estamos de uma maneira criando uma interface cujos métodos façam mais sentido para o domínio de aplicação trabalhado.
+Por fim, ainda há formas mais implícitas de utilizar métodos explicativos. Quando utilizamos o padrão de projeto \textit{Adapter} \citep{GOF95} para criar uma classe que abstrai uma coleção de elementos, de certa forma estamos criando uma interface cujos métodos façam mais sentido para o domínio de aplicação trabalhado.
 
 \subsubsection{Métodos como Condicionais}
 \label{metodos:condicionais}
@@ -165,7 +193,7 @@ Um condicional não muito claro, como o mostrado acima, pode deixar o próprio a
 \subsubsection{Evitar Estruturas Encadeadas}
 Tendo em vista a busca por métodos pequenos e com uma única tarefa, um aspecto relevante é a criação de estruturas encadeadas. Se um método tem uma cadeia de \textit{ifs} e \textit{elses}, o leitor terá dificuldades para compreender todos os casos e fluxos possíveis.
 	
-Em ambos os livros trabalhados, os autores enfatizam sobre o uso de chamadas de métodos logo em seguida de um condicional. Novamente a operação que será encapsulada estará dentro de um método com nome expressivo, o que deixa esse método curto e expressivo.
+Em ambos os livros estudados, os autores enfatizam o uso de chamadas de métodos logo em seguida de um condicional. Novamente a operação que será encapsulada estará dentro de um método com nome expressivo, o que deixa esse método curto e expressivo.
 	
 Mais uma vez utilizando o exemplo do \textit{Crivo de Eristótenes}, é necessário marcar todos os números que sejam múltiplos de um primo, representado por um número não marcado.
 
@@ -174,7 +202,10 @@ Mais uma vez utilizando o exemplo do \textit{Crivo de Eristótenes}, é necessá
 Cada método encapsula um nível na cadeia de estruturas encadeadas. Ao invés de muitos \textit{fors} e \textit{ifs} encadeados, obtivemos funções pequenas e muito focadas em uma única tarefa que podem ser mais facilmente testadas de forma independente.
 
 \subsubsection{Cláusulas Guarda (Guard Clauses)}
-Outra técnica para evitar o uso de estruturas complexas de condicionais são as cláusulas guarda. Quando criamos uma expressão condicional (if), o leitor naturalmente espera um bloco com a contrapartida (else). A ideia é criar um retorno breve para expressar que uma das partes dessa contraposição é mais relevante. Portanto, a estrutura exemplificada no trecho de código \ref{guarda2} é mais recomendada do que no trecho de código \ref{guarda1} nos exemplos abaixo, pois revela ao leitor que o fluxo mais relevante é o caso em que ocorre a inicialização.
+Outra técnica para evitar o uso de estruturas complexas de condicionais são as cláusulas guarda. Quando criamos uma expressão condicional (if), o 
+leitor naturalmente espera um bloco com a contrapartida (else). A ideia é criar um retorno breve para expressar que uma das partes dessa 
+contraposição é mais relevante. Portanto, a estrutura exemplificada no trecho de código \ref{guarda2} é mais recomendada do que no trecho de código 
+\ref{guarda1} nos exemplos abaixo, pois revela ao leitor que o fluxo mais relevante é o caso em que ocorre a inicialização, uma vez que, no caso contrário, nenhuma operação é executada.
 
 \lstinputlisting[label=guarda1, caption={Método sem Cláusula Guarda}]{codigos/guarda1}
 \lstinputlisting[label=guarda2, caption={Método com Cláusula Guarda}]{codigos/guarda2}
@@ -212,7 +243,9 @@ Com essa motivação queremos evitar parâmetros desnecessários e que confundem
 \begin{itemize}
 \item
 \subsubsection{Evitar \textit{Flags} como Argumentos}
-Se passamos uma \textit{Flag} (booleana ou proveniente de uma enumeração) como argumento para gerar dois tipos de comportamentos de um método, claramente esse último realiza mais do que uma tarefa. O natural seria criar um método para cada uma das tarefas como mostrado no exemplo \ref{rotaciona2} abaixo de uma classe Figura abaixo.
+Se passamos uma \textit{Flag} (booleana ou proveniente de uma enumeração) como argumento para gerar dois tipos de comportamentos de um método, 
+claramente esse método realiza mais do que uma tarefa. O natural seria criar um método para cada uma das tarefas como mostrado no exemplo 
+\ref{rotaciona2} abaixo de uma classe Figura abaixo.
 
 \lstinputlisting[label=rotaciona1, caption={Método rotaciona() com dois comportamentos através do uso de uma flag como argumento}]{codigos/rotaciona1}
 \lstinputlisting[label=rotaciona2, caption={Dois métodos com uma única tarefa cada}]{codigos/rotaciona2}
@@ -328,7 +361,7 @@ formas desde o uso de um método de outra classe até a ``perigosa'' manipulaç�
 	
 Tendo em vista a busca por consequências locais e a simplicidade e expressividade do código, não queremos que as 
 classes dependam fortemente umas das outras de forma que o entendimento e a modificação de uma leve a alterações em 
-outras classes. Além disso, a cada dependência gerada, os testes unitários criados provavelmente precisaram da 
+outras classes. Além disso, a cada dependência gerada, os testes de unidade criados provavelmente precisaram da 
 utilização de artifícios para isolar cada uma das partes sendo mais difíceis de serem compreendidos.
 
 Por outro lado, buscamos um sistema formado por muitas classes coesas e com uma única responsabilidade, fazendo com a comunicação 
@@ -341,8 +374,7 @@ com \textit{Conteudo}. O acoplamento criado não deixou as classes mais complexa
 Abaixo estão apresentados alguns conceitos e técnicas relacionados ao acoplamento em um código limpo.
 
 \subsubsection{A Lei de Demeter (The Law of Demeter)}
-A Lei de Demeter (\textit{The Law of Demeter}) diz que um método ``M'' de uma classe ``C'' só deveria chamar um dos 
-seguintes métodos:
+A Lei de Demeter diz que um método ``M'' de uma classe ``C'' só deveria chamar um método:
 
 \begin{itemize}
 	\item da própria classe;
@@ -351,16 +383,16 @@ seguintes métodos:
 	\item de um objeto guardado em uma variável de instância de C.
 \end{itemize}
 
-O cumprimento dessa heurística visa evitar que uma classe conheça os detalhes de implementação dos objetos aos quais 
+O cumprimento dessa heurística visa evitar que uma classe conheça os detalhes de implementação dos objetos que
 manipula. A invocação de métodos da própria classe não causa nenhum tipo de dependência pela óbvia ausência de algo 
-sobre a qual depender. Os outros tipos de chamadas especificados na Lei causam uma dependência, mas que se limita as 
-interfaces dos objetos trabalhados. A classe deve conhecer quais os métodos dos objetos, os argumentos que aceitam e o 
+sobre a qual depender. Os outros tipos de chamadas especificados na Lei causam uma dependência, mas que se limita às 
+interfaces dos objetos manipulados. A classe deve conhecer quais os métodos dos objetos, os argumentos que aceitam e o 
 tipo do valor de retorno, caso houver.
 	
-Um exemplo claro de violação são os chamados ``train wreck''. Suponha que temos uma classe \textit{JogoDeFutebol} e uma classe 
+Um exemplo claro de violação são os chamados ``trenzinhos de método''. Suponha que temos uma classe \textit{JogoDeFutebol} e uma classe 
 cliente ``C'' executa a seguinte operação:
 	
-\lstinputlisting[label=train_wreck, caption={Um chamado ``train wreck'' que exemplifica uma violação à Lei de 
+\lstinputlisting[label=train_wreck, caption={Um chamado ``trenzinhos de método'' que exemplifica uma violação da Lei de 
 Demeter}]{codigos/train_wreck}
 
 A chamada para \textit{getTimes()} está de acordo com a Lei de Demeter, pois é uma invocação de um método de um objeto guardado em um 
@@ -374,7 +406,7 @@ conhece a classe \textit{JogoDeFutebol}, já que possui um destes objetos guarda
 \textit{Time} e que, portanto, poderia chamar o método \textit{primeiro()} sobre a lista. Ainda conhece que um Time tem uma coleção 
 de cartões acessada através de \textit{getCartões()}, que aceita a mensagem \textit{count()}.
 	
-Esse exemplo mostra bem que tipo de problemas podem ocorrer quando acoplamento entre as partes do sistema está alta. Claramente, a 
+Esse exemplo mostra bem que tipo de problemas podem ocorrer quando o acoplamento entre as partes do sistema está alta. Claramente, a 
 classe ``C'' conhece muitas partes do sistema e, a partir desse momento, qualquer mudança nessa estrutura pode quebrar seu código. 
 Quando temos que criar estruturas como a exemplificada, é necessário repensar o design e nos perguntarmos porque a classe ``C'' 
 precisava ter acesso a todas aquelas informações. Provavelmente, é o caso de fazer mais delegações ao invés de depender tanto dos 
@@ -391,7 +423,7 @@ O método \textit{salario} possui um grande acoplamento com a classe \textit{Emp
 que ``inveja'' os seus dados \citep{Fowler99}.
 
 \subsubsection{Delegação de Tarefa}
-Para minimizar o acoplamento gerado pelos ``train wrecks'' e métodos ``invejosos'', temos que considerar uma mudança nas 
+Para minimizar o acoplamento gerado pelos ``trenzinhos de método'' e métodos ``invejosos'', temos que considerar uma mudança nas 
 tarefas realizadas pelas classes envolvidas. Se um método da classe ``A'' utiliza muitos métodos e dados da classe ``B'', muito 
 provavelmente sua tarefa pertence a ``B'' já que queremos aproximar a lógica e seus dados.
 
@@ -419,7 +451,7 @@ que lidam com mais de uma classe, gerando um grande acoplamento entre as envolvi
 Associada com o objetivo de minimização de dependências e a criação de classes com única responsabilidade, uma 
 maneira de contornar esse cenário é criar uma classe que possa fazer essa relação entre classes. De maneira 
 bastante análoga ao desenvolvimento do Objeto Método 
-(\ref{objeto_metodo}), o intuito é transferir a atividade complexa de centralizar a comunicação entre objetos 
+(Seção \ref{objeto_metodo}), o intuito é transferir a atividade complexa de centralizar a comunicação entre objetos 
 diferentes para um novo ``objeto centralizador''.
 
 São dois resultados importantes dessa alteração: (i) isolaremos a complexidade do acoplamento entre classes em uma classe que poderá receber testes e refatorações independentes; (ii) a medida que encapsulamos as dependências entre objetos, obtemos mais classes que podem ser mais facilmente reaproveitadas posteriormente.
@@ -439,7 +471,10 @@ A solução ideal para o problema seria que  \textit{Copiador} dependesse de abs
 
 Durante o desenvolvimento, frequentemente essa solução pode não ser clara ou, em um cenário oposto, os programadores tentam prever todas as partes do código que enfrentam esse problema e utilizam a Inversão de Dependência. Entretanto, nenhum dos casos pode ser o ideal para o código. Como afirmado por Kent Beck ~\citep{Beck2007}, só devemos investir em flexibilidade em partes do sistema que realmente precisam de flexibilidade. Dessa forma, talvez a melhor solução não precise ser implementada em um primeiro momento, mas quando a necessidade surgir. Provavelmente, nesse instante temos que ter certeza que fizemos uma boa escolha para as próximas alterações.
 
-Outro fato importante a ser considerado quanto a Inversão de Dependência está no isolamento dos testes automatizados. Ao testar classes que dependem de outras classes, queremos isolar a testada de forma que os testes sejam de fato unitários. Se a classe em teste depender de abstrações, o trabalho será simplificado. No exemplo da classe \textit{Copiador}, poderíamos criar um \textit{EscritorTeste} e um \textit{LeitorTeste} que tivesse operações convenientes para que os testes de \textit{Copiador} fosse isolados.
+Outro fato importante a ser considerado quanto a Inversão de Dependência está no isolamento dos testes automatizados. Ao testar classes que dependem 
+de outras classes, queremos isolar a classe sendo testada de forma que os testes sejam de fato unitários. Se a classe em teste depender de 
+abstrações, o trabalho será simplificado. No exemplo da classe \textit{Copiador}, poderíamos criar um \textit{EscritorTeste} e um 
+\textit{LeitorTeste} que tivesse operações convenientes para que os testes de \textit{Copiador} fosse isolados.
 
 
 \section{Unindo Conceitos}
@@ -465,8 +500,8 @@ que não conhece o algoritmo teria grandes dificuldades para compreender sua imp
 expressividade do método. São muitas linhas de código, diversos detalhes de implementação e estruturas encadeadas 
 complexas para realizar muitas tarefas. 
 
-A primeira alteração que pode ser feita é a criação de Métodos como Condicionais (seção \ref{metodos:condicionais}) e 
-Métodos Explicativos (seção \ref{metodos:explicativos}) para auxiliar a responder questões sobre algumas operações.
+A primeira alteração que pode ser feita é a criação de Métodos como Condicionais (Seção \ref{metodos:condicionais}) e 
+Métodos Explicativos (Seção \ref{metodos:explicativos}) para auxiliar a responder questões sobre algumas operações.
 
 Por exemplo, o que significa a expressão booleana \textit{custos[verticeDestino] == -1}? Em uma visão mais detalhada, 
 podemos observar que os custos de todos os vértices foram primeiramente inicializados com a constante ``-1'', 
@@ -477,7 +512,7 @@ no treco de código \ref{metodos_explicativos}.
 \lstinputlisting[label=metodos_explicativos, caption={Métodos Explicativos}]{codigos/digrafo/nao_atingido}
 
 Além da criação de métodos com a mesma motivação, poderemos também quebrar as etapas do algoritmo através da Composição 
-de Métodos (\ref{metodos:composicao}). Essa mudança se baseia no desenvolvimento de um conjunto de métodos com nomes 
+de Métodos (Seção \ref{metodos:composicao}). Essa mudança se baseia no desenvolvimento de um conjunto de métodos com nomes 
 significativos para encapsular operações em diferentes níveis de abstração, além de minimizar as estruturas encadeadas.
 O trecho de código abaixo mostra um método \textit{inicializaCustos} criado para encapsular a inicialização do vetor de 
 custos.
@@ -493,18 +528,18 @@ Outra consequência é a necessidade da passagem de argumentos como \textit{cust
 de menor nível de abstração são aqueles que efetivamente realizam as operações utilizando-os.
 
 Para solucionar esse aumento no número de argumentos sendo repassados através da classe, podemos promover alguns destes à 
-variáveis de instância (\ref{metodos:parametros}). É fácil notar nos exemplos abaixo como essa alteração limpa o código 
+variáveis de instância (Seção \ref{metodos:parametros}). É fácil notar nos exemplos abaixo como essa alteração limpa o código 
 dos métodos de mais alto nível que não utilizam os argumentos em suas tarefas.
 
 \lstinputlisting[label=sem_argumentos, caption={Métodos de alto nível sem a passagem de argumentos}]{codigos/digrafo/sem_argumentos}
 
 Todas as alterações feitas até o momento foram feitas levando em conta a melhoria do código dos métodos que compõe a 
-classe \textit{Digrafo}. Porém uma grande alteração podería ser feita ao levar a abstração encapsulada sobre essa classe.
+classe \textit{Digrafo}. Porém, uma grande alteração poderia ser feita quando consideramos a abstração encapsulada por essa classe.
 Por quais motivos poderia ser alterada? Primeiramente, poderia ser mudada caso fosse necessário implementar o grafo 
 dirigido com uma matriz de adjacência ao invés de uma lista. Também poderiamos querer alterar o algoritmo de Dijkstra 
 para utilizar outra alternativa.
 
-Claramente a classe \textit{Digrafo} viola o Princípio da Única Responsabilidade. De um ponto de vista mais técnico, 
+Claramente, a classe \textit{Digrafo} viola o Princípio da Única Responsabilidade. De um ponto de vista mais técnico, 
 podemos observar que as variáveis de instância \textit{custo} e \textit{fila} não são utilizadas pelos métodos 
 \textit{adicionaAresta} e \textit{arestaDoVértice}, mas só são de interesse dos métodos desenvolvidos para a composição 
 do método \textit{custosAPartirDoVertice}.
@@ -519,13 +554,13 @@ Uma solução mais interessante é \textit{CalculadorCaminhosMinimos} receber co
 
 \lstinputlisting[label=digrafo_final, caption={Classe Digrafo com apenas uma responsabilidade}]{codigos/digrafo/digrafo_final}
  
-O resultado do esforço exemplificado é um conjunto de classes que atingiu grande proximidade para com os três valores: 
+O resultado do esforço exemplificado é um conjunto de classes que atingiu grande proximidade dos três valores: 
 expressividade, simplicidade e flexibilidade.
 O código ficou significantemente mais expressivo, pois as classes são formadas por muitos métodos com bons nomes de forma que o leitor possa ler cada nível de abstração em uma linguagem bastante próxima da natural.
  
 Além disso, a composição com classes pequenas e extremamente coesas torna mais simples a compreensão de cada uma das partes, uma vez que é necessário trabalhar com pouca informação para entender um método ou uma classe. Se essas características também forem empregadas para as outras classes do sistema, resultam na minimização de duplicações, na aproximação da lógica e dados e na manutenção de consequências locais, provendo maior flexibilidade.
 
-A tabela abaixo resume as técnicas apresentadas ao longo do capítulo.
+A tabela a seguir resume as técnicas apresentadas ao longo do capítulo.
 
 \newenvironment{my_itemize}
 {\begin{list}{\labelitemi}
@@ -634,7 +669,7 @@ Evitar Flags como Argumentos
 & Ao invés de criar um método que recebe uma flag e tem diversos comportamentos, criar  um  método para cada comportamento
 & \begin{my_itemize}
 	\item Leitor não precisará entender um método com muitos condicionais
-	\item Testes unitários independentes
+	\item Testes de unidade independentes
   \end{my_itemize}
 & \begin{my_itemize}
 	\item[+] Métodos na classe

@@ -2,8 +2,8 @@ class Digrafo:
 	var numeroDeVertices
 	var listaDeAdjacencia
 
-	def construtor(noVertices):
-		numeroDeVertices = noVertices
+	def construtor(numVertices):
+		numeroDeVertices = numVertices
 		listaDeAdjacencia = nova Lista(numeroDeVertices)
 
 	def adicionaAresta(origem, destino, custo):
@@ -37,14 +37,14 @@ class CalculadorCaminhosMinimos:
 	
 	def inicializaCustos():
 		custos = nova Lista(numeroDeVertices)
-		setaTodosOsVerticesComNaoAtingidos()
-		setaVerticeOrigemComoAtingidoSemCusto()
+		marcaTodosOsVerticesComNaoAtingidos()
+		marcaVerticeOrigemComoAtingidoSemCusto()
 	
-	def setaTodosOsVerticesComoNaoAtingidos():
+	def marcaTodosOsVerticesComoNaoAtingidos():
 		for i in (1, numeroDeVertices):
 			custos[i] = Infinito
 	
-	def setaVerticeOrigemComoAtingidoSemCusto():
+	def marcaVerticeOrigemComoAtingidoSemCusto():
 		custos[verticeOrigem] = 0
 		
 	def inicializaFila():

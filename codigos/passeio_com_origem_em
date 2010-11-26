@@ -1,7 +1,8 @@
-passeioComOrigemEm(Vertice origem):
+imprimeVerticesDoPasseioComOrigemEm(Vertice origem):
 		Vertice proximo;
 		estado[origem] = JA_VISITADO
 		for(proximo = 0; proximo < numeroDeVertices(); proximo++) 
 			if(saoAdjacentes?(origem, proximo))
-				if(estado[proximo] == NAO_VISITADO)
-					passeioComOrigemEm(proximo)
+				if(estado[proximo] == NAO_VISITADO):
+					imprime(proximo)
+					imprimeVerticesDoPasseioComOrigemEm(proximo)

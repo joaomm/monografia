@@ -5,8 +5,8 @@ class Digrafo:
 	var fila
 	var Infinito = -1
 
-	def construtor(noVertices):
-		numeroDeVertices = noVertices
+	def construtor(numVertices):
+		numeroDeVertices = numVertices
 		listaDeAdjacencia = nova Lista(numeroDeVertices)
 
 	def adicionaAresta(origem, destino, custo):
@@ -23,14 +23,14 @@ class Digrafo:
 
 	def inicializaCustos(vertice):
 		custos = nova Lista(numeroDeVertices)
-		setaTodosOsVerticesComoNaoAtingidos()
-		setaVerticeOrigemComoAtingidoSemCusto(vertice)
+		marcaTodosOsVerticesComoNaoAtingidos()
+		marcaVerticeOrigemComoAtingidoSemCusto(vertice)
 	
-	def setaTodosOsVerticesComoNaoAtingidos():
+	def marcaTodosOsVerticesComoNaoAtingidos():
 		for i in (1, numeroDeVertices):
 			custos[i] = Infinito
 	
-	def setaVerticeOrigemComoAtingidoSemCusto(vertice):
+	def marcaVerticeOrigemComoAtingidoSemCusto(vertice):
 		custos[vertice] = 0
 		
 	def inicializaCustos():

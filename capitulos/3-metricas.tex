@@ -162,7 +162,7 @@ Seu valor mínimo é 1 e não existe um limite máximo para o seu resultado. Obt
 
 \subsubsection{Método Grande}
 
-Os conceitos tratados no Capítulo de Código Limpo que constituem este cenário, denominado de Métodos Grandes, são: Composição de Métodos (Seção \ref{metodos:composicao}), a necessidade de Evitar Estruturas Encadeadas (Seção \ref{metodos:evitar_estruturas}) e, a possibilidade de usar cláusula guarda.
+Os conceitos tratados no Capítulo de Código Limpo que constituem este cenário, denominado de Métodos Grandes, são: Composição de Métodos (Seção \ref{metodos:composicao}), a necessidade de Evitar Estruturas Encadeadas (Seção \ref{metodos:evitar_estruturas}) e, a possibilidade de usar Cláusulas Guarda (Seção \ref{metodos:clausula_guarda}).
 	
 Nesse contexto, métodos grandes tem como principal característica (i) um elevado número de linhas, ou seja, um alto valor de LOC. É comum também possuir (ii) um elevado número de quebras condicionais de fluxo, indicado por um valor alto da CYCLO e (iii) profundas estruturas com condicionais encadeados, indicadas por um valor alto do MaxNesting.
                                                
@@ -185,7 +185,7 @@ O trecho de código \ref{refatoracao_para_metodo_grande} é uma possível refato
 	
 \subsubsection{Método com Muitos Fluxos Condicionais}
                   
-Os conceitos de código limpo que constituem este cenário são a composição de métodos e o uso de exceções. Esse cenário ocorre quando temos métodos que são complexos, mas não necessariamente grandes. Suas principais características são: (i) muitas quebras condicionais de fluxo (valor alto da CYCLO) e (ii) longas estruturas com condicionais encadeados (valor alto de MaxNesting).
+Os conceitos de código limpo que constituem este cenário são a Composição de Métodos (Seção \ref{metodos:composicao}), Evitar Estruturas Encadeadas (Seção \ref{metodos:evitar_estruturas}) e o Uso de Exceções (Seção \ref{metodos:excecoes}). Esse cenário ocorre quando temos métodos que são complexos, mas não necessariamente grandes. Suas principais características são: (i) muitas quebras condicionais de fluxo (valor alto da CYCLO) e (ii) longas estruturas com condicionais encadeados (valor alto de MaxNesting).
                                                                                  
 Durante uma refatoração deste cenário, buscamos minimizar a complexidade ciclomática (CYCLO) e a profundidade máxima de estruturas encadeadas (MaxNesting) do método, pois queremos deixar o código mais simples e direto. Podemos nos basear na decomposição de métodos para atingirmos nossos objetivos.
 	
@@ -204,7 +204,7 @@ Com essa refatoração deixamos o método mais simples e fora deste cenário.
 
 \subsubsection{Método com Muitos Parâmetros}
                                                                          
-Este cenário tem como base o conceito de agrupamento de parâmetros em objetos. A principal característica de um método que está nesse contexto é ter um elevado número de parâmetros (valor alto de NP).
+Este cenário tem como base a técnica do uso de Objeto com Parâmetro (Seção \ref{metodos:objeto_parametro}). A principal característica de um método que está nesse contexto é ter um elevado número de parâmetros (valor alto de NP).
                                                          
 Durante uma refatoração desse cenário, o objetivo é minimizar o número de parâmetros recebidos (diminuir o NP). Os resultados esperados após a refatoração são a redução do número de parâmetros (NP) e o aumento do número de classe. Esse aumento ocorre quando criamos classes para agrupar os parâmetros que pertencem a um mesmo contexto em um único objeto.
 	                                               
@@ -219,7 +219,7 @@ Ao analisarmos os parâmetros presentes nesse exemplo, podemos notar que eles re
 
 \subsubsection{Muita Passagem de Parâmetros Pela Classe}
 	
-Este é o primeiro cenário que descrevemos relacionado com a avaliação da classe como um todo e não de métodos separados. Os conceitos de código limpo que constituem este cenário são o agrupamento de parâmetros em objetos e a transformação de parâmetros em variáveis de instância.
+Este é o primeiro cenário que descrevemos relacionado com a avaliação da classe como um todo e não de métodos separados. Os conceitos de código limpo que constituem este cenário são o uso de Objeto como Parâmetro (Seção \ref{metodos:objeto_parametro}) e a tranformação de parâmetros em variáveis de instância (Seção \ref{metodos:parametros}).
 	
 Podemos separar esse cenário em dois casos diferentes. O primeiro trata do repasse de muitos parâmetros. Sua característica é ter uma elevada média de parâmetros repassados (alta média de NRP). Parâmetros repassados são aqueles recebidos por um método que os repassam em chamadas a operações. O segundo caso se preocupa com a elevada média do número de parâmetros por método da classe analisada (alta média de NP).       
 		     
@@ -234,7 +234,7 @@ Os resultados esperados após a refatoração do código são a redução da mé
 
 \subsubsection{Método ``Invejoso''}
 	
-Método ``invejoso'' é aquele que usa um elevado número de métodos e atributos de poucas classes não relacionadas hierarquicamente com a sua própria. Mapeando essas características em métricas de código-fonte, temos neste cenário alta ECR, que indica a taxa de chamadas a métodos e atributos externos, e baixa NCC, que representa o número de classes não relacionadas chamadas pelo método.
+Método ``invejoso'' é aquele que usa um elevado número de métodos e atributos de poucas classes não relacionadas hierarquicamente com a sua própria (Seção \ref{classes:invejoso}). Mapeando essas características em métricas de código-fonte, temos neste cenário alta ECR, que indica a taxa de chamadas a métodos e atributos externos, e baixa NCC, que representa o número de classes não relacionadas chamadas pelo método.
 	
 A preocupação durante uma refatoração neste contexto, deve ser a minimização do número de chamadas externas, calculado através do NEC. O conceito de código limpo que constitui este cenário é a delegação de tarefa.
 	
@@ -253,7 +253,7 @@ Para resolver esse problema, podemos passar para a classe empregado o método \t
 	
 Um método dispersamente acoplado utiliza um elevado número de atributos e métodos de várias classes não relacionadas hierarquicamente com a sua. Assim como no contexto de método ``invejoso'', nesse cenário temos um valor alto de ECR, indicando que o uso de métodos e atributos externos é maior do que de internos. Porém, a diferença entre eles é o número de classes não relacionadas chamadas pelo método, sendo o valor do NCC alto nesse cenário e baixo para métodos ``invejosos''.
 	
-Durante uma refatoração, devemos focar na redução do número de chamadas externas que é calculado através da métrica NEC. Os conceitos de código limpo que constituem este cenário são o de objeto centralizador e o de objeto método.
+Durante uma refatoração, devemos focar na redução do número de chamadas externas que é calculado através da métrica NEC. Os conceitos de código limpo que constituem este cenário são o de Objeto Centralizador (Seção \ref{classes:centralizador}) e o de Objeto Método (Seção \ref{objeto_metodo}).
 	
 Os resultados esperados após a refatoração são a redução do número de chamadas externas e de sua média na classe do método analisado (NEC e média de NEC) e a diminuição do número de classes não relacionadas chamadas (NCC). Também pode ocorrer um aumento no número de classes. Isso acontecerá quando uma classe for criada para centralizar o diálogo entre as classes não relacionadas, sendo sacrificado para que as outras mantenham suas características e sejam reutilizáveis em outros projetos. 
 	  
@@ -264,7 +264,7 @@ Para exemplificar este cenário, usaremos o método \textit{adicionaDadosDaRodad
 
 \subsubsection{Classe Pouco Coesa}
     
-Os conceitos de código limpo que constituem este cenário são a maximização da coesão e o princípio da responsabilidade única. Assim como o cenário que indica muita passagem de parâmetros pela classe, esse contexto analisa a classe como um todo.
+Os conceitos de código limpo que constituem este cenário são a Maximização da Coesão (Seção \ref{classes:coesao}) e o Princípio da Responsabilidade Única (Seção \ref{classes:srp}). Assim como o cenário que indica muita passagem de parâmetros pela classe, esse contexto analisa a classe como um todo.
 	
 A principal característica de uma classe pouco coesa é possuir subdivisões em grupos de métodos e atributos que não se relacionam (valor de LCOM4 > 1), ou possuir métodos que alcançam em média poucos atributos da propria classe (média de NRA muito menor do que o valor de NOA). Nesse contexto, dizemos que um método alcança um atributo se ele usa o atributo no seu próprio corpo ou de forma indireta, ou seja, através da chamada de algum método que usa o atributo direta ou indiretamente.
 
@@ -342,6 +342,7 @@ Método Grande
 Método com Muitos Fluxos Condicionais                           
 & \begin{my_itemize}
     \item Composição de Métodos
+	\item Evitar Estruturas Encadeadas
 	\item Uso de Exceções
   \end{my_itemize}
 & \begin{my_itemize}

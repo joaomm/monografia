@@ -190,7 +190,8 @@ Um condicional não muito claro, como o mostrado acima, pode deixar o próprio a
 
 \lstinputlisting[label=condicional_com_funcao, caption={Método que encapsula expressão booleana}]{codigos/condicional_com_funcao}
 
-\subsubsection{Evitar Estruturas Encadeadas}
+\subsubsection{Evitar Estruturas Encadeadas}   
+\label{metodos:evitar_estruturas}
 Tendo em vista a busca por métodos pequenos e com uma única tarefa, um aspecto relevante é a criação de estruturas encadeadas. Se um método tem uma cadeia de \textit{ifs} e \textit{elses}, o leitor terá dificuldades para compreender todos os casos e fluxos possíveis.
 	
 Em ambos os livros estudados, os autores enfatizam o uso de chamadas de métodos logo em seguida de um condicional. Novamente a operação que será encapsulada estará dentro de um método com nome expressivo, o que deixa esse método curto e expressivo.
@@ -201,7 +202,8 @@ Mais uma vez utilizando o exemplo do \textit{Crivo de Eristótenes}, é necessá
 
 Cada método encapsula um nível na cadeia de estruturas encadeadas. Ao invés de muitos \textit{fors} e \textit{ifs} encadeados, obtivemos funções pequenas e muito focadas em uma única tarefa que podem ser mais facilmente testadas de forma independente.
 
-\subsubsection{Cláusulas Guarda (Guard Clauses)}
+\subsubsection{Cláusulas Guarda (Guard Clauses)}  
+\label{metodos:clausula_guarda}
 Outra técnica para evitar o uso de estruturas complexas de condicionais são as cláusulas guarda. Quando criamos uma expressão condicional (if), o 
 leitor naturalmente espera um bloco com a contrapartida (else). A ideia é criar um retorno breve para expressar que uma das partes dessa 
 contraposição é mais relevante. Portanto, a estrutura exemplificada no trecho de código \ref{guarda2} é mais recomendada do que no trecho de código 
@@ -252,6 +254,7 @@ claramente esse método realiza mais do que uma tarefa. O natural seria criar um
 
 \item
 \subsubsection{Objeto como Parâmetro}
+\label{metodos:objeto_parametro}
 Diante de uma lista grande de argumentos, devemos questionar se não existe alguma abstração que une esses elementos. Por exemplo, considere uma classe \textit{FábricaDeMáquinas} cujo construtor é \textit{FábricaDeMáquinas(númeroDeMáquinas, númeroDeFuncionários, horasDeFuncionamento)}. Uma possibilidade seria criar um objeto \textit{EspecificaçãoDeFábrica} que contivesse esses argumentos como variáveis de instância e métodos que fossem úteis para que o código desta \textit{FábricaDeMáquinas} fosse o mais claro possível.
 
 \item
@@ -271,6 +274,7 @@ Esse tipo de alteração tem grande importância no design do sistema como um to
 \end{itemize}
 
 \subsubsection{Uso de Exceções}
+\label{metodos:excecoes}
 Como foi dito nos fundamentos teóricos desta seção, queremos ter um fluxo normal bem definido e sem interferências do código de tratamento de erros. Nesse contexto, devemos preferir o uso de exceções sobre retornar códigos de erro e valores nulos.
 	
 O grande problema com o retorno de códigos de erros e valores nulos está na limpeza do código cliente. Se, ao chamar um método, é necessário utilizar condicionais para verificar qual foi o erro causado ou certificar que não chamaremos um método sobre uma referência nula, o código cliente provavelmente terá que lidar com estruturas encadeadas e muitos casos de teste. Essa decisão viola os princípios de um código expressivo para o leitor uma vez que, durante a leitura, terá que compreender cada um destes erros mesmo que os mesmos não sejam interessantes no momento.
@@ -287,7 +291,8 @@ Do mesmo modo que consideramos importante limitar a quantidade de informação q
 	
 Logicamente, se nossas classes são pequenas, teremos que reunir uma grande quantidade delas, tornando nossos sistemas compostos de muitas classes pequenas. Em uma analogia bastante simples, é mais fácil encontrar um objeto em muitas gavetas pequenas do que em poucas gavetas grandes e repletas.
 
-\subsubsection{Princípio da Responsabilidade Única (Single Responsibility Principle)}
+\subsubsection{Princípio da Responsabilidade Única (Single Responsibility Principle)}    
+\label{classes:srp}
 A questão que surge após a afirmação que as classes deveriam ser pequenas é como definir o que é ser pequena. O número de métodos pode nos dar um bom indicativo quanto a quantidade de operações diferentes que a classe pode executar, mas podemos encontrar classes com poucos métodos e que possuem contextos totalmente diferentes. Por exemplo, uma classe \textit{Controlador} com os métodos \textit{capturaEntrada()}, \textit{criaCorpoHtml()} e \textit{criaCabecalhoHtml()} possui dois tipos de tarefas diferentes: lidar com a criação de HTML e processar a entrada do usuário.
 	
 A forma de medir o tamanho de uma classe proposto por Robert Martin está atrelado com a quantidade de responsabilidades que a mesma possui. Podemos pensar em uma responsabilidade como uma razão para mudar. No exemplo acima, para que o sistema seja adaptado para utilizar um novo padrão HTML, é necessário alterar a classe \textit{Controlador}. O mesmo teria que ser feito caso um novo tipo de entrada do usuário fosse concebido. Dessa forma, dizemos que o \textit{Controlador} tem pelo menos duas responsabilidades.
@@ -338,7 +343,8 @@ disso, teremos duas classes \textit{ConteudoHTML} e \textit{ConteudoXML} filhas 
 
 \end{figure}
 
-\subsubsection{Coesão}
+\subsubsection{Coesão}  
+\label{classes:coesao}
 Voltando ao exemplo da classe \textit{Controlador}, de um ponto de vista técnico, qual crítica poderia ser feita a essa classe? 
 A classe \textit{Controlador} não é coesa. Se tal classe tem a responsabilidade de lidar com a criação de HTML, logicamente terá um conjunto de variáveis de instância e métodos que as utilizam capazes de executar o trabalho em conjunto. O mesmo pode ser dito para o processamento da entrada do usuário. Um leitor que precisa entender apenas um desses contextos se deparará com inúmeros detalhes de implementação tanto da responsabilidade que deseja trabalhar, quanto da que não está interessado.
 	
@@ -412,7 +418,8 @@ Quando temos que criar estruturas como a exemplificada, é necessário repensar 
 precisava ter acesso a todas aquelas informações. Provavelmente, é o caso de fazer mais delegações ao invés de depender tanto dos 
 dados de outros objetos.
 
-\subsubsection{Métodos ``Invejosos''}
+\subsubsection{Métodos ``Invejosos''}  
+\label{classes:invejoso}
 Em alguns casos, um método mesmo sem violar a Lei de Demeter, tem um grande acoplamento com outra classe.
 O exemplo abaixo não viola a Lei de Demeter, já que faz chamadas somente a métodos de um objeto que lhe foi passado como parâmetro.
 
@@ -444,7 +451,8 @@ importantes: (i) o método \textit{calculaTotalDeSalarios} ficou muito simples s
 (ii) o código do método \textit{salarioDoMes} também ficou mais simples já que foi transferido para perto dos dados que utiliza; (iii) de forma 
 geral, reduzimos o acoplamento entre as classes pois existe apenas uma chamada de método para fazer a comunicação.
 
-\subsubsection{Objeto Centralizador}
+\subsubsection{Objeto Centralizador}  
+\label{classes:centralizador}
 Os cenários apresentados acima consideram que uma classe depende somente de uma segunda. No entanto, frequentemente criamos métodos 
 que lidam com mais de uma classe, gerando um grande acoplamento entre as envolvidas.
 

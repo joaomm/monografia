@@ -16,9 +16,9 @@ MaxNesting (Maximum Nesting Level) dos métodos. Seguindo os conceitos de códig
 diante desse contexto, uma melhoria possível é utilizar a \textit{Composição de Métodos} buscando
 \textit{Evitar as Estruturas Encadeadas}.
 
-A medida em que os métodos são decompostos, podemos nos questionar quanto ao limiar entre um método grande e 
+Na medida em que os métodos são decompostos, podemos nos questionar quanto ao limiar entre um método grande e 
 um de acordo com os princípio de código limpo.
-Em outras palavras, a questão é como um desenvolvedor pode assumir que os resultados da
+Em outras palavras, a questão é como um desenvolvedor pode considerar que os resultados da
 \textit{Composição de Métodos} feita até o dado instante obteve métodos pequenos o suficiente. Nos parece que a 
 resposta de tal questão só pode ser feita através de um bom entendimento dos conceitos relacionados a um código 
 limpo. Ao longo deste trabalho, não definimos um valor para as métricas LOC, CYCLO e MaxNesting capaz de expressar 
@@ -69,24 +69,24 @@ são responsáveis pela limpeza do código.
 Adicionalmente, sugerimos como trabalho futuro a identificação de outros cenários que ampliem os possíveis
 relacionamentos entre métricas e código limpo. Também será uma boa pesquisa, verificar os cenários descritos neste 
 trabalho com outras métricas, preferencialmente implementadas em ferramentas de cálculo de métricas
-de código-fonte. 
+de código-fonte tais como a Analizo. 
 
 Do ponto de vista prático, outro trabalho futuro seria implementar na Analizo as métricas NRP, MaxNesting e NRA,
 pois dentre as métricas mapeadas com o conceitos de código limpo, são as únicas ainda não implementadas. Além 
 disso, será uma oportunidade de um outro desenvolvedor da Analizo verificar se o código está mais simples, 
 expressivo e flexível ao ponto de inserir essas novas funcionalidade.
  
-Em conclusão, é importante ressaltar que este é um trabalho diferenciado ao compilar e abordar de forma prática os
+Concluindo, é importante ressaltar que este é um trabalho diferenciado ao compilar e abordar de forma prática os
 conceitos sobre código limpo do ponto de vista de renomados especialistas em desenvolvedores de software. 
 Adicionamos exemplos reais para que o entendimento fosse mais próximo do ponto de vista de um programador.
 Também, apresentamos uma forma simples e clara de utilizar métricas de código-fonte, demonstrando em 
 cenários reais as correlações com os conceitos de código limpo que foram amplamente discutidos.
 
-Para exemplificar a união dos conceitos trabalhamos, aplicamos esse mapeamento métricas e código limpo na 
-refatoração de um software livre, chamado Analizo, que contribuimos por mais de uma ano no seu desenvolvimento e vem 
-sendo constantemente usada em pesquisa que envolvem os dados das métricas de código-fonte.
+Para exemplificar a união dos conceitos trabalhados, aplicamos o mapeamento entre métricas e os conceitos de código limpo na 
+refatoração de um software livre chamado Analizo. Essa ferramenta recebeu contribuições nossas por mais de um ano e vem sendo
+constantemente usada em pesquisas envolvendo os valores das métricas de código-fonte.
 
-Portanto, além de um texto com uma nova aborgagem que poderá servir de referência para outros estudantes e 
+Portanto, além de um texto com uma nova abordagem que poderá servir de referência para outros estudantes e 
 pesquisadores da área de qualidade e métricas de código-fonte, finalizamos este trabalho com uma contribuição 
 efetiva para uma ferramenta de cálculo de métricas de código-fonte, de tal forma que ficou facilitada
-a inserção de novos contribuidores por agora ter um código mais limpo.
+a inserção de novos contribuidores uma vez que seu código está mais limpo.

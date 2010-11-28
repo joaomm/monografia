@@ -233,7 +233,8 @@ Os resultados esperados após a refatoração do código são a redução da mé
 
 
 \subsubsection{Método ``Invejoso''}
-	
+\label{cenario_metodo_invejoso}
+
 Método ``invejoso'' é aquele que usa um elevado número de métodos e atributos de poucas classes não relacionadas hierarquicamente com a sua própria. Mapeando essas características em métricas de código-fonte, temos neste cenário alta ECR, que indica a taxa de chamadas a métodos e atributos externos, e baixa NCC, que representa o número de classes não relacionadas chamadas pelo método.
 	
 A preocupação durante uma refatoração neste contexto, deve ser a minimização do número de chamadas externas, calculado através do NEC. O conceito de código limpo que constitui este cenário é a delegação de tarefa.
@@ -250,7 +251,8 @@ Para resolver esse problema, podemos passar para a classe empregado o método \t
 
 
 \subsubsection{Método Dispersamente Acoplado}
-	
+\label{cenario_metodo_dispersamente_acoplado}	
+
 Um método dispersamente acoplado utiliza um elevado número de atributos e métodos de várias classes não relacionadas hierarquicamente com a sua. Assim como no contexto de método ``invejoso'', nesse cenário temos um valor alto de ECR, indicando que o uso de métodos e atributos externos é maior do que de internos. Porém, a diferença entre eles é o número de classes não relacionadas chamadas pelo método, sendo o valor do NCC alto nesse cenário e baixo para métodos ``invejosos''.
 	
 Durante uma refatoração, devemos focar na redução do número de chamadas externas que é calculado através da métrica NEC. Os conceitos de código limpo que constituem este cenário são o de objeto centralizador e o de objeto método.

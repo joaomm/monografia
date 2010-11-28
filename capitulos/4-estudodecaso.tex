@@ -13,12 +13,12 @@ a sua ``limpeza''.
 \section{Analizo}
 
 A \textit{Analizo} \citep{analizo2010} é um conjunto de ferramentas livres para análise e visualização
-do código-fonte. Atualmente, ela suporta a extração e cálculo de 22 de métricas
+do código-fonte. Atualmente, ela permite a extração e cálculo de 22 de métricas
 de código-fonte, além da geração de grafos de dependência e o acompanhamento da evolução do software.
-Seu principal diferencial em relação aos demais aplicativos do mesmo domínio é o suporte multi-linguagem,
-o que a permite trabalhar sobre código Java, C++ e C.
+Seu principal diferencial em relação aos demais aplicativos do mesmo domínio é o suporte a múltipas linguagens,
+o que a possibilita trabalhar com código Java, C++ e C.
 
-A escolha da Analizo para o estudo de caso se deu devido a familiaridade com as ferramentas, 
+A escolha da Analizo para o estudo de caso se deu devido à familiaridade com as ferramentas, 
 uma vez que grande parte de seu desenvolvimento foi feito durante o nosso projeto de Iniciação
 Científica, em colaboração com os doutorandos Paulo Meirelles da Universidade de São Paulo
 e Antônio Terceiro da Universidade Federal da Bahia.
@@ -37,15 +37,15 @@ discutidas no mapeamento com os conceitos de código limpo e as métricas da Ana
 Tendo em vista que, a maior parte do código na Analizo foi adicionado sem significativa
 preocupação quanto à limpeza do código, visualizamos a possibidade de aplicar os conceitos
 estudados sobre código limpo nessa ferramenta. Assim sendo, esse estudo de caso se baseia na
-possibilidade de promover melhorias de forma a deixar seu código mais limpo. Portando,
-constituindo mais uma contribuição a esse software livre e demonstrando na prática o
+possibilidade de promover melhorias de forma a deixar seu código mais limpo, o que constitui
+em mais uma contribuição a esse software livre e demonstra na prática o
 potencial das técnicas discutidas neste trabalho.
 
 O foco do estudo é a parte da ferramenta denominada \textit{Analizo Metrics} responsável
 pelo cálculo das métricas de código-fonte providas pela Analizo. Enfatizamos que,
 essa ferramenta é inteiramente escrita na linguagem \textit{Perl}, seguindo o paradigma da
 Orientação a Objetos. Entretando, como não há aplicativo capaz de calcular as métricas selecionadas
-sobre essa linguagem, todos os valores foram obtidos manualmente por nós, seguindo o algoritmo
+nessa linguagem, todos os valores foram obtidos manualmente por nós, seguindo o algoritmo
 de cada métrica, ao longo das refatorações realizadas.
 
 A arquitetura da \textit{Analizo Metrics} é bastante simples e composta por poucas classes.
@@ -58,7 +58,7 @@ a objetos foram escolhidos os termos ``módulo'', ``variáveis'' e ``funções''
 paradigmas.}.
 
 O passo seguinte é feito pela classe \textit{Metrics}, que efetua o cálculo de métricas de dois 
-tipos: (i) métricas de módulo como o número de linhas de funções e número de variáveis de
+tipos: (i) métricas de módulo, como o número de linhas de funções e número de variáveis de
 um dado módulo; (ii) métricas globais que contabilizam os valores do primeiro conjunto para o
 cálculo de outras métricas como COF (Fator de Acoplamento) e valores estatísticos como a variância e 
 média.
@@ -73,11 +73,11 @@ contendo todos os valores.
 \section{Estado Inicial}
 Inicialmente, a característica central da classe \textit{Metrics} era a complexidade de seus métodos.
 Eram 25 métodos que acumulavam uma alta média de LOC (aproximadamente 10 linhas de código por método),
-além de uma alta média de CYCLO (3.5 por método), o que mostra que os métodos continham muitos laços condicionais.
+além de uma alta média de CYCLO (3,5 por método), o que mostra que os métodos continham muitos laços condicionais.
 
 Apesar de acumular muitas responsabilidades e ter baixa coesão, seu LCOM4 tinha um valor baixo
 causado pelo método \textit{list\_of\_metrics} que não utilizava variáveis de instância e não chamava
-outros métodos dentro da classe. O valor de LCOM4 igual a 2, só não era muito maior devido a presença
+outros métodos dentro da classe. O valor de LCOM4 igual a 2, só não era muito maior devido à presença
 do método \textit{report\_module}, responsável pela chamada de todos os métodos relativos ao cálculo de
 uma métrica de módulo.
 
@@ -90,7 +90,7 @@ Dois cenários poderiam ser observados com clareza:
 O método \textit{report} continha muitas tarefas: (i) coletar as métricas de cada um dos módulos
 através de diversas chamadas para o método \textit{report\_module}; (ii) combinar os valores em 
 diversas estruturas de dados; (iii) chamar os métodos para cálculo de métricas globais; (iv)
-calcular os valores estatísticos e, (v) montar a com todas as informações coletadas.
+calcular os valores estatísticos e (v) montar a com todas as informações coletadas.
 
 Seu corpo continha um grande número de linhas (LOC = 73) e complexidade ciclomática (CYCLO = 11).
 É interessante notar que possuia um número baixo de estruturas encadeadas (MAXNESTING = 1), mostrando
@@ -133,13 +133,13 @@ diminuir o tamanho dos métodos e \textit{Evitar Estruturas Encadeadas}.
 A tentativa de melhoria do código dos métodos da classe \textit{Metrics}
 trouxeram diversas alterações e resultados que melhoraram sua expressividade.
 Os métodos que inicialmente tinham muitas linhas de código foram reduzidos de forma
-que a média de LOC da classe abaixasse de 10 para 5.62, ou seja, uma redução de mais de 40\%.
+que a média de LOC da classe abaixasse de 10 para 5,62, ou seja, uma redução de mais de 40\%.
 Além disso, o grande número de condicionais foi significamente reduzido,
-passando de uma CYCLO média de 3.5 para um valor próximo de 1.51 -- 57\% menos que o inicial.
+passando de uma CYCLO média de 3,5 para um valor próximo de 1,51, ou seja 57\% menos que o inicial.
 
 Outra contribuição importante foi a queda nos valores de MAXNESTING dos métodos
 que antes se encaixavam no cenário ``Métodos com Muitos Fluxos Condionais''. A média de
-MAXNESTING chegou a aproximadamente 0.53, também um redução de quase 50\%..
+MAXNESTING chegou a aproximadamente 0,53, também um redução de quase 50\%..
 
 Essas alterações se deram devido ao grande aumento no número de métodos da classe:
 os 25 métodos foram decompostos em um total de 53 novos. Considerando os valores
@@ -157,7 +157,7 @@ Com um código com essa simplicidade e expressividade, o leitor pode facilmente
 afirmar que para calcular a quantidade de conexões aferentes de um dado módulo, basta
 somar o número de módulos que o chamam e o número de módulos em sua árvore de herança.
 
-Além disso, a decomposição dos métodos também trouxe melhorias quanto a flexibilidade
+Além disso, a decomposição dos métodos também trouxe melhorias quanto à flexibilidade
 do código. A medida que os métodos se tornam menores, mais fácil fica a detecção de
 trechos semelhantes. O encapsulamento de operações nessas circustâncias torna possível
 o reuso, além de deixar os métodos clientes mais simétricos e sem muitos detalhes de implementação.
@@ -184,10 +184,11 @@ esse parâmetro nunca foi contabilizado.
 
 \item
 \textbf{Muitos Repasses de Parâmetros pela Classe}
+
 Associado ao cenário acima, podemos observar que o repasse de parâmetros se mostrou
 ao longo de toda a classe \textit{Metrics}, o que deixa o corpo dos métodos poluído
 com variáveis que não utilizam e somente repassam. O valor médio de parâmetros
-passou de 0.64 para 1.38 e o número total de repasses foi aumentou de apenas 3 para 21.
+passou de 0,64 para 1,38 e o número total de repasses foi aumentou de apenas 3 para 21.
 
 \lstinputlisting[label=collect, caption={Método poluído pelo aumento número de parâmetros}]{codigos/analizo/collect}
 \end{itemize}
@@ -202,13 +203,13 @@ o número de parâmetros sendo repassado.
 
 Como discutido na apresentação da técnica do Uso de Parâmetros como Variável de
 Instância (Seção \ref{metodos:parametros}), não podemos transformar qualquer parâmetro em 
-um elemento do estado do objeto. Sendo assim, nas alterações desta etapa não foram feitas
-nenhuma mudança quanto aos parâmetros dos métodos responsáveis pelo cálculo de métricas
+um elemento do estado do objeto. Sendo assim, nas alterações dessa etapa não foram feitas
+mudanças quanto aos parâmetros dos métodos responsáveis pelo cálculo de métricas
 de módulo, uma vez que não faziam sentido para toda a classe.
 
 No entanto, mesmo através de alterações em somente uma porção dos métodos, as
 mudanças nos valores das métricas ficaram visíveis. A média de parâmetros passou
-de 1.38 para 0.83, valor mais próximo ao inicial (0.65).
+de 1,38 para 0,83, valor mais próximo ao inicial (0,65).
 
 No código \ref{collect2} abaixo, podemos notar a diferença na limpeza de um método
 beneficiado pela melhoria mencionada e cuja versão anterior é apresentada no trecho
@@ -223,9 +224,9 @@ ser observado:
 \item
 \textbf{Classe Pouco Coesa}
 
-Ao longo da decomposição dos métodos e a promocão de parâmetros à variáveis de instância,
+Ao longo da decomposição dos métodos e a promoção de parâmetros a variáveis de instância,
 gradativamente podemos notar com mais clareza as responsabilidades da classe no nível da
-implementação. Em outras palavras, a medida que alteramos o código, as responsabilidades
+implementação. Em outras palavras, na medida que em alteramos o código, as responsabilidades
 dentre uma classe começam a se confirmar pela maneira em que as tarefas são implementadas.
 
 Desde o início deste estudo de caso, mencionamos que a classe \textit{Metrics} tinha, por exemplo, a
@@ -234,7 +235,7 @@ Nesse estado, podemos notar como essas responsabilidades são implementadas e o 
 sobre o qual trabalharemos para quebrar a classe em duas.
 
 Essa observação conceitual se mostra através das métricas. A média de atributos atingíveis
-pelos métodos passou a ser 1.1, valor significativamente menor do que o número de atributos
+pelos métodos passou a ser 1,1, valor significativamente menor do que o número de atributos
 da classe (NOA = 6). Essa diferença mostra que existem conjuntos de métodos somente interessados
 em alguns dos atributos.
 
@@ -267,7 +268,7 @@ o objeto do classe \textit{Graph} faz parte de seu estado e ciclo de vida.
 
 O passo seguinte consistiu na identicação das demais responsabilidades da classe \textit{Metrics} 
 e a criação de uma classe para cada uma delas. A classe \textit{ModuleMetrics} ficou responsável
-por instânciar e invocar os objetos citados acima, enquanto que \textit{GlobalMetrics} encapsulou
+por instanciar e invocar os objetos citados acima, enquanto que \textit{GlobalMetrics} encapsulou
 a coleta das métricas globais e valores estatísticos. Essas alterações fizeram com que a classe
 \textit{Metrics} inicial ficasse apenas com a responsabilidade de combinar todos os valores
 calculados pelas demais classes.
@@ -277,19 +278,19 @@ Ao final de todas as alterações, podemos notar que, de maneira geral, o códig
 consideravelmente de um código expressivo, simples e flexível. O tamanho dos métodos em termos
 do número de linhas e complexidade foram grandes contribuições para essa realidade. A média de
 LOC passou de aproximadamente 10 para 5 e a média de CYCLO e MAXNESTING passaram, respectivamente,
-de 3 para 1 e 1.2 para 0.3.
+de 3 para 1 e 1,2 para 0,3.
 
-Novamente ressaltamos que esses valores foram calculados sobre uma linguagem com
+Novamente, ressaltamos que esses valores foram calculados sobre uma linguagem com
 características específicas. Em Perl, os parâmetros de um métodos são coletados dentro
 do corpo do método, o que mostra que a média de 5 linhas seja de fato 4, uma vez que a
 primeira linhas sempre é didicada a extração de pelo menos um parâmetro (```self'').
 
 Outro aspecto que podemos observar ao final das mudanças é que de fato minimizamos
-o número de parâmetros. Inicialmente, a média de número de parâmetros estava em torno de 0.65.
-A medida que os métodos foram decompostos e alguns parâmetros se tornaram atributos, o valor médio
-gradativamente se aproximou do valor 0.3. Essa redução ocorreu principalmente devido a criação
-de classes menores e mais coesas, uma vez que seus métodos trabalham continuamente com os
-atributos da mesma alterando seu estado.
+o número de parâmetros. Inicialmente, a média de número de parâmetros estava em torno de 0,65.
+Na medida em que os métodos foram decompostos e alguns parâmetros se tornaram atributos, o valor médio
+gradativamente se aproximou do valor 0,3. Essa redução ocorreu principalmente devido a criação
+de classes menores e mais coesas com métodos que trabalham continuamente com os
+seus atributos.
 
 Em termos das métricas, o resumo do estudo de caso é a minimização de LOC, CYCLO, MAXNESTING, NP,
 LCOM4 e da diferença entre a média NRA e NOA.
@@ -307,7 +308,7 @@ tem grande influência sobre esse conceito. Para adicionar uma nova métrica, ba
 com a mesma interface das demais e adicioná-la na lista do método \textit{initialize\_calculators} de
 \textit{ModuleMetrics}.
 
-Além disso, a maximização da coesão também tem grande parte nesse papel. A medida que o código
+Além disso, a maximização da coesão também colabora para a flexibilidade do sistema. À medida que o código
 vai sendo limpo, as responsabilidades começam a ficar mais claras. Ao quebrar as classes,
 semelhanças nas abstrações ficam evidentes. Por exemplo, classes como \textit{AverageCycloComplexity}
 e \textit{AverageMethodLinesOfCode}, poderiam ser refatoradas para implementar o padrão de projeto
@@ -315,12 +316,12 @@ e \textit{AverageMethodLinesOfCode}, poderiam ser refatoradas para implementar o
 
 Um dos aspectos pouco comentados ao longo desse estudo de caso foi o acoplamento entre as classes.
 Como trabalhamos sobre uma classe, poucas considerações foram feitas acerca desse conceito. No
-entanto, dois tipos de interessantes puderam ser constatados.
+entanto, dois tipos interessantes puderam ser constatados.
 
 O método \textit{initialize\_calculators} da classe \textit{ModuleMetrics} usa muitos métodos
 provenientes de diversas classes (invoca o método \textit{new} sobre todas), o que resulta em
 ECR = 1 (Taxa de Chamadas Externas) e NCC = 15 (Número de Classes Chamadas).
-Claramente o método se encaixa no cenário de Método Dispersamente Acoplado (Seção \ref{cenario_metodo_dispersamentea_acoplado}).
+Claramente o método se encaixa no cenário de Método Dispersamente Acoplado (Seção \ref{cenario_metodo_dispersamente_acoplado}).
 
 É interessante notar que essa classe foi um resultado do esforço para criar classes coesas, tendo sido
 criada para encapsular a responsabilidade de lidar com esse acomplamento. Algum método teria que fazê-lo,
@@ -329,12 +330,12 @@ que a classe \textit{ModuleMetrics} é um Objeto Centralizador.
 
 Outro método que pode ser destacado é \textit{add\_descriptive\_statistics} da classe 
 \textit{GlobalMetrics}, cujo alto valor de ERC e baixo NCC igual a 1 o encaixe no cenário de Método 
-Invejoso (Seção \ref{cenario_metodo_invejosos}).
+Invejoso (Seção \ref{cenario_metodo_invejoso}).
 
 \lstinputlisting[label=stats, caption={Método Invejoso}]{codigos/analizo/stats}
 
-De fato, seria interessante que a classe Descriptive::Statistics tivesse um método que recebesse
-uma lista de valores e devolve-se um hash com chave sendo um nome de um estimador estatístico e
+De fato, seria interessante que a classe \textit{Descriptive::Statistics} tivesse um método que recebesse
+uma lista de valores e devolve-se um \textit{hash} com chave sendo um nome de um estimador estatístico e
 com valor sendo o valor do dado estimador. Dessa forma, \textit{add\_descriptive\_statistics} não 
 precisaria fazer tantos pedidos para um mesmo objeto.
 

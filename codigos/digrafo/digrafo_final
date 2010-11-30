@@ -1,9 +1,9 @@
 class Digrafo:
-	var numeroDeVertices
-	var listaDeAdjacencia
+	instVar numeroDeVertices
+	instVar listaDeAdjacencia
 
-	def construtor(noVertices):
-		numeroDeVertices = noVertices
+	def construtor(numVertices):
+		numeroDeVertices = numVertices
 		listaDeAdjacencia = nova Lista(numeroDeVertices)
 
 	def adicionaAresta(origem, destino, custo):

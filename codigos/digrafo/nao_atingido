@@ -1,6 +1,6 @@
-var Infinito = -1
+instVar Infinito = -1
 
-def setaTodosOsVerticesComoNaoAtingidos(custos):
+def marcaTodosOsVerticesComoNaoAtingidos(custos):
 	for i in (1, numeroDeVertices):
 		custos[i] = Infinito
 

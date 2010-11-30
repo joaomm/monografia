@@ -1,4 +1,4 @@
-rotaciona(angulo, sentidoHorario):
+def rotaciona(angulo, sentidoHorario):
 	if(sentidoHorario == true)
 		this.angulo += angulo
 	else

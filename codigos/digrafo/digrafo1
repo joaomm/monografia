@@ -1,6 +1,6 @@
 class Digrafo:
-	var numeroDeVertices
-	var listaDeAdjacencia
+	instVar numeroDeVertices
+	instVar listaDeAdjacencia
 
 	def construtor(numVertices):
 		numeroDeVertices = numVertices

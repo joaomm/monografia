@@ -1,4 +1,4 @@
-classe Modem
+classe Modem:
 	void ligarParaNumero(numero)
 	void envia(dado)
 	char recebe()

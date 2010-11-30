@@ -1,5 +1,5 @@
-var custos
-var fila
+instVar custos
+instVar fila
 
 def custosAPartirDoVertice(vertice):
 	inicializaCustos(vertice)

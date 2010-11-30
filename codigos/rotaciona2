@@ -1,5 +1,5 @@
-rotacionaSentidoHorario(angulo):
+def rotacionaSentidoHorario(angulo):
 	this.angulo += angulo
 
-rotacionaSentidoAntiHorario(angulo):                    
+def rotacionaSentidoAntiHorario(angulo):                    
 	this.angulo -= angulo

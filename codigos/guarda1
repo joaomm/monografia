@@ -1,3 +1,3 @@
-inicializa():
+def inicializa():
 	if(!jaInicializado)
 		//Implementacao do codigo de inicializacao

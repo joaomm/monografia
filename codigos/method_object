@@ -1,10 +1,10 @@
 classe ImpressorDePrimos:
-	imprimePrimo(n):
+	def imprimePrimo(n):
 	 	primo = calculaPrimo(n)
 		print "----------------------------------"
 		print "O primo numero " + n + "eh " + primo
 		print "----------------------------------"		
 	
-	calculaPrimo(n):
-		#implementacao do Crivo de Erastotenes
+	def calculaPrimo(n):
+		//implementacao do Crivo de Erastotenes
 		

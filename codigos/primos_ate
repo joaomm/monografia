@@ -1,4 +1,4 @@
-primosAte(N):
+def primosAte(N):
 	criaInteirosDesmarcadosAte(N)
 	marcaMultiplos()
 	colocaNaoMarcadosNoResultado()

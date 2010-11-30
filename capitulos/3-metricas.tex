@@ -1,20 +1,20 @@
 \chapter{Mapeamento de Código Limpo em Métricas de Código-fonte}
 \label{chap:mapeamento}	
 
-Após a discussão teórica realizada na primeira parte dessa 	monografia, apresentaremos um mapeamento dos conceitos de código limpo em métricas de código-fonte. Nesse mapeamento usamos um conjunto de métricas para automatizar a busca por características do código-fonte. Em seguida, criamos uma interpretação dos valores das métricas, fazendo associações entre eles e as técnicas e conceitos relacionados a limpeza do código. Nosso objetivo é facilitar a detecção de trechos que poderiam sofrer alterações que os tornem mais expressivos, simples e flexíveis.
+Após a discussão teórica realizada na primeira parte dessa monografia, apresentaremos um mapeamento dos conceitos de código limpo para métricas de código-fonte. Nesse mapeamento usamos um conjunto de métricas para automatizar a busca por características do código-fonte. Em seguida, criamos uma interpretação dos valores das métricas, fazendo associações entre eles e as técnicas e conceitos relacionados a limpeza do código. Nosso objetivo é facilitar a detecção de trechos que poderiam sofrer alterações que os tornem mais expressivos, simples e flexíveis.
 
 
-\section{Métricas de Código-fonte}
+\section{Métricas de Código-Fonte}
 
 Métricas nos permitem criar mecanismos automatizáveis para detecção de características obtidas através da análise do código-fonte. Elas podem ser usadas como pontos de avaliação da qualidade do software \citep{meirelles:sbqs09}. Além disso, no contexto de métodos ágeis, as métricas são importantes parâmetros para \textit{tracking} de projetos (acompanhamento do andamento do projeto), por exemplo, auxiliando na contagem do número de linhas de código já produzidas ou no cálculo da cobertura de teste.	
 
-Diante do vasto conjunto existente de métricas, compreender os significados dos valores de todas é uma tarefa custosa, desmotivando o uso de métricas de código-fonte de maneira geral. Essa realidade motivou o desenvolvimento, no Centro de Competência de Software Livre do IME-USP, de ferramentas que automatizam a interpretação dos resultados obtidos. Uma dessas ferramentas é a Kalibro (inicialmente demoninada Crab), descrita no artigo \citep{meirelles:sbes09}, que permite ao usuário configurar intervalos numéricos para possibilitar uma interpretação qualitativa do valor de cada métrica. Assim, podemos usar intervalos como ``Bom'', ``Regular'' e ``Ruim'' ao invés de ``0 a 1/3'', ``1/3 a 2/3'' e ``2/3 a 1'', facilitando o entendimento e a classificação dos aspectos medidos a partir do código.
+Diante do vasto conjunto existente de métricas, compreender os significados dos valores de todas é uma tarefa custosa, desmotivando o uso de métricas de código-fonte de maneira geral. Essa realidade motivou o desenvolvimento, no Centro de Competência de Software Livre do IME-USP, de ferramentas que automatizam a interpretação dos resultados obtidos. Uma dessas ferramentas é a Kalibro (inicialmente demoninada Crab \citep{meirelles:sbes09}), que permite ao usuário configurar intervalos numéricos para possibilitar uma interpretação qualitativa do valor de cada métrica. Assim, podemos usar intervalos como ``Bom'', ``Regular'' e ``Ruim'' ao invés de ``0 a 1/3'', ``1/3 a 2/3'' e ``2/3 a 1'', facilitando o entendimento e a classificação dos aspectos medidos a partir do código.
                                         
 A dificuldade dessa abordagem consiste em como determinar esses intervalos numéricos. Para definí-los, podemos usar os conceitos apresentados por Robert Martin \citep{Martin2008} e outros autores ou elaborar testes empíricos e estatísticos. Entretanto, através dessas abordagens, fixaríamos valores que não levariam em consideração os diferentes domínios de aplicação, linguagens e outros aspectos relevantes para definir a maneira que programamos, como comentado por Kent Beck em \textit{Implementation Patterns} \citep{Beck2007}.                           
                                                          
-Partindo dessa realidade, adotamos uma abordagem baseada em cenários para identificar trechos de código com características indesejáveis. Nesses cenários, elaboramos um contexto criado a partir de poucos conceitos de código limpo no qual um pequeno conjunto de métricas é analisado e interpretado através da combinação de seus valores. Por exemplo, conceitualmente buscamos métodos pequenos e com apenas uma tarefa (Seção \ref{sec:metodos}). Sendo assim, elaboramos um cenário que contextualiza a interpretação de métricas relativas ao número de linhas e quantidade estruturas de controle de forma que seus valores indiquem a presença de métodos grandes.
+Partindo dessa realidade, adotamos uma abordagem baseada em cenários para identificar trechos de código com características indesejáveis. Nesses cenários, elaboramos um contexto criado a partir de poucos conceitos de código limpo no qual um pequeno conjunto de métricas é analisado e interpretado através da combinação de seus valores. Por exemplo, conceitualmente buscamos métodos pequenos e com apenas uma tarefa (Seção \ref{sec:metodos}). Sendo assim, elaboramos um cenário que contextualiza a interpretação de métricas relativas ao número de linhas e quantidade de estruturas de controle de forma que seus valores indiquem a presença de métodos grandes.
                          
-O mapeamento desenvolvido nesta pesquisa não pretende afirmar se um código é limpo ou não. O objetivo é facilitar melhorias de implementação através da aproximação os valores das métricas com os contextos de interpretação. 
+O mapeamento desenvolvido nesta pesquisa não pretende afirmar se um código é limpo ou não. O objetivo é facilitar melhorias de implementação através da aproximação dos valores das métricas com os esperados nos contextos de interpretação. 
                          						
 	
 \section{O Mapeamento}
@@ -22,21 +22,22 @@ O mapeamento desenvolvido nesta pesquisa não pretende afirmar se um código é 
 O mapeamento proposto neste trabalho visa facilitar a procura por problemas quanto a limpeza do código. A ideia é criar cenários que relacionem os conceitos de código limpo com métricas de código-fonte. Cada cenário é descrito através dos seguintes componentes:
 	
 \begin{itemize}
-	\item Conceitos de Limpeza Relacionados: conceitos de limpeza de código que motivaram a criação do cenário.
-	\item Características: indicam a presença de falhas em relação as referências apresentadas.
-	\item Métricas: mecanismos que permitem analisar o código a procura das características do cenário.
-	\item Objetivo Durante a Refatoração: quais devem ser as ideias principais durante a refatoração para eliminar o problema.
-	\item Resultados Esperados: quais características devem ser encontradas no código quando terminar a refatoração para eliminação do cenário.
+	\item \textbf{Conceitos de Limpeza Relacionados}: conceitos de limpeza de código que motivaram a criação do cenário.
+	\item \textbf{Características}: indicam a presença de falhas em relação as referências apresentadas.
+	\item \textbf{Métricas}: mecanismos que permitem analisar o código a procura das características do cenário.
+	\item \textbf{Objetivo Durante a Refatoração}: quais devem ser as ideias principais durante a refatoração para eliminar o problema.
+	\item \textbf{Resultados Esperados}: quais características devem ser encontradas no código quando terminar a refatoração para eliminação do cenário.
 \end{itemize}	
 
 
-Quando algum cenário é detectado, sugerimos que o usuário analise o trecho indicado, assim verificando se é possível refatorar o código para melhorar sua limpeza. Esse mapeamento não visa afirmar se existem problemas no código, mas sim indicar partes dele que talvez possam ser melhoradas de acordo com os conceitos discutidos nesse trabalho.
+Quando algum cenário é detectado, sugerimos que o usuário analise o trecho indicado para verificar se é possível refatorar o código e melhorar sua limpeza. Esse mapeamento não visa afirmar se existem problemas no código, mas sim indicar partes dele que talvez possam ser melhoradas de acordo com os conceitos discutidos nesse trabalho.
 
-Para incentivar a avaliação de códigos ao longo de seu desenvolvimento, é muito importante que sua interpretação seja simples. Esperamos que a preocupação com a limpeza do código não emerja apenas quando ele estiver pronto, pois nessa fase é provável que ele tenha vários problemas e que seja muito complicado alterá-lo. Por esse motivo, montamos alguns cenários e escolhemos um conjunto pequeno de métricas que nos permite detectar as características procuradas.
+Para incentivar a avaliação do código ao longo de seu desenvolvimento, é muito importante que a interpretação dos valores das métricas seja simples. Esperamos que a preocupação com a limpeza do código não emerja apenas quando ele estiver pronto, pois nessa fase é provável que ele tenha vários problemas e que seja muito complicado alterá-lo. Por esse motivo, montamos alguns cenários e escolhemos um conjunto pequeno de métricas que nos permite detectar as características procuradas.
 
-Até o momento, não conseguimos mapear todos os conceitos de código limpo usando métricas. Por exemplo, não consguimos encontrar problemas relacionados a nomes pouco expressivos usando apenas métricas. Nesse caso, não é suficiente analisarmos somente a estrutura do código, precisaríamos entender o contexto em que cada nome é usado, e para isso, também seria necessária uma análise semântica.
+Até o momento, não conseguimos mapear todos os conceitos de código limpo usando métricas. Por exemplo, não consguimos encontrar problemas relacionados a nomes pouco expressivos usando apenas métricas. Nesse caso, não é suficiente analisarmos somente a estrutura do código: precisamos entender o contexto em que cada nome é usado, e para isso, também é necessária uma análise semântica.
 
-Em suma, existem dois tipos de métricas de código-fonte. Algumas avaliam características de métodos e outras de classes. As métricas de classe são normalmente somas ou médias dos valores das métricas de nível de métodos. Essa divisão de alvo da análise das métricas também existe no contexto dos cenários, que discutiremos adiante.
+\vskip 1.0cm
+Existem dois tipos de métricas de código-fonte. Algumas avaliam características de métodos e outras de classes. As métricas de classe são normalmente somas ou médias dos valores das métricas de métodos. Essa divisão de alvo da análise das métricas também existe no contexto dos cenários, que discutiremos adiante.
 
 
 
@@ -46,16 +47,16 @@ Abaixo apresentamos o conjunto selecionado de métricas.
 
 \subsubsection{NC (\textit{Number of Calls}): Número de Chamadas}
 
-A métrica NC\footnote{A métrica NC foi elaborada para esse trabalho, pois não a encontramos nas referências utilizadas.} calcula o número de métodos e atributos internos e externos usados por um método. Elementos exeternos são aqueles que pertencem a classes não relacionadas hierarquicamente com a classe da operação analisada. Os internos são os pertencentes a mesma classe.
+A métrica NC\footnote{A métrica NC foi elaborada para esse trabalho, pois não a encontramos nas referências utilizadas.} calcula o número de métodos e atributos internos e externos usados por um método. Membros externos são aqueles que pertencem a classes não relacionadas hierarquicamente com a classe da operação analisada. Os internos são os pertencentes a mesma classe.
                                                                  
 O valor dessa métrica pode variar entre zero e a soma do número de atributos e métodos presentes no sistema. Obtemos zero quando o método em análise não acessa nenhum atributo e não faz chamadas a métodos.
 	
 
 \subsubsection{NEC (\textit{Number of External Calls}): Número de Chamadas Externas}
 
-A métrica NEC calcula o número de métodos e atributos externos acessados por um método. Definimos como externos os elementos pertencentes a classes não relacionadas hierarquicamente com a classe do método em análise.
+A métrica NEC calcula o número de métodos e atributos externos acessados por um método. Definimos como externos os membros pertencentes a classes não relacionadas hierarquicamente com a classe do método em análise.
  	                                               
-NEC é uma adaptação da métrica ATFD (\textit{Access To Foreing Data} \citep{Marinescu02}) que calcula o número de atributos de classas não relacionadas que são acessados diretamente ou através de chamadas a métodos de acesso. 
+NEC é uma adaptação da métrica ATFD (\textit{Access To Foreing Data} \citep{Marinescu02}) que calcula o número de atributos de classes não relacionadas que são acessados diretamente ou através de chamadas a métodos de acesso. 
 
 Seu valor pode variar de zero até o número total de métodos e atributos do sistema. Nesse caso, zero indica que não há comunicação entre o método e qualquer outra classe sem relação com a sua.
 	        
@@ -91,7 +92,7 @@ O valor dessa métrica varia entre zero e o total de atributos da classe do mét
 
 A métrica MaxNesting \citep{Lanza06} calcula o nível máximo de estruturas encadeados presentes no corpo de um método.
 
-Seu valor varia entre zero e a quantidade total de quebras de fluxo do método. Obtemos zero quando o método não possui controladores de fluxo. Atingimos o valor máximo quando todas as quebras condicionais presentes no método encontram-se em níveis diferentes da mesma estrutura.
+Seu valor varia entre zero e a quantidade total de fluxos condicionais do método. Obtemos zero quando o método não possui fluxos condicionais e atingimos o valor máximo quando todas as quebras condicionais presentes no método encontram-se em níveis diferentes da mesma estrutura.
 
 Os comandos \textit{if}, \textit{while} e \textit{for} são alguns exemplos de controladores de fluxo bastante usados em diversas linguagens.
                          
@@ -100,7 +101,7 @@ Os comandos \textit{if}, \textit{while} e \textit{for} são alguns exemplos de c
 
 A métrica CYCLO \citep{McCabe76} calcula o número de caminhos linearmente independentes no método analisado, conhecido como complexidade ciclomática.
 
-Seu valor mínimo é 1 e não existe um limite máximo para o seu resultado. Obtemos 1 quando não há quebra do fluxo principal. Cada estrutura de controle de fluxo presente no corpo do método adiciona 1 no valor total da CYCLO.
+Seu valor mínimo é 1 e não existe um limite máximo para o seu resultado. Obtemos 1 quando não há quebras do fluxo principal. Cada estrutura de controle de fluxo presente no corpo do método adiciona 1 no valor total da CYCLO.
 	                          
 Quando os valores de MaxNesting e CYCLO são próximos, sabemos que muitos dos controladores de fluxo presentes no método estão encadeados em uma mesma estrutura. Quando são muito distantes, podemos concluir que os controladores estão espalhados em estruturas diferentes e que elas não são muito profundas.
                                    
@@ -116,7 +117,7 @@ Calculamos a média de NP quando precisamos avaliar a média do número de parâ
 
 A métrica NRP\footnote{A métrica NRP foi elaborada para esse trabalho, pois não a encontramos nas referências utilizadas.} calcula o número de parâmetros recebidos pelo método em análise e repassados como argumento em chamadas a outras operações pertencentes a sua classe.                                                    
 	
-Seu valor varia entre zero e o número de parâmetros do método (indicado pela métrica NP). Obtemos zero quando nenhum parâmetro é repassado. O valor máximo é atingido quando todos os parâmetros são usados como argumentos em alguma chamda de operção realizada no corpo do método. 
+Seu valor varia entre zero e o número de parâmetros do método (indicado pela métrica NP). Obtemos zero quando nenhum parâmetro é repassado. O valor máximo é atingido quando todos os parâmetros são usados como argumentos em alguma chamada de operação realizada no corpo do método. 
                               
 Calculamos a média de NRP quando precisamos avaliar a média do número de repasses de parâmetros por método de uma classe.
                         
@@ -146,11 +147,11 @@ A métrica SLOC calcula a soma do número de linhas efetivas de todos os método
 AMLOC calcula a média do número de linhas efetivas por método da classe analisada.
 	
 
-\subsubsection{LCOM4 (\textit{Lack of Cohesion}): Falta de Coesão Entre Métodos}
+\subsubsection{LCOM4 (\textit{Lack of Cohesion of Methods}): Falta de Coesão Entre Métodos}
 
-A métrica LCOM4 \citep{HM96} calcula a falta de coesão da classe analisada. Para isso, é montado um grafo cujos vértices são os atributos e métodos da classe. Cada aresta desse grafo representa o acesso de um atributo ou a chamada de método através de um outro método. Quando o grafo estiver pronto, são contabilizados os componentes conexos existentes nele. Esse número indica a quantidade de subconjuntos em que a classe está dividida.
+A métrica LCOM4 \citep{HM96} calcula a falta de coesão dos métodos da classe analisada. Para isso, é montado um grafo cujos vértices são os atributos e métodos da classe. Cada aresta desse grafo representa um acesso a atributo ou uma chamada de método através de um outro método. Nesse grafo não são inseridos métodos construtores.
 
-Seu valor mínimo é 1 e não existe um limite máximo para o seu resultado. Obtemos 1 quando a classe não possui subdivisões, ou seja, quando a classe é bastante coesa. Normalmente, desejamos classes que não possuem conjuntos isolados de métodos e atributos, pois o número de subdivisões costuma indicar a quantidade de classes que deveriam existir para que cada uma fosse responsável por apenas um contexto.
+O valor de LCOM4 é o número de componentes conexos desse grafo. Seu valor mínimo é 1 e não existe um limite máximo para o seu resultado. Obtemos 1 quando a classe não possui subdivisões, ou seja, quando a classe é bastante coesa. Normalmente, desejamos classes que não possuem conjuntos isolados de métodos e atributos, pois o número de subdivisões costuma indicar a quantidade de classes que deveriam existir para que cada uma fosse responsável por apenas uma responsabilidade (Seção \ref{classes:coesao}).
                                                     
 	  
 
@@ -158,36 +159,36 @@ Seu valor mínimo é 1 e não existe um limite máximo para o seu resultado. Obt
 
 \subsubsection{Método Grande}
 
-Os conceitos tratados no Capítulo de Código Limpo que constituem este cenário, denominado de Métodos Grandes, são: Composição de Métodos (Seção \ref{metodos:composicao}), a necessidade de Evitar Estruturas Encadeadas (Seção \ref{metodos:evitar_estruturas}) e, a possibilidade de usar Cláusulas Guarda (Seção \ref{metodos:clausula_guarda}).
+Os conceitos tratados no Capítulo de Código Limpo que constituem este cenário, denominado Método Grande, são: Composição de Métodos (Seção \ref{metodos:composicao}), a necessidade de Evitar Estruturas Encadeadas (Seção \ref{metodos:evitar_estruturas}) e, a possibilidade de usar Cláusulas Guarda (Seção \ref{metodos:clausula_guarda}).
 	
 Nesse contexto, métodos grandes tem como principal característica (i) um elevado número de linhas, ou seja, um alto valor de LOC. É comum também possuir (ii) um elevado número de quebras condicionais de fluxo, indicado por um valor alto da CYCLO e (iii) profundas estruturas com condicionais encadeados, indicadas por um valor alto do MaxNesting.
                                                
-Durante uma refatoração deste cenário, nosso objetivo é diminuir o número de linhas (LOC), diminuir a complexidade ciclomática (CYCLO) e eliminar as estruturas encadeadas (MaxNesting) no método em análise. Conseguimos atingir esses obejetivos decompondo o método grande em métodos menores. Normalmente, começamos essa decomposição passando os blocos de código dos desvios de fluxo para outros lugares, pois esses são conjuntos de operações evidentemente isoladas do resto do método.
+Durante uma refatoração deste cenário, nosso objetivo é diminuir o número de linhas (LOC), diminuir a complexidade ciclomática (CYCLO) e eliminar as estruturas encadeadas (MaxNesting) no método em análise. Conseguimos atingir esses objetivos decompondo o método grande em métodos menores. Normalmente, começamos essa decomposição passando os blocos de código dos desvios de fluxo para outros lugares, pois esses são conjuntos de operações evidentemente isoladas do resto do método.
                                                 
-Após a refatoração de todas as ocorrências deste cenário na classe em análise, esperamos que a sua média de linhas por método (média de LOC) e as profundidades máximas de estruturas encadeadas de cada método (MaxNesting) abaixem. Provavelmente, a complexidade ciclomática da classe (CYCLO) não sofrerá alterações. Isso acontece porque normalmente espalhamos essas quebras de fluxo em outros métodos da mesma classe, mas não as eliminamos da sua lógica. Teremos uma redução da complexidade ciclomática quando parte do código for eliminado ou trasferido para métodos de outras classes. Além disso, pode acontecer um aumento no número de métodos da classe, um aumento do número de métodos de outras classes ou até a criação de novas classes.
+Após a refatoração de todas as ocorrências deste cenário na classe em análise, esperamos que a sua média de linhas por método (média de LOC) e as profundidades máximas de estruturas encadeadas de cada método (MaxNesting) abaixem. Provavelmente, a soma da complexidade ciclomática da classe (CYCLO) não sofrerá alterações. Isso acontece porque normalmente espalhamos essas quebras de fluxo em outros métodos da mesma classe, mas não as eliminamos da sua lógica. Teremos uma redução da complexidade ciclomática quando parte do código for eliminado ou trasferido para métodos de outras classes. Além disso, pode acontecer um aumento no número de métodos da classe, um aumento do número de métodos de outras classes ou até a criação de novas classes.
 
 Possuir muitas funcionalidades e parâmetros são mais duas características deste cenário. Porém, não precisamos nos preocupar com elas diretamente. Suas quantidades serão reduzidas como consequência da refatoração baseada nos outros aspéctos citados.
 
 Para exemplificar este cenário, vamos analisar o método \textit{custosAPartirDoVertice} (trecho de código \ref{metodo_grande}). Nessa avaliação, devemos calcular os valores das métricas que indicam a presença das características do problema descrito. 
                                                                                                                          
-\lstinputlisting[label=metodo_grande, caption={O método custosAPartirDoVertice é um exemplo de método grande}]{codigos/exemplos_para_os_cenarios/metodo_grande}                                                            
+\lstinputlisting[label=metodo_grande, caption={O método custosAPartirDoVertice é um exemplo de Método Grande}]{codigos/exemplos_para_os_cenarios/metodo_grande}                                                            
 
-Quando contamos o número de linhas efetivas desse método, obtemos \textit{LOC = 17}. Ao contabilizar a quantidade de controladores de fluxo, chegamos a \textit{CYCLO = 6}. Por fim, temos que a profundidade máxima entre as estruturas de controladores encadeados, medida por MaxNesting, é igual a 4. Baseado no príncipio de procurarmos métodos pequenos, esses valores podem ser indícios de que esse método possui problemas relacionados a limpeza de código por ter características de um método grande.
+Quando contamos o número de linhas efetivas desse método, obtemos \textit{LOC = 17}. Ao contabilizar a quantidade de controladores de fluxo, chegamos a \textit{CYCLO = 6}. Por fim, temos que a profundidade máxima das estruturas encadeados, medida por MaxNesting, é igual a 4. Baseado na busca por métodos pequenos, esses valores podem ser indícios de que esse método possui problemas relacionados a limpeza de código por ter características de um método grande.
                                                       
-O trecho de código \ref{refatoracao_para_metodo_grande} é uma possível refatoração para o método \textit{custosAPartirDoVertice}. Nesse caso, reduzimos a quantidade de responsabilidades do método, passando-as para outros métodos menores: \textit{inicializaCustosEFila} e \textit{atualizaCustosAteAcabarVertices}. Esses métodos também são pequenos pois quebram suas tarefas e as passam para outras operações que seguirão esse mesmo princípio. Quando calculamos as métricas deste cenário no método refatorado, obtemos \textit{LOC = 3}, \textit{CYCLO = 1} e \textit{MaxNesting = 0}. Comparando com os resultados antigos, podemos observar uma grande redução nos valores após a refatoração. Dados os novos resultados, podemos dizer que o método \textit{custosAPartirDoVertice} não está mais no cenário de método grande.
+O trecho de código \ref{refatoracao_para_metodo_grande} é uma possível refatoração para o método \textit{custosAPartirDoVertice}. Nesse caso, reduzimos a quantidade de tarefas do método, passando-as para outros métodos menores: \textit{inicializaCustosEFila} e \textit{atualizaCustosAteAcabarVertices}. Esses métodos também são pequenos pois quebram suas tarefas e as passam para outras operações que seguirão esse mesmo princípio. Quando calculamos as métricas deste cenário no método refatorado, obtemos \textit{LOC = 3}, \textit{CYCLO = 1} e \textit{MaxNesting = 0}. Comparando com os resultados antigos, podemos observar uma grande redução nos valores após a refatoração. Dados os novos resultados, podemos dizer que o método \textit{custosAPartirDoVertice} não está mais no cenário de método grande.
 
 \lstinputlisting[label=refatoracao_para_metodo_grande, caption={Uma possível refatoração para o método custosAPartirDoVertice deixar de ser um método grande}]{codigos/exemplos_para_os_cenarios/refatoracao_para_metodo_grande}                                                            
 
 	
 \subsubsection{Método com Muitos Fluxos Condicionais}
                   
-Os conceitos de código limpo que constituem este cenário são a Composição de Métodos (Seção \ref{metodos:composicao}), Evitar Estruturas Encadeadas (Seção \ref{metodos:evitar_estruturas}) e o Uso de Exceções (Seção \ref{metodos:excecoes}). Esse cenário ocorre quando temos métodos que são complexos, mas não necessariamente grandes. Suas principais características são: (i) muitas quebras condicionais de fluxo (valor alto da CYCLO) e (ii) longas estruturas com condicionais encadeados (valor alto de MaxNesting).
+Os conceitos de código limpo que constituem este cenário são a Composição de Métodos (Seção \ref{metodos:composicao}), Evitar Estruturas Encadeadas (Seção \ref{metodos:evitar_estruturas}) e o Uso de Exceções (Seção \ref{metodos:excecoes}). Esse cenário ocorre quando temos métodos que são complexos, mas não necessariamente grandes. Suas principais características são: (i) muitas quebras condicionais de fluxo (valor alto de CYCLO) e (ii) longas estruturas com condicionais encadeados (valor alto de MaxNesting).
                                                                                  
 Durante uma refatoração deste cenário, buscamos minimizar a complexidade ciclomática (CYCLO) e a profundidade máxima de estruturas encadeadas (MaxNesting) do método, pois queremos deixar o código mais simples e direto. Podemos nos basear na decomposição de métodos para atingirmos nossos objetivos.
 	
-Depois das modificações, esperamos que o a profundidade máxima de estruturas encadeadas tenha diminuído (redução do MaxNesting). Quando a refatoração for baseada no uso de exceções, como \textit{try catch} é provável que a complexidade ciclomática do método não se altere, pois essas estruturas também são contadas como desvios de fluxo no calculo da CYCLO. Pode acontecer também um aumento no número de métodos da classe, porque, em alguns casos, o conteúdo do bloco de cada desvio condicional é deslocado para novos métodos. 
+Depois das modificações, esperamos que a profundidade máxima de estruturas encadeadas tenha diminuído (redução do MaxNesting). Quando a refatoração for baseada no uso de exceções, como \textit{try catch} é provável que a complexidade ciclomática do método não se altere, pois essas estruturas também são contadas como desvios de fluxo no calculo da CYCLO. Pode acontecer também um aumento no número de métodos da classe, porque, em alguns casos, o conteúdo do bloco de cada desvio condicional é deslocado para novos métodos. 
            
-Para exemplificar este cenário, usaremos o método \textit{deletaPaginasETodasAsReferencias} (trecho de código \ref{metodo_com_muitos_fluxos_condicionais}). Quando analisamos esse bloco de código usando as métricas indicadas neste cenário, encontramos os valores \textit{CYCLO} = 4 e \textit{MaxNesting} = 3. Se condideramos esses valores com indícios de que temos muitos controladores de fluxo e uma longa estrutura desses controladores encadeados, podemos dizer que esse método tem muitos fluxos condicionais. 
+Para exemplificar este cenário, usaremos o método \textit{deletaPaginasETodasAsReferencias} (trecho de código \ref{metodo_com_muitos_fluxos_condicionais}). Quando analisamos esse bloco de código usando as métricas indicadas neste cenário, encontramos os valores \textit{CYCLO} = 4 e \textit{MaxNesting} = 3. Se considerarmos esses valores como indícios de que temos muitos controladores de fluxo e uma longa estrutura desses controladores encadeados, podemos dizer que esse método tem muitos fluxos condicionais. 
                                                                                           
 \lstinputlisting[label=metodo_com_muitos_fluxos_condicionais, caption={O método deletaPaginasETodasAsReferencias é um exemplo de método com muitos fluxos condicionais}]{codigos/exemplos_para_os_cenarios/metodo_com_muitos_fluxos_condicionais}               
                                                                                           
@@ -208,14 +209,14 @@ Para exemplificar este cenário, usaremos o método \textit{calculaQuantidadeDeD
 
 \lstinputlisting[label=metodo_com_muitos_parametros, caption={O método calculaQuantidadeDeDias é um exemplo de método com muitos parametros}]{codigos/exemplos_para_os_cenarios/metodo_com_muitos_parametros}                   
                                                                                                         
-Ao analisarmos os parâmetros presentes nesse exemplo, podemos notar que eles representam duas datas formadas por \textit{dia, mês e ano}, que indicam o início e o fim de um período. Então, uma refatoração possível para esse código seria criar uma classe \textit{Data} da qual cada objeto representasse uma dessas datas. Assim, reduziríamos o valor de \textit{NP} de seis para dois, eliminando o problema de alto número de parâmetros desse método (trecho de código \ref{refatoracao_para_metodo_com_muitos_parametros}). 
+Ao analisarmos os parâmetros presentes nesse exemplo, podemos notar que eles representam duas datas compostas por \textit{dia, mês e ano}, que indicam o início e o fim de um período. Então, uma refatoração possível para esse código seria criar uma classe \textit{Data} da qual cada objeto representasse uma dessas datas. Assim, reduziríamos o valor de \textit{NP} de seis para dois, eliminando o problema de alto número de parâmetros desse método (trecho de código \ref{refatoracao_para_metodo_com_muitos_parametros}). 
                                                                                
 \lstinputlisting[label=refatoracao_para_metodo_com_muitos_parametros, caption={O método calculaQuantidadeDeDias depois da refatoração para redução do número de parâmetros}]{codigos/exemplos_para_os_cenarios/refatoracao_para_metodo_com_muitos_parametros}          
               
 
 \subsubsection{Muita Passagem de Parâmetros Pela Classe}
 	
-Este é o primeiro cenário que descrevemos relacionado com a avaliação da classe como um todo e não de métodos separados. Os conceitos de código limpo que constituem este cenário são o uso de Objeto como Parâmetro (Seção \ref{metodos:objeto_parametro}) e a tranformação de parâmetros em variáveis de instância (Seção \ref{metodos:parametros}).
+Este é o primeiro cenário que descrevemos relacionado com a avaliação da classe como um todo e não de métodos separados. Os conceitos de código limpo que constituem este cenário são o uso de Objeto como Parâmetro (Seção \ref{metodos:objeto_parametro}) e a transformação de parâmetros em variáveis de instância (Seção \ref{metodos:parametros}).
 	
 Podemos separar esse cenário em dois casos diferentes. O primeiro trata do repasse de muitos parâmetros. Sua característica é ter uma elevada média de parâmetros repassados (alta média de NRP). Parâmetros repassados são aqueles recebidos por um método que os repassam em chamadas a operações. O segundo caso se preocupa com a elevada média do número de parâmetros por método da classe analisada (alta média de NP).       
 		     
@@ -223,9 +224,9 @@ Então, é comum que os métodos de classes com muita passagem de parâmetro ten
 	                                                               
 \lstinputlisting[label=metodo_com_muito_repasse_de_parametros, caption={O método custosAPartirDoVertice é um exemplo de método com muito repasse de parâmetros}]{codigos/exemplos_para_os_cenarios/metodo_com_muito_repasse_de_parametros}                                     
 	
-Os objetivos durante uma refatoração deste cenário são diminuir o número de repasses de parâmetros pela classe (diminuir o NRP) e reduzir o número de parâmetros dos métodos (reduzir o NP). Fazemos isso tranformando os parâmetros muito repassados ou usados em vários métodos em atributos e criando objetos para guardar conjuntos de parâmetros relacionados.
+Os objetivos durante uma refatoração deste cenário são diminuir o número de repasses de parâmetros pela classe (diminuir o NRP) e reduzir o número de parâmetros dos métodos (reduzir o NP). Fazemos isso transformando os parâmetros muito repassados ou usados em vários métodos em atributos e criando objetos para guardar conjuntos de parâmetros relacionados.
 	
-Os resultados esperados após a refatoração do código são a redução da média do número de parâmetros por método (redução da média de NP), redução do número de repassagem de parâmetro (redução do NP) e o aumento do número de variáveis de instância. Além disso, pode ocorrer um aumento no número de classes caso aconteça a junção de variáveis em um único objeto.	           
+Os resultados esperados após a refatoração do código são a redução da média do número de parâmetros por método (redução da média de NP), redução do número de repasses de parâmetros (redução do NRP) e o aumento do número de variáveis de instância. Além disso, pode ocorrer um aumento no número de classes caso aconteça a junção de variáveis em um único objeto.	           
 
 
 \subsubsection{Método ``Invejoso''}
@@ -233,7 +234,7 @@ Os resultados esperados após a refatoração do código são a redução da mé
 	
 Método ``invejoso'' é aquele que usa um elevado número de métodos e atributos de poucas classes não relacionadas hierarquicamente com a sua própria (Seção \ref{classes:invejoso}). Mapeando essas características em métricas de código-fonte, temos neste cenário alta ECR, que indica a taxa de chamadas a métodos e atributos externos, e baixa NCC, que representa o número de classes não relacionadas chamadas pelo método.
 	
-A preocupação durante uma refatoração neste contexto, deve ser a minimização do número de chamadas externas, calculado através do NEC. O conceito de código limpo que constitui este cenário é a delegação de tarefa.
+A preocupação durante uma refatoração neste contexto, deve ser a minimização do número de chamadas externas, calculado através do NEC. O conceito de código limpo que constitui este cenário é a Delegação de Tarefa (Seção \ref{classes:delegacao}).
 	
 Após a refatoração, esperamos uma redução do número de chamadas externas (diminuição do NEC), da taxa de chamadas externas (diminuição do ECR) e da média do número de chamadas externas da classe (diminuição da média de NEC).
                       
@@ -249,11 +250,11 @@ Para resolver esse problema, podemos passar para a classe empregado o método \t
 \subsubsection{Método Dispersamente Acoplado}
 \label{cenario_metodo_dispersamente_acoplado}	
 
-Um método dispersamente acoplado utiliza um elevado número de atributos e métodos de várias classes não relacionadas hierarquicamente com a sua. Assim como no contexto de método ``invejoso'', nesse cenário temos um valor alto de ECR, indicando que o uso de métodos e atributos externos é maior do que de internos. Porém, a diferença entre eles é o número de classes não relacionadas chamadas pelo método, sendo o valor do NCC alto nesse cenário e baixo para métodos ``invejosos''.
+Um método dispersamente acoplado utiliza um elevado número de atributos e métodos de várias classes não relacionadas hierarquicamente com a sua. Assim como no contexto de método ``invejoso'', neste cenário temos um valor alto de ECR, indicando que o uso de métodos e atributos externos é maior do que de internos. Porém, a diferença entre eles é o número de classes não relacionadas chamadas pelo método, sendo o valor do NCC alto neste cenário e baixo para métodos ``invejosos''.
 	
 Durante uma refatoração, devemos focar na redução do número de chamadas externas que é calculado através da métrica NEC. Os conceitos de código limpo que constituem este cenário são o de Objeto Centralizador (Seção \ref{classes:centralizador}) e o de Objeto Método (Seção \ref{objeto_metodo}).
 	
-Os resultados esperados após a refatoração são a redução do número de chamadas externas e de sua média na classe do método analisado (NEC e média de NEC) e a diminuição do número de classes não relacionadas chamadas (NCC). Também pode ocorrer um aumento no número de classes. Isso acontecerá quando uma classe for criada para centralizar o diálogo entre as classes não relacionadas, sendo sacrificado para que as outras mantenham suas características e sejam reutilizáveis em outros projetos. 
+Os resultados esperados após uma refatoração são a redução do número de chamadas externas e de sua média na classe do método analisado (NEC e média de NEC) e a diminuição do número de classes não relacionadas acessadas (NCC). Também pode ocorrer um aumento no número de classes. Isso acontecerá quando uma classe for criada para centralizar o diálogo entre as classes não relacionadas, sendo sacrificada para que as outras mantenham-se limpas e reutilizáveis em outros projetos. 
 	  
 Para exemplificar este cenário, usaremos o método \textit{adicionaDadosDaRodada} (trecho de código \ref{metodo_dispersamente_acoplado}). Quando o avaliamos usando as métricas \textit{ECR} e \textit{NCC} obtemos valores elevados, pois nesse código são usados seis métodos externos de quatro classes diferentes. Com esses resultados dizemos que esse método é dispersamente acoplado.
   
@@ -275,9 +276,9 @@ A principal característica de uma classe pouco coesa é possuir subdivisões em
 \end{figure}
    
     
-Na figura acima temos a representação abstrata de uma classe. Os círculos cinzas são os métodos e os azuis atributos da classe. As setas representam chamadas e acessos entre esses elementos. Quando contamos os grupos de elementos conexos, obtemos \textit{LCOM4 = 2}, e no cálculo do número médio de atributos atingidos por cada método, obtemos \textit{média de NRA = 1.16}. Como o valor de \textit{LCOM4} é maior do que um e o de \textit{NRA} é razoavelmente menor do que o número total de atributos (\textit{NOA = 3}), podemos classificar essa classe como pouco coesa.                  
+Na figura acima temos a representação abstrata de uma classe. Os círculos cinzas são os métodos e os azuis atributos da classe. As ligações representam chamadas e acessos entre esses elementos. Quando contamos os grupos de elementos conexos, obtemos \textit{LCOM4 = 2}, e no cálculo do número médio de atributos atingidos por cada método, obtemos \textit{média de NRA = 1.16}. Como o valor de \textit{LCOM4} é maior do que um e o de \textit{NRA} é razoavelmente menor do que o número total de atributos (\textit{NOA = 3}), podemos classificar essa classe como pouco coesa.                  
     
-Os objetivos durante uma refatoração deste cenário são aumentar a coesão (diminuir a LCOM4) e diminuir a diferença entre média do número de atributos alcançáveis (NRA) e o número de atributos da classe analisada (NOA). Portando, uma boa refatoração neste contexto seria separar as subdivisões já existentes na classe analisada em classes mais coesas.
+Os objetivos durante uma refatoração deste cenário são aumentar a coesão (diminuir a LCOM4) e diminuir a diferença entre média do número de atributos alcançáveis (NRA) e o número de atributos da classe analisada (NOA). Portanto, uma boa refatoração neste contexto seria separar as subdivisões já existentes na classe analisada em classes mais coesas.
 	
 Como resultado da refatoração deste cenário, esperamos encontrar um aumento do número de classes. Além disso, desejamos que as classes existentes não tenham subdivisões (LCOM4 = 1) e que a média do número de atributos alcançáveis por cada método seja próxima da quantidade de atributos da classe (média de NRA próxima de NOA).
                   

@@ -1,2 +1,2 @@
-destaca(palavra):
+def destaca(palavra):
 	palavra.corDoFundo(Cor.amarela)

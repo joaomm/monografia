@@ -1,6 +1,6 @@
 class Digrafo:
-	var numeroDeVertices
-	var listaDeAdjacencia
+	instVar numeroDeVertices
+	instVar listaDeAdjacencia
 
 	def construtor(numVertices):
 		numeroDeVertices = numVertices
@@ -14,12 +14,12 @@ class Digrafo:
 
 
 class CalculadorCaminhosMinimos:
-	var custo
-	var fila
-	var verticeOrigem
-	var digrafo
-	var numeroDeVertices
-	var Infinito = -1
+	instVar custo
+	instVar fila
+	instVar verticeOrigem
+	instVar digrafo
+	instVar numeroDeVertices
+	instVar Infinito = -1
 	
 	def construtor(umDigrafo):
 		numeroDeVertices = umDigrafo.numeroDeVertices

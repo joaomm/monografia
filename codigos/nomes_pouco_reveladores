@@ -1,4 +1,4 @@
-caminhoR(Vertice v):
+def caminhoR(Vertice v):
 		Vertice w
 		est[v] = 0
 		for(w = 0; w < tamanho(); w++) 

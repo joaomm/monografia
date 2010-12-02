@@ -23,7 +23,11 @@ tcc.pdf: tcc.tex
 
 sub_joao: sub_joao.tex
 	$(PDFLATEX) sub_joao.tex
-	open sub_joao.pdf
+	open sub_joao.pdf  
+
+sub_lucianna: sub_lucianna.tex
+	$(PDFLATEX) sub_lucianna.tex
+	open sub_lucianna.pdf
 
 clean:
 	rm -f $(BASE_NAME)*.ps $(BASE_NAME)*.dvi *.log \
